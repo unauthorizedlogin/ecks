@@ -1,0 +1,1307 @@
+Got it. Formatting the **Effect Manager** as Markdown documentation (not code dump).
+
+# ✨ Effect Manager (`al_effect_manager.gd`)
+
+## Overview
+
+The **Effect Manager** is the central authority for all gameplay effects within the framework.
+
+All effects in the game flow through this system. No standalone effects operate outside of the manager.
+
+This includes:
+
+* ⚔️ Combat effects
+* 🧪 Consumable effects
+* 🛡️ Equipment effects
+* 🔥 Damage over Time (DOT)
+* 💚 Healing over Time (HOT)
+* 📈 Stat modifiers
+* 🎯 Critical / hit effects
+* 💀 Revival effects
+* 🌀 Crowd control effects
+* 🌍 Difficulty scaling effects
+
+Difficulty is implemented as a **passive effect**, allowing world modifiers and gameplay scaling to use the same effect pipeline as player and enemy modifiers.
+
+---
+
+# 🧠 Core Responsibilities
+
+The Effect Manager provides:
+
+* Centralized effect application
+* Target resolution
+* Stat modifier routing
+* Temporary effect tracking
+* Effect expiration
+* Damage/healing ticks
+* Effect cleanup
+* Combat event logging
+
+All effect sources use the same application pipeline regardless of origin.
+
+---
+
+# ⚙️ Initialization
+
+```gdscript
+func initialize()
+```
+
+Registers the Effect Manager as an active system.
+
+Prevents duplicate initialization.
+
+Output:
+
+```
+✨ EffectManager initialized
+```
+
+---
+
+# 🎯 Target Resolution System
+
+The manager supports multiple target types and automatically resolves the required component.
+
+## Vital Resolution
+
+```gdscript
+_resolve_vitals(target)
+```
+
+Supports:
+
+* Direct `VitalComponent`
+* Nodes containing `VitalComponent`
+
+Used for:
+
+* Healing
+* Damage ticks
+* Revival
+* Health manipulation
+
+---
+
+## Stat Block Resolution
+
+```gdscript
+_resolve_stat_block(target)
+```
+
+Supports:
+
+* Direct `StatBlock`
+* Nodes exposing `get_stat_block()`
+
+Used for:
+
+* Stat modifiers
+* Overrides
+* Passive effects
+
+---
+
+# 📌 Public Effect API
+
+## Equipment Effects
+
+```gdscript
+apply_on_equip()
+```
+
+Handles:
+
+* Equipment stat bonuses
+* Passive equipment effects
+* Immediate equipment effects
+
+Accepted triggers:
+
+* `OnEquip`
+* `Immediate`
+* `Passive`
+
+---
+
+## Consumable Effects
+
+```gdscript
+apply_on_consume()
+```
+
+Handles:
+
+* Potions
+* Consumables
+* Instant effects
+
+Examples:
+
+* Healing
+* Revival
+* Temporary buffs
+
+---
+
+## On Hit Effects
+
+```gdscript
+apply_on_hit()
+```
+
+Triggered during attacks.
+
+Supports:
+
+* Damage modifiers
+* Knockback
+* On-hit effects
+
+Example:
+
+```
+OnHit triggered:
+Burning Strike applied to Enemy
+```
+
+---
+
+## Critical Hit Effects
+
+```gdscript
+apply_on_crit()
+```
+
+Handles effects triggered from critical strikes.
+
+Examples:
+
+* Bleed
+* Bonus damage effects
+* Debuffs
+
+---
+
+## Passive Effects
+
+```gdscript
+apply_passive()
+```
+
+Permanent or persistent effects.
+
+Examples:
+
+* Difficulty modifiers
+* Auras
+* Global bonuses
+* Class passives
+
+---
+
+# 🧠 Core Effect Pipeline
+
+## `add_effect()`
+
+All effects eventually enter:
+
+```
+Effect Source
+      ↓
+EffectManager
+      ↓
+Resolve Target
+      ↓
+Apply Immediate Effect
+      ↓
+Register Active Effect
+      ↓
+StatManager / Tick System
+```
+
+---
+
+# ⚡ Instant Effects
+
+Some effects resolve immediately and do not enter the active effect list.
+
+Handled types:
+
+## ❤️ Heal
+
+Supports:
+
+* Flat healing
+* Percentage healing
+
+Example:
+
+```
+Potion:
+Restore 20% Maximum HP
+```
+
+---
+
+## 💀 Revive
+
+Handles:
+
+* Dead state removal
+* HP restoration
+* MP restoration
+* Resource restoration
+
+Supports:
+
+* Flat values
+* Percentage values
+* Full restoration fallback
+
+---
+
+## 🌀 Knockback
+
+Routes through the target knockback system.
+
+Supports:
+
+* Direction
+* Force strength
+
+---
+
+# 📈 Stat Modifier System
+
+Effect Manager is the only bridge between effects and `StatManager`.
+
+Function:
+
+```gdscript
+_apply_to_stat_manager()
+```
+
+Supported modifications:
+
+## Flat Modifiers
+
+Example:
+
+```
++50 Strength
++20 Armor
+```
+
+Stored as:
+
+```gdscript
+{
+    "flat": amount
+}
+```
+
+---
+
+## Percentage Modifiers
+
+Example:
+
+```
++15% Damage
++20% Movement Speed
+```
+
+Stored as:
+
+```gdscript
+{
+    "percent": amount
+}
+```
+
+---
+
+## Overrides
+
+Example:
+
+```
+Set resistance to 75%
+```
+
+Stored as:
+
+```gdscript
+{
+    "override": amount
+}
+```
+
+---
+
+# ⏱️ Active Effect System
+
+Temporary effects are tracked through:
+
+```gdscript
+active_effects
+```
+
+Each active effect stores:
+
+* Effect reference
+* Target
+* Duration remaining
+* Tick timer
+* Source ID
+* Original source
+
+Example:
+
+```
+Burning
+ ├── Duration: 5 seconds
+ ├── Tick: every 1 second
+ └── Target: Enemy
+```
+
+---
+
+# 🔥 Damage Over Time System
+
+Supports:
+
+* Poison
+* Burn
+* Bleed
+* Other periodic damage
+
+DOT ticks are routed through:
+
+```
+EffectManager
+        ↓
+DamageRequest
+        ↓
+CombatManager
+        ↓
+Damage Pipeline
+```
+
+DOT does not bypass combat calculations.
+
+---
+
+# 💚 Healing Over Time System
+
+HOT effects:
+
+* Tick automatically
+* Respect duration
+* Use VitalComponent healing
+
+Examples:
+
+* Regeneration
+* Healing fields
+* Passive recovery
+
+---
+
+# 🌍 Difficulty Integration
+
+Difficulty scaling is implemented as a passive effect.
+
+This allows difficulty changes to use the same system as:
+
+* Equipment bonuses
+* Buffs
+* Debuffs
+* Class passives
+
+Example:
+
+```
+Difficulty: Nightmare
+
+Passive Effect:
++25% Enemy Damage
++50% Enemy Health
++10% Enemy Speed
+```
+
+No separate difficulty modifier pipeline is required.
+
+---
+
+# 🧹 Effect Cleanup
+
+## Remove Effect
+
+```gdscript
+_remove_effect()
+```
+
+Handles:
+
+* Expired effects
+* Removing stat sources
+* Cleaning active tracking
+
+---
+
+## Remove By Source
+
+```gdscript
+force_remove_by_source()
+```
+
+Used for:
+
+* Unequipping items
+* Removing buffs
+* Clearing temporary sources
+
+Example:
+
+```
+Remove:
+Legendary Sword Bonus
+```
+
+---
+
+## Clear Target Effects
+
+```gdscript
+clear_all_effects()
+```
+
+Removes all effects attached to a target.
+
+Used for:
+
+* Death cleanup
+* Reset states
+* Object removal
+
+---
+
+# 🔗 System Relationships
+
+```
+                 Difficulty
+                     |
+Equipment ───┐       |
+Consumables ─┼──→ EffectManager ───→ StatManager
+Combat ──────┤             |
+Skills ──────┘             |
+                           ↓
+                    Active Effects
+                           |
+                ┌──────────┴──────────┐
+                ↓                     ↓
+             DOT/HOT              Expiration
+                ↓                     ↓
+          CombatManager          Cleanup
+```
+
+---
+
+# ✅ Design Rule
+
+**EffectManager is the single authority for all gameplay effects.**
+
+No system should directly modify stats, health, damage-over-time, or passive modifiers outside this pipeline.
+
+All future effects — including:
+
+* difficulty
+* world modifiers
+* buffs
+* debuffs
+* equipment
+* skills
+* consumables
+
+must be represented as `StatEffect` resources and routed through the Effect Manager.
+
+# ✨ Stat Effect Resource (`resource_stateffect.gd`)
+
+## Overview
+
+`StatEffect` is the universal resource definition for every gameplay effect in the framework.
+
+All effects are represented as data-driven resources and processed through the **Effect Manager**.
+
+No gameplay system directly creates or manages stat changes. Instead, systems generate or reference `StatEffect` resources and pass them through the centralized effect pipeline.
+
+This resource supports:
+
+* 📈 Stat modifications
+* 🔒 Stat overrides
+* ❤️ Healing
+* 🔥 Damage over Time
+* 💚 Healing over Time
+* 💀 Revival
+* 🛡 Temporary buffs/debuffs
+* ✨ Enchantments
+* 🌎 Passive effects
+* 🌀 Knockback
+* 💸 Resource costs
+
+---
+
+# 🧱 Resource Identity
+
+```gdscript
+@export var effect_id : String
+```
+
+Unique identifier for the effect.
+
+Used for:
+
+* Database indexing
+* Save references
+* Debugging
+* Effect removal tracking
+
+Example:
+
+```
+effect_poison_fire
+effect_sword_strength_bonus
+effect_nightmare_scaling
+```
+
+---
+
+# 🗂️ Generator Metadata
+
+```gdscript
+var category: String
+var subcategory: String
+```
+
+Used for organization and generator routing.
+
+Example:
+
+```
+Effects
+ ├── Combat
+ │    ├── Fire
+ │    ├── Ice
+ │    └── Poison
+ │
+ ├── Difficulty
+ │    └── World Scaling
+ │
+ └── Equipment
+      └── Enchants
+```
+
+---
+
+# ⚙️ Effect Type System
+
+```gdscript
+enum EffectType
+```
+
+Defines the behavior of the effect.
+
+---
+
+## 📈 STAT_MOD
+
+Standard stat modification.
+
+Examples:
+
+```
++50 Strength
++10% Damage
++25 Armor
+```
+
+Processed by:
+
+```
+EffectManager
+      ↓
+StatManager
+```
+
+---
+
+## 🔒 OVERRIDE
+
+Directly replaces a stat value.
+
+Examples:
+
+```
+Fire Resistance = 75%
+Movement Speed = 100
+```
+
+Unlike modifiers, overrides replace the existing value.
+
+---
+
+## ❤️ HEAL
+
+Immediate restoration effect.
+
+Supports:
+
+* Flat healing
+* Percentage healing
+
+Examples:
+
+```
+Restore 500 HP
+
+Restore 20% Maximum HP
+```
+
+---
+
+## 🔥 DOT
+
+Damage over time.
+
+Examples:
+
+* Burn
+* Poison
+* Bleed
+
+Uses:
+
+```gdscript
+duration
+tick_interval
+```
+
+Flow:
+
+```
+StatEffect
+    ↓
+EffectManager
+    ↓
+CombatManager
+    ↓
+Damage Pipeline
+```
+
+---
+
+## 💚 HOT
+
+Healing over time.
+
+Examples:
+
+* Regeneration
+* Healing aura
+* Recovery fields
+
+---
+
+## 💀 REVIVE
+
+Revival effect.
+
+Supports:
+
+* HP restoration
+* MP restoration
+* Class resource restoration
+
+Can restore:
+
+* Flat values
+* Percentage values
+* Full resource fallback
+
+---
+
+## 🛡 TEMP_BUFF
+
+Temporary positive modifier.
+
+Examples:
+
+```
++25% Attack Speed
++50 Strength for 10 seconds
+```
+
+---
+
+## ☠ TEMP_DEBUFF
+
+Temporary negative modifier.
+
+Examples:
+
+```
+-30% Movement Speed
+-25% Damage
+```
+
+---
+
+## ✨ ENCHANT
+
+Equipment-based persistent effect.
+
+Examples:
+
+```
+Flaming Weapon
++Fire Damage
+```
+
+---
+
+## 🌎 AURA
+
+Area-based persistent effect.
+
+Examples:
+
+```
+Party Damage Aura
+Enemy Weakness Aura
+```
+
+---
+
+## 🟢 PASSIVE
+
+Permanent effect.
+
+Used for:
+
+* Class passives
+* Difficulty modifiers
+* World modifiers
+* Permanent bonuses
+
+Example:
+
+```
+Nightmare Difficulty:
+
+Enemy Damage +50%
+Enemy Health +100%
+```
+
+---
+
+## 🌀 KNOCKBACK
+
+Physics-based effect.
+
+Properties:
+
+```gdscript
+knockback_force
+direction
+```
+
+Example:
+
+```
+Hammer Strike
+    ↓
+Knockback 400 units
+```
+
+---
+
+# 📊 Stat Target System
+
+```gdscript
+stat_name
+```
+
+Defines which stat is affected.
+
+Supported categories:
+
+## Core Resources
+
+```
+HP
+MP
+ClassResource
+```
+
+---
+
+## Regeneration
+
+```
+HPRegen
+MPRegen
+ResourceRegen
+```
+
+---
+
+## Attributes
+
+```
+Strength
+Dexterity
+Intelligence
+Agility
+Con
+Charm
+Luck
+Vitality
+Wisdom
+```
+
+---
+
+## Combat
+
+```
+Damage
+CritHit
+CritDmg
+Attack
+Defense
+```
+
+---
+
+## Defense
+
+```
+Armor
+Block
+Dodge
+Sneak
+```
+
+---
+
+## Resistances
+
+```
+IceResist
+FireResist
+LightResist
+PhysResist
+AllResist
+```
+
+---
+
+## Speed
+
+```
+AtkSpd
+CastSpd
+Speed
+Movement
+```
+
+---
+
+# 🔢 Amount System
+
+```gdscript
+amount
+```
+
+The numerical value applied.
+
+Examples:
+
+```
+50
+```
+
+=
+
+```
++50 Strength
+```
+
+---
+
+```gdscript
+amount_is_percent
+```
+
+Controls percentage calculation.
+
+Examples:
+
+Flat:
+
+```
++50 Damage
+```
+
+Percentage:
+
+```
++15% Damage
+```
+
+---
+
+# 🎯 Trigger System
+
+```gdscript
+trigger_type
+```
+
+Controls when the effect activates.
+
+---
+
+## Immediate
+
+Applied instantly.
+
+Examples:
+
+* Potions
+* Scrolls
+* Consumables
+
+---
+
+## OnEquip
+
+Triggered when equipment is equipped.
+
+Examples:
+
+```
++20 Armor
++10 Strength
+```
+
+---
+
+## OnHit
+
+Triggered during attacks.
+
+Examples:
+
+```
+10% chance to burn target
+```
+
+---
+
+## OnCrit
+
+Triggered during critical hits.
+
+Examples:
+
+```
+Critical hits apply bleed
+```
+
+---
+
+## OverTime
+
+Used for ticking effects.
+
+Examples:
+
+```
+Poison
+Regeneration
+```
+
+---
+
+## Passive
+
+Always active.
+
+Examples:
+
+```
+Difficulty Scaling
+Class Bonuses
+World Effects
+```
+
+---
+
+# 🎯 Target Scope
+
+```gdscript
+target_type
+```
+
+Defines affected entities.
+
+Options:
+
+```
+Self
+Target
+Area
+Allies
+Enemies
+```
+
+Examples:
+
+| Target  | Example       |
+| ------- | ------------- |
+| Self    | Potion        |
+| Target  | Attack effect |
+| Area    | Fire field    |
+| Allies  | Healing aura  |
+| Enemies | Curse         |
+
+---
+
+# 🏷️ Effect Tags
+
+```gdscript
+tags: Array[String]
+```
+
+Used for categorization and filtering.
+
+Examples:
+
+```
+fire
+magic
+weapon
+poison
+boss
+difficulty
+```
+
+---
+
+# ⏱️ Duration System
+
+## Duration
+
+```gdscript
+duration
+```
+
+How long the effect remains active.
+
+Examples:
+
+```
+5 seconds
+30 seconds
+Permanent
+```
+
+---
+
+## Tick Interval
+
+```gdscript
+tick_interval
+```
+
+Controls periodic effects.
+
+Examples:
+
+```
+Poison:
+Duration: 10 sec
+Tick: every 1 sec
+```
+
+---
+
+# 🌀 Knockback Data
+
+```gdscript
+knockback_force
+direction
+```
+
+Controls physical displacement.
+
+Supports:
+
+* Direction-based knockback
+* Force scaling
+
+---
+
+# 💀 Revival Configuration
+
+## HP Restore
+
+```gdscript
+revive_hp
+revive_hp_percent
+```
+
+Examples:
+
+```
+Revive with 50% HP
+```
+
+---
+
+## MP Restore
+
+```gdscript
+revive_mp
+revive_mp_percent
+```
+
+---
+
+## Class Resource Restore
+
+```gdscript
+revive_resource
+revive_resource_percent
+```
+
+---
+
+# 💸 Effect Costs
+
+Effects can require resource payment.
+
+Supported costs:
+
+```gdscript
+hp_cost
+mp_cost
+resource_cost
+```
+
+Each supports:
+
+* Flat cost
+* Percentage cost
+
+Examples:
+
+```
+Blood Magic:
+
+Cost:
+10% HP
+
+Effect:
++100 Damage
+```
+
+---
+
+# 🔄 Static Application Helper
+
+```gdscript
+apply_stat_effect()
+```
+
+Legacy/direct stat application helper.
+
+Handles:
+
+* Costs
+* Stat validation
+* Flat modifiers
+* Percentage modifiers
+* Overrides
+* Healing
+* Revival
+
+---
+
+# 📐 Percentage Resolution
+
+```gdscript
+resolve_amount()
+```
+
+Converts percentage effects.
+
+Example:
+
+Base:
+
+```
+100 Damage
+```
+
+Effect:
+
+```
++20%
+```
+
+Result:
+
+```
++20 Damage
+```
+
+---
+
+# 🔗 Effect Pipeline
+
+```
+                StatEffect Resource
+                        |
+                        ↓
+              EffectManager Authority
+                        |
+        ┌───────────────┼───────────────┐
+        ↓               ↓               ↓
+   StatManager     CombatManager    VitalComponent
+        |               |               |
+   Stat Changes     Damage Flow     Healing/Revive
+```
+
+---
+
+# ✅ Design Rule
+
+`StatEffect` is the universal data container for gameplay modification.
+
+Any future system requiring:
+
+* buffs
+* debuffs
+* difficulty scaling
+* equipment bonuses
+* skills
+* consumables
+* world modifiers
+* environmental effects
+
+should create or reference a `StatEffect` resource and route through the **Effect Manager**.
+
