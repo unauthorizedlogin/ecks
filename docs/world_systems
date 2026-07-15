@@ -1,1 +1,1580 @@
+# 🗺️ launch_03world.gd — World Launch Controller
+
+## Overview
+
+`launch_03world.gd` is the primary controller for the active game world scene.
+
+It manages the complete world startup and rebuild lifecycle, including:
+
+- Map resource resolution
+- Dynamic map instantiation
+- Player placement
+- Camera initialization
+- Environment loading
+- Weather and visual effects
+- UI initialization
+- Chunk streaming startup
+- World readiness signaling
+
+The script acts as the bridge between global managers and the active world instance.
+
+---
+
+# 🌍 World Responsibilities
+
+The World Launch Controller manages:
+
+```
+
+Bootloader
+↓
+launch_03world
+↓
+LevelResource Resolution
+↓
+Map Generation
+↓
+Player Placement
+↓
+Camera Setup
+↓
+Environment Setup
+↓
+Chunk Streaming
+↓
+World Ready
+
+````
+
+---
+
+# Core Variables
+
+## Active Map
+
+```gdscript
+var map: Map
+````
+
+Stores the currently loaded map instance.
+
+The map is dynamically generated from:
+
+```gdscript
+LevelResource.scene
+```
+
+---
+
+## Starting Map
+
+```gdscript
+@export var starting_map: PackedScene
+```
+
+Fallback map used when no active level ID has been assigned.
+
+Priority:
+
+```
+GameManager.current_level_id
+        ↓
+LevelDatabase lookup
+        ↓
+LevelResource.scene
+        ↓
+PackedScene load
+
+Fallback:
+starting_map
+```
+
+---
+
+# Environment Systems
+
+The world controller caches environment presentation nodes.
+
+## Weather
+
+```gdscript
+rain
+snow
+cloud
+leaf
+raylight
+fog
+```
+
+Controlled through:
+
+```gdscript
+apply_environment()
+```
+
+---
+
+## Audio
+
+```gdscript
+music
+```
+
+Environment resources can define:
+
+```gdscript
+ResourceEnvironment.music
+```
+
+The world automatically switches music based on the active environment.
+
+---
+
+## Visual Effects
+
+```gdscript
+color_correction
+brightness_overlay
+transition
+```
+
+Handles:
+
+* Color grading
+* Brightness control
+* Screen transitions
+
+---
+
+# Camera System
+
+References:
+
+```gdscript
+camera_grid
+pivot
+```
+
+Responsibilities:
+
+* Following the player
+* Camera transitions
+* Pivot synchronization
+
+---
+
+# World State System
+
+The world lifecycle is tracked through:
+
+```gdscript
+enum WorldState
+```
+
+States:
+
+```gdscript
+BOOTING
+LOADING
+INITIALIZING
+MAP_READY
+PLAYER_READY
+FULLY_READY
+```
+
+Final state:
+
+```gdscript
+WorldState.FULLY_READY
+```
+
+---
+
+# World Ready Signal
+
+```gdscript
+signal world_ready
+```
+
+Emitted after:
+
+* Map exists
+* Player exists
+* Camera target exists
+* Environment is initialized
+* Chunk systems are active
+
+---
+
+# 🚀 Boot Sequence
+
+## `_ready()`
+
+Main startup function.
+
+Execution order:
+
+```
+Resolve Active Map
+        ↓
+Generate Map
+        ↓
+Initialize Camera
+        ↓
+Connect Signals
+        ↓
+Initialize UI
+        ↓
+Apply Settings
+        ↓
+Rebuild World
+        ↓
+World Ready
+```
+
+---
+
+# Map Resolution
+
+The controller checks:
+
+```gdscript
+GameManager.current_level_id
+```
+
+If available:
+
+```
+Level ID
+   ↓
+LevelDatabase
+   ↓
+LevelResource
+   ↓
+Scene Path
+   ↓
+PackedScene
+```
+
+The resulting scene becomes the active world map.
+
+---
+
+# Map Generation
+
+Function:
+
+```gdscript
+generate_map()
+```
+
+Responsibilities:
+
+* Remove previous map
+* Instantiate new map
+* Attach to world
+* Connect environment events
+
+Flow:
+
+```
+Existing Map
+      ↓
+queue_free()
+
+New PackedScene
+      ↓
+instantiate()
+
+New Map Instance
+      ↓
+Add Child
+```
+
+---
+
+# Environment Pipeline
+
+## apply_environment()
+
+Updates world presentation from:
+
+```gdscript
+ResourceEnvironment
+```
+
+Controls:
+
+## Weather
+
+```gdscript
+RAIN
+SNOW
+CLOUD
+LEAF
+FOG
+RAY
+```
+
+---
+
+## Music
+
+If environment contains music:
+
+```
+Environment Resource
+        ↓
+Music Change
+```
+
+Otherwise:
+
+```
+Stop Music
+```
+
+---
+
+## Color
+
+Applies:
+
+```gdscript
+color_gradient
+```
+
+to:
+
+```gdscript
+ColorCorrection
+```
+
+---
+
+# Bootloader Visual Handling
+
+Function:
+
+```gdscript
+bootloader_setup()
+```
+
+Used when launching through the boot system.
+
+Purpose:
+
+Prevent duplicate brightness effects.
+
+Behavior:
+
+```
+Bootloader Launch
+        ↓
+Disable Brightness Overlay
+```
+
+---
+
+# World Rebuild System
+
+## rebuild_world()
+
+The primary world reconstruction pipeline.
+
+Used for:
+
+* World loading
+* Save loading
+* Teleports
+* Map switching
+
+---
+
+# Rebuild Order
+
+```
+Disable World
+        ↓
+Reset Chunk State
+        ↓
+Reset Environment
+        ↓
+Acquire Player
+        ↓
+Move Player To Spawn
+        ↓
+Assign Camera Target
+        ↓
+Emit Player Ready
+        ↓
+Refresh Environment
+        ↓
+Initialize Chunk Manager
+        ↓
+Initialize UI
+        ↓
+Enable World
+        ↓
+Finalize Setup
+```
+
+---
+
+# Player Initialization
+
+The world controller requests:
+
+```gdscript
+GameManager.get_or_create_player()
+```
+
+Then:
+
+```
+Remove Player From Previous Parent
+        ↓
+Attach To Spawn Target
+        ↓
+Set Position
+        ↓
+Assign Camera Target
+```
+
+---
+
+# Spawn Handling
+
+Supports:
+
+```gdscript
+spawn_point_name
+```
+
+Priority:
+
+```
+Requested Spawn Point
+        ↓
+SpawnPoints Node
+        ↓
+Map Default
+```
+
+Also supports:
+
+```gdscript
+GameManager.pending_spawn_position
+```
+
+for teleport/save restoration.
+
+---
+
+# Chunk System Integration
+
+## init_world_systems()
+
+Starts world streaming.
+
+Validates:
+
+```gdscript
+map
+camera_grid
+camera_grid.target
+```
+
+Then initializes:
+
+```gdscript
+ChunkManager.init_chunk_loader()
+```
+
+Configuration:
+
+```gdscript
+Chunk Size:
+512x512
+
+Load Radius:
+3
+
+Bounds:
+-1,-1 → 2,2
+
+LOD:
+1,2,3
+```
+
+---
+
+# Chunk Lifecycle
+
+```
+World Ready
+      ↓
+ChunkManager Initialized
+      ↓
+Player Position Checked
+      ↓
+Required Chunks Loaded
+      ↓
+Unused Chunks Removed
+```
+
+---
+
+# UI Initialization
+
+The world controller initializes UI:
+
+```gdscript
+UIManager.init_ui(self)
+```
+
+Called during:
+
+* Initial boot
+* World rebuild
+
+Ensures UI references remain valid after map changes.
+
+---
+
+# Camera Animation Sync
+
+Signal:
+
+```gdscript
+camera_grid.animation_finished
+```
+
+Connected to:
+
+```gdscript
+on_camera_animation_finished()
+```
+
+Updates:
+
+```gdscript
+pivot.position
+```
+
+after camera movement completes.
+
+---
+
+# World Finalization
+
+## finalize_world_setup()
+
+Final validation stage.
+
+Checks:
+
+```gdscript
+map exists
+camera exists
+camera target exists
+```
+
+Then:
+
+```
+World State
+      ↓
+FULLY_READY
+
+Emit:
+world_ready
+```
+
+---
+
+# Runtime Safety
+
+The controller includes validation gates for:
+
+* Missing maps
+* Missing cameras
+* Missing player targets
+* Invalid level resources
+* Failed scene loads
+* Invalid world states
+
+---
+
+# Current Architecture
+
+`launch_03world.gd` provides:
+
+✅ Data-driven map loading
+✅ Runtime map swapping
+✅ Player persistence across worlds
+✅ Camera lifecycle control
+✅ Environment-driven visuals
+✅ Weather integration
+✅ Music switching
+✅ UI reinitialization
+✅ Chunk streaming startup
+✅ World readiness signaling
+✅ Save/load safe reconstruction
+
+---
+
+# Future Expansion
+
+Potential extensions:
+
+* World streaming transitions
+* Multi-world persistent states
+* Dynamic weather cycles
+* Procedural map generation
+* Multiplayer world ownership
+* Advanced world events
+
+```
+
+# 🌎 Map Resource Architecture
+
+## 🧠 CORE SYSTEM: WORLD MAP RESOURCE
+
+`LevelResource` is the data definition resource for playable world spaces.
+
+This resource is being renamed from **Level** to better represent its actual role as a world map definition.
+
+A map resource defines:
+
+- World identity
+- Region and biome data
+- Scene routing
+- Player spawn locations
+- Environmental settings
+- Chunk streaming configuration
+- Gameplay restrictions
+- Persistence rules
+- UI presentation data
+
+
+The resource itself does **not** manage loading, streaming, or gameplay logic.
+
+It is a pure world definition layer consumed by world systems.
+
+
+---
+
+# 🧩 ARCHITECTURE ROLE
+
+```
+
+Map Resource
+|
+▼
+World Manager
+|
+├── Scene Loading
+├── Chunk Management
+├── Save System
+├── Environment Systems
+└── Gameplay Rules
+
+```
+
+
+The map resource acts as the configuration authority for a world area.
+
+
+---
+
+# 🏗 RESOURCE IDENTITY
+
+## Map Data
+
+Defines the core identity and loading information for a map.
+
+| Property | Purpose |
+|---|---|
+| level_id | Unique map identifier |
+| name | Display name |
+| save_tag | Save system identifier |
+| scene | World scene reference |
+| spawn_point | Initial player spawn location |
+
+
+Example:
+
+```
+
+forest_region_01
+
+```
+
+The identifier is used by:
+
+- Save systems
+- World routing
+- Quest references
+- Scene transitions
+
+
+---
+
+# 🌍 World Structure
+
+Defines where the map exists within the larger game world.
+
+| Property | Purpose |
+|---|---|
+| world | Parent world identifier |
+| region | Regional grouping |
+| biome | Environmental classification |
+
+
+Example:
+
+```
+
+World:
+Eldergrove
+
+Region:
+Northern Woods
+
+Biome:
+Forest
+
+```
+
+
+This allows systems to understand world hierarchy without relying on scene names.
+
+
+---
+
+# 🎵 Audio & Environment
+
+Controls environmental presentation.
+
+| Property | Purpose |
+|---|---|
+| music | Background music profile |
+| ambient | Ambient sound profile |
+| weather_profile | Weather configuration |
+
+
+Used by:
+
+- Audio Manager
+- Weather System
+- Environment Controller
+
+
+Example:
+
+```
+
+Biome:
+Forest
+
+Music:
+forest_theme_01
+
+Weather:
+rainy_forest
+
+```
+
+
+---
+
+# 🧩 Chunk Streaming System
+
+## Dynamic World Streaming Configuration
+
+Maps support chunk-based world streaming.
+
+Chunk data defines how large worlds are loaded and managed.
+
+---
+
+## Chunk Settings
+
+| Property | Purpose |
+|---|---|
+| chunk_profile | Streaming configuration |
+| chunk_size | World chunk dimensions |
+| chunk_load_radius | Active chunk loading range |
+| min_chunk_bounds | Minimum world boundary |
+| max_chunk_bounds | Maximum world boundary |
+| chunk_scene_template | Chunk scene source |
+| chunk_data_template | Chunk data source |
+| lod_distances | Level-of-detail distances |
+
+
+---
+
+# 🗺 Chunk Architecture
+
+```
+
+Map Resource
+
+```
+  |
+  ▼
+```
+
+Chunk Manager
+
+```
+  |
+  ├── Load Nearby Chunks
+  ├── Unload Distant Chunks
+  ├── Save Chunk State
+  └── Apply LOD
+```
+
+```
+
+
+The map resource defines the rules.
+
+The chunk manager handles execution.
+
+
+---
+
+# 🎮 Gameplay Rules
+
+Controls which gameplay systems are available within a map.
+
+| Property | Purpose |
+|---|---|
+| allow_mounts | Enable mount usage |
+| allow_fast_travel | Enable travel points |
+| combat_enabled | Enable combat encounters |
+
+
+Examples:
+
+Safe Area:
+
+```
+
+combat_enabled = false
+allow_fast_travel = true
+
+```
+
+
+Danger Zone:
+
+```
+
+combat_enabled = true
+allow_fast_travel = false
+
+```
+
+
+---
+
+# 💾 Persistence Rules
+
+Controls what world objects survive saves.
+
+| Property | Purpose |
+|---|---|
+| persistent_enemies | Save enemy states |
+| persistent_loot | Save loot states |
+
+
+Used by:
+
+- Save Manager
+- World State Manager
+- Chunk Persistence System
+
+
+Example:
+
+```
+
+Dungeon:
+persistent_enemies = true
+persistent_loot = true
+
+```
+
+
+---
+
+# 🖥 Presentation Data
+
+Controls how the map appears in UI systems.
+
+| Property | Purpose |
+|---|---|
+| display_type | Map classification |
+| minimap_enabled | Enable minimap rendering |
+| debug_color | Editor/debug visualization |
+
+
+Used by:
+
+- Map UI
+- World Map
+- Debug tools
+
+
+---
+
+# 🔄 Resource Pipeline
+
+Map resources are generated and loaded through the world database pipeline.
+
+
+```
+
+Map Definition
+|
+▼
+Map Resource (.tres)
+|
+▼
+Map Database
+|
+▼
+World Manager
+|
+▼
+Runtime World
+
+```
+
+
+---
+
+# 🧠 Design Goals
+
+The Map Resource system provides:
+
+✅ Data-driven world definitions  
+✅ Separation between configuration and runtime logic  
+✅ Chunk streaming support  
+✅ World hierarchy organization  
+✅ Save system integration  
+✅ Environment control  
+✅ Gameplay rule configuration  
+✅ Future multi-world expansion  
+
+
+---
+
+# 🌎 Final Architecture Summary
+
+```
+
+```
+            Map Resource
+                 |
+```
+
+┌───────────────────┼───────────────────┐
+│                   │                   │
+Identity        Environment          Gameplay
+│                   │                   │
+Scene           Weather             Rules
+Spawn           Audio               Combat
+Save Tag        Biome               Travel
+
+```
+                 |
+                 ▼
+
+          World Systems
+
+                 |
+    ┌────────────┼────────────┐
+    │            │            │
+```
+
+Chunk Manager  Save System  UI Systems
+
+```
+
+
+`LevelResource` → `MapResource` represents the transition from a simple scene definition into a full world configuration layer supporting streaming, persistence, and scalable RPG world architecture.
+
+# 🌍 ChunkManager System
+
+`al_chunk_manager.gd`
+
+The `ChunkManager` handles dynamic world streaming for large grid-based environments. It manages asynchronous chunk loading, unloading, world isolation, LOD selection, chunk persistence, and player spawn placement.
+
+---
+
+# 🧱 Core Responsibilities
+
+The ChunkManager provides:
+
+- Dynamic chunk streaming
+- Grid-based world loading
+- Asynchronous scene loading
+- Chunk unloading
+- Level of Detail (LOD) support
+- Multi-world isolation
+- Chunk persistence hooks
+- Teleport spawn placement
+- Chunk data loading
+
+---
+
+# 🏗️ Base System
+
+```gdscript
+extends Node
+````
+
+The manager operates as a global world streaming service.
+
+---
+
+# 📦 Chunk Configuration
+
+## Chunk Size
+
+```gdscript
+var chunk_size := Vector2i(512,512)
+```
+
+Defines the size of each world chunk in world units.
+
+---
+
+## Load Radius
+
+```gdscript
+var chunk_load_radius := 3
+```
+
+Controls how far chunks load around the player.
+
+Example:
+
+```
+Radius 1:
+
+[ ][ ][ ]
+[ ][P][ ]
+[ ][ ][ ]
+
+3x3 loaded area
+```
+
+---
+
+## LOD Distances
+
+```gdscript
+var lod_distances := [1,2,3]
+```
+
+Defines distance thresholds for future Level of Detail switching.
+
+Current support:
+
+```
+LOD0 = closest
+LOD1 = medium
+LOD2 = farthest
+```
+
+---
+
+# 🌎 World Isolation System
+
+The ChunkManager supports multiple independent worlds.
+
+Each world maintains:
+
+```gdscript
+WorldChunkState
+```
+
+---
+
+# 🌍 WorldChunkState
+
+Stores isolated runtime state.
+
+## World References
+
+| Variable      | Purpose                       |
+| ------------- | ----------------------------- |
+| `map`         | Active world map              |
+| `camera_grid` | Player tracking camera system |
+
+---
+
+## Chunk Configuration
+
+| Variable              | Purpose                |
+| --------------------- | ---------------------- |
+| `chunk_size`          | Chunk dimensions       |
+| `chunk_load_radius`   | Streaming radius       |
+| `min_chunk_bounds`    | World minimum grid     |
+| `max_chunk_bounds`    | World maximum grid     |
+| `chunk_path_template` | Scene loading template |
+| `chunk_data_template` | Data resource template |
+| `lod_distances`       | LOD thresholds         |
+
+---
+
+## Runtime State
+
+| Variable                      | Purpose                    |
+| ----------------------------- | -------------------------- |
+| `loaded_chunks`               | Active chunk instances     |
+| `initialized`                 | World initialization state |
+| `chunk_ready`                 | Streaming readiness        |
+| `chunk_update_missing_warned` | Prevents warning spam      |
+
+---
+
+# 🌐 World Configuration Registry
+
+Worlds define their chunk templates.
+
+Example:
+
+```gdscript
+"world:level:001":
+{
+"path":
+"res://content/map/worlds/overworld/chunks/chunk_{0}_{1}_LOD{2}.tscn",
+
+"data":
+"res://content/map/worlds/overworld/chunk_data/chunk_{0}_{1}.tres"
+}
+```
+
+Each world controls:
+
+* Chunk scene location
+* Chunk data location
+* Streaming structure
+
+---
+
+# 🔄 World Switching
+
+## set_world()
+
+```gdscript
+set_world(world_id)
+```
+
+Changes the active world configuration.
+
+Process:
+
+1. Set active world ID
+2. Validate configuration
+3. Load world chunk templates
+4. Update ChunkManager state
+
+---
+
+# 🧠 Initialization
+
+## initialize()
+
+Bootstraps the manager.
+
+Output:
+
+```
+🌍 ChunkManager initialized
+```
+
+---
+
+# 📥 Chunk Loader Binding
+
+## init_chunk_loader()
+
+Connects ChunkManager to a world instance.
+
+Receives:
+
+```gdscript
+_map
+_camera
+_chunk_size
+_chunk_load_radius
+_min_chunk_bounds
+_max_chunk_bounds
+_chunk_path_template
+_chunk_data_template
+_lod_distances
+```
+
+---
+
+## Binding Process
+
+1. Reset previous world state
+2. Clear loaded chunks
+3. Remove previous references
+4. Bind new map
+5. Bind new camera
+6. Apply chunk configuration
+7. Begin loading
+
+---
+
+# 🧹 World Cleanup
+
+## reset_chunk_manager()
+
+Performs full world cleanup.
+
+Removes:
+
+* Loaded chunks
+* Map references
+* Camera references
+* Templates
+* Runtime flags
+
+Used during:
+
+* World transitions
+* Teleports
+* Reloads
+
+---
+
+# 🧭 Dynamic Chunk Updating
+
+## update_chunk_loading()
+
+Main streaming loop.
+
+Responsibilities:
+
+* Determine player chunk position
+* Calculate required chunks
+* Select LOD level
+* Load missing chunks
+* Remove unused chunks
+
+---
+
+# 📍 Player Chunk Calculation
+
+Player position:
+
+```gdscript
+global_position / chunk_size
+```
+
+Example:
+
+```
+Player:
+
+X:1024
+Y:512
+
+
+Chunk:
+
+X:2
+Y:1
+```
+
+---
+
+# 🧩 Chunk Selection
+
+The manager scans world bounds:
+
+```gdscript
+for x in range(min,max)
+for y in range(min,max)
+```
+
+Each chunk receives:
+
+* Grid position
+* Distance from player
+* LOD level
+
+---
+
+# 🎯 LOD Selection
+
+Current logic:
+
+```text
+Distance <= Load Radius
+        |
+        v
+       LOD0
+
+Distance <= LOD1 Range
+        |
+        v
+       LOD1
+
+Distance <= LOD2 Range
+        |
+        v
+       LOD2
+```
+
+---
+
+# 📦 Async Chunk Loading
+
+## load_chunk_async()
+
+Loads chunk scenes asynchronously.
+
+Pipeline:
+
+```
+Request Scene
+      |
+      v
+Threaded Loading
+      |
+      v
+Instantiate Chunk
+      |
+      v
+Apply Position
+      |
+      v
+Load Chunk Data
+      |
+      v
+Add To World
+```
+
+---
+
+# 🗂️ Chunk Naming
+
+Loaded chunks use:
+
+```
+X_Y_LOD#
+```
+
+Example:
+
+```
+0_1_LOD0
+2_-1_LOD1
+```
+
+---
+
+# 🔁 LOD Replacement
+
+Only one LOD version of a chunk exists at a time.
+
+Example:
+
+Before:
+
+```
+0_0_LOD1
+```
+
+Player approaches:
+
+```
+0_0_LOD0
+```
+
+Manager removes:
+
+```
+0_0_LOD1
+```
+
+and replaces it.
+
+---
+
+# 📄 Chunk Data Loading
+
+Optional `.tres` chunk resources are loaded.
+
+Example:
+
+```
+chunk_0_0.tres
+```
+
+Provides:
+
+* Chunk metadata
+* Persistent information
+* Runtime configuration
+
+---
+
+# 🚀 Player Spawn Handling
+
+After loading:
+
+```gdscript
+TeleportManager.next_spawn_id
+```
+
+is checked.
+
+If valid:
+
+1. Find spawn point
+2. Move player
+3. Clear teleport target
+
+---
+
+# 🧹 Chunk Unloading
+
+## unload_chunk()
+
+Safely removes chunk instances.
+
+Process:
+
+1. Validate chunk exists
+2. Queue free node
+3. Remove from tracking dictionary
+
+---
+
+# 💾 Chunk Persistence
+
+## serialize_chunk_state()
+
+Creates save data.
+
+Currently tracks:
+
+```gdscript
+destroyed
+```
+
+Example:
+
+```json
+{
+ "0_0_LOD0":
+ {
+   "destroyed": true
+ }
+}
+```
+
+---
+
+## deserialize_chunk_state()
+
+Restores saved chunk state.
+
+Used for:
+
+* Destroyed objects
+* World changes
+* Persistent gameplay changes
+
+---
+
+# 🏗️ Architecture
+
+```
+World
+ |
+ ├── ChunkManager
+ |
+ ├── WorldChunkState
+ |       |
+ |       ├── Map
+ |       ├── CameraGrid
+ |       ├── Loaded Chunks
+ |       └── Templates
+ |
+ └── Chunk Instances
+         |
+         ├── Scene (.tscn)
+         └── Data (.tres)
+```
+
+---
+
+# 🔗 System Integrations
+
+## CameraGrid
+
+Provides:
+
+* Player tracking
+* World position
+* Chunk calculation
+
+---
+
+## TeleportManager
+
+Provides:
+
+* Spawn target
+* Post-load placement
+
+---
+
+## GameManager
+
+Used to prevent teleport logic during save loading.
+
+---
+
+# 🌍 Current Capabilities
+
+✅ Dynamic open-world streaming
+✅ Async chunk loading
+✅ Chunk unloading
+✅ Multi-world isolation
+✅ LOD framework
+✅ Chunk resource loading
+✅ Persistent chunk state hooks
+✅ Teleport spawn support
+✅ World-specific templates
+
+---
+
+# 🚧 Future Expansion
+
+Designed to support:
+
+* Full LOD swapping
+* Infinite procedural worlds
+* Runtime chunk generation
+* Background streaming
+* World database integration
+* Biome-driven chunk generation
+
+```
+
+
 
