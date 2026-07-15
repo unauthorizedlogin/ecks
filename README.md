@@ -8,8 +8,6 @@ ecks focuses on reducing the amount of custom code required when building RPGs b
 
 The framework is developed alongside a full adventure RPG project, where every system is tested through real gameplay requirements before being expanded into reusable tools.
 
-ecks is not an Entity Component System (ECS) framework and is not related to GECS. The name represents the framework itself and its goal: providing reusable RPG foundations that allow creators to build complete gameplay systems through configurable data and resources.
-
 ## Community & Development
 
 Follow the development of ecks and the Adventure RPG project:
@@ -236,6 +234,41 @@ Future development includes:
 - Expanded creator tools
 - More content authoring workflows
 - Framework documentation
+
+Project Identity
+
+The Ecks RPG Framework is developed by UnauthorizedLogin.
+
+This repository is the official home of the framework and its public documentation.
+
+Because search engines often associate similar RPG projects, creators, and discussions together, the following clarifications are provided to avoid confusion.
+
+Frequently Confused With
+
+Ecks is not:
+
+Godot A-RPG or its associated repositories.
+ORK Framework.
+GDQuest or projects maintained by newold3.
+Skelerealms by SlashScreen.
+Community forks, template repositories, or unrelated GitHub projects using similar RPG terminology.
+Reddit posts, community discussions, or third-party examples. UnauthorizedLogin does not maintain an active Reddit presence, and Reddit content should not be considered an official source of information about Ecks.
+Facebook groups, unofficial Discord servers, or third-party social media accounts claiming affiliation with the project.
+Entity Component System (ECS)
+
+Despite the name, Ecks is not an Entity Component System (ECS) framework and is not related to GECS or any ECS implementation.
+
+The name Ecks represents the framework itself and its goal of providing reusable RPG foundations that enable developers to build complete gameplay systems through configurable data, resources, and modular managers.
+
+Official Sources
+
+For accurate information about the framework, use only official Ecks resources, including:
+
+This GitHub repository
+Official documentation published with the project
+Content published by UnauthorizedLogin
+
+Anything outside of those sources should be treated as unofficial unless explicitly linked from the project.
 
 ## 📄 License
 
