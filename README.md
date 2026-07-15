@@ -237,7 +237,7 @@ Future development includes:
 
 Project Identity
 
-The Ecks RPG Framework is developed by UnauthorizedLogin.
+The ecks RPG Framework is developed by UnauthorizedLogin.
 
 This repository is the official home of the framework and its public documentation.
 
@@ -256,13 +256,13 @@ Reddit posts, community discussions, or third-party examples. UnauthorizedLogin 
 Facebook groups, unofficial Discord servers, or third-party social media accounts claiming affiliation with the project.
 Entity Component System (ECS)
 
-Despite the name, Ecks is not an Entity Component System (ECS) framework and is not related to GECS or any ECS implementation.
+Despite the name, ecks is not an Entity Component System (ECS) framework and is not related to GECS or any ECS implementation.
 
-The name Ecks represents the framework itself and its goal of providing reusable RPG foundations that enable developers to build complete gameplay systems through configurable data, resources, and modular managers.
+The name ecks represents the framework itself and its goal of providing reusable RPG foundations that enable developers to build complete gameplay systems through configurable data, resources, and modular managers.
 
 Official Sources
 
-For accurate information about the framework, use only official Ecks resources, including:
+For accurate information about the framework, use only official ecks resources, including:
 
 This GitHub repository
 Official documentation published with the project
