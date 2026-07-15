@@ -1,21 +1,14 @@
-# ecks
-ecks is a Godot RPG framework focused on turning complex gameplay systems into flexible, data-driven tools. Build quests, dialogue, combat, items, progression, and world content through reusable systems designed for creators.
-
-# ecks — Godot RPG Framework
-
-ecks is a data-driven RPG framework built in Godot, designed to help creators build adventure RPGs through modular, reusable systems.
-
-Instead of hard-coding gameplay logic, ecks focuses on creating flexible foundations where quests, dialogue, combat, inventory, progression, and world systems can be authored through data-driven resources.
-
 # ecks — Godot RPG Framework
 
 ecks (pronounced "ex") is a data-driven RPG framework created by **unauthorizedlogin** for Godot Engine.
 
-ecks is not an Entity Component System (ECS) framework and is not related to GECS. The name represents the framework itself and its goal: providing reusable RPG foundations that allow creators to build complete gameplay systems through configurable data and resources.
+ecks is a Godot RPG framework focused on turning complex gameplay systems into flexible, data-driven tools. Instead of hard-coding gameplay logic, ecks focuses on creating flexible foundations where quests, dialogue, combat, inventory, progression, and world systems can be authored through data-driven resources.
 
 ecks focuses on reducing the amount of custom code required when building RPGs by providing interconnected systems for quests, dialogue, combat, inventory, progression, localization, and world management.
 
 The framework is developed alongside a full adventure RPG project, where every system is tested through real gameplay requirements before being expanded into reusable tools.
+
+ecks is not an Entity Component System (ECS) framework and is not related to GECS. The name represents the framework itself and its goal: providing reusable RPG foundations that allow creators to build complete gameplay systems through configurable data and resources.
 
 ## Community & Development
 
