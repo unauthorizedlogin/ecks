@@ -138,8 +138,6 @@ through data and configuration rather than rewriting gameplay systems.
 
 The framework is built to turn complex RPG development into an organized authoring process while keeping the underlying architecture flexible for expansion.
 
-
-
 ## Features
 
 ### 📊 Event Viewer System
@@ -198,6 +196,29 @@ ecks uses a modular stat foundation designed to support complex RPG progression 
 - Data-driven localization pipeline
 - Multi-language support
 - Generator-based workflow
+
+### 🛠️ Creator Tools
+
+ecks includes dedicated tools designed to streamline RPG development workflows and reduce repetitive content management.
+
+### 📦 Item Creator
+
+- Structured item authoring workflow
+- Automated item resource generation
+- Support for equipment, consumables, materials, and resources
+- Data-driven item definitions
+- Organized output routing for generated content
+
+The Item Creator allows creators to build and manage large item databases through structured data instead of manually creating individual resources.
+
+### 📊 XP Analyzer
+
+- Experience progression analysis tool
+- Level curve visualization and balancing support
+- Helps evaluate RPG progression pacing
+- Designed for tuning player advancement systems
+
+The XP Analyzer helps creators design and balance progression systems by making experience requirements easier to evaluate and adjust.
 
 ## Development Status
 
