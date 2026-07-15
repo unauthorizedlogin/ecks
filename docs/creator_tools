@@ -407,7 +407,7 @@ Validate Progression Balance
 
 # Framework Integration
 
-The XP Tool Dock integrates with the Ecks Framework progression systems.
+The XP Tool Dock integrates with the ecks Framework progression systems.
 
 It works alongside:
 
@@ -418,6 +418,166 @@ It works alongside:
 - Progression data systems
 
 ---
+
+# XP Curve & Growth Generators
+
+## Overview
+
+The ecks Framework includes dedicated editor generators for building progression resources from external data.
+
+These tools allow developers to design progression values in spreadsheet-friendly formats and automatically convert them into framework resources.
+
+The generator pipeline supports:
+
+- XP curve creation
+- Level growth data creation
+- Resource generation
+- Automatic index rebuilding
+
+---
+
+# XP Curve Generator
+
+## Overview
+
+The XP Curve Generator converts CSV-based progression data into framework-compatible XP curve resources.
+
+This allows developers to design level progression externally while keeping runtime systems resource-driven.
+
+---
+
+## Workflow
+
+```
+
+XP Curve CSV
+|
+v
+XP Curve Generator
+|
+v
+LevelCurveResource
+|
+v
+XP System Runtime Data
+
+```
+
+---
+
+## Generated Data
+
+The generator creates:
+
+- Maximum level definitions
+- Total XP requirements
+- XP required between levels
+- Runtime curve resources
+
+---
+
+## Automatic Index Generation
+
+After creating the curve resource, the generator rebuilds the XP index.
+
+This keeps progression lookups synchronized with the latest curve data.
+
+---
+
+# Level Growth Generator
+
+## Overview
+
+The Level Growth Generator builds character growth resources from CSV-defined progression data.
+
+It allows developers to define how statistics scale throughout character progression without manually editing resources.
+
+---
+
+## Workflow
+
+```
+
+Growth CSV
+|
+v
+Level Growth Generator
+|
+v
+LevelGrowthData Resource
+|
+v
+Stat Progression Systems
+
+```
+
+---
+
+## Supported Workflow
+
+Developers can define growth values externally and import them into the framework.
+
+This supports:
+
+- Class progression tuning
+- Stat scaling
+- Balance iteration
+- Large-scale progression editing
+
+---
+
+# Data Driven Progression Pipeline
+
+The XP tools are designed around a data-first workflow.
+
+Instead of hardcoding progression values, developers can:
+
+1. Design progression tables
+2. Import data through generators
+3. Produce framework resources
+4. Test through simulations
+5. Adjust and regenerate
+
+---
+
+# Creator Tool Philosophy
+
+The XP creation pipeline separates:
+
+## Authoring Data
+
+External editable sources:
+
+- CSV files
+- Formula profiles
+- Curve definitions
+
+---
+
+## Runtime Resources
+
+Generated framework assets:
+
+- XP curves
+- Growth resources
+- Indexed progression data
+
+---
+
+This allows progression systems to remain flexible, scalable, and easy to rebalance throughout development.
+```
+
+I would **not request more XP scripts** unless there is something like:
+
+* a formula profile generator
+* curve math system
+* class growth assignment system
+* level reward generator
+
+At this point the public documentation already communicates the important identity:
+
+**"ecks does not just have an XP system. It has an editor-driven progression authoring pipeline."** That is the differentiator.
+
 
 # Design Philosophy
 
