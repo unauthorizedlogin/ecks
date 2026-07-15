@@ -1,1 +1,426 @@
+# Creator Tools
 
+The ecks Framework includes a collection of editor-based creator tools designed to accelerate content production while maintaining framework standards.
+
+These tools extend the Godot editor workflow by allowing developers to create framework-compatible content through dedicated interfaces rather than manually configuring every resource and scene.
+
+Creator tools are designed around:
+
+- Faster content creation
+- Consistent resource structure
+- Reduced setup overhead
+- Framework-compatible outputs
+- Data-driven development
+
+---
+
+# Item Creator
+
+## Overview
+
+The Item Creator is an editor addon designed to streamline the creation of equipment and loot content inside the Ecks Framework.
+
+Instead of manually creating item scenes, assigning properties, and configuring large stat blocks, developers can generate new item content through a dedicated editor interface.
+
+The tool creates framework-compatible item scenes while exposing common item statistics through organized editor controls.
+
+---
+
+# Purpose
+
+The Item Creator exists to simplify the item authoring pipeline.
+
+Traditional item creation requires developers to:
+
+- Duplicate base scenes
+- Rename resources
+- Configure stat values
+- Verify exported properties
+- Maintain consistent folder structures
+
+The Item Creator automates this workflow by providing a centralized creation interface.
+
+---
+
+# Features
+
+## Item Scene Generation
+
+The Item Creator generates new item scenes from framework base templates.
+
+Generated items:
+
+- Inherit framework item behavior
+- Follow expected scene structures
+- Are placed into content directories
+- Remain editable inside the Godot editor
+
+The creator workflow uses inherited scenes, allowing future framework updates to propagate through base item definitions.
+
+---
+
+## Supported Item Types
+
+Current supported item categories:
+
+- Weapons
+- Armor
+
+The system is designed to expand into additional content categories as new item systems are introduced.
+
+---
+
+# Stat Authoring
+
+The Item Creator provides direct editing for item statistics.
+
+Supported stat groups include:
+
+## Vital Stats
+
+- Health
+- Mana
+- Stamina
+
+---
+
+## Regeneration Stats
+
+- Health Regeneration
+- Mana Regeneration
+- Stamina Regeneration
+
+---
+
+## Primary Stats
+
+- Strength
+- Dexterity
+- Intelligence
+
+---
+
+## Influence Stats
+
+- Agility
+- Constitution
+- Charm
+- Luck
+- Vitality
+- Wisdom
+
+---
+
+## Damage Stats
+
+- Damage
+- Critical Hit Chance
+- Critical Damage
+
+---
+
+## Tactical Stats
+
+- Armor
+- Block
+- Dodge
+- Sneak
+
+---
+
+## Resistance Stats
+
+- Physical Resistance
+- Fire Resistance
+- Ice Resistance
+- Lightning Resistance
+- All Resistance
+
+---
+
+## Speed Stats
+
+- Attack Speed
+- Cast Speed
+- Movement Speed
+- General Speed
+
+---
+
+# Live Preview System
+
+The Item Creator includes a real-time preview panel.
+
+As developers modify item values, the preview updates automatically to display:
+
+- Item name
+- Item type
+- Active stat groups
+- Assigned values
+
+Only non-zero statistics are displayed, keeping previews clean and focused.
+
+---
+
+# Workflow
+
+The Item Creator workflow:
+
+```
+
+Open Item Creator
+|
+v
+Select Item Type
+|
+v
+Define Item Name
+|
+v
+Configure Statistics
+|
+v
+Preview Generated Item
+|
+v
+Create Framework Item Scene
+|
+v
+Continue Editing In Inspector
+
+```
+
+---
+
+# Framework Integration
+
+The Item Creator integrates with the Ecks Framework item pipeline.
+
+Generated content is designed to work with:
+
+- Item databases
+- Loot systems
+- Equipment systems
+- Stat systems
+- Effect systems
+- Save/load systems
+
+---
+
+# Design Philosophy
+
+The Item Creator follows the Ecks Framework principle of separating content creation from runtime logic.
+
+Developers define:
+
+- What an item is
+- Which statistics it provides
+- How it should be configured
+
+The framework handles:
+
+- Runtime loading
+- Equipment behavior
+- Stat application
+- Gameplay integration
+
+This allows large amounts of content to be created without manually modifying gameplay systems.
+
+---
+
+# Future Expansion
+
+The Item Creator foundation supports future additions including:
+
+- Item effects
+- Affixes
+- Rarity configuration
+- Enchantments
+- Crafting materials
+- Loot metadata
+- Additional equipment categories
+
+The goal is to provide a complete authoring pipeline for framework-driven ARPG content creation.
+```
+
+Next alphabetically would probably be your next addon folder after `item_creator` (depending on your addon list). Send the next creator tool and I'll append the next section.
+
+This is enough. This changes the description slightly because the XP Tool Dock is not just a simulator — it is a **progression authoring and balancing suite**.
+
+I would still avoid documenting every panel. The important identity pieces are:
+
+* Shared editor state (`XPToolContext`)
+* Swappable XP curves
+* Swappable formula profiles
+* Curve/growth generation
+* Deterministic simulation
+* Stress testing and analysis
+
+# XP Tool Dock
+
+## Overview
+
+The XP Tool Dock is an editor-based progression design and balancing suite for the ecks Framework.
+
+It provides tools for creating, visualizing, simulating, and analyzing player progression systems without requiring repeated gameplay testing.
+
+The system is designed around data-driven XP curves, configurable growth formulas, and deterministic progression simulations.
+
+---
+
+# Purpose
+
+The XP Tool Dock allows developers to design and balance progression systems directly inside the Godot editor.
+
+It helps developers answer questions such as:
+
+- How quickly should players level?
+- How long should progression take?
+- Are XP requirements scaling correctly?
+- Does a progression curve remain balanced from early to end game?
+
+---
+
+# Core Features
+
+## XP Curve Management
+
+The XP system supports configurable level progression curves.
+
+Developers can create and swap XP curve resources to test different progression models.
+
+Supported workflows include:
+
+- Custom level scaling
+- Alternative progression paths
+- Growth curve experimentation
+- Maximum level tuning
+
+---
+
+## Growth & Formula Profiles
+
+Progression calculations are separated into reusable resource profiles.
+
+Formula profiles allow developers to swap progression behavior without rewriting systems.
+
+This supports:
+
+- Different XP scaling models
+- Alternate progression philosophies
+- Game mode specific progression
+- Rapid balance iteration
+
+---
+
+## Shared Editor Context
+
+The XP Tool Dock uses a centralized editor context as the single source of truth.
+
+All XP tools operate from shared state including:
+
+- Active XP curve
+- Active formula profile
+- Selected player data
+- Simulation results
+- Debug information
+
+This keeps all editor panels synchronized and prevents conflicting progression data.
+
+---
+
+# XP Progression Simulator
+
+## Overview
+
+The XP Progression Simulator provides deterministic progression testing without requiring live gameplay.
+
+It replays XP growth over simulated time steps and evaluates progression behavior.
+
+---
+
+## Simulation Features
+
+The simulator can evaluate:
+
+- XP gain rates
+- Level progression timing
+- Total progression duration
+- Level milestones
+- Maximum level reachability
+
+---
+
+## Simulation Results
+
+Simulation output includes:
+
+- Final level
+- Total XP gained
+- Levels gained
+- XP timeline
+- Level timeline
+- Level-up events
+- Estimated time to maximum level
+
+---
+
+# Curve Stress Testing
+
+The XP Tool Dock includes automated curve stress testing.
+
+Stress tests allow developers to quickly evaluate progression resources under controlled conditions.
+
+Testing can identify:
+
+- Curves that level too quickly
+- Curves that stall progression
+- Incorrect scaling behavior
+- Late-game progression problems
+
+---
+
+# Editor Workflow
+
+```
+
+Create XP Curve
+|
+v
+Assign Formula Profile
+|
+v
+Run Simulation
+|
+v
+Analyze Results
+|
+v
+Adjust Growth Values
+|
+v
+Validate Progression Balance
+
+```
+
+---
+
+# Framework Integration
+
+The XP Tool Dock integrates with the Ecks Framework progression systems.
+
+It works alongside:
+
+- XP Manager
+- Level Curve Resources
+- Formula Profiles
+- Player Level Components
+- Progression data systems
+
+---
+
+# Design Philosophy
+
+The ecks Framework treats progression as a tunable system rather than hardcoded logic.
+
+The XP Tool Dock allows developers to experiment with progression design through reusable data resources, making balance changes faster, safer, and easier to maintain.
