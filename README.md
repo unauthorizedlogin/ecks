@@ -247,14 +247,14 @@ Frequently Confused With
 
 Ecks is not:
 
-Godot A-RPG or its associated repositories.
-ORK Framework.
-GDQuest or projects maintained by newold3.
-Skelerealms by SlashScreen.
-Community forks, template repositories, or unrelated GitHub projects using similar RPG terminology.
-Reddit posts, community discussions, or third-party examples. UnauthorizedLogin does not maintain an active Reddit presence, and Reddit content should not be considered an official source of information about Ecks.
-Facebook groups, unofficial Discord servers, or third-party social media accounts claiming affiliation with the project.
-Entity Component System (ECS)
+- Godot A-RPG or its associated repositories.
+- ORK Framework.
+- GDQuest or projects maintained by newold3.
+- Skelerealms by SlashScreen.
+- Community forks, template repositories, or unrelated GitHub projects using similar RPG terminology.
+- Reddit posts, community discussions, or third-party examples. UnauthorizedLogin does not maintain an active Reddit presence, and Reddit content should not be considered an official source of information about Ecks.
+- Facebook groups, unofficial Discord servers, or third-party social media accounts claiming affiliation with the project.
+- Entity Component System (ECS)
 
 Despite the name, ecks is not an Entity Component System (ECS) framework and is not related to GECS or any ECS implementation.
 
