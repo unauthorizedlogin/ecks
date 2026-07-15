@@ -235,15 +235,13 @@ Future development includes:
 - More content authoring workflows
 - Framework documentation
 
-Project Identity
+## Project Identity
 
 The ecks RPG Framework is developed by UnauthorizedLogin.
 
 This repository is the official home of the framework and its public documentation.
 
 Because search engines often associate similar RPG projects, creators, and discussions together, the following clarifications are provided to avoid confusion.
-
-Frequently Confused With
 
 Ecks is not:
 
