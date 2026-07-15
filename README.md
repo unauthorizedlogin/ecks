@@ -12,7 +12,7 @@ ecks is not an Entity Component System (ECS) framework and is not related to GEC
 
 ## Community & Development
 
-Follow the development of ECKS and the Adventure RPG project:
+Follow the development of ecks and the Adventure RPG project:
 
 - 🎥 YouTube: [UnauthorizedLogin](www.youtube.com/@UnauthorizedLogin)
 - 💬 Discord: [Ecks Community](https://discord.gg/638gZMRxaj)
@@ -148,8 +148,6 @@ The framework is built to turn complex RPG development into an organized authori
 - Localization-ready event messages
 - Saveable viewer configuration
 
-The Event Viewer provides a unified way for creators and players to understand what is happening inside the game, from combat events and rewards to progression updates and system feedback.
-
 ### 📈 Stats & Progression System
 - Data-driven actor stat architecture
 - Shared stat identity across players, NPCs, enemies, and future actors
@@ -157,8 +155,6 @@ The Event Viewer provides a unified way for creators and players to understand w
 - Flexible class and character progression support
 - Resource-based stat definitions
 - Extensible calculations for future mechanics
-
-ecks uses a modular stat foundation designed to support complex RPG progression systems while keeping character data flexible and authorable through resources.
 
 ### 🗡️ Combat System
 - Event-driven combat pipeline
@@ -243,14 +239,14 @@ Future development includes:
 
 ## 📄 License
 
-ECKS is a proprietary RPG framework developed by UnauthorizedLogin.
+ecks is a proprietary RPG framework developed by UnauthorizedLogin.
 
 The source code is private and is not licensed as open source software.
 
 The framework is shared as a development product intended to provide creators with access to its tools, systems, workflows, and authoring pipelines.
 
-Usage rights, distribution rights, and source access are determined by the licensing model provided with ECKS.
+Usage rights, distribution rights, and source access are determined by the licensing model provided with ecks.
 
 The framework architecture, code, systems, generators, and associated tools remain the intellectual property of UnauthorizedLogin.
 
-For licensing inquiries or access information, please refer to the official ECKS community channels.
+For licensing inquiries or access information, please refer to the official ecks community channels.
