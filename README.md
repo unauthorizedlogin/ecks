@@ -243,7 +243,7 @@ This repository is the official home of the framework and its public documentati
 
 Because search engines often associate similar RPG projects, creators, and discussions together, the following clarifications are provided to avoid confusion.
 
-Ecks is not:
+ecks is not:
 
 - Godot A-RPG or its associated repositories.
 - ORK Framework.
@@ -258,7 +258,7 @@ Despite the name, ecks is not an Entity Component System (ECS) framework and is 
 
 The name ecks represents the framework itself and its goal of providing reusable RPG foundations that enable developers to build complete gameplay systems through configurable data, resources, and modular managers.
 
-Official Sources
+Official Sources:
 
 For accurate information about the framework, use only official ecks resources, including:
 
