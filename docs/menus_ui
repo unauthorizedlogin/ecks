@@ -1,0 +1,383 @@
+# 🖥️ UI Manager — Central Menu & Interface Authority
+
+`UIManager` is the **central controller for gameplay interface systems**.
+
+All major menus, panels, HUD references, and UI lifecycle management flow through this manager.
+
+Individual UI components handle their own presentation logic, but global interface state, input routing, movement locking, and menu coordination are controlled centrally.
+
+---
+
+# 🎯 Core Responsibility
+
+UIManager manages:
+
+* UI registration
+* menu lifecycle
+* shared UI references
+* global input routing
+* movement lock state
+* HUD visibility
+* pause interaction
+* UI-triggered quest events
+* cross-system menu communication
+
+Architecture:
+
+```text
+Gameplay Input
+       ↓
+ UIManager
+       ↓
+ Registered UI Systems
+       ↓
+ Individual Panels
+```
+
+---
+
+# 📦 Managed Interface References
+
+UIManager maintains centralized references to:
+
+## Player Menus
+
+```text
+Inventory Panel
+Equipment Panel
+Storage Panel
+Stats Menu
+Quest Menu
+Dialogue UI
+Shop Menu
+```
+
+---
+
+## HUD Systems
+
+```text
+Status Panel
+MiniMap
+Skillbar
+Ammo Panel
+Potion Panel
+Event Viewer
+```
+
+---
+
+## System Screens
+
+```text
+Pause Menu
+Game Over Menu
+```
+
+---
+
+# 🧩 Menu Registration Framework
+
+Menus register through:
+
+```gdscript
+register_menu(menu)
+```
+
+Registered menus follow a shared contract:
+
+```gdscript
+open_menu()
+close_menu()
+```
+
+This allows UIManager to control menus without knowing their internal implementation.
+
+Example:
+
+```text
+             UIManager
+
+                 |
+ --------------------------------
+ |        |        |       |
+Inventory Shop   Quest  Dialogue
+Equipment Storage Stats
+```
+
+---
+
+# 🚪 Menu Lifecycle Authority
+
+UIManager provides centralized closing:
+
+```gdscript
+close_menus()
+```
+
+This:
+
+* closes registered menus
+* restores gameplay state
+* releases movement restrictions
+
+Used during:
+
+* scene transitions
+* interaction cleanup
+* pause transitions
+* UI resets
+
+---
+
+# 🎮 Global Input Routing
+
+UIManager handles global interface actions:
+
+```text
+ESC
+Close Menus
+Pause Menu
+Toggle Stats
+Toggle Event Viewer
+```
+
+Flow:
+
+```text
+Input Event
+      ↓
+ UIManager
+      ↓
+ Appropriate UI Action
+```
+
+This prevents individual panels from competing for global input ownership.
+
+---
+
+# 🔒 Gameplay Control Locking
+
+UIManager manages gameplay interruption through:
+
+```gdscript
+movement_disabled
+movement_enabled
+```
+
+Used by:
+
+* menus
+* dialogue
+* pause
+* UI text entry
+
+Example:
+
+```text
+Open Inventory
+
+      ↓
+
+UIManager
+
+      ↓
+
+Player Movement Disabled
+```
+
+---
+
+# 🗂️ UI State Tracking
+
+Global UI state is tracked through:
+
+```gdscript
+is_open
+```
+
+This prevents gameplay input while menus are active.
+
+Additional UI text state:
+
+```gdscript
+is_typing_ui
+```
+
+Allows input fields and rename operations to consume keyboard input safely.
+
+---
+
+# 📋 Quest System Integration
+
+UIManager provides UI interaction notifications.
+
+Example:
+
+```gdscript
+notify_menu_open("inventory")
+```
+
+Flow:
+
+```text
+Menu Opened
+      ↓
+UIManager
+      ↓
+QuestManager
+      ↓
+OPEN_UI Objective
+```
+
+Allows quests to track player interactions such as:
+
+* opening inventory
+* viewing menus
+* interacting with interface systems
+
+---
+
+# 🛒 Shop System Integration
+
+UIManager owns the active Shop Menu reference.
+
+Initialization:
+
+```gdscript
+shop_menu = root.get_node(...)
+register_menu(shop_menu)
+```
+
+Vendor systems communicate through:
+
+```gdscript
+UIManager.shop_menu
+```
+
+Responsibilities are separated:
+
+```text
+Vendor
+  |
+  ↓
+ShopManager
+  |
+  ↓
+UIManager.shop_menu
+  |
+  ↓
+Shop Interface
+```
+
+Shop logic remains independent from UI presentation.
+
+---
+
+# 💬 Dialogue Integration
+
+Dialogue UI is registered as a managed menu.
+
+UIManager provides:
+
+* opening/closing behavior
+* movement locking
+* global menu cleanup
+* ESC integration
+
+Dialogue content and conversation state remain controlled by the dialogue systems.
+
+---
+
+# 📢 Event Viewer Integration
+
+UIManager manages Event Viewer visibility:
+
+```gdscript
+open_event_viewer()
+close_event_viewer()
+```
+
+Supports:
+
+* chat/event toggling
+* independent HUD display
+* global access from gameplay systems
+
+---
+
+# ⏸️ Pause System Integration
+
+Pause flow:
+
+```text
+Input
+ ↓
+UIManager
+ ↓
+GameManager.pause_game()
+ ↓
+Pause Menu
+```
+
+UIManager handles:
+
+* opening state
+* movement restrictions
+* menu coordination
+* restoration of gameplay control
+
+---
+
+# ☠️ Game Over Integration
+
+UIManager controls game-over presentation:
+
+```gdscript
+open_game_over()
+close_game_over()
+```
+
+Handles:
+
+* closing active menus
+* disabling gameplay
+* displaying recovery UI
+* restoring player control
+
+---
+
+# 🧱 UI Architecture
+
+```text
+                    UIManager
+                        |
+ ------------------------------------------------
+ |              |              |                |
+ HUD          Menus        Dialogue          Shop
+ |              |              |                |
+MiniMap     Inventory       NPC Talk        Vendor
+Skillbar    Equipment       Quests          Trading
+Ammo        Storage
+Potion      Stats
+Event
+```
+
+---
+
+# Framework Role
+
+UIManager provides:
+
+✅ Single UI authority
+✅ Centralized menu lifecycle
+✅ Unified open/close behavior
+✅ Global input routing
+✅ Player movement locking
+✅ Quest OPEN_UI integration
+✅ Shop interface coordination
+✅ Dialogue menu management
+✅ HUD visibility control
+✅ Expansion point for future UI systems
+
+The UI layer is structured as a coordinated framework subsystem rather than isolated panels, allowing new menus and interface systems to integrate through a consistent global manager.
