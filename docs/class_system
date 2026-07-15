@@ -1,0 +1,324 @@
+## 🧬 Class Database — Class Identity & Rule Separation
+
+The Class Database separates **class statistics** from **class behavior rules** by using two dedicated resources:
+
+* `StatBlock` → class identity and stat foundation
+* `ClassRuleResource` → class restrictions, visuals, equipment, and gameplay rules
+
+This keeps numerical progression separate from class logic and allows classes to share stat structures while maintaining unique behaviors.
+
+---
+
+# 📊 StatBlock — Class Stat Authority
+
+`StatBlock` is the source of truth for class-based attributes.
+
+Each class references its own stat configuration through:
+
+```gdscript
+class_id
+```
+
+The StatBlock defines:
+
+* Base attributes
+* Derived combat values
+* Resource pools
+* Resistances
+* Offensive statistics
+* Defensive statistics
+* Growth values
+
+Examples:
+
+```text
+Warrior
+ ├── Strength
+ ├── Vitality
+ ├── Armor
+ ├── HP
+ └── Physical Damage
+
+Mage
+ ├── Intelligence
+ ├── Wisdom
+ ├── MP
+ ├── Spell Power
+ └── Elemental Resistance
+```
+
+The class database does not manually manage stats; it delegates all numerical values to StatBlock.
+
+---
+
+# 📜 ClassRuleResource — Class Behavior Authority
+
+`ClassRuleResource` defines everything about what a class **can do**.
+
+It does not contain stat values.
+
+It controls:
+
+* visuals
+* combat team
+* weapon access
+* armor access
+* starting equipment
+* class tags
+* class restrictions
+
+---
+
+# 🎨 Visual Configuration
+
+Controls class presentation:
+
+```gdscript
+spritesheet
+portrait
+animation_library
+```
+
+Supports:
+
+* class-specific animations
+* portraits
+* player visuals
+
+---
+
+# ⚔️ Combat Rules
+
+Defines combat identity:
+
+```gdscript
+damage_team
+```
+
+Controls:
+
+* faction alignment
+* damage relationships
+* combat targeting rules
+
+---
+
+# 🗡️ Weapon Permissions
+
+ClassRuleResource defines allowed weapon categories.
+
+Examples:
+
+```gdscript
+weapon_sword
+weapon_bow
+weapon_staff
+weapon_shield
+weapon_dual_wield
+```
+
+Allows classes to have unique loadout restrictions.
+
+Example:
+
+```text
+Warrior
+ ✓ Sword
+ ✓ Shield
+ ✓ Axe
+ ✗ Staff
+
+Mage
+ ✓ Staff
+ ✓ Wand
+ ✗ Heavy Weapons
+```
+
+---
+
+# 🛡️ Armor Permissions
+
+Defines allowed armor tiers:
+
+```gdscript
+armor_cloth
+armor_light
+armor_medium
+armor_heavy
+```
+
+Examples:
+
+```text
+Mage
+ ✓ Cloth
+
+Ranger
+ ✓ Light
+ ✓ Medium
+
+Tank
+ ✓ Heavy
+```
+
+---
+
+# 🎒 Starting Equipment
+
+ClassRuleResource controls initial loadout.
+
+Equipment slots:
+
+```text
+Head
+Shoulders
+Arms
+Hands
+Body
+Waist
+Legs
+Feet
+
+Weapon
+Offhand
+
+Wrist
+Neck
+Ring
+Back
+Unique
+
+Custom Slots
+```
+
+Generated through:
+
+```gdscript
+get_starting_equipment()
+```
+
+Returns a complete equipment dictionary:
+
+```gdscript
+{
+    EquipSlot.WEAPON: "iron_sword",
+    EquipSlot.BODY: "leather_armor"
+}
+```
+
+This allows starting gear to be data-driven.
+
+---
+
+# 🏷️ Class Tags
+
+Tags define class identity.
+
+Available categories:
+
+```text
+Arcane
+Beast
+Fighter
+Healer
+Hybrid
+Nature
+Ranged
+Spellcaster
+Stealth
+Support
+Tank
+Undead
+```
+
+Example:
+
+```text
+Paladin
+ ✓ Fighter
+ ✓ Healer
+ ✓ Tank
+ ✓ Support
+
+Necromancer
+ ✓ Arcane
+ ✓ Spellcaster
+ ✓ Undead
+```
+
+Tags can later drive:
+
+* abilities
+* item restrictions
+* quests
+* factions
+* dialogue
+* progression systems
+
+---
+
+# 🚫 Class Restrictions
+
+Negative tags provide exclusion rules.
+
+Example:
+
+```gdscript
+forbid_healer
+forbid_spellcaster
+forbid_heavy
+```
+
+Allows systems to prevent incompatible choices.
+
+Examples:
+
+```text
+Berserker
+ ✗ Spellcaster
+
+Holy Knight
+ ✗ Undead
+
+Assassin
+ ✗ Heavy Armor
+```
+
+---
+
+# 🏗️ Class Loading Structure
+
+Final relationship:
+
+```text
+Class Database
+        |
+        |
+        +----------------+
+        |                |
+        ↓                ↓
+
+   StatBlock       ClassRuleResource
+
+   Numbers         Behavior
+   Growth          Restrictions
+   Combat Stats    Equipment
+   Resources       Visuals
+                   Tags
+```
+
+---
+
+# Framework Role
+
+The Class Database provides:
+
+✅ data-driven classes
+✅ independent stat scaling
+✅ reusable rule definitions
+✅ equipment restrictions
+✅ weapon/armor permissions
+✅ future subclass support
+✅ clean separation between numbers and behavior
+
+Classes are no longer hard-coded entities. They are assembled from **stat identity + gameplay rules**, allowing the framework to support large numbers of playable classes without code duplication.
