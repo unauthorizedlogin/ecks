@@ -208,17 +208,26 @@ Typical contents include:
 - Index Generators
 - CSV import tools
 
-Each major subsystem generally maintains its own generator pipeline.
+Each major subsystem maintains its own reaource generator pipeline.
 
-Examples:
+Current List:
 
 ```text
 Class Generator
 Class Rules Generator
+Credits Data Generator
+Dialogue Flavor Generator
+Dialogue Quest Generator
+Difficulty Generator
+Effect Generator
 Item Generator
-Quest Generator
-Dialogue Generator
+Localization PO Generator
+Map Generator
 NPC Generator
+Quest Generator
+StatFormula Generator
+XP Curve Generator
+XP Growth Generator
 ```
 
 Generators convert editable source data into optimized Godot resources and indexes used by the engine.
