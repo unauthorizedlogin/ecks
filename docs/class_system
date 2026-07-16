@@ -307,6 +307,18 @@ Class Database
                    Tags
 ```
 
+Player chooses Class
+        ↓
+ClassDatabase
+        ↓
+StatBlock + ClassRuleResource
+        ↓
+Player Entity
+        ↓
+StatManager builds final stats
+        ↓
+Gameplay
+
 ---
 
 # Framework Role
