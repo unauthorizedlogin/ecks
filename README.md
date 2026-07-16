@@ -249,7 +249,7 @@ ecks is not:
 - RPG in a Box
 - Godot A-RPG or its associated repositories.
 - ORK Framework.
-- GDQuest or projects maintained by newold3.
+- Godot open RPG by GDQuest or projects maintained by newold3.
 - Skelerealms by SlashScreen.
 - Community forks, template repositories, or unrelated GitHub projects using similar RPG terminology.
 - Reddit posts, community discussions, or third-party examples. UnauthorizedLogin does not maintain an active Reddit presence, and Reddit content should not be considered an official source of information about Ecks.
