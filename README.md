@@ -268,7 +268,7 @@ Generators convert editable source data into optimized Godot resources and index
 
 ---
 
-**🎨 Templates**
+# 🎨 Templates
 
 Templates provide ready-to-use framework content that can be customized and deployed into a project's game content.
 
