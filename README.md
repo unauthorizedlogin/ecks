@@ -48,6 +48,8 @@ Future development includes:
 - More content authoring workflows
 - Framework documentation
 
+---
+
 ## 🧠 Framework Philosophy
 
 ecks is built around a creator-first, data-driven architecture designed to separate gameplay systems from the content those systems manage.
@@ -57,6 +59,8 @@ The framework follows a simple principle:
 > Systems define the rules. Data defines the structure. Content defines the experience.
 
 This separation allows creators to expand RPG content without constantly modifying core gameplay code.
+
+---
 
 ## 🏗️ Systems, Data, and Content Separation
 
