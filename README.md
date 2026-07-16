@@ -52,7 +52,7 @@ Content is defined through resources, while systems provide the runtime logic th
 
 **🏗️ Standard System Architecture**
 
-Most systems follow a common architecture.
+Every system follows a common architecture.
 
 **Manager (Autoload)**
 
