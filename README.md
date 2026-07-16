@@ -73,7 +73,8 @@ runtime state
 event routing
 player interaction
 coordination between systems
-Database (Autoload)
+
+**Database (Autoload)**
 
 Content-driven systems typically expose a *Database autoload.
 
