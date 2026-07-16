@@ -111,7 +111,7 @@ Index Generators
 
 These tools convert source data (CSV, spreadsheets) into optimized runtime resources.
 
-#Resource Scripts
+**Resource Scripts**
 
 Resource classes define the data consumed by systems.
 
