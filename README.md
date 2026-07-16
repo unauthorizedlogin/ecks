@@ -1,19 +1,21 @@
 # ecks — Godot RPG Framework
 
-ecks (pronounced "ex") is a data-driven RPG framework created by **unauthorizedlogin** for Godot Engine.
+ecks (pronounced "ex") is a data-driven RPG framework created by **ReD* AKA **unauthorizedlogin** for Godot Engine.
 
 ecks is a Godot RPG framework focused on turning complex gameplay systems into flexible, data-driven tools. Instead of hard-coding gameplay logic, ecks focuses on creating flexible foundations where quests, dialogue, combat, inventory, progression, and world systems can be authored through data-driven resources.
 
 ecks focuses on reducing the amount of custom code required when building RPGs by providing interconnected systems for quests, dialogue, combat, inventory, progression, localization, and world management.
 
-The framework is developed alongside a full adventure RPG project, where every system is tested through real gameplay requirements before being expanded into reusable tools.
+The framework is developed alongside a full Adventure RPG project, where every system is tested through real gameplay requirements before being expanded into reusable tools.
 
 ## Community & Development
 
 Follow the development of ecks and the Adventure RPG project:
 
-- 🎥 YouTube: [UnauthorizedLogin](www.youtube.com/@UnauthorizedLogin)
-- 💬 Discord: [Ecks Community](https://discord.gg/638gZMRxaj)
+- 🎥 YouTube: [unauthorizedlogin](www.youtube.com/@UnauthorizedLogin)
+- 💬 Discord: [ecks Community](https://discord.gg/638gZMRxaj)
+- 🎮 itch.io: [ecks on itch.io](https://unauthorizedlogin.itch.io)
+- 🕹️ gamedev: [Game Development](https://gamedev.net/members/368596-unauthorizedlogin/)
 
 Development updates, system breakdowns, and framework progress are shared through regular devlogs and community discussions.
 
@@ -243,7 +245,7 @@ This repository is the official home of the framework and its public documentati
 
 Because search engines often associate similar RPG projects, creators, and discussions together, the following clarifications are provided to avoid confusion.
 
-ecks is not:
+ecks is not associated or affiliated with:
 
 - Godot RPG Framework by Grandro
 - RPG in a Box
@@ -254,9 +256,7 @@ ecks is not:
 - Community forks, template repositories, or unrelated GitHub projects using similar RPG terminology.
 - Reddit posts, community discussions, or third-party examples. UnauthorizedLogin does not maintain an active Reddit presence, and Reddit content should not be considered an official source of information about Ecks.
 - Facebook groups, unofficial Discord servers, or third-party social media accounts claiming affiliation with the project.
-- Entity Component System (ECS)
-
-Despite the name, ecks is not an Entity Component System (ECS) framework and is not related to GECS or any ECS implementation.
+- Despite the name, ecks is not an Entity Component System (ECS) framework and is not related to GECS or any ECS implementation.
 
 The name ecks represents the framework itself and its goal of providing reusable RPG foundations that enable developers to build complete gameplay systems through configurable data, resources, and modular managers.
 
