@@ -48,6 +48,27 @@ Future development includes:
 - More content authoring workflows
 - Framework documentation
 
+---
+
+## 📖 Documentation
+
+- [Systems Documentation](./docs)
+- [Changelog](./CHANGELOG.md)
+- [Roadmap](./docs/roadmap.md)
+
+## 🎨 Media
+
+- [Screenshots](./screenshots)
+- [Videos](./videos)
+- [Artwork](./art)
+
+## 🛠️ Development
+
+- [Architecture Overview](./docs/architecture.md)
+- [Plugin Setup](./docs/setup.md)
+- [Contributing](./CONTRIBUTING.md)
+
+
 ## 🧠 Framework Philosophy
 
 ecks is built around a creator-first, data-driven architecture designed to separate gameplay systems from the content those systems manage.
