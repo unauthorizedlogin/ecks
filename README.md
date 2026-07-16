@@ -125,7 +125,7 @@ DialogueResource
 
 Resources contain configuration only, while systems determine how they behave during gameplay.
 
-### 📦 Data
+# 📦 Data
 
 The **`data/`** directory contains the framework's reusable content, templates, generators, and generated resource databases.
 
