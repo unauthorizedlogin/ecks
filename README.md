@@ -245,6 +245,8 @@ Because search engines often associate similar RPG projects, creators, and discu
 
 ecks is not:
 
+- Godot RPG Framework by Grandro
+- RPG in a Box
 - Godot A-RPG or its associated repositories.
 - ORK Framework.
 - GDQuest or projects maintained by newold3.
