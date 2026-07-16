@@ -17,6 +17,8 @@ Follow the development of ecks and the Adventure RPG project:
 - 🎮 itch.io: [ecks on itch.io](https://unauthorizedlogin.itch.io)
 - 🕹️ gamedev: [Game Development](https://gamedev.net/members/368596-unauthorizedlogin/)
 
+[Coming - Contributing](./CONTRIBUTING.md)
+
 Development updates, system breakdowns, and framework progress are shared through regular devlogs and community discussions.
 
 ## Development Status:
@@ -25,6 +27,8 @@ Development updates, system breakdowns, and framework progress are shared throug
 - Stage: pre-alpha
 - Version: 0.52.194
 - Date: 7/16/2026
+
+[Coming - Changelog](./docs/CHANGELOG)
 
 ## Built With
 
@@ -48,34 +52,20 @@ Future development includes:
 - More content authoring workflows
 - Framework documentation
 
+[Coming - Roadmap](./docs/roadmap.md)
+
 ---
 
 ## 📖 Documentation
 
 - [Systems Documentation](./docs)
 - [Architecture Overview](docs/architecture)
-- [Class System](./docs/class_system)
-- [Combat System](./docs/combat_system)
-- [Creator Tools](./docs/creator_tools)
-- [Dialogue System](./docs/dialogue_system)
-- [Effect System](./docs/effect_system)
-- [Event Viewer](./docs/event_viewer)
-- [Inventory System](./docs/inventory_system)
-- [Menus & UI](./docs/menus_ui)
-- [Quest System](./docs/quest_system)
-- [Shop System](./docs/shop_system)
-- [Stats System](./docs/stats_system)
-- [World Systems](./docs/world_systems)
-- [Inactive - Changelog](./docs/CHANGELOG)
-- [Inactive - Roadmap](./docs/roadmap.md)
-- [Inactive - Plugin Setup](./docs/setup)
-- [Inactive - Contributing](./CONTRIBUTING.md)
 
 ## 🎨 Media
 
 - [Screenshots](./screenshots)
-- [Inactive - Videos](./videos)
-- [inactive - Artwork](./art)
+- [Coming - Videos](./videos)
+- [Coming - Artwork](./art)
 
 
 ## 🧠 Framework Philosophy
@@ -469,6 +459,17 @@ The result is a workflow where creators can configure and customize the majority
 - Difficulty modifiers integrated through the same effect pipeline used by entities
 - Resource-based definitions allowing entities to be created and balanced without modifying code
 - Shared framework pipeline ensuring consistent stat, effect, and rule handling across all entity types
+- [Class System](./docs/class_system)
+- [Effect System](./docs/effect_system)
+
+### 📈 Stats & Progression System
+- Data-driven actor stat architecture
+- Shared stat identity across players, NPCs, enemies, and future actors
+- Primary, derived, offensive, defensive, and resistance stats
+- Flexible class and character progression support
+- Resource-based stat definitions
+- Extensible calculations for future mechanics
+- [Stats System](./docs/stats_system)
 
 ### 🎒 Economy & Item Framework
 - Complete data-driven economy foundation for managing all item-based gameplay systems
@@ -491,21 +492,16 @@ The result is a workflow where creators can configure and customize the majority
 - Equipment and inventory management integrated into the same item pipeline
 - Data-driven vendor and shop system supporting customizable inventories, pricing, and merchant configurations
 - Flexible economy architecture designed for future crafting, gathering, trading, and additional item systems
+- [Inventory System](./docs/inventory_system)
+- [Shop System](./docs/shop_system)
 
-
-### 📈 Stats & Progression System
-- Data-driven actor stat architecture
-- Shared stat identity across players, NPCs, enemies, and future actors
-- Primary, derived, offensive, defensive, and resistance stats
-- Flexible class and character progression support
-- Resource-based stat definitions
-- Extensible calculations for future mechanics
 
 ### 💬 Dialogue System
 - NPC interaction framework
 - Quest-aware dialogue states
 - Flavor dialogue support
 - Data-driven dialogue resources
+- [Dialogue System](./docs/dialogue_system)
 
 ### 📜 Quest System
 - Data-driven quest definitions
@@ -514,18 +510,21 @@ The result is a workflow where creators can configure and customize the majority
 - NPC-driven quest interactions
 - Story and side quest tracking
 - Author quests without modifying core systems
+- [Quest System](./docs/quest_system)
 
 ### 🗡️ Combat System
 - Event-driven combat pipeline
 - Shared actor identity system
 - Damage, effects, resistances, and combat events
 - Combat-to-quest integration
+- [Combat System](./docs/combat_system)
 
 ### 🌎 World Systems
 - Persistent world state
 - Save/load framework
 - Scene and chunk management
 - Content organization tools
+- [World Systems](./docs/world_systems)
 
 ### 📊 Event Viewer System
 - Centralized gameplay event tracking and feedback system
@@ -534,8 +533,11 @@ The result is a workflow where creators can configure and customize the majority
 - Color-coded event messages for different gameplay events
 - Localization-ready event messages
 - Saveable viewer configuration
+- [Event Viewer](./docs/event_viewer)
 
 ### 🌐 Localization
+
+- [Menus & UI](./docs/menus_ui)
 
 ecks is built with localization as a core framework feature rather than an afterthought.
 
@@ -556,6 +558,8 @@ Features include:
 - Localization-ready resources, menus, systems, and templates
 
 ## 🛠️ Creator Tools
+
+- [Creator Tools](./docs/creator_tools)
 
 ecks includes dedicated tools designed to streamline RPG development workflows and reduce repetitive content management.
 
