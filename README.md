@@ -87,7 +87,7 @@ NPCDatabase
 
 The database acts as the public interface for accessing loaded content.
 
-#Resource Database
+**Resource Database**
 
 Behind each database is a resource registry responsible for discovering and loading framework resources.
 
@@ -100,7 +100,7 @@ lookup by ID
 
 This layer separates resource loading from gameplay logic.
 
-#Generators
+**Generators**
 
 Content pipelines are built around editor tools that generate framework data automatically.
 
