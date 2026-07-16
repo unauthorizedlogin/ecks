@@ -60,19 +60,19 @@ The *Manager serves as the runtime authority for the subsystem.
 
 Examples:
 
-QuestManager
-InventoryManager
-CombatManager
-GameManager
-DialogueManager
+- QuestManager
+- InventoryManager
+- CombatManager
+- GameManager
+- DialogueManager
 
 Responsibilities include:
 
-gameplay logic
-runtime state
-event routing
-player interaction
-coordination between systems
+- gameplay logic
+- runtime state
+- event routing
+- player interaction
+- coordination between systems
 
 **Database (Autoload)**
 
@@ -80,11 +80,11 @@ Content-driven systems typically expose a *Database autoload.
 
 Examples:
 
-ItemDatabase
-QuestDatabase
-ClassDatabase
-DialogueDatabase
-NPCDatabase
+- ItemDatabase
+- QuestDatabase
+- ClassDatabase
+- DialogueDatabase
+- NPCDatabase
 
 The database acts as the public interface for accessing loaded content.
 
@@ -94,10 +94,10 @@ Behind each database is a resource registry responsible for discovering and load
 
 Responsibilities include:
 
-scanning generated indexes
-loading resources
-caching content
-lookup by ID
+- scanning generated indexes
+- loading resources
+- caching content
+- lookup by ID
 
 This layer separates resource loading from gameplay logic.
 
@@ -107,8 +107,8 @@ Content pipelines are built around editor tools that generate framework data aut
 
 Typical generators include:
 
-Resource Generators
-Index Generators
+- Resource Generators
+- Index Generators
 
 These tools convert source data (CSV, spreadsheets) into optimized runtime resources.
 
@@ -118,11 +118,11 @@ Resource classes define the data consumed by systems.
 
 Examples include:
 
-QuestDefinition
-ItemResource
-ClassRuleResource
-NPCData
-DialogueResource
+- QuestDefinition
+- ItemResource
+- ClassRuleResource
+- NPCData
+- DialogueResource
 
 Resources contain configuration only, while systems determine how they behave during gameplay.
 
@@ -182,12 +182,12 @@ The `databases/` directory contains the framework's generated resources.
 
 Examples include:
 
-* Item Resources
-* Quest Resources
-* Dialogue Resources
-* NPC Resources
-* Class Resources
-* Level Resources
+- Item Resources
+- Quest Resources
+- Dialogue Resources
+- NPC Resources
+- Class Resources
+- Level Resources
 
 These resources are loaded by the corresponding system databases during boot.
 
@@ -203,10 +203,10 @@ The `generators/` directory contains the editor tooling used to build the framew
 
 Typical contents include:
 
-* `*_strings.csv` localization files
-* Resource Generators
-* Index Generators
-* CSV import tools
+- `*_strings.csv` localization files
+- Resource Generators
+- Index Generators
+- CSV import tools
 
 Each major subsystem generally maintains its own generator pipeline.
 
@@ -231,12 +231,12 @@ Templates provide ready-to-use framework content that can be customized and depl
 
 Examples include:
 
-* UI menus
-* Characters
-* Items
-* Maps
-* Common scenes
-* Framework prefabs
+- UI menus
+- Characters
+- Items
+- Maps
+- Common scenes
+- Framework prefabs
 
 These templates are designed to serve as reusable starting points rather than gameplay logic.
 
@@ -250,9 +250,9 @@ The `templates/launch/` directory contains the customizable startup flow for pro
 
 Typical scenes include:
 
-* Boot Loader
-* Start Menu
-* Launch Injector
+- Boot Loader
+- Start Menu
+- Launch Injector
 
 Projects can replace or extend these scenes while preserving the framework's initialization pipeline.
 
@@ -270,18 +270,18 @@ Content is where creators extend the framework into their own RPG.
 
 Typical examples include:
 
-Maps
-Characters
-NPCs
-Enemies
-Items & Equipment
-Skills
-UI artwork
-Sprites
-Animations
-Audio
-Visual effects
-Game-specific scenes
+- Maps
+- Characters
+- NPCs
+- Enemies
+- Items & Equipment
+- Skills
+- UI artwork
+- Sprites
+- Animations
+- Audio
+- Visual effects
+- Game-specific scenes
 
 Framework templates are intended to be duplicated, customized, and expanded here rather than modified directly.
 
