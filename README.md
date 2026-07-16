@@ -170,6 +170,13 @@ data/
     └── launch/
 ```
 
+The structure of the `data/` directory is **intentionally enforced**.
+
+- The framework's resource generators, index generators, and runtime database loaders expect resources to exist in specific locations. 
+- Maintaining this directory structure allows content to be discovered, indexed, and loaded automatically during the build process and boot sequence.
+- Moving or reorganizing these directories will prevent resources from being generated or discovered correctly.
+
+
 ---
 
 ## 🗄️ Databases
