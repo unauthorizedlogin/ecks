@@ -39,14 +39,14 @@ Systems implement gameplay rules and behavior—not game-specific content.
 
 Examples include:
 
-Quest management
-Dialogue processing
-Combat resolution
-Inventory handling
-Character progression
-World state management
-Economy and currencies
-UI coordination
+- Quest management
+- Dialogue processing
+- Combat resolution
+- Inventory handling
+- Character progression
+- World state management
+- Economy and currencies
+- UI coordination
 
 Content is defined through resources, while systems provide the runtime logic that consumes those resources.
 
@@ -142,14 +142,14 @@ The data layer provides the framework's configurable content.
 
 Examples include:
 
-* Items
-* Quests
-* Dialogue
-* NPCs
-* Classes
-* Maps
-* UI scenes
-* Character templates
+- Items
+- Quests
+- Dialogue
+- NPCs
+- Classes
+- Maps
+- UI scenes
+- Character templates
 
 Everything in `data/` is intended to be customized, generated, or instantiated by the systems layer.
 
