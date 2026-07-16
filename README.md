@@ -135,7 +135,7 @@ Instead, this directory contains the assets and data consumed by the runtime sys
 
 ---
 
-#🎯 Purpose
+**🎯 Purpose**
 
 The data layer provides the framework's configurable content.
 
@@ -156,7 +156,7 @@ Runtime behavior always lives inside `systems/`.
 
 ---
 
-#📁 Folder Organization
+**📁 Folder Organization**
 
 ```text
 data/
@@ -175,7 +175,7 @@ The structure of the `data/` directory is **intentionally enforced**.
 
 ---
 
-#🗄️ Databases
+**🗄️ Databases**
 
 The `databases/` directory contains the framework's generated resources.
 
@@ -196,7 +196,7 @@ All framework resources should be stored and organized here so they can be disco
 
 ---
 
-#⚙️ Generators
+**⚙️ Generators**
 
 The `generators/` directory contains the editor tooling used to build the framework's runtime data.
 
@@ -224,7 +224,7 @@ Generators convert editable source data into optimized Godot resources and index
 
 ---
 
-#🎨 Templates
+**🎨 Templates**
 
 Templates provide ready-to-use framework content that can be customized and deployed into a project's game content.
 
@@ -243,7 +243,7 @@ Any scripts attached to these scenes originate from the corresponding subsystem 
 
 ---
 
-#🚀 Launch
+**🚀 Launch**
 
 The `templates/launch/` directory contains the customizable startup flow for projects built with the framework.
 
@@ -263,7 +263,7 @@ Unlike the framework's data/ directory, which provides reusable templates and ge
 
 This is the game's implementation layer.
 
-#🎯 Purpose
+**🎯 Purpose**
 
 Content is where creators extend the framework into their own RPG.
 
@@ -284,7 +284,7 @@ Game-specific scenes
 
 Framework templates are intended to be duplicated, customized, and expanded here rather than modified directly.
 
-#🧱 Extending the Framework
+**🧱 Extending the Framework**
 
 Projects typically create their own scenes by extending the framework templates.
 
@@ -302,7 +302,7 @@ This keeps framework updates separate from game content.
 
 ---
 
-#🏗️ Relationship to Systems
+**🏗️ Relationship to Systems**
 
 The framework follows a strict separation between data and logic.
 
