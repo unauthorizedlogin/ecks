@@ -87,7 +87,7 @@ NPCDatabase
 
 The database acts as the public interface for accessing loaded content.
 
-Resource Database
+#Resource Database
 
 Behind each database is a resource registry responsible for discovering and loading framework resources.
 
@@ -100,7 +100,7 @@ lookup by ID
 
 This layer separates resource loading from gameplay logic.
 
-Generators
+#Generators
 
 Content pipelines are built around editor tools that generate framework data automatically.
 
@@ -108,12 +108,10 @@ Typical generators include:
 
 Resource Generators
 Index Generators
-Localization Generators
-Import Utilities
 
-These tools convert source data (CSV, spreadsheets, etc.) into optimized runtime resources.
+These tools convert source data (CSV, spreadsheets) into optimized runtime resources.
 
-Resource Scripts
+#Resource Scripts
 
 Resource classes define the data consumed by systems.
 
