@@ -48,8 +48,6 @@ Future development includes:
 - More content authoring workflows
 - Framework documentation
 
----
-
 ## 🧠 Framework Philosophy
 
 ecks is built around a creator-first, data-driven architecture designed to separate gameplay systems from the content those systems manage.
@@ -62,7 +60,9 @@ This separation allows creators to expand RPG content without constantly modifyi
 
 ecks separates framework responsibilities into three layers:
 
-## 🏗️ Systems, Data, and Content Separation
+- 🏗️ Systems, Data, and Content
+
+---
 
 ## Systems
 
@@ -81,11 +81,9 @@ Examples include:
 
 Content is defined through resources, while systems provide the runtime logic that consumes those resources.
 
----
-
-**🏗️ Standard System Architecture**
-
 Every system follows a common architecture.
+
+---
 
 **Manager (Autoload)**
 
@@ -107,6 +105,8 @@ Responsibilities include:
 - player interaction
 - coordination between systems
 
+---
+
 **Database (Autoload)**
 
 Content-driven systems typically expose a *Database autoload.
@@ -121,6 +121,8 @@ Examples:
 
 The database acts as the public interface for accessing loaded content.
 
+---
+
 **Resource Database**
 
 Behind each database is a resource registry responsible for discovering and loading framework resources.
@@ -134,6 +136,8 @@ Responsibilities include:
 
 This layer separates resource loading from gameplay logic.
 
+---
+
 **Generators**
 
 Content pipelines are built around editor tools that generate framework data automatically.
@@ -144,6 +148,8 @@ Typical generators include:
 - Index Generators
 
 These tools convert source data (CSV, spreadsheets) into optimized runtime resources.
+
+---
 
 **Resource Scripts**
 
