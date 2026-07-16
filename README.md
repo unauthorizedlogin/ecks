@@ -62,8 +62,6 @@ ecks separates framework responsibilities into three layers:
 
 - 🏗️ Systems, Data, and Content
 
----
-
 ## Systems
 
 Systems implement gameplay rules and behavior—not game-specific content.
