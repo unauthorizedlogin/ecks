@@ -218,8 +218,8 @@ Class Rules Generator
 Credits Data Generator
 Dialogue Flavor Generator
 Dialogue Quest Generator
-Difficulty Generator
-Effect Generator
+Difficulty Effects Generator
+Difficulty Rules Generator
 Item Generator
 Localization PO Generator
 Map Generator
