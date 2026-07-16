@@ -35,18 +35,99 @@ ecks separates framework responsibilities into three layers:
 
 ### Systems
 
-Systems are responsible for gameplay logic and rules.
+Systems implement gameplay rules and behavior—not game-specific content.
+
+Responsibilities
+
+Examples include:
+
+Quest management
+Dialogue processing
+Combat resolution
+Inventory handling
+Character progression
+World state management
+Economy and currencies
+UI coordination
+
+Content is defined through resources, while systems provide the runtime logic that consumes those resources.
+
+🏗️ Standard System Architecture
+
+Most systems follow a common architecture.
+
+Manager (Autoload)
+
+The *Manager serves as the runtime authority for the subsystem.
 
 Examples:
 
-- Quest management
-- Dialogue processing
-- Combat resolution
-- Inventory handling
-- Progression systems
-- World state management
+QuestManager
+InventoryManager
+CombatManager
+GameManager
+DialogueManager
 
-Systems provide the functionality while remaining independent from specific game content.
+Responsibilities include:
+
+gameplay logic
+runtime state
+event routing
+player interaction
+coordination between systems
+Database (Autoload)
+
+Content-driven systems typically expose a *Database autoload.
+
+Examples:
+
+ItemDatabase
+QuestDatabase
+ClassDatabase
+DialogueDatabase
+NPCDatabase
+
+The database acts as the public interface for accessing loaded content.
+
+Resource Database
+
+Behind each database is a resource registry responsible for discovering and loading framework resources.
+
+Responsibilities include:
+
+scanning generated indexes
+loading resources
+caching content
+lookup by ID
+
+This layer separates resource loading from gameplay logic.
+
+Generators
+
+Content pipelines are built around editor tools that generate framework data automatically.
+
+Typical generators include:
+
+Resource Generators
+Index Generators
+Localization Generators
+Import Utilities
+
+These tools convert source data (CSV, spreadsheets, etc.) into optimized runtime resources.
+
+Resource Scripts
+
+Resource classes define the data consumed by systems.
+
+Examples include:
+
+QuestDefinition
+ItemResource
+ClassRuleResource
+NPCData
+DialogueResource
+
+Resources contain configuration only, while systems determine how they behave during gameplay.
 
 ### Data
 
