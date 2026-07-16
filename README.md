@@ -37,8 +37,6 @@ ecks separates framework responsibilities into three layers:
 
 Systems implement gameplay rules and behavior—not game-specific content.
 
-Responsibilities
-
 Examples include:
 
 Quest management
@@ -52,11 +50,11 @@ UI coordination
 
 Content is defined through resources, while systems provide the runtime logic that consumes those resources.
 
-🏗️ Standard System Architecture
+### 🏗️ Standard System Architecture
 
 Most systems follow a common architecture.
 
-Manager (Autoload)
+### Manager (Autoload)
 
 The *Manager serves as the runtime authority for the subsystem.
 
