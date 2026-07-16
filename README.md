@@ -206,9 +206,8 @@ Typical contents include:
 - `*_strings.csv` localization files
 - Resource Generators
 - Index Generators
-- CSV import tools
 
-Each major subsystem maintains its own reaource generator pipeline.
+Each major subsystem maintains its own resource generator pipeline.
 
 Current List:
 
