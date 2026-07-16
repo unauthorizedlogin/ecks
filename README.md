@@ -53,20 +53,17 @@ Future development includes:
 ## 📖 Documentation
 
 - [Systems Documentation](./docs)
-- [Changelog](./CHANGELOG.md)
-- [Roadmap](./docs/roadmap.md)
+- [Architecture Overview](docs/architecture)
+- [Inactive - Changelog](./docs/CHANGELOG)
+- [Inactive - Roadmap](./docs/roadmap.md)
+- [Inactive - Plugin Setup](./docs/setup)
+- [Inactive - Contributing](./CONTRIBUTING.md)
 
 ## 🎨 Media
 
 - [Screenshots](./screenshots)
-- [Videos](./videos)
-- [Artwork](./art)
-
-## 🛠️ Development
-
-- [Architecture Overview](./docs/architecture.md)
-- [Plugin Setup](./docs/setup.md)
-- [Contributing](./CONTRIBUTING.md)
+- [Inactive - Videos](./videos)
+- [inactive - Artwork](./art)
 
 
 ## 🧠 Framework Philosophy
