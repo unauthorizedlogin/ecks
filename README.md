@@ -432,9 +432,24 @@ The framework is built to turn complex RPG development into an organized authori
 - Content organization tools
 
 ### 🌐 Localization
+
+ecks is built with localization as a core framework feature rather than an afterthought.
+
+Every player-facing text field throughout the framework is already wrapped with `tr()`, including UI, menus, dialogue, quests, objectives, items, events, combat messages, notifications, and gameplay systems. Localization is explicitly authored and does not rely on automatic machine translation at runtime.
+
+The framework includes a production-tested CSV → PO generation pipeline that has been battle-tested throughout development and is designed to scale alongside the project.
+
+Features include:
+
+- Framework-wide `tr()` integration for all player-visible text
 - Data-driven localization pipeline
-- Multi-language support
-- Generator-based workflow
+- Battle-tested CSV → PO generator workflow
+- Generator-based translation management
+- Over **14,000 unique localization keys**
+- Support for **23 languages**
+- Approximately **322,000 translated strings** (14,000+ keys × 23 languages)
+- At an average of **7 words per string**, the framework currently manages over **2.25 million localized words**
+- Localization-ready resources, menus, systems, and templates
 
 ### 🛠️ Creator Tools
 
