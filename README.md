@@ -19,6 +19,35 @@ Follow the development of ecks and the Adventure RPG project:
 
 Development updates, system breakdowns, and framework progress are shared through regular devlogs and community discussions.
 
+## Development Status
+
+Status: ecks is currently in active development.
+Stage: pre-alpha
+Version: 0.52.194
+Date: 7/16/2026
+
+## Built With
+
+- Godot Engine
+- GDScript
+- Godot Resources
+- Data-driven architecture
+
+## Roadmap
+
+Current development includes:
+- Expanded Inventory Space
+- Convert Level to Map
+- Chunk Loading Refactor
+- Launch Flow Cleanup
+- Debug Difficulty
+
+Future development includes:
+- Additional RPG mechanics
+- Expanded creator tools
+- More content authoring workflows
+- Framework documentation
+
 ## 🧠 Framework Philosophy
 
 ecks is built around a creator-first, data-driven architecture designed to separate gameplay systems from the content those systems manage.
@@ -140,17 +169,6 @@ Instead, this directory contains the assets and data consumed by the runtime sys
 
 The data layer provides the framework's configurable content.
 
-Examples include:
-
-- Items
-- Quests
-- Dialogue
-- NPCs
-- Classes
-- Maps
-- UI scenes
-- Character templates
-
 Everything in `data/` is intended to be customized, generated, or instantiated by the systems layer.
 
 Runtime behavior always lives inside `systems/`.
@@ -182,12 +200,14 @@ The `databases/` directory contains the framework's generated resources.
 
 Examples include:
 
-- Item Resources
-- Quest Resources
-- Dialogue Resources
-- NPC Resources
 - Class Resources
-- Level Resources
+- Dialogue Resources
+- Difficulty Resources
+- Item Resources
+- Map Resources
+- NPC Resources
+- Quest Resources
+- XP Resources
 
 These resources are loaded by the corresponding system databases during boot.
 
@@ -197,7 +217,7 @@ All framework resources should be stored and organized here so they can be disco
 
 ---
 
-**⚙️ Generators**
+**⚙️ Generators & Data-Driven Authoring Pipelines**
 
 The `generators/` directory contains the editor tooling used to build the framework's runtime data.
 
@@ -206,6 +226,21 @@ Typical contents include:
 - `*_strings.csv` localization files
 - Resource Generators
 - Index Generators
+
+ecks generator workflow is designed for large-scale content creation.
+
+Creators can author content through structured formats and automatically generate Godot resources.
+
+Supported workflows include:
+
+- CSV-based authoring
+- Automated Resource generation
+- Database indexing
+- Localization pipelines
+- Organized output routing
+- Content validation workflows
+
+These pipelines allow RPG projects to manage hundreds or thousands of pieces of content while keeping data organized and consistent.
 
 Each major subsystem maintains its own resource generator pipeline.
 
@@ -237,14 +272,12 @@ Generators convert editable source data into optimized Godot resources and index
 
 Templates provide ready-to-use framework content that can be customized and deployed into a project's game content.
 
-Examples include:
+Templates include:
 
-- UI menus
-- Characters
-- Items
-- Maps
-- Common scenes
-- Framework prefabs
+- Actor Scenes
+- Item Scenes
+- Map Scenes
+- UI Scenes
 
 These templates are designed to serve as reusable starting points rather than gameplay logic.
 
@@ -333,45 +366,6 @@ This separation keeps framework behavior modular while allowing projects to cust
 
 ---
 
-## 🎛️ Inspector-Driven Configuration
-
-ecks is designed around Godot's Inspector workflow.
-
-Framework systems expose configurable properties through exported variables, allowing creators to customize behavior directly in the editor.
-
-Examples include:
-
-- Quest behavior settings
-- Tracking limits and HUD configuration
-- Objective parameters
-- Actor properties
-- Combat settings
-- UI layout options
-- Resource references
-
-This keeps configuration visible, editable, and accessible without requiring creators to constantly modify scripts.
-
----
-
-## ⚙️ Data-Driven Authoring Pipelines
-
-ecks includes generator workflows designed for large-scale content creation.
-
-Creators can author content through structured formats and automatically generate Godot resources.
-
-Supported workflows include:
-
-- CSV-based authoring
-- Automated Resource generation
-- Database indexing
-- Localization pipelines
-- Organized output routing
-- Content validation workflows
-
-These pipelines allow RPG projects to manage hundreds or thousands of pieces of content while keeping data organized and consistent.
-
----
-
 ## 🎮 Creator-Focused Development
 
 ecks is designed to support both framework developers and content creators.
@@ -389,15 +383,77 @@ through data and configuration rather than rewriting gameplay systems.
 
 The framework is built to turn complex RPG development into an organized authoring process while keeping the underlying architecture flexible for expansion.
 
+## 🎛️ Inspector-Driven Configuration
+
+Ecks is designed around Godot's Inspector workflow, giving creators a powerful editor-facing configuration layer without requiring constant script modification.
+
+While gameplay systems are driven through resources, databases, and configurable definitions, framework scenes and components expose their creator-facing options directly through exported Inspector properties.
+
+This includes more than simple visual adjustments. Ecks uses the Inspector to configure presentation, behavior, and localized content choices throughout the framework.
+
+Examples include:
+
+* UI fonts, colors, outlines, spacing, alignment, and layout settings
+* Menu and panel presentation options
+* HUD and display configuration
+* Resource and scene references
+* Gameplay component properties
+* Numeric ranges and limits
+* Creator-facing dropdown selections
+* Localized label and title options
+
+Ecks also provides enum-driven Inspector workflows for common text selections. Instead of requiring creators to manually enter localization keys or modify scripts, predefined options can be selected directly from dropdown menus.
+
+For example, vendor configuration can expose options such as:
+
+* Shop titles
+* Inventory section labels
+* Buyback labels
+* Item information headings
+
+These selections automatically map to the framework's localization pipeline while keeping the Inspector clean and creator-friendly.
+
+Custom override fields are available when a project needs unique wording, allowing creators to use framework defaults while still supporting complete customization.
+
+The result is a workflow where creators can configure and customize the majority of framework systems directly through Godot's editor, while still retaining the ability to extend or replace systems with custom code when desired.
+
+---
+
 ## Features
 
-### 📊 Event Viewer System
-- Centralized gameplay event tracking and feedback system
-- Custom event channels for organizing gameplay information
-- Configurable filters and display categories
-- Color-coded event messages for different gameplay events
-- Localization-ready event messages
-- Saveable viewer configuration
+### 🧬 Entity Framework System
+- Centralized entity definition system controlling all entity-based gameplay data
+- Shared class architecture supporting players, NPCs, enemies, and other world entities
+- Data-driven stat blocks defining base attributes, derived stats, resistances, and combat properties
+- Configurable entity class rules controlling behavior, progression, and gameplay restrictions
+- Unified effect system supporting buffs, debuffs, modifiers, and difficulty scaling
+- Entity-specific configuration for NPCs, enemies, and playable characters
+- Difficulty modifiers integrated through the same effect pipeline used by entities
+- Resource-based definitions allowing entities to be created and balanced without modifying code
+- Shared framework pipeline ensuring consistent stat, effect, and rule handling across all entity types
+
+### 🎒 Economy & Item Framework
+- Complete data-driven economy foundation for managing all item-based gameplay systems
+- Unified item database supporting equipment, consumables, resources, currencies, and progression items
+- Modular item category system supporting:
+  - Ammunition
+  - Consumables
+  - Currency
+  - Equipment
+  - Gems
+  - Ingredients
+  - Materials
+  - Metals
+  - Minerals
+  - Stones
+  - Potions
+  - Quest items
+  - Miscellaneous items
+  - Additional expandable categories
+- Equipment and inventory management integrated into the same item pipeline
+- Data-driven vendor and shop system supporting customizable inventories, pricing, and merchant configurations
+- Flexible economy architecture designed for future crafting, gathering, trading, and additional item systems
+
 
 ### 📈 Stats & Progression System
 - Data-driven actor stat architecture
@@ -407,11 +463,11 @@ The framework is built to turn complex RPG development into an organized authori
 - Resource-based stat definitions
 - Extensible calculations for future mechanics
 
-### 🗡️ Combat System
-- Event-driven combat pipeline
-- Shared actor identity system
-- Damage, effects, resistances, and combat events
-- Combat-to-quest integration
+### 💬 Dialogue System
+- NPC interaction framework
+- Quest-aware dialogue states
+- Flavor dialogue support
+- Data-driven dialogue resources
 
 ### 📜 Quest System
 - Data-driven quest definitions
@@ -421,23 +477,25 @@ The framework is built to turn complex RPG development into an organized authori
 - Story and side quest tracking
 - Author quests without modifying core systems
 
-### 💬 Dialogue System
-- NPC interaction framework
-- Quest-aware dialogue states
-- Flavor dialogue support
-- Data-driven dialogue resources
-
-### 🎒 Inventory & Items
-- Item database system
-- Equipment management
-- Consumables and resources
-- Data-driven item definitions
+### 🗡️ Combat System
+- Event-driven combat pipeline
+- Shared actor identity system
+- Damage, effects, resistances, and combat events
+- Combat-to-quest integration
 
 ### 🌎 World Systems
 - Persistent world state
 - Save/load framework
 - Scene and chunk management
 - Content organization tools
+
+### 📊 Event Viewer System
+- Centralized gameplay event tracking and feedback system
+- Custom event channels for organizing gameplay information
+- Configurable filters and display categories
+- Color-coded event messages for different gameplay events
+- Localization-ready event messages
+- Saveable viewer configuration
 
 ### 🌐 Localization
 
@@ -481,27 +539,6 @@ The Item Creator allows creators to build and manage large item databases throug
 - Designed for tuning player advancement systems
 
 The XP Analyzer helps creators design and balance progression systems by making experience requirements easier to evaluate and adjust.
-
-## Development Status
-
-ecks is currently in active development.
-
-The framework is being developed alongside an adventure RPG project, with systems being tested and expanded through real gameplay requirements.
-
-## Built With
-
-- Godot Engine
-- GDScript
-- Godot Resources
-- Data-driven architecture
-
-## Roadmap
-
-Future development includes:
-- Additional RPG mechanics
-- Expanded creator tools
-- More content authoring workflows
-- Framework documentation
 
 ## Project Identity
 
