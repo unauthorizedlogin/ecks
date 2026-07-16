@@ -517,7 +517,7 @@ Features include:
 - At an average of **7 words per string**, the framework currently manages over **2.25 million localized words**
 - Localization-ready resources, menus, systems, and templates
 
-### 🛠️ Creator Tools
+## 🛠️ Creator Tools
 
 ecks includes dedicated tools designed to streamline RPG development workflows and reduce repetitive content management.
 
