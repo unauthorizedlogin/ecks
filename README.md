@@ -33,7 +33,7 @@ This separation allows creators to expand RPG content without constantly modifyi
 
 ecks separates framework responsibilities into three layers:
 
-# Systems
+## Systems
 
 Systems implement gameplay rules and behavior—not game-specific content.
 
