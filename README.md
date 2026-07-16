@@ -19,12 +19,12 @@ Follow the development of ecks and the Adventure RPG project:
 
 Development updates, system breakdowns, and framework progress are shared through regular devlogs and community discussions.
 
-## Development Status
+## Development Status:
 
-Status: ecks is currently in active development.
-Stage: pre-alpha
-Version: 0.52.194
-Date: 7/16/2026
+- Status: ecks is currently in active development.
+- Stage: pre-alpha
+- Version: 0.52.194
+- Date: 7/16/2026
 
 ## Built With
 
