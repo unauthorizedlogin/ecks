@@ -126,6 +126,22 @@ Examples:
 - Reward Definitions
 - UI Configuration Resources
 
+# 📁 Folder Organization
+
+The structure of the `data/` directory is **intentionally enforced**.
+
+- The framework's resource generators, index generators, and runtime database loaders expect resources to exist in specific locations. 
+- Maintaining this directory structure allows content to be discovered, indexed, and loaded automatically during the build process and boot sequence.
+- Moving or reorganizing these directories will prevent resources from being generated or discovered correctly.
+
+```text
+data/
+├── databases/
+├── generators/
+└── templates/
+    └── launch/
+```
+
 The Data Layer acts as the bridge between framework code and authored content.
 
 Creators use the Data Layer to configure systems without editing the underlying implementation.
@@ -143,6 +159,36 @@ This includes:
 - Interactions
 - World objects
 - Game-specific assets
+
+📁 Folder Organization
+
+Unlike the framework itself, the content/ directory has no required structure.
+
+Developers are free to organize their project however best fits their workflow.
+
+Example:
+
+content/
+├── characters/
+├── enemies/
+├── items/
+├── maps/
+├── ui/
+├── audio/
+├── sprites/
+├── animations/
+└── effects/
+
+Or:
+
+content/
+├── chapter_01/
+├── villages/
+├── bosses/
+├── dungeons/
+└── cinematics/
+
+The framework does not enforce a specific organization.
 
 Content references the Data Layer to define behavior.
 
