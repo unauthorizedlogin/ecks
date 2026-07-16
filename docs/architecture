@@ -18,7 +18,7 @@ This separation allows creators to build RPG content without modifying framework
 
 # ⚙️ System Layer
 
-The System Layer contains the core ECKS framework code.
+The System Layer contains the core ecks framework code.
 
 This layer contains:
 
@@ -39,11 +39,65 @@ Examples:
 - SaveManager
 - RewardManager
 
+📁 Folder Organization
+
+Systems are organized into functional categories using a consistent directory structure.
+
+systems/
+    engine/
+    progression/
+    world/
+    entity/
+    economy/
+    ui/
+
+Each category contains one or more subsystems.
+
+Example:
+
+systems/
+└── progression/
+    ├── class/
+    ├── quests/
+    ├── stats/
+    └── xp/
+
+Within each subsystem, code is typically separated into runtime logic and development tools.
+
+systems/
+└── progression/
+    └── class/
+        ├── runtime/
+        └── tools/
+Runtime
+
+Contains gameplay code used by the engine at runtime.
+
+Examples:
+
+Managers
+Databases
+Runtime helpers
+Resource databases
+Gameplay logic
+Tools
+
+Contains editor-only utilities used to build framework content.
+
+Examples:
+
+Resource generators
+Index generators
+CSV importers
+Validation tools
+Asset processing scripts
+
 The System Layer is responsible for determining how the framework works.
 
 Creators do not directly modify this layer when creating content.
 
 Instead, systems are controlled through the Data Layer.
+
 
 # 📚 Data Layer
 
