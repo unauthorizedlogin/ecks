@@ -129,37 +129,211 @@ DialogueResource
 
 Resources contain configuration only, while systems determine how they behave during gameplay.
 
-### Data
+### 📦 Data
 
-Data defines reusable structures used by systems.
+The **`data/`** directory contains the framework's reusable content, templates, generators, and generated resource databases.
+
+Unlike the `systems/` directory, **no gameplay scripts or runtime logic live here.**
+
+Instead, this directory contains the assets and data consumed by the runtime systems.
+
+---
+
+# 🎯 Purpose
+
+The data layer provides the framework's configurable content.
+
+Examples include:
+
+* Items
+* Quests
+* Dialogue
+* NPCs
+* Classes
+* Maps
+* UI scenes
+* Character templates
+
+Everything in `data/` is intended to be customized, generated, or instantiated by the systems layer.
+
+Runtime behavior always lives inside `systems/`.
+
+---
+
+# 📁 Folder Organization
+
+```text
+data/
+├── databases/
+├── generators/
+└── templates/
+    └── launch/
+```
+
+---
+
+## 🗄️ Databases
+
+The `databases/` directory contains the framework's generated resources.
+
+Examples include:
+
+* Item Resources
+* Quest Resources
+* Dialogue Resources
+* NPC Resources
+* Class Resources
+* Level Resources
+
+These resources are loaded by the corresponding system databases during boot.
+
+Index generators scan these directories to build the lookup tables used by runtime systems.
+
+All framework resources should be stored and organized here so they can be discovered automatically.
+
+---
+
+## ⚙️ Generators
+
+The `generators/` directory contains the editor tooling used to build the framework's runtime data.
+
+Typical contents include:
+
+* `*_strings.csv` localization files
+* Resource Generators
+* Index Generators
+* CSV import tools
+
+Each major subsystem generally maintains its own generator pipeline.
 
 Examples:
 
-- Quest definitions
-- Objective definitions
-- NPC data
-- Item definitions
-- Stat blocks
-- Class data
-- Reward definitions
-- Dialogue states
+```text
+Class Generator
+Class Rules Generator
+Item Generator
+Quest Generator
+Dialogue Generator
+NPC Generator
+```
 
-Data is stored through Godot Resources and reusable definitions, allowing systems to consume consistent information without hard-coded references.
+Generators convert editable source data into optimized Godot resources and indexes used by the engine.
 
-### Content
+---
 
-Content represents the actual game experience created from the framework.
+## 🎨 Templates
 
-Examples:
+Templates provide ready-to-use framework content that can be customized and deployed into a project's game content.
 
-- Individual quests
-- NPC conversations
-- Items and equipment
-- Enemies
-- Rewards
-- World interactions
+Examples include:
 
-Creators can build large amounts of content while relying on the same underlying systems.
+* UI menus
+* Characters
+* Items
+* Maps
+* Common scenes
+* Framework prefabs
+
+These templates are designed to serve as reusable starting points rather than gameplay logic.
+
+Any scripts attached to these scenes originate from the corresponding subsystem within `systems/`.
+
+---
+
+## 🚀 Launch
+
+The `templates/launch/` directory contains the customizable startup flow for projects built with the framework.
+
+Typical scenes include:
+
+* Boot Loader
+* Start Menu
+* Launch Injector
+
+Projects can replace or extend these scenes while preserving the framework's initialization pipeline.
+
+---
+
+# 🏗️ Relationship to Systems
+
+The framework follows a strict separation between data and logic.
+
+```text
+Data
+    ↓
+Resources
+    ↓
+Systems
+    ↓
+Gameplay
+```
+
+* **`systems/`** contains all runtime scripts, managers, databases, and gameplay rules.
+* **`data/`** contains the resources, scenes, templates, and generated content those systems consume.
+* **No gameplay logic lives inside the `data/` directory.**
+
+This separation keeps framework behavior modular while allowing projects to customize content without modifying the underlying engine architecture.
+
+
+### 🎮 Content
+
+The content/ directory is where developers build their actual game.
+
+Unlike the framework's data/ directory, which provides reusable templates and generated resources, the content/ directory contains project-specific assets, scenes, and resources created by the developer.
+
+This is the game's implementation layer.
+
+🎯 Purpose
+
+Content is where creators extend the framework into their own RPG.
+
+Typical examples include:
+
+Maps
+Characters
+NPCs
+Enemies
+Items & Equipment
+Skills
+UI artwork
+Sprites
+Animations
+Audio
+Visual effects
+Game-specific scenes
+
+Framework templates are intended to be duplicated, customized, and expanded here rather than modified directly.
+
+🧱 Extending the Framework
+
+Projects typically create their own scenes by extending the framework templates.
+
+For example:
+
+Framework Template
+        ↓
+Project Scene
+        ↓
+Game Content
+
+A character, item, or menu can inherit from a framework template while adding project-specific visuals, behavior, and configuration.
+
+This keeps framework updates separate from game content.
+
+🏗️ Relationship to the Framework
+
+The project architecture is intentionally separated into three distinct layers:
+
+Systems
+    ↓
+Data
+    ↓
+Content
+systems/ defines gameplay logic and engine behavior.
+data/ provides reusable templates, generators, and framework resources.
+content/ contains the developer's actual game.
+
+This separation allows creators to build entirely different games on the same framework while keeping engine code, reusable framework assets, and project content cleanly isolated.
 
 ---
 
