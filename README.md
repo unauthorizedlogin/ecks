@@ -60,11 +60,9 @@ The framework follows a simple principle:
 
 This separation allows creators to expand RPG content without constantly modifying core gameplay code.
 
----
+ecks separates framework responsibilities into three layers:
 
 ## 🏗️ Systems, Data, and Content Separation
-
-ecks separates framework responsibilities into three layers:
 
 ## Systems
 
@@ -82,6 +80,8 @@ Examples include:
 - UI coordination
 
 Content is defined through resources, while systems provide the runtime logic that consumes those resources.
+
+---
 
 **🏗️ Standard System Architecture**
 
