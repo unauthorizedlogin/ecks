@@ -1,4 +1,4 @@
-## 🚀 Launch Flow System
+## 🚀 Launch System
 
 The Launch Flow System provides the complete game startup pipeline, responsible for transitioning from application boot → title screen → new game setup → world initialization.
 
