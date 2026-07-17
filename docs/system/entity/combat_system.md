@@ -2,6 +2,11 @@
 
 ## Overview
 
+- Event-driven combat pipeline
+- Shared actor identity system
+- Damage, effects, resistances, and combat events
+- Combat-to-quest integration
+
 The Ecks Combat System is a centralized combat framework responsible for managing the complete damage lifecycle between gameplay entities.
 
 At the center of the system is the Combat Manager, which acts as the authoritative entry point for all combat interactions. Rather than allowing individual actors, weapons, or abilities to handle their own damage logic, all combat requests flow through a unified pipeline.
