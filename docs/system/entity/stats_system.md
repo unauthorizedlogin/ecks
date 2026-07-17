@@ -1,6 +1,15 @@
-# 📊 Layered Stat System (StatManager)
+# 📈 Stats System
 
-## Overview
+## Oveviewer
+
+- Data-driven actor stat architecture
+- Shared stat identity across players, NPCs, enemies, and future actors
+- Primary, derived, offensive, defensive, and resistance stats
+- Flexible class and character progression support
+- Resource-based stat definitions
+- Extensible calculations for future mechanics
+
+## StatManager
 
 The StatManager is the authoritative stat calculation system responsible for rebuilding player statistics from multiple modifier layers.
 
