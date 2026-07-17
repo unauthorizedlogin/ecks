@@ -122,4 +122,8 @@ The system supports:
 
 Documentation:
 
-[Localization System Architecture](localization_system.md)
+- [Boot Orchestrator](boot_orchestrator.md)
+- [Game Manager](game_manager.md)
+- [Localization System](localization_system.md)
+- [Save Manager](save_manager.md)
+- [Transition Manager](transition_manager.md)
