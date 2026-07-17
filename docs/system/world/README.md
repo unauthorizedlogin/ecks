@@ -136,4 +136,28 @@ Documentation:
 
 ---
 
+## 🌦️ Environment System
 
+The **Environment System** provides a fully data-driven framework for creating dynamic world regions with custom weather, atmosphere, lighting, audio, and camera behavior.
+
+Instead of manually scripting environmental behavior into each map, creators define reusable environment resources and assign them to configurable environment zones.
+
+The system allows worlds to contain unique biomes, weather regions, ambience zones, and atmospheric transitions while keeping environmental logic centralized and reusable.
+
+Supports:
+
+- Data-driven environment presets
+- Weather effects
+- Ambient audio and music transitions
+- Fog and atmospheric effects
+- Lighting and color adjustments
+- Zone-based environmental switching
+- Reusable environment resources
+- Editor visualization tools
+- Map and world system integration
+
+Documentation:
+
+📄 [Environment Documentation](world/environment_system.md)
+
+---
