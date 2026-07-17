@@ -1,4 +1,4 @@
-# 🧬 Entity Systems
+# 🧬 Entity System README
 
 The **Entity Systems layer** provides the framework foundation for all gameplay entities within Ecks.
 
