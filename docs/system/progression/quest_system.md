@@ -19,6 +19,15 @@ It manages:
 
 The system separates static quest data from runtime quest progress.
 
+It provides:
+
+- Data-driven quest definitions
+- Configurable objective types
+- Quest chains and progression
+- NPC-driven quest interactions
+- Story and side quest tracking
+- Author quests without modifying core systems
+
 ---
 
 # 📘 Quest Definitions
