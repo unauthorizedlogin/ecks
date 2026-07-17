@@ -153,3 +153,53 @@ Documentation:
 
 ---
 
+## 🧬 Class System
+
+The **Class System** provides the identity and rule framework for entities within the Ecks Framework.
+
+It separates numerical character progression from gameplay restrictions by dividing class data into two dedicated layers:
+
+- **StatBlock** → Class attributes, growth, combat values, and resources
+- **ClassRuleResource** → Class behavior, restrictions, equipment rules, and identity
+
+This allows classes to share stat structures while maintaining unique gameplay rules.
+
+Features:
+
+- Data-driven class definitions
+- Independent stat and rule management
+- Class-based equipment restrictions
+- Weapon and armor permissions
+- Starting equipment configuration
+- Combat team assignment
+- Class tags and identity rules
+- Future subclass expansion support
+
+Architecture:
+
+```text
+              Class Database
+
+                    |
+        ---------------------------
+        |                         |
+        ↓                         ↓
+
+    StatBlock          ClassRuleResource
+
+    Stats              Rules
+    Growth             Equipment
+    Resources          Restrictions
+    Combat Values      Identity
+
+        |
+        ↓
+
+    Entity Runtime
+```
+
+Documentation:
+
+- [Class System](docs/entity/class_system.md)
+
+---
