@@ -368,6 +368,32 @@ Manages:
 
 Generated from CSV data and consumed by the Dialogue runtime pipeline.
 
-- [Dialogue Generator](./docs/data/generators/dialogue_generator.md)
+- [Dialogue Generators](./docs/data/generators/dialogue_generators.md)
 
 ---
+
+## ⚔️ Difficulty Generator
+
+Generates difficulty configuration resources from CSV data for use by the Difficulty runtime pipeline.
+
+The Difficulty Generator creates data-driven difficulty definitions that control global gameplay scaling while keeping gameplay systems independent from difficulty logic.
+
+Manages:
+
+- Difficulty identity
+- Player effect references
+- Enemy effect references
+- Reward scaling values
+- Economy modifiers
+- Death penalties
+- World scaling values
+- Boss scaling values
+- Progression modifiers
+
+Generated from CSV data and consumed by the Difficulty Database runtime pipeline.
+
+- [Difficulty Generator](./docs/data/generators/difficulty_generator.md)
+
+---
+
+
