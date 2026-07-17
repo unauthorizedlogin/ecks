@@ -263,3 +263,71 @@ Documentation:
 - [Combat System](docs/entity/combat_system.md)
 
 ---
+
+## 🎚️ Difficulty System
+
+The **Difficulty System** provides a centralized, data-driven framework for scaling gameplay challenge across the Ecks Framework.
+
+Difficulty does not directly modify gameplay systems. Instead, it uses the **Effect System** as the authoritative modification pipeline, allowing difficulty settings to apply the same stat-based changes used by equipment, buffs, debuffs, and other runtime effects.
+
+Features:
+
+- Data-driven difficulty definitions
+- Player stat modifiers
+- Enemy stat modifiers
+- Effect System integration
+- Future reward scaling
+- Future economy scaling
+- Future spawn scaling
+- Future boss scaling
+- Future progression adjustments
+
+Status:
+
+⚠️ Currently under development.
+
+Implemented:
+
+Difficulty resource structure
+Player and enemy effect definitions
+Effect System integration path
+
+In Progress:
+
+Runtime difficulty application
+Entity stat scaling
+Expanded reward and economy modifiers
+
+Architecture:
+
+```text
+            Difficulty Definition
+
+                    |
+                    ↓
+
+             Stat Effects
+
+                    |
+                    ↓
+
+             Effect System
+
+                    |
+                    ↓
+
+          Runtime Entity Stats
+
+                    |
+        -------------------------
+        |                       |
+        ↓                       ↓
+
+      Combat              Progression
+```
+
+Documentation:
+
+- [Difficulty System](docs/entity/difficulty_system.md)
+
+---
