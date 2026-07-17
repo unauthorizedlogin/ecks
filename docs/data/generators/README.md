@@ -298,7 +298,7 @@ Manages:
 
 Generated from CSV data and consumed by the Class Database runtime pipeline.
 
-- [Class Generator](./docs/resources/class_generator.md)
+- [Class Generator](./docs/data/generators/class_generator.md)
 
 ---
 
@@ -321,7 +321,53 @@ Manages:
 
 Generated from CSV data and consumed by the Class Database runtime pipeline.
 
-- [Class Rule Generator](./docs/resources/class_rule_generator.md)
+- [Class Rule Generator](./docs/data/generators/class_rule_generator.md)
 
 ---
 
+## 🎬 Credits Generator
+
+Generates runtime credit data from CSV definitions for use by the Credits UI system.
+
+The Credits Generator converts human-editable spreadsheet data into a structured runtime resource, separating credit authoring from presentation logic.
+
+Manages:
+
+- Credit section organization
+- Department grouping
+- Contributor formatting
+- Music metadata
+- Legal attribution
+- Special acknowledgements
+- Dedication entries
+- Duplicate contributor cleanup
+- Localization-ready output
+
+Generated from CSV data and consumed by the Credits runtime pipeline.
+
+- [Credits Generator](./docs/data/generators/credits_generator.md)
+
+---
+
+## 💬 Dialogue Generator
+
+Generates runtime dialogue resources from CSV definitions for use by the Dialogue System.
+
+The Dialogue Generator converts human-editable dialogue data into structured runtime resources, separating dialogue authoring from runtime presentation and loading.
+
+Manages:
+
+- Quest dialogue generation
+- Flavor dialogue generation
+- Dialogue state organization
+- NPC and speaker references
+- Conversation line formatting
+- Custom interaction labels
+- Dialogue resource creation
+- Export-safe dialogue indexing
+
+Generated from CSV data and consumed by the Dialogue runtime pipeline.
+
+- [Dialogue Generator](./docs/data/generators/dialogue_generator.md)
+
+---
