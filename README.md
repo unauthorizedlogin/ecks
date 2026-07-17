@@ -434,7 +434,7 @@ Content published by UnauthorizedLogin
 
 Anything outside of those sources should be treated as unofficial unless explicitly linked from the project.
 
-## 📄 License
+# 📄 License
 
 ecks is a proprietary RPG framework developed by UnauthorizedLogin.
 
