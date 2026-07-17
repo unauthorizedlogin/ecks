@@ -203,3 +203,63 @@ Documentation:
 - [Class System](docs/entity/class_system.md)
 
 ---
+
+## ⚔️ Combat System
+
+The **Combat System** provides the centralized combat authority for all entity interactions within the Ecks Framework.
+
+All combat requests flow through a unified pipeline where damage is validated, resolved, applied, and broadcast to connected systems.
+
+The system separates combat calculations from entity state, allowing players, NPCs, enemies, equipment, and abilities to share the same combat foundation.
+
+Features:
+
+- Centralized damage processing
+- Combat request and result pipeline
+- Damage validation
+- Critical hit calculations
+- Defensive mitigation
+- Combat team relationships
+- Vital state management
+- Effect and equipment integration
+- Quest kill tracking
+- Combat event broadcasting
+
+Architecture:
+
+```text
+              Combat Request
+
+                    |
+                    ↓
+
+             Combat Manager
+
+                    |
+                    ↓
+
+            Combat Resolver
+
+                    |
+                    ↓
+
+             Damage Result
+
+                    |
+        -----------------------
+        |                     |
+        ↓                     ↓
+
+ VitalComponent        Combat Events
+
+        |
+        ↓
+
+ Entity State
+```
+
+Documentation:
+
+- [Combat System](docs/entity/combat_system.md)
+
+---
