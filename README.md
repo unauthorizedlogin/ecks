@@ -401,7 +401,7 @@ Note: all of these documents are also available in the subsystems README.
 
 ---
 
-## Project Identity
+# Project Identity
 
 The ecks RPG Framework is developed by UnauthorizedLogin.
 
