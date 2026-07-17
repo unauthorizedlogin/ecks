@@ -111,3 +111,29 @@ Documentation:
 
 ---
 
+## 💥 Destroyables
+
+The **Destroyable System** provides a reusable framework for creating interactive world objects that can receive damage, react to hits, and be removed from the environment.
+
+Destroyables are modular gameplay objects built from reusable components, allowing creators to quickly create breakable props, destructible scenery, environmental hazards, and interactive objects without requiring custom scripts for each object.
+
+The system separates health management, damage handling, hit detection, and visual feedback into independent layers, allowing destroyable objects to integrate directly with the framework's combat and world systems.
+
+Supports:
+
+- Breakable objects
+- Damage reception
+- Health-based destruction
+- Knockback reactions
+- Hit feedback
+- Particle effects
+- Combat integration
+- World persistence support
+
+Documentation:
+
+📄 [Destroyables Documentation](world/destroyables.md)
+
+---
+
+
