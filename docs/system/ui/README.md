@@ -125,3 +125,29 @@ It serves as the transition point between gameplay and recovery, presenting avai
 ## 📚 Documentation
 
 - 📄 [Game Over Documentation](ui/game_over.md)
+
+---
+
+## ⏸️ Pause Menu
+
+The Pause Menu provides a state-driven gameplay interruption system rather than a traditional UI-only menu.
+
+It integrates with the game's global state and UI management systems to control pausing, resuming, save access, and menu lifecycle behavior.
+
+Features include:
+
+- Gameplay pause/resume control
+- Game state integration
+- Save system access
+- UI state coordination
+- Input protection against accidental toggles
+- Fully localized menu labels
+- Inspector-driven customization
+
+The Pause Menu acts as the central pause controller while allowing creators to expand it with additional gameplay interfaces such as settings, inventory, quests, or character management.
+
+---
+
+## 📚 Documentation
+
+- 📄 [Pause Menu Documentation](ui/pause_menu.md)
