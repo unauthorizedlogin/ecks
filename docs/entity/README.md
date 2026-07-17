@@ -433,3 +433,66 @@ Documentation:
 - [NPC System](docs/entity/npc_system.md)
 
 ---
+
+## 📊 Stats System
+
+The **Stats System** provides the centralized character attribute and calculation framework for the Ecks Framework.
+
+It separates raw stat data, runtime calculations, and modifier sources through a layered architecture built around `StatBlock` and `StatManager`.
+
+The system supports:
+
+- Base attributes
+- Derived statistics
+- Equipment modifiers
+- Effect modifiers
+- Level scaling
+- Formula-driven calculations
+- Combat ratings
+- Resistance calculations
+- Runtime stat rebuilding
+
+Architecture:
+
+```text
+Class / Entity Data
+
+        |
+        ↓
+
+    StatBlock
+
+        |
+        ↓
+
+   StatManager
+
+        |
+        +----------------+
+        |                |
+        ↓                ↓
+
+Equipment Layers    Effect Layers
+
+        |
+        ↓
+
+Derived Calculations
+
+        |
+        ↓
+
+Runtime Entity Stats
+
+        |
+        ↓
+
+Combat / UI / Gameplay
+
+```
+
+Documentation:
+
+- [Stats System](docs/entity/stats_system.md)
+
+---
