@@ -285,19 +285,8 @@ Note: all of these documents are also available in the subsystems README.
 ---
 
 
-### 💬 Dialogue System
-
-- [Dialogue System](./docs/dialogue_system)
-
-### 📜 Quest System
-
-- [Quest System](./docs/quest_system)
-
 ### 🗡️ Combat System
-- Event-driven combat pipeline
-- Shared actor identity system
-- Damage, effects, resistances, and combat events
-- Combat-to-quest integration
+
 - [Combat System](./docs/combat_system)
 
 ### 🌎 World Systems
