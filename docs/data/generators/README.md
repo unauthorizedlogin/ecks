@@ -396,4 +396,28 @@ Generated from CSV data and consumed by the Difficulty Database runtime pipeline
 
 ---
 
+## 🏷️ Item Generator System
 
+The Item Generator System provides a data-driven pipeline for creating and managing all item resources.
+
+Items are authored through CSV data and automatically converted into optimized `.tres` resources, allowing large-scale item databases without manual resource creation.
+
+The system is responsible for:
+
+* item resource generation
+* item identity and metadata
+* category and subcategory routing
+* equipment configuration
+* weapon, armor, and equip slot definitions
+* item requirements
+* rarity and economy values
+* stackability rules
+* stat modifier assignment
+* item effect assignment
+* generated item indexing
+
+Generated resources are consumed by the Item Database runtime pipeline.
+
+- [Item Generator](./docs/data/generators/item_generator.md)
+
+---
