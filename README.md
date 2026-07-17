@@ -155,6 +155,16 @@ This allows creators to build, customize, and scale projects without rewriting c
 
 Currently Existing Systems:
 
+### 🎒 Economy Framework
+- Complete data-driven economy foundation for managing all item-based gameplay systems
+
+- Data-driven vendor and shop system supporting customizable inventories, pricing, and merchant configurations
+- Flexible economy architecture designed for future crafting, gathering, trading, and additional item systems
+- [Inventory System](./docs/inventory_system)
+- [Shop System](./docs/shop_system)
+
+
+
 ### 🧬 Entity Framework System
 
 The Entity Systems layer provides the framework foundation for all gameplay entities within ecks.
@@ -179,32 +189,6 @@ Or, if you'd prefer a specific topic you can access them directly here:
 
 Note: all of these documents are also available in the subsystems README.
 
-
-
-
-### 🎒 Economy & Item Framework
-- Complete data-driven economy foundation for managing all item-based gameplay systems
-- Unified item database supporting equipment, consumables, resources, currencies, and progression items
-- Modular item category system supporting:
-  - Ammunition
-  - Consumables
-  - Currency
-  - Equipment
-  - Gems
-  - Ingredients
-  - Materials
-  - Metals
-  - Minerals
-  - Stones
-  - Potions
-  - Quest items
-  - Miscellaneous items
-  - Additional expandable categories
-- Equipment and inventory management integrated into the same item pipeline
-- Data-driven vendor and shop system supporting customizable inventories, pricing, and merchant configurations
-- Flexible economy architecture designed for future crafting, gathering, trading, and additional item systems
-- [Inventory System](./docs/inventory_system)
-- [Shop System](./docs/shop_system)
 
 
 ### 💬 Dialogue System
