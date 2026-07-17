@@ -68,9 +68,9 @@ World vendors define merchant behavior, while the ShopManager executes every tra
 
 ## 📚 Included Documentation
 
-* [Currency Manager](currency_manager.md)
-* [Shop Manager](shop_manager.md)
-* [Shop Vendor](shop_vendor.md)
+* 📄 [Currency System Documentation](./currency_system.md)
+* 📄 [Shop System Documentation](./shop_system.md)
+* 📄 [Shop Vendor](./shop_vendor.md)
 
 Additional economy documentation will be added as the framework expands with new currencies, merchant systems, pricing rules, and gameplay features.
 
