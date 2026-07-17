@@ -414,3 +414,50 @@ World Systems
 
 ---
 
+# 📜 Quest Database Contents
+
+The Quest Database manages all static quest definitions used throughout the framework through a centralized runtime lookup system.
+
+Manages:
+
+- Story quests
+- Side quests
+- Faction quests
+- Daily quests
+- Chained quests
+- Quest objectives
+- Quest metadata
+- Quest reward definitions
+- Dialogue references
+
+Runtime access:
+
+```gdscript
+QuestDatabase.get_quest(quest_id)
+````
+
+The database provides quest definition authority while runtime quest systems handle player progression, tracking, completion states, and persistence.
+
+Example:
+
+```text
+Quest ID
+   |
+   ↓
+QuestDefinition
+   |
+   ├── Objectives
+   ├── Rewards
+   ├── Dialogue References
+   ├── Quest Category
+   └── Metadata
+   |
+   ↓
+Quest Runtime Systems
+```
+
+**Documentation:**
+
+* [Quest Database](./docs/data/databases/quest_database.md)
+
+---
