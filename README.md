@@ -286,10 +286,7 @@ Note: all of these documents are also available in the subsystems README.
 
 
 ### 💬 Dialogue System
-- NPC interaction framework
-- Quest-aware dialogue states
-- Flavor dialogue support
-- Data-driven dialogue resources
+
 - [Dialogue System](./docs/dialogue_system)
 
 ### 📜 Quest System
