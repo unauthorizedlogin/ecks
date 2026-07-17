@@ -101,4 +101,55 @@ Documentation:
 
 ---
 
+## 🧍 Character Controllers
+
+The **Character Controller System** provides the runtime entity control layer for all controllable and simulated characters within the Ecks Framework.
+
+Controllers act as the bridge between entity data and gameplay systems by managing:
+
+- Entity movement
+- Runtime stat assignment
+- Animation state
+- Behavior integration
+- Combat communication
+- Interaction systems
+- Progression systems
+
+Features:
+
+- Player controller support
+- NPC character controllers
+- Enemy controller foundations
+- Modular movement handling
+- Behavior-driven entity control
+- Shared entity interfaces
+- Component-based system communication
+
+Architecture:
+
+```text
+Entity Data
+
+      |
+      ↓
+
+Character Controller
+
+      |
+ ┌────┼────┬────┬────┐
+ ↓    ↓    ↓    ↓    ↓
+
+Stats Combat Effects Behaviors Interaction
+
+      |
+      ↓
+
+ Runtime Entity
+```
+
+Documentation:
+
+- [Character Control System](docs/entity/character_controllers.md)
+
+---
 
