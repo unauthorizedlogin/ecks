@@ -1,4 +1,4 @@
-# 💬 Dialogue Database Architecture
+# Resource Database Architecture
 
 ## Overview
 
@@ -39,11 +39,11 @@ Database System
 
 ---
 
-# 🚀 Database Manager
+# 🚀 Database Managers
 
-## al_*_database.gd
+## *Database
 
-The database autoload is the primary gameplay access layer.
+The database autoloaders are the primary gameplay access layer.
 
 Responsibilities:
 
@@ -184,7 +184,8 @@ That keeps every database README consistent and avoids having 15 copies of the s
 
 **Documentation:**
 
-- [Database Name](./docs/data/databases/database_name.md)
+- [Dialogue Database](./docs/data/databases/dialogue_database.md)
+
 
 ---
 
@@ -225,6 +226,146 @@ Gameplay Systems
 
 **Documentation:**
 
-- [Database Name](./docs/data/databases/database_name.md)
+- [Difficulty Database](./docs/data/databases/difficulty_database.md)
 
 ---
+
+# 🧬 Class Contents
+
+The Class Database manages all class-related resources used throughout the framework.
+
+Manages:
+
+- Player class definitions
+- Enemy class definitions
+- NPC class definitions
+- Class rules
+- Level progression data
+- Growth curve resources
+
+Runtime access:
+
+```gdscript
+ClassDatabase.get_stats(class_id)
+````
+
+Resources are organized by entity type and class identifier.
+
+Example:
+
+```text
+Class ID
+      |
+      ↓
+Class Definition
+      |
+      ↓
+StatBlock / Rules / Progression
+      |
+      ↓
+Entity Systems
+```
+
+**Documentation:**
+
+- [Class Database](./docs/data/databases/class_database.md)
+
+---
+
+# 👤 Database Contents
+
+The NPC Database manages all NPC identity resources used throughout the framework.
+
+Manages:
+
+- NPC definitions
+- NPC display information
+- Portrait references
+- NPC types
+- Dialogue references
+- Shop references
+- Class references
+
+Runtime access:
+
+```gdscript
+NPCDatabase.get_npc(npc_id)
+````
+
+NPC resources define identity while specialized systems handle NPC behavior.
+
+Example:
+
+```text
+NPC ID
+   |
+   ↓
+NPCData Resource
+   |
+   ├── Dialogue Reference
+   ├── Shop Reference
+   ├── Class Reference
+   └── Identity Data
+   |
+   ↓
+NPC Systems
+```
+
+**Documentation:**
+
+* [NPC Database](./docs/data/databases/npc_database.md)
+
+---
+
+# 📦 Item Database Contents
+
+The Item Database manages all item resources used throughout the framework through a centralized runtime lookup system.
+
+Manages:
+
+- Equipment resources
+- Weapons
+- Armor
+- Accessories
+- Potions
+- Ammunition
+- Currency
+- Quest items
+- Tools
+- Gems
+- Unique items
+- Expandable item categories
+
+Runtime access:
+
+```gdscript
+ItemDatabase.get_item_data(item_id)
+````
+
+The database provides a unified item pipeline for inventory systems, shops, loot systems, rewards, crafting, and future item-based gameplay features.
+
+Example:
+
+```text
+Item ID
+   |
+   ↓
+ItemResource
+   |
+   ├── Category
+   ├── Subcategory
+   ├── Stats
+   ├── Effects
+   ├── Requirements
+   └── Metadata
+   |
+   ↓
+Gameplay Systems
+```
+
+**Documentation:**
+
+* [Item Database](./docs/data/databases/item_database.md)
+
+---
+
