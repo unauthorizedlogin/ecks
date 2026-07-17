@@ -64,57 +64,32 @@ Both chest types share common interaction behavior while serving different gamep
 
 ---
 
-# 🧠 Architecture
-
-Chest systems operate as part of the Loot System:
-
-```text
-                 Loot System
-                      |
-                      ↓
-              Chest Loot System
-                      |
-        ┌─────────────┴─────────────┐
-        ↓                           ↓
-
- Dynamic Loot Chests        Storage Chests
-
-        ↓                           ↓
-
- World Rewards             Persistent Storage
-```
-
 Documentation:
 
 - [Chest Loot System](loot/chests.md)
 
 ---
 
-# 🎒 Inventory System
+## 🛡️ Equipment Manager
 
-The Inventory System manages acquired item ownership before items enter specialized systems.
+The Equipment Manager controls equipped item state after equipment has been moved from inventory into active equipment slots.
 
-Responsibilities:
+Responsibilities include:
 
-* Player item storage
-* Item quantities
-* Item movement
-* Inventory persistence
-* Equipment item storage before use
+- Equipment slot management
+- Equip and unequip handling
+- Equipment validation
+- Equipment modifier processing
+- Equipment effect synchronization
+- Equipment serialization
 
-Equipment items are stored within inventory until the player chooses to equip them.
+Equipment integrates with the Stat and Effect systems to apply active bonuses from equipped items.
 
-Example:
+---
 
-```text
-Dropped Equipment
-        |
-        ↓
-Inventory
-        |
-        ↓
-Equip Action
-```
+Documentation:
+
+➡️ [Equipment Manager Documentation](loot/equipment_manager.md)
 
 ---
 
