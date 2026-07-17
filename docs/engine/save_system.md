@@ -1,5 +1,3 @@
----
-
 # 💾 Save System — Persistent Game State Architecture
 
 The Save System provides the persistence foundation for the Ecks Framework.
