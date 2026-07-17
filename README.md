@@ -284,16 +284,55 @@ Note: all of these documents are also available in the subsystems README.
 
 ---
 
+### 📜 UI Framework System
 
-### 🗡️ Combat System
+The UI System provides the centralized framework responsible for managing the game's user interface, coordinating menu interactions, HUD visibility, and communication between gameplay systems and the player.
 
-- [Combat System](./docs/combat_system)
+At the center of the system is the UI Manager, which acts as the global authority for UI registration, menu lifecycle management, input routing, and player movement locking while interfaces are active.
+
+For an overview of the system check out the README:
+
+- [UI Framework](./docs/system/ui/README.md)
+
+Or, if you'd prefer a specific topic you can access them directly here:
+
+- [Credits Scene](./docs/system/ui/credits_root.md)
+- [Event Viewer](./docs/system/ui/event_viewer.md)
+- [Game Over](./docs/system/ui/game_over.md)
+- [Pause Menu](./docs/system/ui/pause_menu.md)
+- [Settings Menu](./docs/system/ui/settings_menu.md)
+- [Stats Menu](./docs/system/ui/stats_menu.md)
+- [UI Manager](./docs/system/ui/ui_manager.md)
+
+Note: all of these documents are also available in the subsystems README.
+
+---
+
+### 🌎 World Framework System
+
+The World Systems framework provides the foundation for managing world loading, map structure, environmental presentation, interactive objects, and player navigation.
+
+World systems are responsible for managing the game world state while remaining independent from gameplay systems such as quests, combat, and progression.
+
+For an overview of the system check out the README:
+
+- [World Framework](./docs/system/world/README.md)
+
+Or, if you'd prefer a specific topic you can access them directly here:
+
+- [Audio System](./docs/system/world/audio_system.md)
+- [Chunk Loader](./docs/system/world/chunk_loader.md)
+- [Chunk Manager](./docs/system/world/chunk_manager.md)
+- [Destroyables](./docs/system/world/destroyables.md)
+- [Environment System](./docs/system/world/environment_system.md)
+- [Maps](./docs/system/world/maps.md)
+
+Note: all of these documents are also available in the subsystems README.
+
+---
 
 ### 🌎 World Systems
-- Persistent world state
-- Save/load framework
-- Scene and chunk management
-- Content organization tools
+
 - [World Systems](./docs/world_systems)
 
 ### 📊 Event Viewer System
