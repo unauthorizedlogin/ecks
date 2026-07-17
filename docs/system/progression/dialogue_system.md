@@ -1,5 +1,10 @@
 # 🎭 Dialogue System Overview
 
+- NPC interaction framework
+- Quest-aware dialogue states
+- Flavor dialogue support
+- Data-driven dialogue resources
+
 ## Dialogue Manager
 
 The Dialogue Manager is the central NPC interaction controller.
