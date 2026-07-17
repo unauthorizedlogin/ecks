@@ -49,20 +49,44 @@ Each system owns its own runtime data and serialization.
 
 ---
 
-# 📦 Item System
+# 📦 Chest Loot System
 
-The Item System provides the foundation for all loot objects.
+The Chest Loot System provides interactive world containers for item rewards, exploration rewards, and persistent player storage.
 
-Responsibilities:
+Chests are designed as world-based loot objects that connect gameplay interaction with the Loot System architecture.
 
-* Item resource definitions
-* Item metadata
-* Item categorization
-* Stack rules
-* Database references
-* Runtime validation
+The system currently supports two primary chest types:
 
-All loot objects originate from Item Database definitions.
+- Dynamic Loot Chests
+- Storage Chests
+
+Both chest types share common interaction behavior while serving different gameplay purposes.
+
+---
+
+# 🧠 Architecture
+
+Chest systems operate as part of the Loot System:
+
+```text
+                 Loot System
+                      |
+                      ↓
+              Chest Loot System
+                      |
+        ┌─────────────┴─────────────┐
+        ↓                           ↓
+
+ Dynamic Loot Chests        Storage Chests
+
+        ↓                           ↓
+
+ World Rewards             Persistent Storage
+```
+
+Documentation:
+
+- [Chest Loot System](loot/chests.md)
 
 ---
 
