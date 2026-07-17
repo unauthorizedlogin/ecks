@@ -181,4 +181,10 @@ Dialogue Runtime
 ```
 
 That keeps every database README consistent and avoids having 15 copies of the same architecture explanation.
-```
+
+**Documentation:**
+
+- [Database Name](./docs/data/databases/database_name.md)
+
+---
+
