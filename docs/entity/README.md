@@ -97,4 +97,8 @@ Entity Response
 
 Documentation:
 
-Behavior System
+- [Behavior System](docs/entity/behaviors.md)
+
+---
+
+
