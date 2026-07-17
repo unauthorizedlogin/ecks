@@ -1,6 +1,6 @@
 ---
 
-# 💰 Economy System
+# 💰 Economy System README
 
 The **Economy System** provides the framework's complete commerce and currency architecture.
 
