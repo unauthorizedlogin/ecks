@@ -385,3 +385,51 @@ Documentation:
 - [Effect System](docs/entity/effect_system.md)
 
 ---
+
+## 👤 NPC System
+
+The **NPC System** provides the centralized identity and runtime data layer for all non-player characters within the Ecks Framework.
+
+NPCs are defined through data-driven `NPCData` resources and accessed through the `NPCDatabase`, allowing multiple gameplay systems to reference NPCs without depending on scene instances.
+
+Current integrations include:
+
+- Dialogue systems
+- Quest objectives
+- Shop interactions
+- World interactions
+- Future reputation and faction systems
+
+Architecture:
+
+```text
+NPC Scene
+
+      |
+      ↓
+
+    npc_id
+
+      |
+      ↓
+
+ NPCDatabase
+
+      |
+      ↓
+
+ NPCData Resource
+
+      |
+      +-------------+-------------+
+      |             |             |
+      ↓             ↓             ↓
+
+ Dialogue       Quests        Shops
+```
+
+Documentation:
+
+- [NPC System](docs/entity/npc_system.md)
+
+---
