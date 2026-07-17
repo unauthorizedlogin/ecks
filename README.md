@@ -163,12 +163,9 @@ The Economy System provides the framework's complete commerce and currency archi
 
 It is responsible for managing player wealth, merchant interactions, buying and selling, item distribution, and transaction processing through a collection of specialized managers.
 
-
 For an overview of the system check out the README:
 
 - [Economy System](./docs/system/economy/README.md)
-- [Inventory System](./docs/inventory_system)
-- [Shop System](./docs/shop_system)
 
 Or, if you'd prefer a specific topic you can access them directly here:
 
@@ -206,6 +203,9 @@ Or, if you'd prefer a specific topic you can access them directly here:
 Note: all of these documents are also available in the subsystems README.
 
 ---
+
+
+- [Inventory System](./docs/inventory_system)
 
 ### 💬 Dialogue System
 - NPC interaction framework
