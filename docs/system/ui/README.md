@@ -86,4 +86,28 @@ Features include:
 - 📄 [Credits System Documentation](ui/credits_root.md)
 - ⚙️ [Credits Generator Documentation](../data/generators/credits_generator.md)
 
+---
 
+## 📢 Event Viewer
+
+The Event Viewer provides a centralized player-facing notification system for gameplay events across the framework.
+
+Built around the **Event Manager** and **Filter Registry**, it collects, categorizes, filters, and displays messages from gameplay systems without requiring those systems to communicate directly with the UI.
+
+Features include:
+
+- Centralized event logging
+- Multi-channel event routing
+- Custom event views and filters
+- Runtime event history
+- Persistent viewer configuration
+- Color-coded message formatting
+- Decoupled UI architecture
+
+Every major gameplay system reports events through this shared pipeline, providing a consistent and extensible notification framework.
+
+---
+
+## 📚 Documentation
+
+- 📄 [Event Manager Documentation](ui/event_viewer.md)
