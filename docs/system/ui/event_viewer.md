@@ -4,6 +4,13 @@ The **EventManager** is the centralized event logging, routing, filtering, and h
 
 All gameplay systems send player-facing notifications through this system. Combat, quests, loot, NPCs, progression, inventory, and world systems do not directly control the Event Viewer UI — they emit structured messages and EventManager handles distribution.
 
+- Centralized gameplay event tracking and feedback system
+- Custom event channels for organizing gameplay information
+- Configurable filters and display categories
+- Color-coded event messages for different gameplay events
+- Localization-ready event messages
+- Saveable viewer configuration
+
 ---
 
 # 🧠 Core Responsibility
