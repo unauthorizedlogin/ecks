@@ -421,3 +421,27 @@ Generated resources are consumed by the Item Database runtime pipeline.
 - [Item Generator](./docs/data/generators/item_generator.md)
 
 ---
+
+## 🗺️ Map Generator
+
+Generates map resources from CSV data for use by the Map Database runtime pipeline.
+
+The Map Generator creates data-driven world locations, allowing maps to be authored in spreadsheets and automatically converted into runtime-ready resources.
+
+Manages:
+
+- Map identity
+- World and region organization
+- Scene assignment
+- Spawn point configuration
+- Chunk profile assignment
+- Gameplay rules
+- Environment settings
+- Persistence settings
+- Generated map indexing
+
+Generated from CSV data and consumed by the Map Database runtime pipeline.
+
+- [Map Generator](./docs/data/generators/map_generator.md)
+
+---
