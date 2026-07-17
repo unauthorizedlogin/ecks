@@ -301,4 +301,75 @@ The Credits System provides:
 
 The credits system functions as a standalone presentation framework that separates **content management**, **visual styling**, and **runtime generation** into independent layers.
 
-Add this as a subsection under the Credits System architecture. This covers the generator pipeline specifically.
+# 🎵 Credits Music System
+
+The Credits Music System provides dedicated background music playback for the game's credits sequence.
+
+Unlike the runtime music system used during gameplay, this controller is designed specifically for the credits scene, automatically managing a playlist from beginning to end without player interaction.
+
+---
+
+# 🎼 Credits Playlist
+
+The system plays a configurable list of music tracks assigned to the credits scene.
+
+### Responsibilities
+
+- Load the credits playlist
+- Begin playback automatically
+- Maintain the current playlist position
+- Play tracks in sequence
+
+The first song begins automatically when the credits scene is loaded.
+
+---
+
+# ▶️ Automatic Playback
+
+The credits music system starts playback as soon as the scene initializes.
+
+If one or more songs are assigned, the playlist begins from the first track without requiring any user input.
+
+---
+
+# 🔄 Continuous Playlist Rotation
+
+When a track finishes playing, the system automatically advances to the next song.
+
+### Playback Flow
+
+1. Detect the end of the current track.
+2. Advance to the next playlist entry.
+3. Wrap back to the first song when the playlist reaches the end.
+4. Continue playback automatically.
+
+This allows the credits sequence to continue uninterrupted regardless of its duration.
+
+---
+
+# 🎶 Scene-Specific Design
+
+This controller is intentionally isolated from the main gameplay music systems.
+
+It exists solely to provide a self-contained soundtrack for the credits scene, ensuring that credits playback remains independent of world music, combat themes, or environmental audio.
+
+---
+
+# 🧠 Runtime Design
+
+The Credits Music System delegates audio playback to an `AudioStreamPlayer` while managing playlist order and progression.
+
+Its responsibilities are limited to:
+
+- Playlist management
+- Track selection
+- Automatic progression
+- Continuous looping
+
+This lightweight design keeps the credits sequence simple and self-contained.
+
+---
+
+# 📌 Summary
+
+The Credits Music System provides automatic playlist playback for the game's credits scene, sequentially playing assigned music tracks and looping them continuously until the player exits the credits.
