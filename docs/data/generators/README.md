@@ -513,4 +513,23 @@ Generated from CSV data and consumed by the Quest Database runtime pipeline.
 
 ---
 
+## 📈 XP Generator System
 
+The XP Generator System provides a data-driven pipeline for creating character progression resources.
+
+Experience curves and level growth data are authored through CSV definitions and automatically converted into optimized `.tres` resources, allowing progression balancing to be managed entirely through data.
+
+The system is responsible for:
+
+* XP curve generation
+* level growth generation
+* progression data management
+* stat growth configuration
+* progression resource organization
+* generated progression indexing
+
+Generated resources are consumed by the Character Progression runtime pipeline.
+
+- [XP Generator](./docs/data/generators/xp_generator.md)
+
+---
