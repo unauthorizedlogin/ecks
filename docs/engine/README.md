@@ -100,4 +100,26 @@ Save System
 UI / Transitions
 ```
 
-````
+## 🌐 Localization System
+
+The Localization System provides the multilingual foundation for the Ecks Framework.
+
+It separates localization into two layers:
+
+| System | Responsibility |
+|---|---|
+| LanguageManager | Runtime locale control and translation loading |
+| CSV → PO Generator | Creator workflow for generating translation files |
+
+The system supports:
+
+- 23 languages
+- English-key translation lookup
+- Runtime language switching
+- Persistent language settings
+- CSV-based translation management
+- Automated PO generation
+
+Documentation:
+
+[Localization System Architecture](localization_system.md)
