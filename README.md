@@ -333,9 +333,22 @@ Note: all of these documents are also available in the subsystems README.
 
 ## 🛠️ Creator Tools
 
+The ecks Framework includes a collection of editor-based creator tools designed to accelerate content production while maintaining framework standards.
+
+These tools extend the Godot editor workflow by allowing developers to create framework-compatible content through dedicated interfaces rather than manually configuring every resource and scene.
+
+For an overview of the system check out the README:
+
 - [Creator Tools](./docs/addons/README.md)
 
+Or, if you'd prefer a specific topic you can access them directly here:
 
+- [Item Creator](./docs/addons/item_creator.md)
+- [XP Analyzer](./docs/addons/xp_analyzer.md)
+
+Note: all of these documents are also available in the subsystems README.
+
+---
 
 ## Project Identity
 
