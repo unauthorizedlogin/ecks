@@ -63,3 +63,28 @@ Documentation:
 
 ---
 
+# 🌍 Chunk Manager
+
+The Chunk Manager provides the runtime world streaming foundation for large-scale environments.
+
+It manages dynamic chunk loading, unloading, world isolation, LOD support, chunk persistence, and player spawn placement.
+
+The system allows maps to be divided into manageable world sections while maintaining a seamless exploration experience.
+
+Responsibilities include:
+
+- Dynamic chunk streaming
+- Grid-based world management
+- Asynchronous chunk loading
+- Chunk unloading
+- LOD selection support
+- Multi-world isolation
+- Persistent world state handling
+- Teleport spawn integration
+
+Documentation:
+
+📄 [Chunk Manager Documentation](world/chunk_manager.md)
+
+---
+
