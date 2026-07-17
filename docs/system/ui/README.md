@@ -111,3 +111,17 @@ Every major gameplay system reports events through this shared pipeline, providi
 ## 📚 Documentation
 
 - 📄 [Event Manager Documentation](ui/event_viewer.md)
+
+---
+
+## 💀 Game Over
+
+The Game Over screen provides the player-facing interface displayed when the player dies.
+
+It serves as the transition point between gameplay and recovery, presenting available post-death actions while coordinating with the game's UI and transition systems.
+
+---
+
+## 📚 Documentation
+
+- 📄 [Game Over Documentation](ui/game_over.md)
