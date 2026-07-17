@@ -114,32 +114,26 @@ CSV generation provides:
 
 ---
 
-# 🌐 Localization Generator
+## 🌐 Localization Generator System
 
-Localization uses a specialized pipeline.
+The Localization Generator System provides a data-driven pipeline for creating and managing all translation resources used throughout the project.
 
-Unlike gameplay resources, localization is converted into translation files.
+Localization strings are authored through CSV data and automatically converted into standard `.po` translation files, allowing player-facing content to be maintained through a centralized localization database.
 
-Pipeline:
+The system is responsible for:
 
-```text
-CSV Data
-        |
-        ↓
-Localization Generator
-        |
-        ↓
-.po Translation Files
-        |
-        ↓
-Godot Translation System
-```
+* CSV → PO translation generation
+* localization key management
+* multilingual translation file generation
+* translation metadata handling
+* PO file updates
+* existing translation preservation
 
-Supports:
+Generated translation files are consumed by the runtime localization pipeline.
 
-* Multiple languages
-* Centralized string management
-* Framework-wide localization
+- [Localization Generator](./docs/data/generators/po_generator.md)
+
+---
 
 ---
 
