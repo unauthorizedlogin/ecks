@@ -188,3 +188,43 @@ That keeps every database README consistent and avoids having 15 copies of the s
 
 ---
 
+# ⚖️ Difficulty Contents
+
+The Difficulty Database manages all difficulty-related resources used throughout the framework.
+
+Manages:
+
+- Difficulty definitions
+- Gameplay difficulty configurations
+- Player difficulty modifiers
+- Enemy difficulty modifiers
+- Custom challenge configurations
+
+Runtime access:
+
+```gdscript
+DifficultyDatabase.get_difficulty(difficulty_id)
+````
+
+Resources are organized by difficulty identifiers and effect categories.
+
+Example:
+
+```text
+Difficulty ID
+      |
+      ↓
+Difficulty Definition
+      |
+      ↓
+Difficulty Effects
+      |
+      ↓
+Gameplay Systems
+```
+
+**Documentation:**
+
+- [Database Name](./docs/data/databases/database_name.md)
+
+---
