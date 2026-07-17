@@ -1,52 +1,52 @@
-# 🚀 Launch Flow Systems
+## 🚀 Launch Flow System
 
-The Launch Flow Systems directory contains the startup and entry pipeline responsible for taking the framework from application launch into active gameplay.
+The Launch Flow System provides the complete startup pipeline responsible for transitioning the framework from application launch into an active gameplay session.
 
-These systems control:
+It manages the full entry sequence:
 
-- Framework initialization
-- Dependency loading
-- Startup sequencing
-- Title screen presentation
-- Main menu flow
-- World creation and injection
-- Initial gameplay handoff
+- Framework boot initialization
+- Startup database loading
+- User settings application
+- Title screen routing
+- New game configuration
+- Player/class/difficulty selection
+- World initialization
+- Runtime system activation
 
-The Launch Flow layer separates application startup from gameplay systems, ensuring managers, databases, and world systems are ready before the player enters the game.
+The Launch Flow separates application startup from gameplay execution, ensuring all required systems are prepared before the player enters the world.
 
 Architecture:
 
 ```text
-Application Start
+Application Launch
 
         |
         ↓
 
-   BootLoader
+   Bootloader
 
         |
         ↓
 
- Initialization Pipeline
+ Initialization
 
         |
         ↓
 
-   Title Screen
+ Title Screen
 
         |
         ↓
 
-    Start Menu
+ Start Menu
 
         |
         ↓
 
- World Injector
+ World Initialization
 
         |
         ↓
 
- Gameplay World
+ Gameplay Runtime
 ```
-
