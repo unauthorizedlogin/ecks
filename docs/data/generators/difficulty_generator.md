@@ -109,7 +109,7 @@ The Effect System remains responsible for:
 
 See:
 
-[**Effect System Architecture → StatEffect Pipeline**]:(.docs/system/entity/effect_system.md)
+- [Effect System Architecture → StatEffect Pipeline](.docs/system/entity/effect_system.md)
 
 ---
 
