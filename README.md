@@ -86,7 +86,7 @@ ecks separates framework responsibilities into three layers:
 
 # 🎮 Content Layer
 
-For a detailed breakdown of each system documentation can be found here:
+For a detailed breakdown of each Layer & and its role, documentation can be found here:
 
 - [Architecture Overview](docs/architecture)
 
