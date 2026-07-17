@@ -84,5 +84,6 @@ Features include:
 ## 📚 Documentation
 
 - 📄 [Credits System Documentation](ui/credits_root.md)
+- ⚙️ [Credits Generator Documentation](../data/generators/credits_generator.md)
 
 
