@@ -1,5 +1,3 @@
-```
-
 ## 🛒 Shop Vendor (`ShopVendor / VendorAssignor`) — System Role
 
 The **Shop Vendor** is the world-facing vendor controller. It acts as the bridge between the physical NPC/world object and the centralized shop systems. Vendors do not handle purchasing, selling, currency, or inventory transactions directly — they configure and open the shop interface through `ShopManager`.
