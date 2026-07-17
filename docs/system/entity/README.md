@@ -25,6 +25,16 @@ These systems define:
 - Experience progression
 - AI behaviors
 
+- Centralized entity definition system controlling all entity-based gameplay data
+- Shared class architecture supporting players, NPCs, enemies, and other world entities
+- Data-driven stat blocks defining base attributes, derived stats, resistances, and combat properties
+- Configurable entity class rules controlling behavior, progression, and gameplay restrictions
+- Unified effect system supporting buffs, debuffs, modifiers, and difficulty scaling
+- Entity-specific configuration for NPCs, enemies, and playable characters
+- Difficulty modifiers integrated through the same effect pipeline used by entities
+- Resource-based definitions allowing entities to be created and balanced without modifying code
+- Shared framework pipeline ensuring consistent stat, effect, and rule handling across all entity types
+
 ---
 
 # 🧠 Entity Architecture
