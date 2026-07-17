@@ -290,14 +290,14 @@ This allows cinematic scrolling layouts without modifying UI scenes.
 
 The Credits System provides:
 
-✅ data-driven contributor management
-✅ dynamic UI generation
-✅ localization-ready presentation
-✅ inspector-controlled styling
-✅ music attribution support
-✅ legal attribution support
-✅ editor preview workflow
-✅ reusable end-game presentation layer
+- ✅ data-driven contributor management
+- ✅ dynamic UI generation
+- ✅ localization-ready presentation
+- ✅ inspector-controlled styling
+- ✅ music attribution support
+- ✅ legal attribution support
+- ✅ editor preview workflow
+- ✅ reusable end-game presentation layer
 
 The credits system functions as a standalone presentation framework that separates **content management**, **visual styling**, and **runtime generation** into independent layers.
 
