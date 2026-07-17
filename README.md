@@ -80,11 +80,9 @@ This separation allows creators to expand RPG content without constantly modifyi
 
 ecks separates framework responsibilities into three layers:
 
-# 🏗️ Systems Layer
-
-# 📚 Data Layer
-
-# 🎮 Content Layer
+- 🏗️ Systems Layer
+- 📚 Data Layer
+- 🎮 Content Layer
 
 For a detailed breakdown of each Layer & and its role, documentation can be found here:
 
