@@ -117,19 +117,36 @@ Documentation:
 
 ---
 
-# 🗄️ Chest System
+## 📦 Item Resource
 
-The Chest System manages world-based item containers.
+The Item Resource is the foundation data definition for all item objects within the Loot System.
 
-Responsibilities:
+It provides the shared item structure used across:
 
-* Chest identity
-* Stored item data
-* Loot persistence
-* Player interaction
-* Container state
+- Equipment
+- Inventory items
+- Materials
+- Consumables
+- Quest items
+- Future item categories
 
-Each chest maintains an independent storage state.
+Item resources define:
+
+- Item identity and classification
+- Visual data
+- Stack rules
+- Economy values
+- Equipment requirements
+- Stat modifiers
+- Runtime effects
+
+All item systems reference Item Resources through the Item Database, allowing item behavior to remain data-driven and expandable.
+
+---
+
+Documentation:
+
+📄 [Item Resource Documentation](loot/item_resource.md)
 
 ---
 
@@ -169,5 +186,3 @@ Ammo Manager
 
 This allows each item category to evolve independently without bloating the Inventory Manager.
 
-```
-```
