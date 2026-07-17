@@ -541,13 +541,13 @@ Used to prevent teleport logic during save loading.
 
 # 🌍 Current Capabilities
 
-✅ Dynamic open-world streaming
-✅ Async chunk loading
-✅ Chunk unloading
-✅ Multi-world isolation
-✅ LOD framework
-✅ Chunk resource loading
-✅ Persistent chunk state hooks
-✅ Teleport spawn support
-✅ World-specific templates
+- ✅ Dynamic open-world streaming
+- ✅ Async chunk loading
+- ✅ Chunk unloading
+- ✅ Multi-world isolation
+- ✅ LOD framework
+- ✅ Chunk resource loading
+- ✅ Persistent chunk state hooks
+- ✅ Teleport spawn support
+- ✅ World-specific templates
 
