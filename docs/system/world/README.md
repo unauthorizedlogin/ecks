@@ -161,3 +161,27 @@ Documentation:
 📄 [Environment Documentation](world/environment_system.md)
 
 ---
+
+## 🎧 Audio System
+
+The **Audio System** provides a fully data-driven framework for managing music, sound effects, environmental ambience, weather audio, and dynamic world audio zones.
+
+Instead of relying on hardcoded audio logic inside maps, creators build immersive soundscapes using reusable audio components, configurable zones, and centralized audio routing.
+
+The system supports layered world audio, category-based mixing, environmental sound design, and runtime-safe creator workflows.
+
+Supports:
+
+- Dedicated audio bus architecture
+- Music and sound effect routing
+- Environmental audio layers
+- Dynamic ambient sound zones
+- Randomized audio playback
+- Weather and biome audio integration
+- Audio presets and reusable components
+- Editor visualization tools
+- Runtime-safe helper systems
+
+Documentation:
+
+📄 [Audio Documentation](world/audio_system.md)
