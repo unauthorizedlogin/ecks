@@ -165,7 +165,7 @@ It is responsible for managing player wealth, merchant interactions, buying and 
 
 For an overview of the system check out the README:
 
-- [Economy System](./docs/system/economy/README.md)
+- [Economy Framework](./docs/system/economy/README.md)
 
 Or, if you'd prefer a specific topic you can access them directly here:
 
@@ -173,6 +173,28 @@ Or, if you'd prefer a specific topic you can access them directly here:
 - [Currency System](./docs/system/economy/currency_system.md)
 - [Shop System](./docs/system/economy/shop_system.md)
 - [Shop Vendor](./docs/system/economy/shop_vendor.md)
+
+Note: all of these documents are also available in the subsystems README.
+
+---
+
+### 🧬 Engine Framework System
+
+The Engine Systems layer provides the foundational runtime infrastructure that powers the Ecks Framework.
+
+The engine layer provides the foundation that all gameplay systems build upon.
+
+For an overview of the system check out the README:
+
+- [Engine Framework](./docs/system/engine/README.md)
+
+Or, if you'd prefer a specific topic you can access them directly here:
+
+- [Boot Orchestrator](./docs/system/engine/boot_orchestrator.md)
+- [Game Manager](./docs/system/engine/game_manager.md)
+- [Localization](./docs/system/engine/localization.md)
+- [Save System](./docs/system/engine/save_system.md)
+- [Transition Manager](./docs/system/engine/transition_manager.md)
 
 Note: all of these documents are also available in the subsystems README.
 
@@ -186,7 +208,7 @@ This layer contains the systems responsible for defining, controlling, and modif
 
 For an overview of the system check out the README:
 
-- [Entity System](./docs/system/entity/README.md)
+- [Entity Framework](./docs/system/entity/README.md)
 
 Or, if you'd prefer a specific topic you can access them directly here:
 
@@ -204,8 +226,64 @@ Note: all of these documents are also available in the subsystems README.
 
 ---
 
+### 🧬 Launch Framework System
 
-- [Inventory System](./docs/inventory_system)
+The Launch Flow System provides the complete startup pipeline responsible for transitioning the framework from application launch into an active gameplay session.
+
+The Launch Flow separates application startup from gameplay execution, ensuring all required systems are prepared before the player enters the world.
+
+For an overview of the system check out the README:
+
+- [Launch Framework](./docs/system/launch/README.md)
+
+Or, if you'd prefer a specific topic you can access them directly here:
+
+- [Launch System](./docs/system/launch/launch_system.md)
+
+Note: all of these documents are also available in the subsystems README.
+
+---
+
+### 🧬 Loot Framework System
+
+The Loot System provides the centralized item framework responsible for item definitions, ownership, storage, equipment handling, and world-based loot interactions.
+
+The Loot System does not rely on a single universal inventory pipeline. Instead, item categories are handled through dedicated managers responsible for their own routing, behavior, and serialization.
+
+For an overview of the system check out the README:
+
+- [Loot Framework](./docs/system/loot/README.md)
+
+Or, if you'd prefer a specific topic you can access them directly here:
+
+- [Chests System](./docs/system/loot/chests.md)
+- [Equipment Manager](./docs/system/loot/equipment_manager.md)
+- [Inventory Manager](./docs/system/loot/inventory_manager.md)
+- [Item Resource](./docs/system/loot/item_resource.md)
+
+Note: all of these documents are also available in the subsystems README.
+
+---
+
+### 📜 Progression Framework System
+
+The Progression System provides the framework responsible for player progression through dialogue, quests, and narrative-driven gameplay.
+
+Dialogue and quests remain independent systems while integrating through shared runtime managers and data resources.
+
+For an overview of the system check out the README:
+
+- [Progression Framework](./docs/system/progression/README.md)
+
+Or, if you'd prefer a specific topic you can access them directly here:
+
+- [Dialogue System](./docs/system/progression/dialogue_system.md)
+- [Quest System](./docs/system/progression/quest_system.md)
+
+Note: all of these documents are also available in the subsystems README.
+
+---
+
 
 ### 💬 Dialogue System
 - NPC interaction framework
@@ -215,12 +293,7 @@ Note: all of these documents are also available in the subsystems README.
 - [Dialogue System](./docs/dialogue_system)
 
 ### 📜 Quest System
-- Data-driven quest definitions
-- Configurable objective types
-- Quest chains and progression
-- NPC-driven quest interactions
-- Story and side quest tracking
-- Author quests without modifying core systems
+
 - [Quest System](./docs/quest_system)
 
 ### 🗡️ Combat System
