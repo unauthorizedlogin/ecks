@@ -88,3 +88,26 @@ Documentation:
 
 ---
 
+# 🧱 Chunk Loader
+
+The Chunk Loader provides the connection layer between active maps and the runtime chunk streaming system.
+
+It initializes world streaming, provides chunk configuration data, and delegates loading behavior to the Chunk Manager.
+
+The system is designed around data-driven world configuration, allowing creators to define chunk templates, boundaries, loading rules, and LOD settings per world.
+
+Responsibilities include:
+
+- Initializing chunk streaming
+- Connecting maps to the Chunk Manager
+- Providing chunk configuration
+- Managing chunk loading updates
+- Supporting LOD-based streaming
+- Validating world streaming setup
+
+Documentation:
+
+📄 [Chunk Loader Documentation](world/chunk_loader.md)
+
+---
+
