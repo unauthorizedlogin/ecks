@@ -15,6 +15,26 @@ The system is designed around a **data-driven item architecture**, separating:
 
 The Loot System does not rely on a single universal inventory pipeline. Instead, item categories are handled through dedicated managers responsible for their own routing, behavior, and serialization.
 
+## **Purpose:**
+
+- Unified item database supporting equipment, consumables, resources, currencies, and progression items
+- Modular item category system supporting:
+  - Ammunition
+  - Consumables
+  - Currency
+  - Equipment
+  - Gems
+  - Ingredients
+  - Materials
+  - Metals
+  - Minerals
+  - Stones
+  - Potions
+  - Quest items
+  - Miscellaneous items
+  - Additional expandable categories
+- Equipment and inventory management integrated into the same item pipeline
+
 ---
 
 # 🧠 System Architecture
