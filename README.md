@@ -153,11 +153,11 @@ Every major feature—from entities and combat to quests, world streaming, local
 
 This allows creators to build, customize, and scale projects without rewriting core framework systems.
 
----
-
 Currently Existing Systems:
 
-### 🎒 Economy Framework System
+---
+
+### 💰 Economy Framework System
 
 The Economy System provides the framework's complete commerce and currency architecture.
 
@@ -178,7 +178,7 @@ Note: all of these documents are also available in the subsystems README.
 
 ---
 
-### 🧬 Engine Framework System
+### ⚙️ Engine Framework System
 
 The Engine Systems layer provides the foundational runtime infrastructure that powers the Ecks Framework.
 
@@ -226,7 +226,7 @@ Note: all of these documents are also available in the subsystems README.
 
 ---
 
-### 🧬 Launch Framework System
+### 🚀 Launch Framework System
 
 The Launch Flow System provides the complete startup pipeline responsible for transitioning the framework from application launch into an active gameplay session.
 
@@ -244,7 +244,7 @@ Note: all of these documents are also available in the subsystems README.
 
 ---
 
-### 🧬 Loot Framework System
+### 🎒 Loot Framework System
 
 The Loot System provides the centralized item framework responsible for item definitions, ownership, storage, equipment handling, and world-based loot interactions.
 
@@ -284,7 +284,7 @@ Note: all of these documents are also available in the subsystems README.
 
 ---
 
-### 📜 UI Framework System
+### 🖥️ UI Framework System
 
 The UI System provides the centralized framework responsible for managing the game's user interface, coordinating menu interactions, HUD visibility, and communication between gameplay systems and the player.
 
@@ -331,32 +331,11 @@ Note: all of these documents are also available in the subsystems README.
 
 ---
 
-
-### 📊 Event Viewer System
-
-- [Event Viewer](./docs/event_viewer)
-
 ### 🌐 Localization
 
 - [Menus & UI](./docs/menus_ui)
 
-ecks is built with localization as a core framework feature rather than an afterthought.
 
-Every player-facing text field throughout the framework is already wrapped with `tr()`, including UI, menus, dialogue, quests, objectives, items, events, combat messages, notifications, and gameplay systems. Localization is explicitly authored and does not rely on automatic machine translation at runtime.
-
-The framework includes a production-tested CSV → PO generation pipeline that has been battle-tested throughout development and is designed to scale alongside the project.
-
-Features include:
-
-- Framework-wide `tr()` integration for all player-visible text
-- Data-driven localization pipeline
-- Battle-tested CSV → PO generator workflow
-- Generator-based translation management
-- Over **14,000 unique localization keys**
-- Support for **23 languages**
-- Approximately **322,000 translated strings** (14,000+ keys × 23 languages)
-- At an average of **7 words per string**, the framework currently manages over **2.25 million localized words**
-- Localization-ready resources, menus, systems, and templates
 
 ## 🛠️ Creator Tools
 
