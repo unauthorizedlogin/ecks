@@ -414,6 +414,49 @@ World Systems
 
 ---
 
+````md
+# 🧮 Stat Formula Contents
+
+The Stat Formula Database manages all stat conversion formulas used throughout the framework.
+
+Manages:
+
+- Stat conversion formulas
+- Derived stat calculations
+- Formula category organization
+- Formula subcategory organization
+- Resistance rule definitions
+- Runtime formula lookups
+
+Runtime access:
+
+```gdscript
+FormulaDatabase.get_formula(formula_id)
+````
+
+Resources are organized by formula identifiers, categories, and subcategories.
+
+Example:
+
+```text
+Stat Formula ID
+      |
+      ↓
+Stat Formula Resource
+      |
+      ↓
+Category / Subcategory
+      |
+      ↓
+Stat Systems
+```
+
+**Documentation:**
+
+* [Stat Formula Database](./docs/data/databases/stat_formula_database.md)
+
+---
+
 # 📜 Quest Database Contents
 
 The Quest Database manages all static quest definitions used throughout the framework through a centralized runtime lookup system.
