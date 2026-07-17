@@ -28,7 +28,7 @@ Development updates, system breakdowns, and framework progress are shared throug
 - Version: 0.52.194
 - Date: 7/16/2026
 
-[Coming - Changelog](./docs/CHANGELOG)
+[Coming - Changelog](./docs/CHANGELOG.md)
 
 ## Built With
 
@@ -88,7 +88,7 @@ ecks separates framework responsibilities into three layers:
 
 For a detailed breakdown of each Layer & and its role, documentation can be found here:
 
-- [Architecture Overview](docs/architecture)
+- [Architecture Overview](docs/architecture.md)
 
 ---
 
@@ -156,22 +156,31 @@ This allows creators to build, customize, and scale projects without rewriting c
 Currently Existing Systems:
 
 ### 🧬 Entity Framework System
-- [Entity System](./docs/system/entity/README.md)
-- [Behaviors](./docs/system/entity/behaviors.md)
-- [Entity System](./docs/system/entity/README.md)
-- [Entity System](./docs/system/entity/README.md)
-- [Entity System](./docs/system/entity/README.md)
-- [Class System](./docs/system/entity/class_system)
-- [Effect System](./docs/system/entity/effect_system)
 
-### 📈 Stats & Progression System
-- Data-driven actor stat architecture
-- Shared stat identity across players, NPCs, enemies, and future actors
-- Primary, derived, offensive, defensive, and resistance stats
-- Flexible class and character progression support
-- Resource-based stat definitions
-- Extensible calculations for future mechanics
-- [Stats System](./docs/system/entity/stats_system)
+The Entity Systems layer provides the framework foundation for all gameplay entities within ecks.
+
+This layer contains the systems responsible for defining, controlling, and modifying any entity that exists in the game world. 
+
+For an overview of the system check out the README:
+
+- [Entity System](./docs/system/entity/README.md)
+
+Or, if you'd prefer a specific topic you can access them directly here:
+
+- [Behaviors](./docs/system/entity/behaviors.md)
+- [Actor Controllers](./docs/system/entity/character_controllers.md)
+- [Class System](./docs/system/entity/class_system.md)
+- [Combat System](./docs/system/entity/combat_system.md)
+- [Difficulty System](./docs/system/entity/difficulty_system.md)
+- [Effect System](./docs/system/entity/effect_system.md)
+- [NPC System](./docs/system/entity/npc_system.md)
+- [Stats System](./docs/system/entity/stats_system.md)
+- [XP System](./docs/system/entity/xp_system.md)
+
+Note: all of these documents are also available in the subsystems README.
+
+
+
 
 ### 🎒 Economy & Item Framework
 - Complete data-driven economy foundation for managing all item-based gameplay systems
