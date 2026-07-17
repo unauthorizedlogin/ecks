@@ -445,3 +445,28 @@ Generated from CSV data and consumed by the Map Database runtime pipeline.
 - [Map Generator](./docs/data/generators/map_generator.md)
 
 ---
+
+## 👤 NPC Generator
+
+Generates NPC resources from CSV data for use by the NPC Database runtime pipeline.
+
+The NPC Generator creates data-driven NPC definitions, allowing large NPC databases to be authored in spreadsheets and automatically converted into runtime-ready resources.
+
+Manages:
+
+- NPC identity
+- Display information
+- Portrait assignment
+- Dialogue assignment
+- Shop assignment
+- NPC categorization
+- NPC metadata
+- Generated NPC indexing
+
+Generated from CSV data and consumed by the NPC Database runtime pipeline.
+
+- [NPC Generator](./docs/data/generators/npc_generator.md)
+
+---
+
+
