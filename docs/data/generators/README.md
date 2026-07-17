@@ -469,6 +469,27 @@ Generated from CSV data and consumed by the NPC Database runtime pipeline.
 
 ---
 
+## 📜 Stat Formula Generator
+
+Generates stat formula resources from CSV data for use by the Stat Formula Database runtime pipeline.
+
+The Stat Formula Generator creates data-driven conversion formulas, allowing derived statistics and progression scaling to be authored in spreadsheets and automatically converted into runtime-ready resources.
+
+Manages:
+
+- Formula identity
+- Source stat mapping
+- Derived stat mapping
+- Multiplier configuration
+- Formula categorization
+- Generated formula indexing
+
+Generated from CSV data and consumed by the Stat Formula Database runtime pipeline.
+
+- [Stat Formula Generator](./docs/data/generators/stat_formula_generator.md)
+
+---
+
 ## 📜 Quest Generator
 
 Generates quest resources from CSV data for use by the Quest Database runtime pipeline.
