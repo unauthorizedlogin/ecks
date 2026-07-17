@@ -488,11 +488,67 @@ Runtime Entity Stats
         ↓
 
 Combat / UI / Gameplay
-
 ```
 
 Documentation:
 
 - [Stats System](docs/entity/stats_system.md)
+
+---
+
+## 📈 XP & Level Progression System
+
+The XP System provides the centralized progression framework for character experience, leveling, and stat growth.
+
+It separates progression responsibilities into dedicated systems:
+
+- `XPManager` → XP routing authority
+- `PlayerLevelComponent` → Runtime progression state
+- `LevelCurveResource` → XP requirements and level thresholds
+- `LevelGrowthData` → Class-based stat growth
+
+Features:
+
+- Data-driven XP progression
+- Level curve resources
+- Class-specific growth paths
+- Runtime level tracking
+- Level-up event pipeline
+- Stat growth integration
+- Quest progression support
+- Save/load persistence
+- Future XP modifier support
+
+Architecture:
+
+```text
+Gameplay Events
+
+      |
+      ↓
+
+ XPManager
+
+      |
+      ↓
+
+PlayerLevelComponent
+
+      |
+      +----------------+
+      |                |
+      ↓                ↓
+
+Level Curve      Level Growth
+
+      |
+      ↓
+
+ Runtime Stats
+```
+
+Documentation:
+
+- [XP System](docs/entity/xp_system.md)
 
 ---
