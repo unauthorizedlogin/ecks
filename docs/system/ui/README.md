@@ -151,3 +151,36 @@ The Pause Menu acts as the central pause controller while allowing creators to e
 ## 📚 Documentation
 
 - 📄 [Pause Menu Documentation](ui/pause_menu.md)
+
+---
+
+## ⚙️ Settings Menu
+
+The Settings Menu provides the player-facing interface for configuring game preferences and options.
+
+It connects with the **SettingsManager** system to handle runtime configuration changes, persistent settings storage, and applying preferences throughout the game.
+
+The menu is designed as a reusable framework component that can be accessed from multiple UI locations, including:
+
+- Main Menu
+- Pause Menu
+- In-game Options Screens
+
+Features include:
+
+- Audio configuration
+- Display settings
+- Resolution management
+- Fullscreen support
+- VSync control
+- Brightness adjustment
+- Persistent player preferences
+- Localization-ready controls
+
+The Settings Menu separates presentation from configuration logic, allowing the SettingsManager to remain the authority for storing and applying player preferences.
+
+---
+
+## 📚 Documentation
+
+- 📄 [Settings Menu Documentation](ui/settings_menu.md)
