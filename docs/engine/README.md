@@ -120,6 +120,48 @@ The system supports:
 - CSV-based translation management
 - Automated PO generation
 
+## 💾 Save System
+
+The **Save System** provides persistent game state management for the Ecks Framework.
+
+It separates save authority from gameplay data ownership by allowing individual systems to serialize their own data while `SaveManager` controls the overall persistence pipeline.
+
+Features:
+
+- Resource-based save files
+- Expandable save slot system
+- Autosave support
+- Quicksave support
+- Manual save slots
+- Runtime state serialization
+- Player persistence
+- World persistence
+- Chunk persistence
+- Save version migration
+
+Architecture:
+
+```text
+Gameplay Systems
+
+        |
+        ↓
+
+   SaveManager
+
+        |
+        ↓
+
+   SaveData
+
+        |
+        ↓
+
+user://saves/
+```
+
+
+
 Documentation:
 
 - [Boot Orchestrator](boot_orchestrator.md)
