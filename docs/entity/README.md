@@ -331,3 +331,57 @@ Documentation:
 - [Difficulty System](docs/entity/difficulty_system.md)
 
 ---
+
+## ✨ Effect System
+
+The **Effect System** provides the universal gameplay modification pipeline for the Ecks Framework.
+
+All gameplay modifiers are represented as data-driven `StatEffect` resources and processed through the centralized `EffectManager`.
+
+This allows every system that modifies gameplay state to share the same pipeline:
+
+- Equipment bonuses
+- Consumable effects
+- Buffs and debuffs
+- Damage over Time
+- Healing over Time
+- Revival effects
+- Class passives
+- Difficulty scaling
+- World modifiers
+
+Architecture:
+
+```text
+Effect Source
+
+      |
+      ↓
+
+ StatEffect Resource
+
+      |
+      ↓
+
+ EffectManager
+
+      |
+      ↓
+
++-------------+-------------+
+|             |             |
+↓             ↓             ↓
+
+StatManager CombatManager VitalComponent
+
+      |
+      ↓
+
+Runtime Gameplay Changes
+```
+
+Documentation:
+
+- [Effect System](docs/entity/effect_system.md)
+
+---
