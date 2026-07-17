@@ -42,3 +42,24 @@ The World Systems are organized into independent systems working together:
  Chunk Loader
 ```
 
+---
+
+# 🗺️ Map System
+
+The Map System provides the foundation for all playable world areas through reusable map scenes and data-driven map resources.
+
+Responsibilities include:
+
+- Base map architecture
+- World metadata
+- Environment integration
+- Chunk streaming support
+- Map-specific gameplay rules
+- Persistence configuration
+
+Documentation:
+
+📄 [Map System Documentation](world/maps.md)
+
+---
+
