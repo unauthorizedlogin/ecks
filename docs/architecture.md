@@ -82,7 +82,7 @@ It is responsible for:
 Systems are organized into functional categories using a consistent directory structure.
 
 ```text
-systems/
+system/
 ├── economy/
 ├── engine/
 ├── entity/
@@ -99,7 +99,7 @@ Each category contains one or more subsystems.
 ### Example
 
 ```text
-systems/
+system/
 └── progression/
     ├── achievements/
     ├── dialogue/
@@ -109,7 +109,7 @@ systems/
 Within each subsystem, code is typically separated into runtime logic and development tools.
 
 ```text
-systems/
+system/
 └── progression/
     └── quests/
         ├── runtime/
