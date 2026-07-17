@@ -331,17 +331,9 @@ Note: all of these documents are also available in the subsystems README.
 
 ---
 
-### 🌎 World Systems
-
-- [World Systems](./docs/world_systems)
 
 ### 📊 Event Viewer System
-- Centralized gameplay event tracking and feedback system
-- Custom event channels for organizing gameplay information
-- Configurable filters and display categories
-- Color-coded event messages for different gameplay events
-- Localization-ready event messages
-- Saveable viewer configuration
+
 - [Event Viewer](./docs/event_viewer)
 
 ### 🌐 Localization
