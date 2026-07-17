@@ -61,4 +61,28 @@ The manager does not own menu-specific logic. Individual interfaces remain respo
 
 ---
 
+## 🎬 Credits System
+
+The Credits System provides a fully data-driven framework for presenting contributor acknowledgements, music credits, legal attributions, special thanks, and dedication sections.
+
+Credits are generated dynamically from external data resources rather than being hardcoded into the interface, allowing content, styling, and presentation to remain independent.
+
+Features include:
+
+- Dynamic credits generation
+- Department and contributor organization
+- Music attribution
+- Legal and licensing notices
+- Special thanks and dedication sections
+- Localization-ready presentation
+- Inspector-driven visual customization
+- Editor preview support
+- Dedicated credits music playback
+
+---
+
+## 📚 Documentation
+
+- 📄 [Credits System Documentation](ui/credits_root.md)
+
 
