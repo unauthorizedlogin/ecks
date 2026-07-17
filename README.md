@@ -331,8 +331,6 @@ Note: all of these documents are also available in the subsystems README.
 
 ---
 
----
-
 ## 🛠️ Database Framework
 
 The Database Framework provides centralized runtime access to dialogue resources through the engine's standard database architecture.
