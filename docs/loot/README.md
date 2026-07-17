@@ -93,34 +93,27 @@ Documentation:
 
 ---
 
-# ⚔️ Equipment System
+## 🎒 Inventory Manager
 
-The Equipment System manages items after they have been equipped.
+The Inventory Manager manages player item ownership and storage systems.
 
-Responsibilities:
+Responsibilities include:
 
-* Equipment slots
-* Equip validation
-* Unequip handling
-* Equipped item persistence
-* Stat integration
+- Player inventory slots
+- Storage chest inventories
+- Item transfers
+- Stack management
+- Inventory serialization
 
-Equipment flow:
+Equipment items are stored here when acquired and moved to the Equipment Manager after being equipped.
 
-```text
-Inventory
-    |
-    ↓
-Equipment Manager
-    |
-    ↓
-StatManager
-    |
-    ↓
-Runtime Stats
-```
+The Inventory Manager focuses on item ownership and storage. Other item categories will use dedicated managers as their systems expand.
 
-Equipment bonuses are applied through the stat pipeline rather than directly modifying character values.
+---
+
+Documentation:
+
+📄 [Inventory Manager Documentation](loot/inventory_manager.md)
 
 ---
 
