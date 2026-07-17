@@ -1,5 +1,3 @@
----
-
 # 💰 Economy System README
 
 The **Economy System** provides the framework's complete commerce and currency architecture.
@@ -7,6 +5,10 @@ The **Economy System** provides the framework's complete commerce and currency a
 It is responsible for managing player wealth, merchant interactions, buying and selling, item distribution, and transaction processing through a collection of specialized managers.
 
 Rather than embedding economy logic into NPCs or UI scenes, Ecks centralizes transactions through dedicated authorities, allowing merchants, currencies, and future economy features to expand without changing gameplay systems.
+
+- Complete data-driven economy foundation for managing all item-based gameplay systems
+- Data-driven vendor and shop system supporting customizable inventories, pricing, and merchant configurations
+- Flexible economy architecture designed for future crafting, gathering, trading, and additional item systems
 
 ---
 
