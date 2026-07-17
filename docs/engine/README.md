@@ -67,6 +67,10 @@ Application Start
  Gameplay Available
 ```
 
+Documentation:
+
+- [Boot Orchestrator](boot_orchestrator.md)
+
 ---
 
 # 🎮 Game Manager
@@ -100,6 +104,12 @@ Save System
 UI / Transitions
 ```
 
+Documentation:
+
+- [Game Manager](game_manager.md)
+
+---
+
 ## 🌐 Localization System
 
 The Localization System provides the multilingual foundation for the Ecks Framework.
@@ -119,6 +129,12 @@ The system supports:
 - Persistent language settings
 - CSV-based translation management
 - Automated PO generation
+
+Documentation:
+
+- [Localization System](localization.md)
+
+---
 
 ## 💾 Save System
 
@@ -160,12 +176,49 @@ Gameplay Systems
 user://saves/
 ```
 
+Documentation:
 
+- [Save Manager](save_manager.md)
+
+---
+
+## 🌗 Transition Manager
+
+The **Transition Manager** provides the visual transition layer for the Ecks Framework.
+
+It separates transition presentation from gameplay logic by allowing systems such as `GameManager` and `SaveManager` to request visual transitions without owning fade effects themselves.
+
+Features:
+
+- Centralized screen fade system
+- Scene transition visuals
+- Configurable fade timing
+- Fade in / fade out support
+- Callback-based transition sequences
+- CanvasLayer-based overlay rendering
+- Loading and gameplay transition support
+
+Architecture:
+
+```text
+GameManager / Systems
+
+        |
+        ↓
+
+TransitionManager
+
+        |
+        ↓
+
+ Fade Overlay
+
+        |
+        ↓
+
+ Player Screen
+```
 
 Documentation:
 
-- [Boot Orchestrator](boot_orchestrator.md)
-- [Game Manager](game_manager.md)
-- [Localization System](localization_system.md)
-- [Save Manager](save_manager.md)
 - [Transition Manager](transition_manager.md)
