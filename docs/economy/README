@@ -1,6 +1,8 @@
+---
+
 # 💰 Economy System
 
-The Economy System provides the framework's complete commerce and currency architecture.
+The **Economy System** provides the framework's complete commerce and currency architecture.
 
 It is responsible for managing player wealth, merchant interactions, buying and selling, item distribution, and transaction processing through a collection of specialized managers.
 
@@ -8,65 +10,72 @@ Rather than embedding economy logic into NPCs or UI scenes, Ecks centralizes tra
 
 ---
 
-## Current Features
+## ✨ Current Features
 
-- Multi-currency support
-- Centralized CurrencyManager
-- Data-driven merchant inventories
-- ShopManager transaction authority
-- Vendor configuration system
-- Buyback inventory
-- Configurable merchant pricing
-- Automatic inventory routing
-- Quest purchase integration
-- Save/load support
-- Event Viewer transaction logging
-- Inspector-driven merchant customization
+* Multi-currency support
+* Centralized `CurrencyManager`
+* Data-driven merchant inventories
+* `ShopManager` transaction authority
+* Configurable `ShopVendor` definitions
+* Buyback inventory system
+* Vendor-specific pricing modifiers
+* Automatic item routing by category
+* Quest purchase objective integration
+* Event Viewer transaction logging
+* Save/load synchronization
+* Inspector-driven merchant configuration
+* Localization-ready merchant labels and titles
 
 ---
 
-## Supported Currency Types
+## 🪙 Supported Currency Types
 
 The framework currently includes support for:
 
-- Coins
-- Gems
-- Tokens
+* 💰 Coins
+* 💎 Gems
+* 🪙 Tokens
 
-Additional currency types can be added with minimal changes to the CurrencyManager.
+The CurrencyManager is designed to be easily extended with additional currency types as the economy grows.
 
 ---
 
-## Economy Architecture
+## 🏛️ Architecture
 
-The economy follows a centralized authority model.
+The economy follows Ecks' centralized authority model.
 
 ```text
-Player
-    |
-    ↓
-Shop Vendor
-    |
-    ↓
-ShopManager
-    |
-    ├── CurrencyManager
-    ├── InventoryManager
-    ├── ItemDatabase
-    ├── RewardManager
-    ├── QuestManager
-    ├── SaveManager
-    └── EventManager
+                Player
+                   |
+                   ↓
+             Shop Vendor
+                   |
+                   ↓
+             ShopManager
+                   |
+      ┌────────────┼────────────┐
+      ↓            ↓            ↓
+CurrencyManager InventoryManager ItemDatabase
+      |            |            |
+      └─────── Transaction Pipeline ───────┐
+                                           ↓
+                     QuestManager  EventManager  SaveManager
 ```
 
-World vendors simply configure merchant behavior while ShopManager executes every transaction.
+World vendors define merchant behavior, while the ShopManager executes every transaction.
 
 ---
 
-## Included Documentation
+## 📚 Included Documentation
 
-- [Currency Manager](currency_manager.md)
-- [Shop Manager](shop_manager.md)
-- [Shop Vendor](shop_vendor.md)
+* [Currency Manager](currency_manager.md)
+* [Shop Manager](shop_manager.md)
+* [Shop Vendor](shop_vendor.md)
 
-Additional economy documentation will be added as the framework expands.
+Additional economy documentation will be added as the framework expands with new currencies, merchant systems, pricing rules, and gameplay features.
+
+---
+
+## ✅ Summary
+
+The Economy System provides a modular, data-driven foundation for commerce within the Ecks RPG Framework. By separating merchant configuration from transaction logic and centralizing currency management, the framework supports scalable economy features while maintaining clean authority boundaries between gameplay systems.
