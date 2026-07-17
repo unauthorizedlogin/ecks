@@ -16,6 +16,10 @@ ecks includes dedicated tools designed to streamline RPG development workflows a
 
 The Item Creator allows creators to build and manage large item databases through structured data instead of manually creating individual resources.
 
+**Documentation:** 
+
+- [Item Creator](./docs/addons/item_creator.md)
+
 📊 XP Analyzer
 
     Experience progression analysis tool
@@ -24,6 +28,10 @@ The Item Creator allows creators to build and manage large item databases throug
     Designed for tuning player advancement systems
 
 The XP Analyzer helps creators design and balance progression systems by making experience requirements easier to evaluate and adjust.
+
+**Documentation:** 
+
+- [XP Analyzer](./docs/addons/xp_analyzer.md)
 
 The ecks Framework includes a collection of editor-based creator tools designed to accelerate content production while maintaining framework standards.
 
