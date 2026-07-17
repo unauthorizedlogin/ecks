@@ -469,4 +469,27 @@ Generated from CSV data and consumed by the NPC Database runtime pipeline.
 
 ---
 
+## 📜 Quest Generator
+
+Generates quest resources from CSV data for use by the Quest Database runtime pipeline.
+
+The Quest Generator creates data-driven quest definitions, allowing complex quest content to be authored in spreadsheets and automatically converted into runtime-ready resources.
+
+Manages:
+
+- Quest identity
+- Objective generation
+- Reward generation
+- Quest categorization
+- Quest line organization
+- Dialogue metadata
+- Gameplay configuration
+- Generated quest indexing
+
+Generated from CSV data and consumed by the Quest Database runtime pipeline.
+
+- [Quest Generator](./docs/data/generators/quest_generator.md)
+
+---
+
 
