@@ -44,12 +44,16 @@ Examples:
 Systems are organized into functional categories using a consistent directory structure.
 
 systems/
-    engine/
-    progression/
-    world/
-    entity/
     economy/
+    engine/
+    entity/
+    launch/
+    legal/
+    loot/
+    progression/
     ui/
+    world/
+
 
 Each category contains one or more subsystems.
 
@@ -57,40 +61,41 @@ Example:
 
 systems/
 └── progression/
-    ├── class/
-    ├── quests/
-    ├── stats/
-    └── xp/
+    ├── achievements/
+    ├── dialogue/
+    └── quests/
 
 Within each subsystem, code is typically separated into runtime logic and development tools.
 
 systems/
 └── progression/
-    └── class/
+    └── quests/
         ├── runtime/
         └── tools/
+
 Runtime
 
 Contains gameplay code used by the engine at runtime.
 
 Examples:
 
-Managers
-Databases
-Runtime helpers
-Resource databases
-Gameplay logic
+- Managers
+- Databases
+- Runtime helpers
+- Resource databases
+- Gameplay logic
+
 Tools
 
 Contains editor-only utilities used to build framework content.
 
 Examples:
 
-Resource generators
-Index generators
-CSV importers
-Validation tools
-Asset processing scripts
+- Resource generators
+- Index generators
+- CSV importers
+- Validation tools
+- Asset processing scripts
 
 The System Layer is responsible for determining how the framework works.
 
