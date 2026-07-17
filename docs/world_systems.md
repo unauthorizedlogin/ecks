@@ -1,4 +1,4 @@
-# 🗺️ launch_03world.gd — World Launch Controller
+# 🗺️ World Launch Controller
 
 ## Overview
 
@@ -610,17 +610,17 @@ The controller includes validation gates for:
 
 `launch_03world.gd` provides:
 
-✅ Data-driven map loading
-✅ Runtime map swapping
-✅ Player persistence across worlds
-✅ Camera lifecycle control
-✅ Environment-driven visuals
-✅ Weather integration
-✅ Music switching
-✅ UI reinitialization
-✅ Chunk streaming startup
-✅ World readiness signaling
-✅ Save/load safe reconstruction
+- ✅ Data-driven map loading
+- ✅ Runtime map swapping
+- ✅ Player persistence across worlds
+- ✅ Camera lifecycle control
+- ✅ Environment-driven visuals
+- ✅ Weather integration
+- ✅ Music switching
+- ✅ UI reinitialization
+- ✅ Chunk streaming startup
+- ✅ World readiness signaling
+- ✅ Save/load safe reconstruction
 
 ---
 
