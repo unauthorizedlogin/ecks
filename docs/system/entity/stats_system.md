@@ -1,6 +1,6 @@
 # 📈 Stats System
 
-## Oveviewer
+## Overview
 
 - Data-driven actor stat architecture
 - Shared stat identity across players, NPCs, enemies, and future actors
