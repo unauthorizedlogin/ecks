@@ -57,3 +57,44 @@ Architecture:
       NPCs
 ```
 
+## 🐾 Behavior System
+
+The **Behavior System** provides modular AI behavior components for entities within the Ecks Framework.
+
+It provides reusable behavior modules that can be attached to NPCs, enemies, companions, and world entities without requiring entity-specific logic.
+
+Features:
+
+- Modular entity behavior components
+- Follow and target tracking behaviors
+- Patrol path navigation
+- Area-based target detection
+- Configurable Inspector-driven behavior rules
+- Reusable AI expansion framework
+
+Architecture:
+
+```text
+Entity
+
+    |
+    ↓
+
+Behavior Components
+
+    |
+    +----------------+
+    |                |
+    ↓                ↓
+
+Movement       Detection
+
+    |
+    ↓
+
+Entity Response
+```
+
+Documentation:
+
+Behavior System
