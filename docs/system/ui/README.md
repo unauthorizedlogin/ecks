@@ -184,3 +184,30 @@ The Settings Menu separates presentation from configuration logic, allowing the 
 ## 📚 Documentation
 
 - 📄 [Settings Menu Documentation](ui/settings_menu.md)
+
+---
+
+## 📊 Player Stats Menu
+
+The Player Stats Menu provides the player-facing interface for viewing character progression, combat values, resources, and experience information.
+
+It functions as a data-driven presentation layer connected to the player's stat and progression components, allowing character information to be displayed without manually managing individual values.
+
+Features include:
+
+- Attribute and derived stat display
+- Combat value display
+- Resource tracking
+- Experience and level information
+- Dynamic stat updates
+- Localization-ready labels
+- Component-based data binding
+- Expandable character sheet structure
+
+The Stats Menu reads from existing gameplay systems such as `StatBlock`, `VitalComponent`, and `PlayerLevelComponent`, ensuring displayed values always reflect the current player state.
+
+---
+
+## 📚 Documentation
+
+- 📄 [Player Stats Menu Documentation](ui/stats_menu.md)
