@@ -369,3 +369,48 @@ Gameplay Systems
 
 ---
 
+# 🗺️ Map Database Contents
+
+The Map Database manages all world map resources used throughout the framework through a centralized runtime lookup system.
+
+Manages:
+
+- World maps
+- Regions
+- Dungeon maps
+- Overworld areas
+- Injectable maps
+- Future expandable world content
+
+Runtime access:
+
+```gdscript
+MapDatabase.get_level_data(map_id)
+````
+
+The database provides a unified map authority for world navigation, scene resolution, save systems, persistence, and future world streaming features.
+
+Example:
+
+```text
+Map ID
+   |
+   ↓
+MapResource
+   |
+   ├── Scene Reference
+   ├── World Group
+   ├── Region Group
+   ├── Map Metadata
+   └── Runtime Information
+   |
+   ↓
+World Systems
+```
+
+**Documentation:**
+
+* [Map Database](./docs/data/databases/map_database.md)
+
+---
+
