@@ -155,14 +155,9 @@ This allows creators to build, customize, and scale projects without rewriting c
 
 Currently Existing Systems:
 
-### 🎒 Economy Framework
-- Complete data-driven economy foundation for managing all item-based gameplay systems
-
-- Data-driven vendor and shop system supporting customizable inventories, pricing, and merchant configurations
-- Flexible economy architecture designed for future crafting, gathering, trading, and additional item systems
+### 🎒 Economy Framework System
 - [Inventory System](./docs/inventory_system)
 - [Shop System](./docs/shop_system)
-
 
 
 ### 🧬 Entity Framework System
