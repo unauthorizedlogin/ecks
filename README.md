@@ -147,18 +147,22 @@ The result is a workflow where creators can configure and customize the majority
 
 ## Features
 
+ecks is a modular, data-driven ARPG framework built around reusable gameplay systems rather than one-off implementations.
+
+Every major feature—from entities and combat to quests, world streaming, localization, and creator tooling—is designed to work together through a shared architecture while remaining independently extensible. 
+
+This allows creators to build, customize, and scale projects without rewriting core framework systems.
+
+Currently Existing Systems:
+
 ### 🧬 Entity Framework System
-- Centralized entity definition system controlling all entity-based gameplay data
-- Shared class architecture supporting players, NPCs, enemies, and other world entities
-- Data-driven stat blocks defining base attributes, derived stats, resistances, and combat properties
-- Configurable entity class rules controlling behavior, progression, and gameplay restrictions
-- Unified effect system supporting buffs, debuffs, modifiers, and difficulty scaling
-- Entity-specific configuration for NPCs, enemies, and playable characters
-- Difficulty modifiers integrated through the same effect pipeline used by entities
-- Resource-based definitions allowing entities to be created and balanced without modifying code
-- Shared framework pipeline ensuring consistent stat, effect, and rule handling across all entity types
-- [Class System](./docs/class_system)
-- [Effect System](./docs/effect_system)
+- [Entity System](./docs/system/entity/README.md)
+- [Behaviors](./docs/system/entity/behaviors.md)
+- [Entity System](./docs/system/entity/README.md)
+- [Entity System](./docs/system/entity/README.md)
+- [Entity System](./docs/system/entity/README.md)
+- [Class System](./docs/system/entity/class_system)
+- [Effect System](./docs/system/entity/effect_system)
 
 ### 📈 Stats & Progression System
 - Data-driven actor stat architecture
@@ -167,7 +171,7 @@ The result is a workflow where creators can configure and customize the majority
 - Flexible class and character progression support
 - Resource-based stat definitions
 - Extensible calculations for future mechanics
-- [Stats System](./docs/stats_system)
+- [Stats System](./docs/system/entity/stats_system)
 
 ### 🎒 Economy & Item Framework
 - Complete data-driven economy foundation for managing all item-based gameplay systems
