@@ -25,7 +25,7 @@ Coming Soon:
 - Content authoring utilities
 - Development workflows
 
-📁 **Browse:** [addons](./docs/addons/)
+📁 **Browse:** [addons](./addons/)
 
 ---
 
