@@ -44,6 +44,8 @@ Contains the actual game built using the framework.
 - Audio
 - Visual assets
 
+📁 **Browse:** [content](./content/)
+
 ---
 
 ### 🗄️ Data Layer
