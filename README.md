@@ -411,17 +411,3 @@ Official documentation published with the project
 Content published by UnauthorizedLogin
 
 Anything outside of those sources should be treated as unofficial unless explicitly linked from the project.
-
-# 📄 License
-
-ecks is a proprietary RPG framework developed by UnauthorizedLogin.
-
-The source code is private and is not licensed as open source software.
-
-The framework is shared as a development product intended to provide creators with access to its tools, systems, workflows, and authoring pipelines.
-
-Usage rights, distribution rights, and source access are determined by the licensing model provided with ecks.
-
-The framework architecture, code, systems, generators, and associated tools remain the intellectual property of UnauthorizedLogin.
-
-For licensing inquiries or access information, please refer to the official ecks community channels.
