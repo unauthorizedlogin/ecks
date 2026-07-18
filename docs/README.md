@@ -41,7 +41,7 @@ Includes:
 - Data resources
 - Index generators
 
-📁 **Browse:** [data](./docs/data/)
+📁 **Browse:** [data](./data/)
 
 ---
 
@@ -60,7 +60,7 @@ Includes:
 - World systems
 - Gameplay architecture
 
-📁 **Browse:** [system/](./docs/system/)
+📁 **Browse:** [system/](./system/)
 
 ---
 
