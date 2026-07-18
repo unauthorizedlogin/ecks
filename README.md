@@ -8,7 +8,7 @@ ecks focuses on reducing the amount of custom code required when building RPGs b
 
 The framework is developed alongside a full Adventure RPG project, where every system is tested through real gameplay requirements before being expanded into reusable tools.
 
-## Community & Development
+# Community & Development
 
 Follow the development of ecks and the Adventure RPG project:
 
@@ -17,18 +17,31 @@ Follow the development of ecks and the Adventure RPG project:
 - 🎮 itch.io: [ecks on itch.io](https://unauthorizedlogin.itch.io)
 - 🕹️ gamedev: [Game Development](https://gamedev.net/members/368596-unauthorizedlogin/)
 
-[Coming - Contributing](./CONTRIBUTING.md)
-
 Development updates, system breakdowns, and framework progress are shared through regular devlogs and community discussions.
 
 ## Development Status:
 
 - Status: ecks is currently in active development.
 - Stage: pre-alpha
-- Version: 0.52.194
-- Date: 7/16/2026
+- Version: 0.52.196
+- Date: 7/18/2026
 
-* [Changelog](./docs/CHANGELOG.md)
+---
+
+## 📖 Documentation
+
+- [Systems Documentation](./docs)
+- [Changelog](./docs/CHANGELOG.md)
+- [Roadmap](./docs/ROADMAP.md)
+[Coming - Contributing](./CONTRIBUTING.md)
+
+## 🎨 Media
+
+- [Screenshots](./screenshots)
+[Coming - Videos](./videos)
+[Coming - Artwork](./art)
+
+---
 
 ## Built With
 
@@ -37,38 +50,8 @@ Development updates, system breakdowns, and framework progress are shared throug
 - Godot Resources
 - Data-driven architecture
 
-## Roadmap
 
-Current development includes:
-- Expanded Inventory Space
-- Convert Level to Map
-- Chunk Loading Refactor
-- Launch Flow Cleanup
-- Debug Difficulty
-
-Future development includes:
-- Additional RPG mechanics
-- Expanded creator tools
-- More content authoring workflows
-- Framework documentation
-
-[Coming - Roadmap](./docs/roadmap.md)
-
----
-
-## 📖 Documentation
-
-- [Systems Documentation](./docs)
-
-
-## 🎨 Media
-
-- [Screenshots](./screenshots)
-- [Coming - Videos](./videos)
-- [Coming - Artwork](./art)
-
-
-## 🧠 Framework Philosophy
+# 🧠 Framework Philosophy
 
 ecks is built around a creator-first, data-driven architecture designed to separate gameplay systems from the content those systems manage.
 
