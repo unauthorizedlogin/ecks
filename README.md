@@ -42,9 +42,10 @@ Development updates, system breakdowns, and framework progress are shared throug
 
 ## 🎨 Media:
 
-- [Screenshots](./screenshots)
-- [Coming - Videos](./videos)
-- [Coming - Artwork](./art)
+- [Media README](./media/README.md)
+- [Screenshots](./media/screenshots)
+- [Videos](./media/videos)
+- [Artwork](./media/art)
 
 ## Built With
 
