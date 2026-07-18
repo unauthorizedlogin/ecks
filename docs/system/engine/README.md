@@ -1,4 +1,4 @@
-# ⚙️ Engine System README
+# ⚙️ Engine System
 
 The **Engine Systems layer** provides the foundational runtime infrastructure that powers the Ecks Framework.
 
