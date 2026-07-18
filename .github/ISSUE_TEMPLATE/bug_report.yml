@@ -1,0 +1,59 @@
+name: Bug Report
+description: Report a problem with the ecks RPG Framework
+title: "[Bug] "
+labels:
+  - bug
+body:
+
+  - type: input
+    id: version
+    attributes:
+      label: Engine Version
+      description: What version of ecks are you using?
+      placeholder: v0.52.196
+    validations:
+      required: true
+
+  - type: dropdown
+    id: system
+    attributes:
+      label: Affected System
+      description: Which system is affected?
+      options:
+        - Quest System
+        - Dialogue System
+        - Inventory System
+        - Combat System
+        - Stats System
+        - Database System
+        - Generator Pipeline
+        - Localization
+        - UI
+        - World System
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: issue
+    attributes:
+      label: Description
+      description: Explain the issue.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps To Reproduce
+      description: How can this issue be reproduced?
+      placeholder: |
+        1. Open menu
+        2. Perform action
+        3. Observe issue
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots or Logs
+      description: Add screenshots, errors, or logs if available.
