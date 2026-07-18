@@ -53,7 +53,7 @@ Development updates, system breakdowns, and framework progress are shared throug
 - Godot Resources
 - Data-driven architecture
 
-# 🧠 Framework Philosophy
+# 🧠 Project Philosophy
 
 ecks is built around a creator-first, data-driven architecture designed to separate gameplay systems from the content those systems manage.
 
@@ -145,7 +145,7 @@ Note: all of these documents are also available in the subsystems README.
 
 ---
 
-# Engine Features
+# Project Features
 
 ecks is a modular, data-driven ARPG framework built around reusable gameplay systems rather than one-off implementations.
 
