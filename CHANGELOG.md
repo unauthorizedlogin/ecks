@@ -2,6 +2,21 @@
 
 ---
 
+## [v0.52.195] - 2026-07-17
+
+### Public Repo & SEO
+
+**System(s) Affected:** Public Repository, Documentation, README, Changelog
+
+* Expanded the public repository with remaining generator and database architecture documentation.
+* Increased public documentation coverage to over 70 reference documents.
+* Published the project changelog to the public repository.
+* Updated README feature sections to prioritize direct documentation links over long explanations.
+* Updated repository links after documentation reorganization and structural changes.
+* Improved public framework navigation and accessibility for future users and contributors.
+
+---
+
 ## [v0.52.194] - 2026-07-16
 
 ### Public Repo & SEO
