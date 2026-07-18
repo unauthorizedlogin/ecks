@@ -94,11 +94,11 @@ The framework is built to turn complex RPG development into an organized authori
 
 ## 🎛️ Inspector-Driven Configuration
 
-Ecks is designed around Godot's Inspector workflow, giving creators a powerful editor-facing configuration layer without requiring constant script modification.
+ecks is designed around Godot's Inspector workflow, giving creators a powerful editor-facing configuration layer without requiring constant script modification.
 
 While gameplay systems are driven through resources, databases, and configurable definitions, framework scenes and components expose their creator-facing options directly through exported Inspector properties.
 
-This includes more than simple visual adjustments. Ecks uses the Inspector to configure presentation, behavior, and localized content choices throughout the framework.
+This includes more than simple visual adjustments. ecks uses the Inspector to configure presentation, behavior, and localized content choices throughout the framework.
 
 Examples include:
 
@@ -111,7 +111,7 @@ Examples include:
 * Creator-facing dropdown selections
 * Localized label and title options
 
-Ecks also provides enum-driven Inspector workflows for common text selections. Instead of requiring creators to manually enter localization keys or modify scripts, predefined options can be selected directly from dropdown menus.
+ecks also provides enum-driven Inspector workflows for common text selections. Instead of requiring creators to manually enter localization keys or modify scripts, predefined options can be selected directly from dropdown menus.
 
 For example, vendor configuration can expose options such as:
 
