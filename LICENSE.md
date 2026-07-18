@@ -6,7 +6,7 @@ Copyright © 2025 Santiago Watson. All rights reserved.
 
 ## License Notice
 
-This repository contains the source code, documentation, and resources for the Ecks RPG Engine.
+This repository contains the documentation, and resources for the ecks RPG Engine.
 
 The contents of this repository are provided for viewing, reference, and evaluation purposes only.
 
