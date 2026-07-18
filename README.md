@@ -126,8 +126,6 @@ Custom override fields are available when a project needs unique wording, allowi
 
 The result is a workflow where creators can configure and customize the majority of framework systems directly through Godot's editor, while still retaining the ability to extend or replace systems with custom code when desired.
 
----
-
 ## 🛠️ Add Ons
 
 The ecks Framework includes a collection of editor-based creator tools designed to accelerate content production while maintaining framework standards.
