@@ -4,3 +4,7 @@ contact_links:
   - name: Discord Support
     url: https://discord.gg/npFNpxcryF
     about: Get community support and troubleshooting help on Discord.
+
+- name: Documentation
+    url: https://github.com/unauthorizedlogin/ecks
+    about: Review the documentation before opening an issue.
