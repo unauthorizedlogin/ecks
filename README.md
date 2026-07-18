@@ -35,7 +35,6 @@ Development updates, system breakdowns, and framework progress are shared throug
 
 ## 📖 Documentation:
 
-- [Document Directory](./docs)
 - [Contributing](./CONTRIBUTING.md)
 - [Roadmap](./docs/ROADMAP.md)
 - [Support](./SUPPORT.md)
@@ -72,7 +71,7 @@ ecks separates framework responsibilities into three layers:
 
 For a detailed breakdown of each Layer & and its role, documentation can be found here:
 
-- [Architecture Overview](docs/architecture.md)
+- [Architecture Overview](docs)
 
 ---
 
