@@ -332,11 +332,11 @@ Gameplay Begins
 
 BootManager provides:
 
-✅ deterministic startup order
-✅ centralized initialization authority
-✅ dependency-aware loading
-✅ system validation
-✅ player/system binding
-✅ boot progress reporting
-✅ future loading screen integration
-✅ scalable framework expansion point
+- ✅ deterministic startup order
+- ✅ centralized initialization authority
+- ✅ dependency-aware loading
+- ✅ system validation
+- ✅ player/system binding
+- ✅ boot progress reporting
+- ✅ future loading screen integration
+- ✅ scalable framework expansion point
