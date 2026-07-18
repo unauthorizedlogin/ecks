@@ -90,6 +90,33 @@ This separation allows creators to build RPG content without modifying framework
 
 ---
 
+# 🔄 Layer Relationship
+
+The three layers build on one another.
+
+```text
+          Content Layer
+        (Your Game World)
+               ▲
+               │
+        references data
+               │
+          Data Layer
+(Resources • Templates • Generators)
+               ▲
+               │
+      configures systems
+               │
+         System Layer
+    (Framework Runtime Code)
+```
+
+- **System Layer** defines how the framework operates.
+- **Data Layer** configures framework behavior through resources, generators, templates, and authoring tools.
+- **Content Layer** uses the Data Layer to create the actual game world through scenes and authored content.
+
+---
+
 ## 🎯 Documentation Philosophy
 
 The Ecks RPG Framework is built around a modular, data-driven architecture.
