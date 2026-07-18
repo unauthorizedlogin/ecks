@@ -1,0 +1,85 @@
+name: Feature Request
+description: Suggest an improvement or new capability for the ecks RPG Framework
+title: "[Feature] "
+labels:
+  - enhancement
+
+body:
+
+  - type: textarea
+    id: feature
+    attributes:
+      label: Feature Description
+      description: Describe the feature or improvement you would like to see added.
+      placeholder: |
+        Example:
+        Add support for chained dialogue conditions based on quest state.
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or Use Case
+      description: What problem does this solve, or what gameplay/development need does it address?
+      placeholder: |
+        Explain why this feature would be useful.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: system
+    attributes:
+      label: Affected System
+      description: Which area of the framework would this feature impact?
+      options:
+        - Core Framework
+        - Character Systems
+        - Stats System
+        - Combat System
+        - Inventory System
+        - Equipment System
+        - Quest System
+        - Dialogue System
+        - NPC System
+        - Shop System
+        - World System
+        - Database System
+        - Generator Pipeline
+        - Localization
+        - UI System
+        - Developer Tools
+        - Documentation
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: If you have an idea for how this could work, describe it here.
+      placeholder: |
+        Explain your suggested approach, workflow, or implementation idea.
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: Are there other approaches or workarounds you considered?
+
+  - type: textarea
+    id: examples
+    attributes:
+      label: Examples or References
+      description: Add screenshots, examples from other games, links, or additional context.
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution
+      description: Would you like to help with this feature?
+      options:
+        - label: I would like to help test this feature
+        - label: I would like to help document this feature
+        - label: I would like to contribute code for this feature
