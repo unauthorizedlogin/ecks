@@ -8,6 +8,12 @@ ecks focuses on reducing the amount of custom code required when building RPGs b
 
 The framework is developed alongside a full Adventure RPG project, where every system is tested through real gameplay requirements before being expanded into reusable tools.
 
+## Vision
+
+ecks is designed to provide developers with a reusable foundation for creating RPGs in Godot.
+
+The goal is to transform common RPG systems into modular, data-driven tools that can be extended, customized, and reused across multiple projects.
+
 # Community & Development
 
 Follow the development of ecks and the Adventure RPG project:
