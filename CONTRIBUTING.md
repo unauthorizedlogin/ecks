@@ -250,7 +250,7 @@ v0.52.192.003
 The next development day resets the commit counter.
 
 ```text
-v0.52.193.001
+v0.52.193
 ```
 
 ---
