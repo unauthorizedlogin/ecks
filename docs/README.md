@@ -119,7 +119,7 @@ The three layers build on one another.
 
 ## 🎯 Documentation Philosophy
 
-The Ecks RPG Framework is built around a modular, data-driven architecture.
+The ecks RPG Framework is built around a modular, data-driven architecture.
 
 Documentation follows the same philosophy by separating:
 
