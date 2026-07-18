@@ -28,7 +28,7 @@ Development updates, system breakdowns, and framework progress are shared throug
 - Version: 0.52.194
 - Date: 7/16/2026
 
-[Changelog](./docs/CHANGELOG.md)
+* [Changelog](./docs/CHANGELOG.md)
 
 ## Built With
 
