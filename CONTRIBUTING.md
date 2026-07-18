@@ -295,7 +295,7 @@ git commit -m "sam| v0.52.192.001 |Inventory|Stack Merge"
 - Use the primary system affected.
 - One feature or fix per commit whenever practical.
 - Increment only the commit number when making multiple commits on the same development day.
-- Reset the commit number to `.001` when the development day changes.
+- Reset the additional commit number to `.001` when the development day changes.
 
 Common categories:
 
