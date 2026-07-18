@@ -2,6 +2,8 @@
 
 Thank you for your interest in contributing to this project!
 
+The public repository currently contains documentation and community resources. Source code is maintained privately. The guidelines below describe the framework's development practices and future contribution workflow.
+
 This project is currently developed primarily as a solo effort, but the goal is to build a framework that can eventually support community contributions, extensions, and collaboration.
 
 Whether you are reporting issues, suggesting improvements, improving documentation, or contributing code, all feedback is appreciated.
