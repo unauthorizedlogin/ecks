@@ -135,14 +135,12 @@ These tools extend the Godot editor workflow by allowing developers to create fr
 
 For an overview of the system check out the README:
 
-- [Creator Tools](./docs/addons/README.md)
+- [Creator Tools](./docs/addons)
 
 Or, if you'd prefer a specific topic you can access them directly here:
 
 - [Item Creator](./docs/addons/item_creator.md)
 - [XP Analyzer](./docs/addons/xp_analyzer.md)
-
-Note: all of these documents are also available in the subsystems README.
 
 ---
 
@@ -166,16 +164,13 @@ It is responsible for managing player wealth, merchant interactions, buying and 
 
 For an overview of the system check out the README:
 
-- [Economy Framework](./docs/system/economy/README.md)
+- [Economy Framework](./docs/system/economy)
 
 Or, if you'd prefer a specific topic you can access them directly here:
-
 
 - [Currency System](./docs/system/economy/currency_system.md)
 - [Shop System](./docs/system/economy/shop_system.md)
 - [Shop Vendor](./docs/system/economy/shop_vendor.md)
-
-Note: all of these documents are also available in the subsystems README.
 
 ---
 
@@ -187,7 +182,7 @@ The engine layer provides the foundation that all gameplay systems build upon.
 
 For an overview of the system check out the README:
 
-- [Engine Framework](./docs/system/engine/README.md)
+- [Engine Framework](./docs/system/engine)
 
 Or, if you'd prefer a specific topic you can access them directly here:
 
@@ -196,8 +191,6 @@ Or, if you'd prefer a specific topic you can access them directly here:
 - [Localization](./docs/system/engine/localization.md)
 - [Save System](./docs/system/engine/save_system.md)
 - [Transition Manager](./docs/system/engine/transition_manager.md)
-
-Note: all of these documents are also available in the subsystems README.
 
 ---
 
@@ -209,7 +202,7 @@ This layer contains the systems responsible for defining, controlling, and modif
 
 For an overview of the system check out the README:
 
-- [Entity Framework](./docs/system/entity/README.md)
+- [Entity Framework](./docs/system/entity)
 
 Or, if you'd prefer a specific topic you can access them directly here:
 
@@ -223,8 +216,6 @@ Or, if you'd prefer a specific topic you can access them directly here:
 - [Stats System](./docs/system/entity/stats_system.md)
 - [XP System](./docs/system/entity/xp_system.md)
 
-Note: all of these documents are also available in the subsystems README.
-
 ---
 
 ### 🚀 Launch Framework System
@@ -235,13 +226,11 @@ The Launch Flow separates application startup from gameplay execution, ensuring 
 
 For an overview of the system check out the README:
 
-- [Launch Framework](./docs/system/launch/README.md)
+- [Launch Framework](./docs/system/launch)
 
 Or, if you'd prefer a specific topic you can access them directly here:
 
 - [Launch System](./docs/system/launch/launch_system.md)
-
-Note: all of these documents are also available in the subsystems README.
 
 ---
 
@@ -253,7 +242,7 @@ The Loot System does not rely on a single universal inventory pipeline. Instead,
 
 For an overview of the system check out the README:
 
-- [Loot Framework](./docs/system/loot/README.md)
+- [Loot Framework](./docs/system/loot)
 
 Or, if you'd prefer a specific topic you can access them directly here:
 
@@ -261,8 +250,6 @@ Or, if you'd prefer a specific topic you can access them directly here:
 - [Equipment Manager](./docs/system/loot/equipment_manager.md)
 - [Inventory Manager](./docs/system/loot/inventory_manager.md)
 - [Item Resource](./docs/system/loot/item_resource.md)
-
-Note: all of these documents are also available in the subsystems README.
 
 ---
 
@@ -274,14 +261,12 @@ Dialogue and quests remain independent systems while integrating through shared 
 
 For an overview of the system check out the README:
 
-- [Progression Framework](./docs/system/progression/README.md)
+- [Progression Framework](./docs/system/progression)
 
 Or, if you'd prefer a specific topic you can access them directly here:
 
 - [Dialogue System](./docs/system/progression/dialogue_system.md)
 - [Quest System](./docs/system/progression/quest_system.md)
-
-Note: all of these documents are also available in the subsystems README.
 
 ---
 
@@ -293,7 +278,7 @@ At the center of the system is the UI Manager, which acts as the global authorit
 
 For an overview of the system check out the README:
 
-- [UI Framework](./docs/system/ui/README.md)
+- [UI Framework](./docs/system/ui)
 
 Or, if you'd prefer a specific topic you can access them directly here:
 
@@ -305,8 +290,6 @@ Or, if you'd prefer a specific topic you can access them directly here:
 - [Stats Menu](./docs/system/ui/stats_menu.md)
 - [UI Manager](./docs/system/ui/ui_manager.md)
 
-Note: all of these documents are also available in the subsystems README.
-
 ---
 
 ### 🌎 World Framework System
@@ -317,7 +300,7 @@ World systems are responsible for managing the game world state while remaining 
 
 For an overview of the system check out the README:
 
-- [World Framework](./docs/system/world/README.md)
+- [World Framework](./docs/system/world)
 
 Or, if you'd prefer a specific topic you can access them directly here:
 
@@ -327,8 +310,6 @@ Or, if you'd prefer a specific topic you can access them directly here:
 - [Destroyables](./docs/system/world/destroyables.md)
 - [Environment System](./docs/system/world/environment_system.md)
 - [Maps](./docs/system/world/maps.md)
-
-Note: all of these documents are also available in the subsystems README.
 
 ---
 
@@ -340,7 +321,7 @@ This architecture provides fast, scalable resource access while maintaining a cr
 
 For an overview of the system check out the README:
 
-- [Database Framework](./docs/data/databases/README.md)
+- [Database Framework](./docs/data/databases)
 
 Or, if you'd prefer a specific topic you can access them directly here:
 
@@ -352,8 +333,6 @@ Or, if you'd prefer a specific topic you can access them directly here:
 - [Quest Database](./docs/data/databases/quest_database.md)
 - [Stat Formula Database](./docs/data/databases/stat_formula_database.md)
 
-Note: all of these documents are also available in the subsystems README.
-
 ---
 
 ## 🛠️ Generator Framework System
@@ -364,7 +343,7 @@ The framework uses generators to create content without requiring manual resourc
 
 For an overview of the system check out the README:
 
-- [Generator Framework](./docs/data/generators/README.md)
+- [Generator Framework](./docs/data/generators)
 
 Or, if you'd prefer a specific topic you can access them directly here:
 
@@ -380,8 +359,6 @@ Or, if you'd prefer a specific topic you can access them directly here:
 - [Quest Generator](./docs/data/generators/quest_generator.md)
 - [Stat Formula Generator](./docs/data/generators/stat_formula_generator.md)
 - [XP Generator](./docs/data/generators/xp_generators.md)
-
-Note: all of these documents are also available in the subsystems README.
 
 ---
 
