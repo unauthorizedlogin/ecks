@@ -19,7 +19,7 @@ Follow the development of ecks and the Adventure RPG project:
 
 Development updates, system breakdowns, and framework progress are shared through regular devlogs and community discussions.
 
-## Development Status:
+## **Development Status:**
 
 - Status: ecks is currently in active development.
 - Stage: pre-alpha
@@ -28,20 +28,18 @@ Development updates, system breakdowns, and framework progress are shared throug
 
 ---
 
-## 📖 Documentation
+## 📖 Documentation:
 
 - [Systems Documentation](./docs)
 - [Changelog](./docs/CHANGELOG.md)
 - [Roadmap](./docs/ROADMAP.md)
 [Coming - Contributing](./CONTRIBUTING.md)
 
-## 🎨 Media
+## 🎨 Media:
 
 - [Screenshots](./screenshots)
 [Coming - Videos](./videos)
 [Coming - Artwork](./art)
-
----
 
 ## Built With
 
@@ -50,6 +48,7 @@ Development updates, system breakdowns, and framework progress are shared throug
 - Godot Resources
 - Data-driven architecture
 
+---
 
 # 🧠 Framework Philosophy
 
