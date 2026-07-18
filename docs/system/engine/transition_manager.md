@@ -1,6 +1,6 @@
 # 🌗 Transition Manager — Scene & Gameplay Transition Control
 
-The Transition Manager provides the visual transition layer for the Ecks Framework.
+The Transition Manager provides the visual transition layer for the ecks Framework.
 
 It centralizes screen transition effects and provides a reusable interface for any system that needs to visually separate gameplay states.
 
@@ -429,12 +429,12 @@ Final architecture:
 
 The Transition Manager provides:
 
-✅ centralized transition effects
-✅ scene-independent screen fading
-✅ configurable fade timing
-✅ reusable transition pipeline
-✅ clean separation between logic and presentation
-✅ support for loading, saving, teleporting, and cinematic flows
+- ✅ centralized transition effects
+- ✅ scene-independent screen fading
+- ✅ configurable fade timing
+- ✅ reusable transition pipeline
+- ✅ clean separation between logic and presentation
+- ✅ support for loading, saving, teleporting, and cinematic flows
 
 The Transition Manager ensures every major game state change can happen cleanly and visually without individual systems needing to implement their own fade logic.
 
