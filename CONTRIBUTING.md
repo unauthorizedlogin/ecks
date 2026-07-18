@@ -200,7 +200,7 @@ Commits should follow the project versioning and system tracking format:
 
 ```
 
-v[major].[milestone].[day] | System Category | Affected Systems | Description
+v[major].[milestone].[day]|System Category|Description|
 
 ```
 
@@ -208,11 +208,9 @@ Examples:
 
 ```
 
-v0.52.194 | System Cleanup | UI/Shop/Dialogue | Refactored and cleaned up UI, Shop, and Dialogue systems
-
-v0.52.195 | Public Repo & SEO | Documentation/Repository | Updated public repository documentation and README structure
-
-v0.50.166 | Event Viewer | UI/Localization | Added Event Viewer configuration and localization support
+v0.52.194 |System Cleanup|Refactored and cleaned up UI, Shop, and Dialogue systems|
+v0.52.195 |Public Repo & SEO|Updated public repository documentation and README structure|
+v0.50.166 |Event Viewer| Added Event Viewer configuration and localization support|
 
 ```
 
@@ -220,7 +218,6 @@ Commit messages should clearly identify:
 
 - The project version
 - The type of work completed
-- The systems affected
 - A short summary of the change
 
 Common categories:
@@ -238,16 +235,6 @@ Common categories:
 ```
 
 ```
-
-Common types:
-
-- Feature
-- Fix
-- Docs
-- Refactor
-- Performance
-- Cleanup
-
 ---
 
 # Project Structure
