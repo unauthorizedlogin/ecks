@@ -121,7 +121,7 @@ The result is a workflow where creators can configure and customize the majority
 
 ---
 
-# Features
+# Engine Features
 
 ecks is a modular, data-driven ARPG framework built around reusable gameplay systems rather than one-off implementations.
 
