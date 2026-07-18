@@ -23,6 +23,10 @@ Examples include:
 
 As development continues, new screenshots will be added to document major systems and milestones.
 
+Link:
+
+- 📸 [Screenshots](./screenshots/)
+
 ---
 
 # 🎬 Development Videos
@@ -38,6 +42,10 @@ Topics include:
 - Behind-the-scenes development
 
 These videos provide a look at how the framework evolves from version to version.
+
+Link:
+
+- 🎬 [Development Videos](./videos/devlogs/)
 
 ---
 
@@ -56,6 +64,10 @@ Future tutorial videos will cover common workflows and engine systems, including
 
 The goal is to provide practical guides for developers building games with the framework.
 
+Link:
+
+- 🎓 [Tutorial Videos](./videos/tutorials/)
+
 ---
 
 # 🎨 Artwork *(Planned)*
@@ -67,6 +79,10 @@ As the project grows, this section will include artwork used throughout developm
 - Logos and branding
 - UI mockups
 - Additional visual assets
+
+Link:
+
+- 🎨 [Artwork](./artwork/)
 
 ---
 
