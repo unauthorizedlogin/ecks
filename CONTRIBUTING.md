@@ -198,29 +198,99 @@ Update documentation when:
 
 # Commit Guidelines
 
-Commits should follow the project versioning and system tracking format:
+Commits follow the project versioning format to make development history easy to track.
 
+## Format
+
+```text
+<developer> | v<major>.<milestone>.<day>.<commit> | <System> | <Short Description>
 ```
 
-v[major].[milestone].[day]|System Category|Description|
+Example:
 
+```bash
+git commit -m "red | v0.52.192.001 | Quests | Objective KILL Definition"
 ```
+
+---
+
+## Version Format
+
+```text
+v<major>.<milestone>.<day>.<commit>
+```
+
+Where:
+
+| Part | Description |
+|------|-------------|
+| major | Major project version |
+| milestone | Development milestone |
+| day | Development day within the milestone |
+| commit | Sequential commit number for that day |
+
+Example:
+
+```text
+v0.52.192.001
+```
+
+If multiple commits are made during the same development day, increment only the commit number.
 
 Examples:
 
+```text
+v0.52.192.001
+v0.52.192.002
+v0.52.192.003
 ```
 
-v0.52.194 |System Cleanup|Refactored and cleaned up UI, Shop, and Dialogue systems|
-v0.52.195 |Public Repo & SEO|Updated public repository documentation and README structure|
-v0.50.166 |Event Viewer| Added Event Viewer configuration and localization support|
+The next development day resets the commit counter.
 
+```text
+v0.52.193.001
 ```
 
-Commit messages should clearly identify:
+---
 
-- The project version
-- The type of work completed
-- A short summary of the change
+## Developer Identifier
+
+Every commit begins with a short developer identifier.
+
+Guidelines:
+
+- 1–3 lowercase characters
+- Unique per contributor
+- Remains consistent across the project
+
+Examples:
+
+```text
+red
+sam
+jd
+aj
+```
+
+Example commits:
+
+```bash
+git commit -m "red | v0.52.192.001 | Quests | Objective KILL Definition"
+
+git commit -m "red | v0.52.192.002 | Quest Menu | Tracking Authority"
+
+git commit -m "sam | v0.52.192.003 | Inventory | Stack Merge"
+```
+
+---
+
+## Guidelines
+
+- Keep descriptions short and descriptive.
+- Use the primary system affected.
+- One feature or fix per commit whenever practical.
+- Increment only the commit number when making multiple commits on the same development day.
+- Reset the commit number to `.001` when the development day changes.
 
 Common categories:
 
@@ -235,8 +305,8 @@ Common categories:
 - Performance
 - Polish
 ```
-
 ```
+
 ---
 
 # Project Structure
