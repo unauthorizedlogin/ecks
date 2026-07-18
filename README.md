@@ -31,7 +31,7 @@ Development updates, system breakdowns, and framework progress are shared throug
 - [Systems Documentation](./docs)
 - [Changelog](./docs/CHANGELOG.md)
 - [Roadmap](./docs/ROADMAP.md)
-- [Coming - Contributing](./CONTRIBUTING.md)
+- [Contributing](./CONTRIBUTING.md)
 
 ## 🎨 Media:
 
