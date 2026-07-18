@@ -200,24 +200,26 @@ Update documentation when:
 
 Commits follow the project versioning format to make development history easy to track.
 
-## Format
+## First Commit of a Development Day
 
 ```text
-<developer> | v<major>.<milestone>.<day>.<commit> | <System> | <Short Description>
+<developer>| v<major>.<milestone>.<day> |<System>|<Short Description>
 ```
 
 Example:
 
 ```bash
-git commit -m "red | v0.52.192.001 | Quests | Objective KILL Definition"
+"red| v0.52.192 |Quests|Objective KILL Definition"
 ```
 
 ---
 
-## Version Format
+## Additional Commits for the Same Development Day
+
+Append a sequential commit number to the version.
 
 ```text
-v<major>.<milestone>.<day>.<commit>
+<developer>| v<major>.<milestone>.<day>.<commit> |<System>|<Short Description>
 ```
 
 Where:
@@ -226,13 +228,13 @@ Where:
 |------|-------------|
 | major | Major project version |
 | milestone | Development milestone |
-| day | Development day within the milestone |
+| day | Development day of the project |
 | commit | Sequential commit number for that day |
 
 Example:
 
 ```text
-v0.52.192.001
+"red| v0.52.192.001 |Quests|Objective KILL Definition"
 ```
 
 If multiple commits are made during the same development day, increment only the commit number.
@@ -275,17 +277,20 @@ aj
 Example commits:
 
 ```bash
-git commit -m "red | v0.52.192.001 | Quests | Objective KILL Definition"
+git commit -m "red| v0.52.192 |Quests|Objective KILL Definition"
+git commit -m "red| v0.52.192.001 |Quest Menu|Tracking Authority"
 
-git commit -m "red | v0.52.192.002 | Quest Menu | Tracking Authority"
-
-git commit -m "sam | v0.52.192.003 | Inventory | Stack Merge"
+git commit -m "sam| v0.52.192 |Inventory|Drag & Drop"
+git commit -m "sam| v0.52.192.001 |Inventory|Stack Merge"
 ```
 
 ---
 
 ## Guidelines
 
+- **Major**, **milestone**, and **development day** values are managed by Red (unauthorizedlogin).
+- Contributors should only increment the commit suffix (`.001`, `.002`, etc.) when making additional commits on the current development day.
+- Milestone changes will always be clearly announced
 - Keep descriptions short and descriptive.
 - Use the primary system affected.
 - One feature or fix per commit whenever practical.
