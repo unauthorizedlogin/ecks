@@ -33,13 +33,13 @@ Development updates, system breakdowns, and framework progress are shared throug
 - [Systems Documentation](./docs)
 - [Changelog](./docs/CHANGELOG.md)
 - [Roadmap](./docs/ROADMAP.md)
-[Coming - Contributing](./CONTRIBUTING.md)
+- [Coming - Contributing](./CONTRIBUTING.md)
 
 ## 🎨 Media:
 
 - [Screenshots](./screenshots)
-[Coming - Videos](./videos)
-[Coming - Artwork](./art)
+- [Coming - Videos](./videos)
+- [Coming - Artwork](./art)
 
 ## Built With
 
