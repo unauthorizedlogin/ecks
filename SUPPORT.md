@@ -10,7 +10,7 @@ Support is provided through the official Discord community where users can ask q
 
 Join the official Discord server:
 
-[Discord](https://discord.gg/npFNpxcryF)
+[ecks](https://discord.gg/npFNpxcryF)
 
 The Discord server is the primary location for:
 
