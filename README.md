@@ -121,6 +121,25 @@ The result is a workflow where creators can configure and customize the majority
 
 ---
 
+## 🛠️ Add Ons
+
+The ecks Framework includes a collection of editor-based creator tools designed to accelerate content production while maintaining framework standards.
+
+These tools extend the Godot editor workflow by allowing developers to create framework-compatible content through dedicated interfaces rather than manually configuring every resource and scene.
+
+For an overview of the system check out the README:
+
+- [Creator Tools](./docs/addons/README.md)
+
+Or, if you'd prefer a specific topic you can access them directly here:
+
+- [Item Creator](./docs/addons/item_creator.md)
+- [XP Analyzer](./docs/addons/xp_analyzer.md)
+
+Note: all of these documents are also available in the subsystems README.
+
+---
+
 # Engine Features
 
 ecks is a modular, data-driven ARPG framework built around reusable gameplay systems rather than one-off implementations.
@@ -307,7 +326,7 @@ Note: all of these documents are also available in the subsystems README.
 
 ---
 
-## 🛠️ Database Framework
+## 🛠️ Database Framework System
 
 The Database Framework provides centralized runtime access to dialogue resources through the engine's standard database architecture.
 
@@ -331,7 +350,7 @@ Note: all of these documents are also available in the subsystems README.
 
 ---
 
-## 🛠️ Generator Framework
+## 🛠️ Generator Framework System
 
 The Generator System provides a data-driven content creation pipeline for converting structured creator data into runtime-ready engine resources.
 
@@ -355,25 +374,6 @@ Or, if you'd prefer a specific topic you can access them directly here:
 - [Quest Generator](./docs/data/generators/quest_generator.md)
 - [Stat Formula Generator](./docs/data/generators/stat_formula_generator.md)
 - [XP Generator](./docs/data/generators/xp_generators.md)
-
-Note: all of these documents are also available in the subsystems README.
-
----
-
-## 🛠️ Add Ons
-
-The ecks Framework includes a collection of editor-based creator tools designed to accelerate content production while maintaining framework standards.
-
-These tools extend the Godot editor workflow by allowing developers to create framework-compatible content through dedicated interfaces rather than manually configuring every resource and scene.
-
-For an overview of the system check out the README:
-
-- [Creator Tools](./docs/addons/README.md)
-
-Or, if you'd prefer a specific topic you can access them directly here:
-
-- [Item Creator](./docs/addons/item_creator.md)
-- [XP Analyzer](./docs/addons/xp_analyzer.md)
 
 Note: all of these documents are also available in the subsystems README.
 
