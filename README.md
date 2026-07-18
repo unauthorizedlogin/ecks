@@ -31,18 +31,18 @@ Development updates, system breakdowns, and framework progress are shared throug
 - Stage: pre-alpha
 - Version: 0.52.196
 - Date: 7/18/2026
+- [Changelog](./docs/CHANGELOG.md)
 
 ## 📖 Documentation:
 
-- [Systems Documentation](./docs)
-- [Changelog](./docs/CHANGELOG.md)
-- [Roadmap](./docs/ROADMAP.md)
+- [Document Directory](./docs)
 - [Contributing](./CONTRIBUTING.md)
+- [Roadmap](./docs/ROADMAP.md)
 - [Support](./SUPPORT.md)
 
 ## 🎨 Media:
 
-- [Media README](./media/README.md)
+- [Media Directory](./media)
 - [Screenshots](./media/screenshots)
 - [Videos](./media/videos)
 - [Artwork](./media/art)
