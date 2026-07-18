@@ -26,7 +26,7 @@ The Item Creator allows creators to build and manage large item databases throug
 
 **Documentation:** 
 
-- [Item Creator](./docs/addons/item_creator.md)
+- [Item Creator](./item_creator.md)
 
 ---
 
@@ -41,6 +41,6 @@ The XP Analyzer helps creators design and balance progression systems by making 
 
 **Documentation:** 
 
-- [XP Analyzer](./docs/addons/xp_analyzer.md)
+- [XP Analyzer](./xp_analyzer.md)
 
 ---
