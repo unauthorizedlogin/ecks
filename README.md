@@ -26,8 +26,6 @@ Development updates, system breakdowns, and framework progress are shared throug
 - Version: 0.52.196
 - Date: 7/18/2026
 
----
-
 ## 📖 Documentation:
 
 - [Systems Documentation](./docs)
@@ -47,8 +45,6 @@ Development updates, system breakdowns, and framework progress are shared throug
 - GDScript
 - Godot Resources
 - Data-driven architecture
-
----
 
 # 🧠 Framework Philosophy
 
