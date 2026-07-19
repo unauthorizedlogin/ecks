@@ -31,6 +31,39 @@ The Discord community is also a place for:
 
 ---
 
+# GitHub Discussions
+
+GitHub Discussions is available for longer-form conversations about ecks development and framework usage.
+
+Use Discussions for:
+
+- Architecture discussions
+- Implementation questions
+- Framework ideas
+- Community conversations
+- Sharing projects built with ecks
+- General feedback and suggestions
+
+Discussions are intended for conversations that do not require active tracking or resolution.
+
+Visit the repository [Discussions](https://github.com/unauthorizedlogin/ecks/discussions)
+
+---
+
+# Choosing the Right Channel
+
+Use the following guidelines:
+
+| Need | Where to go |
+| --- | --- |
+| Need help using ecks | Discord |
+| Want to discuss an idea | GitHub Discussions |
+| Found a reproducible bug | GitHub Issues |
+| Requesting a tracked feature | GitHub Issues |
+| Security vulnerability | Private Security Report |
+
+---
+
 # GitHub Issues
 
 Bug reports and feature requests are tracked publicly through GitHub:
