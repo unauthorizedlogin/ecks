@@ -1,27 +1,26 @@
 # Security Policy
 
-Thank you for helping keep the ecks RPG Engine secure.
+Thank you for helping keep the ecks RPG Framework secure.
 
-This document explains how to report potential security issues.
+This document explains how to responsibly report potential security vulnerabilities.
 
 ---
 
 # Reporting a Security Issue
 
-If you discover a potential security vulnerability, please do not create a public issue.
+If you discover a potential security vulnerability, **please do not create a public GitHub Issue or Discussion.**
 
-Instead, report the issue privately through:
+Instead, submit a private vulnerability report using GitHub's [**Private Vulnerability Reporting**](https://github.com/unauthorizedlogin/ecks/security/advisories) feature.
 
-- Discord support channel
-- Direct contact with the project maintainer
+https://github.com/unauthorizedlogin/ecks/security/advisories
 
-Please include:
+Please include, if possible:
 
-- Description of the vulnerability
-- Steps to reproduce
-- Affected version
-- Potential impact
-- Any relevant screenshots, logs, or examples
+- A clear description of the vulnerability
+- Steps to reproduce the issue
+- The affected ecks version
+- The potential security impact
+- Any relevant screenshots, logs, or proof-of-concept examples
 
 ---
 
@@ -29,47 +28,53 @@ Please include:
 
 Examples include:
 
-- Vulnerabilities affecting user data
+- Vulnerabilities affecting user or developer data
 - Unsafe file handling
-- Code execution risks
-- Exploitable permissions issues
+- Arbitrary code execution
+- Privilege escalation or permission bypass
 - Distribution or packaging vulnerabilities
-- Issues that could affect other developers using the framework
+- Security issues affecting projects built with or distributed alongside the framework
 
 ---
 
 # What Is Not a Security Issue?
 
-The following should be reported through normal support channels:
+The following should be reported through the normal GitHub issue tracker or community support channels:
 
 - Gameplay bugs
 - UI issues
 - Missing features
 - Balance concerns
-- Documentation problems
-- General errors
+- Documentation errors
+- General framework bugs
+- Feature requests
 
 ---
 
 # Response Process
 
-Reports will be reviewed and investigated as soon as possible.
+Every report will be reviewed privately.
 
 If a valid security issue is confirmed:
 
-- The issue will be prioritized appropriately
-- A fix will be developed
-- Release notes may be provided after resolution
+- The issue will be investigated and prioritized.
+- A fix will be developed and tested.
+- A security advisory may be published after a fix is available.
+- Acknowledgment may be given to the reporter unless they request to remain anonymous.
 
 ---
 
 # Scope
 
-The security policy applies to:
+This policy applies to:
 
-- ecks RPG Framework/Engine
-- Official tools
+- The ecks RPG Framework
+- Official development tools
 - Official documentation
 - Official distribution packages
 
-Third-party plugins, assets, and external dependencies are covered by their respective maintainers.
+Third-party plugins, assets, libraries, and dependencies remain subject to their respective maintainers and security policies.
+
+---
+
+Thank you for helping keep the ecks ecosystem secure.
