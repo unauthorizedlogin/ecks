@@ -23,15 +23,10 @@ Follow the development of ecks and the Adventure RPG project:
 - 🎮 itch.io: [ecks on itch.io](https://unauthorizedlogin.itch.io)
 - 🕹️ gamedev: [Game Development](https://gamedev.net/members/368596-unauthorizedlogin/)
 
-- 💡 Discussions: [GitHub Discussions]()
-- 🐛 Issues: [Bug Reports & Feature Requests]()
+- 💡 Discussions: [ecks Discussions](https://github.com/unauthorizedlogin/ecks/discussions)
+- 🐛 Issues: [Bug Reports & Feature Requests](https://github.com/unauthorizedlogin/ecks/issues)
 
 Development updates, system breakdowns, and framework progress are shared through regular devlogs and community discussions.
-
-
-
-
-
 
 ## **Development Status:**
 
