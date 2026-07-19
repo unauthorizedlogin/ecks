@@ -1,107 +1,72 @@
 # Support
 
-Need help with the ecks RPG Engine?
+Need help with the ecks RPG Framework?
 
-Support is provided through the official Discord community where users can ask questions, report issues, and receive assistance.
+Support is provided through the official Discord community, while bugs and feature requests are tracked publicly through the GitHub repository.
 
 ---
 
-# Discord Support
+# Discord Community
 
 Join the official Discord server:
 
 [ecks](https://discord.gg/npFNpxcryF)
 
-The Discord server is the primary location for:
+Discord is the primary place for:
 
 - Technical support
-- Bug reports
-- Feature discussions
-- Development updates
+- Setup and implementation questions
+- Development discussions
 - Community assistance
+- Project updates
 
 ---
 
-# Getting Support
+# GitHub Issues
 
-Before submitting a support request, please check the current issue tracker.
+Bug reports and feature requests are tracked publicly through GitHub:
 
-Existing issues may already have:
+[Issues](https://github.com/unauthorizedlogin/ecks/issues)
 
-- Known workarounds
-- Active investigations
-- Planned fixes
-- Resolution details
+Before creating a new issue:
 
-Checking existing reports helps prevent duplicate tickets and allows development efforts to stay focused.
+1. Search existing issues.
+2. Confirm the issue or suggestion has not already been reported.
+3. Add additional information to an existing issue if applicable.
+4. Create a new issue if one does not already exist.
+
+Using GitHub Issues helps keep development organized and allows the community to follow progress.
 
 ---
 
-# Support Tickets
+# Reporting a Bug
 
-If your issue has not already been reported, create a support ticket through Discord.
+When submitting a bug report, please include:
 
-When submitting a ticket, please include:
-
-- Engine version
-- System or feature affected
+- ecks version
+- Affected system
 - Description of the issue
-- Steps to reproduce the problem
+- Steps to reproduce
 - Expected behavior
 - Actual behavior
 - Screenshots, logs, or videos if available
 
-Example:
-
-```
-
-Version:
-v0.xx.xx
-
-System:
-Quest System
-
-Issue:
-Quest objectives are not updating after completing an event.
-
-Steps:
-
-1. Start quest
-2. Complete objective
-3. Return to NPC
-4. Objective remains incomplete
-
-```
-
-Providing detailed information helps resolve issues faster.
+GitHub's issue forms will guide you through the information needed to create a complete report.
 
 ---
 
-# Bug Reports
-
-Active bug reports are tracked publicly to provide visibility into known issues and development progress.
-
-Before creating a ticket:
-
-1. Review existing bug reports
-2. Check if your issue matches an existing report
-3. Add additional information if the issue already exists
-4. Create a new support ticket if the issue is not currently tracked
-
----
-
-# Feature Requests
+# Requesting a Feature
 
 Feature suggestions are welcome.
 
-Feature discussions should include:
+When submitting a feature request, consider including:
 
 - The problem the feature solves
 - Why it would improve the framework
-- Possible use cases
+- Potential use cases
 - Examples or references
 
-Feature requests may be reviewed and prioritized based on development goals and project direction.
+Feature requests are reviewed and prioritized based on project goals and the overall roadmap.
 
 ---
 
@@ -109,10 +74,10 @@ Feature requests may be reviewed and prioritized based on development goals and 
 
 The Discord community is also a place for:
 
-- Sharing projects created with the framework
-- Discussing implementation approaches
-- Learning from other developers
-- Following development progress
+- Sharing projects built with ecks
+- Discussing implementation ideas
+- Getting development advice
+- Following framework progress
 
 ---
 
@@ -125,13 +90,12 @@ Support response times may vary depending on:
 - Current workload
 - Availability
 
-Critical issues affecting core functionality will receive priority.
+Critical issues affecting core framework functionality will receive priority.
 
 ---
 
 # Thank You
 
-Thank you for supporting the development of the Ecks RPG Engine.
+Thank you for supporting the development of the ecks RPG Framework.
 
-Community feedback, bug reports, and discussions help improve the framework and shape its future development.
-```
+Community feedback, bug reports, feature requests, and discussions all help improve the framework and shape its future.
