@@ -127,10 +127,10 @@ Creating database content:
 
 The framework automatically:
 
-✅ Detects resources
-✅ Generates index entries
-✅ Loads database entries
-✅ Makes resources available at runtime
+- ✅ Detects resources
+- ✅ Generates index entries
+- ✅ Loads database entries
+- ✅ Makes resources available at runtime
 
 ---
 
@@ -184,7 +184,7 @@ That keeps every database README consistent and avoids having 15 copies of the s
 
 **Documentation:**
 
-- [Dialogue Database](./docs/data/databases/dialogue_database.md)
+- [Dialogue Database](./dialogue_database.md)
 
 
 ---
@@ -226,7 +226,7 @@ Gameplay Systems
 
 **Documentation:**
 
-- [Difficulty Database](./docs/data/databases/difficulty_database.md)
+- [Difficulty Database](./difficulty_database.md)
 
 ---
 
@@ -268,7 +268,7 @@ Entity Systems
 
 **Documentation:**
 
-- [Class Database](./docs/data/databases/class_database.md)
+- [Class Database](./class_database.md)
 
 ---
 
@@ -313,7 +313,7 @@ NPC Systems
 
 **Documentation:**
 
-* [NPC Database](./docs/data/databases/npc_database.md)
+* [NPC Database](./npc_database.md)
 
 ---
 
@@ -365,7 +365,7 @@ Gameplay Systems
 
 **Documentation:**
 
-* [Item Database](./docs/data/databases/item_database.md)
+* [Item Database](./item_database.md)
 
 ---
 
@@ -410,7 +410,7 @@ World Systems
 
 **Documentation:**
 
-* [Map Database](./docs/data/databases/map_database.md)
+* [Map Database](./map_database.md)
 
 ---
 
@@ -453,7 +453,7 @@ Stat Systems
 
 **Documentation:**
 
-* [Stat Formula Database](./docs/data/databases/stat_formula_database.md)
+* [Stat Formula Database](./stat_formula_database.md)
 
 ---
 
@@ -501,6 +501,6 @@ Quest Runtime Systems
 
 **Documentation:**
 
-* [Quest Database](./docs/data/databases/quest_database.md)
+* [Quest Database](./quest_database.md)
 
 ---
