@@ -20,6 +20,16 @@ Discord is the primary place for:
 - Community assistance
 - Project updates
 
+## Community Support
+
+The Discord community is also a place for:
+
+- Sharing projects built with ecks
+- Discussing implementation ideas
+- Getting development advice
+- Following framework progress
+
+
 ---
 
 # GitHub Issues
@@ -67,17 +77,6 @@ When submitting a feature request, consider including:
 - Examples or references
 
 Feature requests are reviewed and prioritized based on project goals and the overall roadmap.
-
----
-
-# Community Support
-
-The Discord community is also a place for:
-
-- Sharing projects built with ecks
-- Discussing implementation ideas
-- Getting development advice
-- Following framework progress
 
 ---
 
