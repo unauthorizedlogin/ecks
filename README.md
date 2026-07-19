@@ -79,7 +79,7 @@ For a detailed breakdown of each Layer & and its role, documentation can be foun
 
 ecks is designed to support both framework developers and content creators.
 
-A creator should be able to define:
+A creator is able to define:
 
 - An NPC's role
 - A quest's objectives
