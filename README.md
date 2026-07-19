@@ -25,6 +25,7 @@ Follow the development of ecks and the Adventure RPG project:
 
 - 💡 Discussions: [ecks Discussions](https://github.com/unauthorizedlogin/ecks/discussions)
 - 🐛 Issues: [Bug Reports & Feature Requests](https://github.com/unauthorizedlogin/ecks/issues)
+- 🔒 Security Advisories: [Private Vulnerability Reporting](https://github.com/unauthorizedlogin/ecks/security/advisories)
 
 Development updates, system breakdowns, and framework progress are shared through regular devlogs and community discussions.
 
