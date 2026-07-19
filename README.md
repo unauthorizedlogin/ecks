@@ -141,7 +141,7 @@ Features include:
 - Battle-tested CSV → PO generator workflow
 - Generator-based translation management
 - Over **14,000 unique localization keys**
-- Support for **23 languages**
+- Translation infrastructure configured for **23 languages.**
 - Approximately **322,000 translated strings** (14,000+ keys × 23 languages)
 - At an average of **7 words per string**, the framework currently manages over **2.25 million localized words**
 - Localization-ready resources, menus, systems, and templates
