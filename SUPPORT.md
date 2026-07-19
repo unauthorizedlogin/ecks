@@ -29,7 +29,6 @@ The Discord community is also a place for:
 - Getting development advice
 - Following framework progress
 
-
 ---
 
 # GitHub Issues
