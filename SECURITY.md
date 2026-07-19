@@ -10,9 +10,7 @@ This document explains how to responsibly report potential security vulnerabilit
 
 If you discover a potential security vulnerability, **please do not create a public GitHub Issue or Discussion.**
 
-Instead, submit a private vulnerability report using GitHub's [**Private Vulnerability Reporting**](https://github.com/unauthorizedlogin/ecks/security/advisories) feature.
-
-https://github.com/unauthorizedlogin/ecks/security/advisories
+Instead, submit a private vulnerability report using the repository [**Private Vulnerability Reporting**](https://github.com/unauthorizedlogin/ecks/security/advisories) feature.
 
 Please include, if possible:
 
