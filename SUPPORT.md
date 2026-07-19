@@ -31,9 +31,13 @@ The Discord community is also a place for:
 
 ---
 
-# GitHub Discussions
+# ecks Discussions
 
-GitHub Discussions is available for longer-form conversations about ecks development and framework usage.
+ecks Discussions are also available for longer-form conversations about ecks development and framework usage.
+
+You can visit the discussions here:
+
+[Discussions](https://github.com/unauthorizedlogin/ecks/discussions)
 
 Use Discussions for:
 
@@ -45,8 +49,6 @@ Use Discussions for:
 - General feedback and suggestions
 
 Discussions are intended for conversations that do not require active tracking or resolution.
-
-Visit the repository [Discussions](https://github.com/unauthorizedlogin/ecks/discussions)
 
 ---
 
