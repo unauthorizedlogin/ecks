@@ -126,6 +126,26 @@ Custom override fields are available when a project needs unique wording, allowi
 
 The result is a workflow where creators can configure and customize the majority of framework systems directly through Godot's editor, while still retaining the ability to extend or replace systems with custom code when desired.
 
+## 🌐 Localization
+
+ecks is built with localization as a core framework feature rather than an afterthought.
+
+Every player-facing text field throughout the framework is already wrapped with `tr()`, including UI, menus, dialogue, quests, objectives, items, events, combat messages, notifications, and gameplay systems. Localization is explicitly authored and does not rely on automatic machine translation at runtime.
+
+The framework includes a production-tested CSV → PO generation pipeline that has been battle-tested throughout development and is designed to scale alongside the project.
+
+Features include:
+
+- Framework-wide `tr()` integration for all player-visible text
+- Data-driven localization pipeline
+- Battle-tested CSV → PO generator workflow
+- Generator-based translation management
+- Over **14,000 unique localization keys**
+- Support for **23 languages**
+- Approximately **322,000 translated strings** (14,000+ keys × 23 languages)
+- At an average of **7 words per string**, the framework currently manages over **2.25 million localized words**
+- Localization-ready resources, menus, systems, and templates
+
 ## 🛠️ Add Ons
 
 The ecks Framework includes a collection of editor-based creator tools designed to accelerate content production while maintaining framework standards.
