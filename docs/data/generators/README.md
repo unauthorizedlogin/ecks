@@ -131,7 +131,7 @@ The system is responsible for:
 
 Generated translation files are consumed by the runtime localization pipeline.
 
-- [Localization Generator](./docs/data/generators/po_generator.md)
+- [Localization Generator](./po_generator.md)
 
 ---
 
@@ -292,7 +292,7 @@ Manages:
 
 Generated from CSV data and consumed by the Class Database runtime pipeline.
 
-- [Class Generator](./docs/data/generators/class_generator.md)
+- [Class Generator](./class_generator.md)
 
 ---
 
@@ -315,7 +315,7 @@ Manages:
 
 Generated from CSV data and consumed by the Class Database runtime pipeline.
 
-- [Class Rule Generator](./docs/data/generators/class_rule_generator.md)
+- [Class Rule Generator](./class_rule_generator.md)
 
 ---
 
@@ -339,7 +339,7 @@ Manages:
 
 Generated from CSV data and consumed by the Credits runtime pipeline.
 
-- [Credits Generator](./docs/data/generators/credits_generator.md)
+- [Credits Generator](./credits_generator.md)
 
 ---
 
@@ -362,7 +362,7 @@ Manages:
 
 Generated from CSV data and consumed by the Dialogue runtime pipeline.
 
-- [Dialogue Generators](./docs/data/generators/dialogue_generators.md)
+- [Dialogue Generators](./dialogue_generators.md)
 
 ---
 
@@ -386,7 +386,7 @@ Manages:
 
 Generated from CSV data and consumed by the Difficulty Database runtime pipeline.
 
-- [Difficulty Generator](./docs/data/generators/difficulty_generator.md)
+- [Difficulty Generator](./difficulty_generator.md)
 
 ---
 
@@ -412,7 +412,7 @@ The system is responsible for:
 
 Generated resources are consumed by the Item Database runtime pipeline.
 
-- [Item Generator](./docs/data/generators/item_generator.md)
+- [Item Generator](./item_generator.md)
 
 ---
 
@@ -436,7 +436,7 @@ Manages:
 
 Generated from CSV data and consumed by the Map Database runtime pipeline.
 
-- [Map Generator](./docs/data/generators/map_generator.md)
+- [Map Generator](./map_generator.md)
 
 ---
 
@@ -459,7 +459,7 @@ Manages:
 
 Generated from CSV data and consumed by the NPC Database runtime pipeline.
 
-- [NPC Generator](./docs/data/generators/npc_generator.md)
+- [NPC Generator](./npc_generator.md)
 
 ---
 
@@ -480,7 +480,7 @@ Manages:
 
 Generated from CSV data and consumed by the Stat Formula Database runtime pipeline.
 
-- [Stat Formula Generator](./docs/data/generators/stat_formula_generator.md)
+- [Stat Formula Generator](./stat_formula_generator.md)
 
 ---
 
@@ -503,7 +503,7 @@ Manages:
 
 Generated from CSV data and consumed by the Quest Database runtime pipeline.
 
-- [Quest Generator](./docs/data/generators/quest_generator.md)
+- [Quest Generator](./quest_generator.md)
 
 ---
 
@@ -524,6 +524,6 @@ The system is responsible for:
 
 Generated resources are consumed by the Character Progression runtime pipeline.
 
-- [XP Generator](./docs/data/generators/xp_generator.md)
+- [XP Generator](./xp_generator.md)
 
 ---
