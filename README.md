@@ -146,7 +146,7 @@ Features include:
 - At an average of **7 words per string**, the framework currently manages over **2.25 million localized words**
 - Localization-ready resources, menus, systems, and templates
 
-For details on the localization architecture, translation workflow, and CSV → PO generator, see the Localization documentation and PO Generator documentation.
+For details on the localization architecture, translation workflow, and CSV → PO generator, see the [Localization](./docs/system/engine/localization.md) and [PO Generator](./docs/system/data/generators/po_generator.md) documentation.
 
 ## 🛠️ Add Ons
 
