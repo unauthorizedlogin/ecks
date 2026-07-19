@@ -1,4 +1,4 @@
-# ecks — Godot RPG Framework
+# ecks — RPG Framework
 
 ecks (pronounced "ex") is a fully data-driven RPG framework created by **ReD** AKA **unauthorizedlogin** for Godot Engine.
 
