@@ -13,7 +13,7 @@ body:
         - label: I searched existing issues before creating this report.
           required: true
 
-  - type: dropdown
+- type: dropdown
     id: severity
     attributes:
       label: Severity
@@ -23,7 +23,7 @@ body:
         - Moderate (Feature impaired)
         - Minor (Visual / Cosmetic)
 
-  - type: input
+- type: input
     id: version
     attributes:
       label: Engine Version
