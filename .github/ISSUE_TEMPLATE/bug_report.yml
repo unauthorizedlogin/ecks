@@ -39,9 +39,9 @@ body:
       label: Has this worked before?
       description: Did this feature work correctly in an earlier version?
       options:
-        - Yes
-        - No
-        - I don't know
+        - "Yes"
+        - "No"
+        - "I don't know"
     validations:
       required: true
 
