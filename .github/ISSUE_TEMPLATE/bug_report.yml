@@ -35,12 +35,12 @@ body:
     validations:
       required: true
 
-   - type: input
-   id: subsystem
-   attributes:
-     label: Affected Subsystem
-     description: If known, specify the subsystem.
-     placeholder: "Example: Chunks, Teleporter, Inventory"
+  - type: input
+    id: subsystem
+    attributes:
+      label: Affected Subsystem
+      description: If known, specify the subsystem.
+      placeholder: "Example: Chunks, Teleporter, Inventory"
 
   - type: textarea
     id: issue
