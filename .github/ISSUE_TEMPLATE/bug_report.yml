@@ -3,7 +3,7 @@ description: Report a problem with the ecks RPG Framework
 title: "[Bug] "
 labels:
   - bug
-  - help wanted
+  - needs_triage
 body:
 
   - type: checkboxes
