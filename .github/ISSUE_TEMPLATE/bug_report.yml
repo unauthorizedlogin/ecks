@@ -5,6 +5,24 @@ labels:
   - bug
 body:
 
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: I searched existing issues before creating this report.
+          required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      options:
+        - Critical (Crash / Data Loss)
+        - Major (System unusable)
+        - Moderate (Feature impaired)
+        - Minor (Visual / Cosmetic)
+
   - type: input
     id: version
     attributes:
@@ -43,16 +61,20 @@ body:
       placeholder: "Example: Chunks, Teleporter, Inventory"
 
   - type: textarea
-    id: behavior
+    id: expected_behavior
     attributes:
-      label: Expected vs Actual Behavior
-      description: What should happen, and what happens instead?
+      label: Expected Behavior
+      description: What should happen?
       placeholder: |
-       Expected:
-       Teleporters should load the destination chunk.
+        Teleporters should load the destination chunk before moving the player.
 
-       Actual:
-       Player is moved but chunk data does not load.
+  - type: textarea
+    id: actual_behavior
+    attributes:
+      label: Actual Behavior
+      description: What happens instead?
+      placeholder: |
+        Player is moved, but chunk data does not load correctly.
 
   - type: textarea
     id: steps
