@@ -34,13 +34,23 @@ body:
       required: true
 
   - type: dropdown
-    id: regression
+    id: worked_before
     attributes:
-      label: Regression
+      label: Has this worked before?
+      description: Did this feature work correctly in an earlier version?
       options:
-        - New issue
-        - Previously working
-        - Unknown
+        - Yes
+        - No
+        - I don't know
+    validations:
+      required: true
+
+  - type: input
+    id: last_working_version
+    attributes:
+      label: Last Known Working Version (Optional)
+      description: If it worked before, which version was the last one where it worked correctly?
+      placeholder: "Example: v0.52.194"
 
   - type: checkboxes
     id: system
