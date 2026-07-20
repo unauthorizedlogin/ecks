@@ -43,12 +43,16 @@ body:
       placeholder: "Example: Chunks, Teleporter, Inventory"
 
   - type: textarea
-    id: issue
+    id: behavior
     attributes:
-      label: Description
-      description: Explain the issue.
-    validations:
-      required: true
+      label: Expected vs Actual Behavior
+      description: What should happen, and what happens instead?
+      placeholder: |
+      Expected:
+      Teleporters should load the destination chunk.
+
+      Actual:
+      Player is moved but chunk data does not load.
 
   - type: textarea
     id: steps
