@@ -35,52 +35,12 @@ body:
     validations:
       required: true
 
-  - type: checkboxes
-    id: subsystem
-    attributes:
-      label: Affected Subsystem
-      description: Which specific area is affected?
-      options:
-        - label: Item Creator
-        - label: XP Analyzer
-        - label: Databases
-        - label: Generators
-        - label: Templates
-        - label: Crafting
-        - label: Currency
-        - label: Shops
-        - label: Trading
-        - label: Behaviors
-        - label: Characters
-        - label: Class
-        - label: Combat
-        - label: Difficulty
-        - label: Effects
-        - label: NPC
-        - label: Stats
-        - label: XP
-        - label: Bootloader
-        - label: Title Screen
-        - label: Start Menu
-        - label: World Injector
-        - label: Chests
-        - label: Equipment
-        - label: Inventory
-        - label: Items
-        - label: Achievements
-        - label: Dialogue
-        - label: Quests
-        - label: HUD
-        - label: Menus
-        - label: Runtime
-        - label: Map Change
-        - label: Chunks
-        - label: Destroyables
-        - label: Environment Audio
-        - label: Environment Weather
-        - label: Maps
-        - label: Teleporter
-        - label: Other
+  - type: input
+  id: subsystem
+  attributes:
+    label: Affected Subsystem
+    description: If known, specify the subsystem.
+    placeholder: "Example: Chunks, Teleporter, Inventory"
 
   - type: textarea
     id: issue
