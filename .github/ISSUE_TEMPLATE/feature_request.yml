@@ -28,9 +28,9 @@ body:
         - Other
 
   - type: textarea
-    id: feature
+    id: feature_summary
     attributes:
-      label: Feature Description
+      label: Feature Summary
       description: Describe the feature or improvement you would like to see added.
       placeholder: |
         Example:
@@ -39,7 +39,7 @@ body:
       required: true
 
   - type: textarea
-    id: problem
+    id: motivation
     attributes:
       label: Motivation
       description: What problem does this solve, or what gameplay/development need does it address?
@@ -77,10 +77,10 @@ body:
       placeholder: "Example: Chunks, Teleporter, Inventory"
 
   - type: textarea
-    id: solution
+    id: design
     attributes:
       label: Suggested Design
-      description: If you have an idea for how this could work, describe it here.
+      description: If you have an idea for how this could work, describe it here. Leave blank if you only want to describe the feature.
       placeholder: |
         Explain your suggested approach, workflow, or implementation idea.
 
@@ -91,7 +91,7 @@ body:
       description: Are there other approaches or workarounds you considered?
 
   - type: textarea
-    id: examples
+    id: context
     attributes:
       label: Additional Context
       description: Add screenshots, examples from other games, links, or additional context.
