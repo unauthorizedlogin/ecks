@@ -11,6 +11,57 @@
 
 ---
 
+# Completed Systems ✅
+
+<details>
+<summary>Engineering Foundation</summary>
+
+- [x] Core project architecture
+- [x] Modular system structure
+- [x] Autoload manager framework
+- [x] Save and load system
+- [x] Version control and development workflow
+- [x] Localization pipeline
+- [x] CSV-driven resource generation
+- [x] Database indexing architecture
+- [x] Runtime resource databases
+- [x] Generator pipeline foundation
+- [x] Modular system documentation
+
+</details>
+
+<details>
+<summary>Core RPG Framework</summary>
+
+- [x] Player movement framework
+- [x] Inventory system foundation
+- [x] Equipment framework
+- [x] Item database architecture
+- [x] Shop system foundation
+- [x] Quest framework
+- [x] Dialogue framework
+- [x] NPC interaction system
+- [x] UI management framework
+- [x] Event-driven system communication
+
+</details>
+
+<details>
+<summary>Character & Progression Systems</summary>
+
+- [x] Character stat framework
+- [x] Primary and derived stats
+- [x] Resistance systems
+- [x] Class data architecture
+- [x] Stat formula database foundation
+- [x] Experience system foundation
+- [x] Difficulty framework foundation
+- [x] Effect system foundation
+
+</details>
+
+---
+
 # Active Development 🚧
 
 ## Item & Economy Expansion
@@ -87,7 +138,7 @@ Current focus:
 
 ---
 
-# Planned 📋
+# Planned Roadmap 📋
 
 ## Phase 1 — Foundational Systems
 
@@ -230,60 +281,6 @@ Example:
 v0.52.195
 
 ```
-
----
-
-
-# Completed Systems ✅
-
-<details>
-<summary>Engineering Foundation</summary>
-
-- [x] Core project architecture
-- [x] Modular system structure
-- [x] Autoload manager framework
-- [x] Save and load system
-- [x] Version control and development workflow
-- [x] Localization pipeline
-- [x] CSV-driven resource generation
-- [x] Database indexing architecture
-- [x] Runtime resource databases
-- [x] Generator pipeline foundation
-- [x] Modular system documentation
-
-</details>
-
-<details>
-<summary>Core RPG Framework</summary>
-
-- [x] Player movement framework
-- [x] Inventory system foundation
-- [x] Equipment framework
-- [x] Item database architecture
-- [x] Shop system foundation
-- [x] Quest framework
-- [x] Dialogue framework
-- [x] NPC interaction system
-- [x] UI management framework
-- [x] Event-driven system communication
-
-</details>
-
-<details>
-<summary>Character & Progression Systems</summary>
-
-- [x] Character stat framework
-- [x] Primary and derived stats
-- [x] Resistance systems
-- [x] Class data architecture
-- [x] Stat formula database foundation
-- [x] Experience system foundation
-- [x] Difficulty framework foundation
-- [x] Effect system foundation
-
-</details>
-
----
 
 Development progress is tracked through:
 
