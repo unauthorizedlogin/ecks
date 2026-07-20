@@ -1,6 +1,6 @@
 name: Bug Report
 description: Report a problem with the ecks RPG Framework
-title: "[Bug] "
+title: "🐞[Bug] "
 labels:
   - bug
   - needs-triage
