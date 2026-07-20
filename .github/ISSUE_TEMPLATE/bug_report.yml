@@ -14,25 +14,91 @@ body:
     validations:
       required: true
 
-  - type: dropdown
+  - type: checkboxes
     id: system
     attributes:
       label: Affected System
-      description: Which system is affected?
+      description: Which major system is affected?
       options:
-        - Quest System
-        - Dialogue System
-        - Inventory System
-        - Combat System
-        - Stats System
-        - Database System
-        - Generator Pipeline
-        - Localization
+        - Core Framework
+        - Addons
+        - Data
+        - Economy
+        - Entity
+        - Launch
+        - Loot
+        - Progression
         - UI
-        - World System
+        - World
+        - Documentation
         - Other
     validations:
       required: true
+
+  - type: checkboxes
+    id: subsystem
+    attributes:
+      label: Affected Subsystem
+      description: Which specific area is affected?
+      options:
+        # Addons
+        - Item Creator
+        - XP Analyzer
+
+        # Data
+        - Databases
+        - Generators
+        - Templates
+
+        # Economy
+        - Crafting
+        - Currency
+        - Shops
+        - Trading
+
+        # Entity
+        - Behaviors
+        - Characters
+        - Class
+        - Combat
+        - Difficulty
+        - Effects
+        - NPC
+        - Stats
+        - XP
+
+        # Launch
+        - Bootloader
+        - Title Screen
+        - Start Menu
+        - World Injector
+
+        # Loot
+        - Chests
+        - Equipment
+        - Inventory
+        - Items
+
+        # Progression
+        - Achievements
+        - Dialogue
+        - Quests
+
+        # UI
+        - HUD
+        - Menus
+        - Runtime
+
+        # World
+        - Map Change
+        - Chunks
+        - Destroyables
+        - Environment Audio
+        - Environment Weather
+        - Maps
+        - Teleporter
+
+        - Other
 
   - type: textarea
     id: issue
