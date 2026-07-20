@@ -6,6 +6,14 @@ labels:
 
 body:
 
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: I searched existing issues before creating this request.
+          required: true
+
   - type: textarea
     id: feature
     attributes:
