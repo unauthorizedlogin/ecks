@@ -3,7 +3,7 @@ description: Suggest an improvement or new capability for the ecks RPG Framework
 title: "[Feature] "
 labels:
   - enhancement
-
+  - needs-triage
 body:
 
   - type: checkboxes
