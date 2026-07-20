@@ -14,6 +14,19 @@ body:
         - label: I searched existing issues before creating this request.
           required: true
 
+  - type: dropdown
+    id: feature_type
+    attributes:
+      label: Feature Type
+      options:
+        - New System
+        - Existing System Enhancement
+        - Workflow Improvement
+        - Tooling
+        - Documentation
+        - Performance
+        - Other
+
   - type: textarea
     id: feature
     attributes:
@@ -28,44 +41,45 @@ body:
   - type: textarea
     id: problem
     attributes:
-      label: Problem or Use Case
+      label: Motivation
       description: What problem does this solve, or what gameplay/development need does it address?
       placeholder: |
         Explain why this feature would be useful.
     validations:
       required: true
 
-  - type: dropdown
+  - type: checkboxes
     id: system
     attributes:
       label: Affected System
-      description: Which area of the framework would this feature impact?
+      description: Which major system is affected?
       options:
-        - Core Framework
-        - Character Systems
-        - Stats System
-        - Combat System
-        - Inventory System
-        - Equipment System
-        - Quest System
-        - Dialogue System
-        - NPC System
-        - Shop System
-        - World System
-        - Database System
-        - Generator Pipeline
-        - Localization
-        - UI System
-        - Developer Tools
-        - Documentation
-        - Other
+        - label: Core Framework
+        - label: Addons
+        - label: Data
+        - label: Economy
+        - label: Entity
+        - label: Launch
+        - label: Loot
+        - label: Progression
+        - label: UI
+        - label: World
+        - label: Documentation
+        - label: Other
     validations:
       required: true
+
+  - type: input
+    id: subsystem
+    attributes:
+      label: Affected Subsystem
+      description: If known, specify the subsystem.
+      placeholder: "Example: Chunks, Teleporter, Inventory"
 
   - type: textarea
     id: solution
     attributes:
-      label: Proposed Solution
+      label: Suggested Design
       description: If you have an idea for how this could work, describe it here.
       placeholder: |
         Explain your suggested approach, workflow, or implementation idea.
@@ -79,7 +93,7 @@ body:
   - type: textarea
     id: examples
     attributes:
-      label: Examples or References
+      label: Additional Context
       description: Add screenshots, examples from other games, links, or additional context.
 
   - type: checkboxes
