@@ -7,188 +7,185 @@
 
 # Current Status
 
-**Development Phase:** Core Framework Expansion  
+**Development Phase:** Core Framework Expansion
+
+---
+
+# Active Development 🚧
+
+## Item & Economy Expansion
+
+Goal:
+> Complete the item pipeline and expand item support for gameplay systems.
 
 Current focus:
 
-- Expanding database-driven architecture
-- Improving generator pipelines
-- Building reusable RPG framework systems
-- Completing core gameplay foundations
-- Expanding public documentation
+- [ ] Expand inventory capacity for additional item categories
+- [ ] Add dedicated crafting material storage
+- [ ] Continue item database expansion
+- [ ] Integrate remaining item categories into gameplay systems
+- [ ] Prepare item systems for future crafting expansion
 
 ---
 
-# Completed ✅
-
-## Foundation Systems
-
-- [x] Core project architecture
-- [x] Autoload manager framework
-- [x] Save and load system
-- [x] Localization pipeline
-- [x] CSV-driven resource generation
-- [x] Database indexing architecture
-- [x] Runtime resource databases
-- [x] Modular system documentation
-
----
-
-## Core RPG Systems
-
-- [x] Player movement framework
-- [x] Inventory system
-- [x] Equipment framework
-- [x] Item database systems
-- [x] Shop system
-- [x] Quest framework
-- [x] Dialogue framework
-- [x] NPC interaction system
-- [x] UI management framework
-
----
-
-## Character Systems
-
-- [x] Character stat framework
-- [x] Primary and derived stats
-- [x] Resistance systems
-- [x] Class data architecture
-- [x] Stat formula database foundation
-
----
-
-# In Progress 🚧
-
-## Character Progression
+## Foundational System Stabilization
 
 Goal:
-> Build a complete RPG character progression framework.
+> Resolve remaining architectural gaps and establish reliable system ownership.
 
-Planned improvements:
+Current focus:
 
-- [ ] Expand class identities
-- [ ] Complete stat formula library
-- [ ] Add skill progression systems
-- [ ] Add character creation workflows
-- [ ] Expand equipment progression
-
----
-
-## Combat System
-
-Goal:
-> Create a flexible ARPG combat foundation.
-
-Planned improvements:
-
-- [ ] Damage calculation expansion
-- [ ] Skill framework
-- [ ] Status effects
-- [ ] Enemy combat behaviors
-- [ ] Combat balancing tools
+- [ ] Refactor Level system into Map system
+- [ ] Update save/load and map transition workflows
+- [ ] Move chunk configuration ownership into MapData
+- [ ] Connect MapData → Chunk Manager → Chunk Loader pipeline
+- [ ] Resolve remaining system integration issues
 
 ---
 
-## World Systems
+## Launch & Framework Architecture
 
 Goal:
-> Build a persistent and expandable game world.
+> Transform launch flow from a centralized controller into a modular orchestration layer.
 
-Planned improvements:
+Current focus:
 
-- [ ] World persistence improvements
-- [ ] NPC schedules and behaviors
-- [ ] Dynamic events
-- [ ] Expanded chunk systems
-- [ ] World interaction systems
+- [ ] Separate player injection from launch responsibilities
+- [ ] Modularize camera injection
+- [ ] Modularize weather injection
+- [ ] Modularize map injection
+- [ ] Improve framework flexibility for multiple genres
 
 ---
 
-## Creator Tools
+## Character & Entity Expansion
 
 Goal:
-> Improve development workflows and make content creation faster.
+> Create a modular actor framework capable of supporting different game styles.
 
-Planned improvements:
+Current focus:
 
-- [ ] Editor utilities
-- [ ] Database management tools
-- [ ] Quest creation tools
-- [ ] Dialogue creation tools
-- [ ] Item creation workflows
-- [ ] Visual authoring tools
+- [ ] Modularize character visuals and animations
+- [ ] Support swappable actor configurations
+- [ ] Expand class identity data
+- [ ] Evaluate character appearance resource architecture
+
+---
+
+## Remaining System Expansion
+
+Goal:
+> Continue expanding existing framework pillars into complete reusable systems.
+
+Current focus:
+
+- [ ] Expand combat framework
+- [ ] Expand effects and status systems
+- [ ] Expand progression systems
+- [ ] Continue creator tooling improvements
+- [ ] Expand documentation and examples
 
 ---
 
 # Planned 📋
 
-## Phase 1 — Framework Foundation
+## Phase 1 — Foundational Systems
 
 Goal:
-> Establish the reusable RPG framework foundation.
+> Establish stable foundations and resolve remaining architectural gaps before major feature expansion.
 
-Systems:
+Focus:
 
-- Database architecture
-- Generator pipelines
-- Runtime systems
-- Localization tools
-- Save systems
-- UI frameworks
+- Complete remaining core framework stabilization
+- Finalize data-driven architecture
+- Improve system ownership and modularity
+- Resolve major milestone issues
+- Strengthen development workflows and documentation
+
+Major Work:
+
+- Item system expansion
+- Inventory expansion for crafting materials
+- Map system refactor
+- Chunk management ownership refactor
+- Launch flow modularization
+- Character / Actor modular architecture
+- Difficulty and stat integration fixes
 
 ---
 
-## Phase 2 — Complete RPG Framework
+## Phase 2 — Framework Baseline Completion
 
 Goal:
-> Finish the major gameplay systems required for a full RPG.
+> Bring existing RPG systems to a reliable baseline suitable for building games.
+
+Focus:
+
+- Complete remaining gameplay foundations
+- Expand incomplete system layers
+- Improve framework flexibility
+- Validate cross-system integration
 
 Systems:
 
-- Combat
-- Skills
-- Classes
-- Equipment progression
-- Crafting
-- Economy
-- Quest expansion
-- World systems
+- Combat expansion
+- Effects and status systems
+- Progression systems
+- Economy systems
+- Crafting systems
+- Quest and dialogue expansion
+- World interaction systems
 
 ---
 
-## Phase 3 — Showcase Game
+## Phase 3 — Playable Demo Slice
 
 Goal:
-> Build a playable experience demonstrating the framework.
+> Create a complete playable experience demonstrating the capabilities of the framework.
 
 Features:
 
 - Playable region
+- Character creation
 - Player progression
-- Enemies
-- NPCs
-- Quests
-- Loot systems
+- Combat loop
+- NPC interactions
+- Quest flow
+- Loot progression
+- Inventory and equipment
 - Complete gameplay loop
 
 ---
 
-## Phase 4 — Content Creation Layer
+## Phase 4 — Game Jam Preparation & Research
 
 Goal:
-> Create tools that allow developers to build content faster.
+> Prepare the framework and development process for external testing through game jam development.
 
-Systems:
+Focus:
 
-- Visual editors
-- Content generators
-- Quest builders
-- Dialogue tools
-- Database interfaces
-- Developer utilities
+- Research game jam requirements
+- Identify scope limitations
+- Create development workflow
+- Build reusable templates
+- Prepare tutorials and documentation
+- Create example projects
 
 ---
+
+## Phase 5 — Alpha Expansion & Beta Preparation
+
+Goal:
+> Use game jam feedback to improve the framework and prepare for the next development phase.
+
+Focus:
+
+- Analyze gameplay feedback
+- Improve framework usability
+- Address discovered limitations
+- Expand documentation
+- Improve creator workflows
+- Prepare beta-level development process
 
 # Future Ideas 💡
 
@@ -233,6 +230,60 @@ Example:
 v0.52.195
 
 ```
+
+---
+
+
+# Completed Systems ✅
+
+<details>
+<summary>Engineering Foundation</summary>
+
+- [x] Core project architecture
+- [x] Modular system structure
+- [x] Autoload manager framework
+- [x] Save and load system
+- [x] Version control and development workflow
+- [x] Localization pipeline
+- [x] CSV-driven resource generation
+- [x] Database indexing architecture
+- [x] Runtime resource databases
+- [x] Generator pipeline foundation
+- [x] Modular system documentation
+
+</details>
+
+<details>
+<summary>Core RPG Framework</summary>
+
+- [x] Player movement framework
+- [x] Inventory system foundation
+- [x] Equipment framework
+- [x] Item database architecture
+- [x] Shop system foundation
+- [x] Quest framework
+- [x] Dialogue framework
+- [x] NPC interaction system
+- [x] UI management framework
+- [x] Event-driven system communication
+
+</details>
+
+<details>
+<summary>Character & Progression Systems</summary>
+
+- [x] Character stat framework
+- [x] Primary and derived stats
+- [x] Resistance systems
+- [x] Class data architecture
+- [x] Stat formula database foundation
+- [x] Experience system foundation
+- [x] Difficulty framework foundation
+- [x] Effect system foundation
+
+</details>
+
+---
 
 Development progress is tracked through:
 
