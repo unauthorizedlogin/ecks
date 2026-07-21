@@ -2,6 +2,47 @@
 
 ---
 
+## [v0.52.198] - 2026-07-20
+
+### Side Quest HUD
+
+**System(s) Affected:** Quest System, Side Quest Tracker, Quest HUD
+
+* Improved side quest tracking synchronization by aligning tracked quest updates with the standard quest selection flow.
+* Added isolated HUD refresh handling so only affected tracked quests rebuild their UI state.
+* Preserved existing tracked quest panels, objective displays, and active animations during tracking changes.
+* Improved tracked quest ordering behavior when quests are added or removed.
+* Added configurable tracking transition animations for side quest HUD updates.
+
+---
+
+## [v0.52.197] - 2026-07-19
+
+### Private Repo Workflow
+
+**System(s) Affected:** Private Repository, Development Workflow, GitHub Management
+
+* Introduced a structured pull request workflow with categorized change tracking, implementation notes, validation checks, and documentation requirements.
+* Added architecture-based system indexing to improve development organization and traceability.
+* Created a GitHub label system aligned with the Ecks architecture and project folder taxonomy.
+* Improved repository workflow consistency for future development and maintenance.
+
+---
+
+## [v0.52.196] - 2026-07-18
+
+### Public Repo & SEO
+
+**System(s) Affected:** Public Repository, Documentation, README, Changelog
+
+* Expanded public repository documentation with remaining generator and database references.
+* Increased public documentation coverage to over 70 architecture and system documents.
+* Published and integrated the project changelog into the public repository.
+* Refined README feature sections to prioritize direct documentation links and improve navigation.
+* Updated repository links following documentation reorganization.
+
+---
+
 ## [v0.52.195] - 2026-07-17
 
 ### Public Repo & SEO
