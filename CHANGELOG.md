@@ -2,6 +2,32 @@
 
 ---
 
+## [v0.52.200] - 2026-07-22
+
+### Combat, Effects & Event Viewer
+
+**System(s) Affected:** Combat, Effect, UI
+
+* Added configurable regeneration delays after taking damage to improve combat pacing and prevent regeneration from masking damage-over-time effects.
+* Added localized display names for StatEffects, separating internal effect IDs from player-facing text with fallback support.
+* Enhanced Event Viewer combat messages with context-aware color formatting for effects and damage values, improving combat readability.
+
+---
+
+## [v0.52.199] - 2026-07-21
+
+### Combat & Effect System Expansion
+
+**System(s) Affected:** Combat System, Effect System, Item System, Generator Framework, Database Architecture
+
+* Unified health-based effect costs through the CombatManager with dedicated damage origin tracking and combat logging.
+* Added configurable StatEffect payment modes, supporting both required-cost and spend-available resource behaviors.
+* Introduced a complete StatEffect generation pipeline with CSV generation, deterministic indexing, and database integration.
+* Migrated item effects to database-driven effect IDs with runtime resolution while preserving the existing EffectManager API.
+* Improved effect processing reliability by fixing recursive OnHit triggers and damage-over-time duration handling.
+
+---
+
 ## [v0.52.198] - 2026-07-20
 
 ### Side Quest HUD
