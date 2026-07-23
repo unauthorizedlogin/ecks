@@ -71,11 +71,11 @@ It manages:
 
 The database handles:
 
-✅ Loading difficulty definitions
-✅ Tracking active difficulty
-✅ Applying player modifiers
-✅ Applying enemy modifiers
-✅ Broadcasting difficulty readiness
+- ✅ Loading difficulty definitions
+- ✅ Tracking active difficulty
+- ✅ Applying player modifiers
+- ✅ Applying enemy modifiers
+- ✅ Broadcasting difficulty readiness
 
 ---
 
@@ -579,11 +579,11 @@ Creating a new difficulty requires:
 
 The engine automatically:
 
-✅ Finds the resource
-✅ Registers the path
-✅ Generates the index
-✅ Loads the difficulty
-✅ Makes it available at runtime
+- ✅ Finds the resource
+- ✅ Registers the path
+- ✅ Generates the index
+- ✅ Loads the difficulty
+- ✅ Makes it available at runtime
 
 ---
 
@@ -652,11 +652,11 @@ without changing code.
 
 Provides:
 
-✅ Generated indexing
-✅ Duplicate protection
-✅ Resource validation
-✅ Centralized difficulty control
-✅ Effect-based scaling
+- ✅ Generated indexing
+- ✅ Duplicate protection
+- ✅ Resource validation
+- ✅ Centralized difficulty control
+- ✅ Effect-based scaling
 
 ---
 
