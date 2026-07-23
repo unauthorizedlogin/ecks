@@ -1,6 +1,6 @@
 # 🧬 Entity System README
 
-The **Entity Systems layer** provides the framework foundation for all gameplay entities within Ecks.
+The **Entity Systems layer** provides the framework foundation for all gameplay entities within ecks.
 
 This layer contains the systems responsible for defining, controlling, and modifying any entity that exists in the game world.
 
@@ -69,7 +69,7 @@ Architecture:
 
 ## 🐾 Behavior System
 
-The **Behavior System** provides modular AI behavior components for entities within the Ecks Framework.
+The **Behavior System** provides modular AI behavior components for entities within the ecks Framework.
 
 It provides reusable behavior modules that can be attached to NPCs, enemies, companions, and world entities without requiring entity-specific logic.
 
@@ -165,7 +165,7 @@ Documentation:
 
 ## 🧬 Class System
 
-The **Class System** provides the identity and rule framework for entities within the Ecks Framework.
+The **Class System** provides the identity and rule framework for entities within the ecks Framework.
 
 It separates numerical character progression from gameplay restrictions by dividing class data into two dedicated layers:
 
@@ -216,7 +216,7 @@ Documentation:
 
 ## ⚔️ Combat System
 
-The **Combat System** provides the centralized combat authority for all entity interactions within the Ecks Framework.
+The **Combat System** provides the centralized combat authority for all entity interactions within the ecks Framework.
 
 All combat requests flow through a unified pipeline where damage is validated, resolved, applied, and broadcast to connected systems.
 
@@ -276,7 +276,7 @@ Documentation:
 
 ## 🎚️ Difficulty System
 
-The **Difficulty System** provides a centralized, data-driven framework for scaling gameplay challenge across the Ecks Framework.
+The **Difficulty System** provides a centralized, data-driven framework for scaling gameplay challenge across the ecks Framework.
 
 Difficulty does not directly modify gameplay systems. Instead, it uses the **Effect System** as the authoritative modification pipeline, allowing difficulty settings to apply the same stat-based changes used by equipment, buffs, debuffs, and other runtime effects.
 
@@ -344,7 +344,7 @@ Documentation:
 
 ## ✨ Effect System
 
-The **Effect System** provides the universal gameplay modification pipeline for the Ecks Framework.
+The **Effect System** provides the universal gameplay modification pipeline for the ecks Framework.
 
 All gameplay modifiers are represented as data-driven `StatEffect` resources and processed through the centralized `EffectManager`.
 
@@ -398,7 +398,7 @@ Documentation:
 
 ## 👤 NPC System
 
-The **NPC System** provides the centralized identity and runtime data layer for all non-player characters within the Ecks Framework.
+The **NPC System** provides the centralized identity and runtime data layer for all non-player characters within the ecks Framework.
 
 NPCs are defined through data-driven `NPCData` resources and accessed through the `NPCDatabase`, allowing multiple gameplay systems to reference NPCs without depending on scene instances.
 
@@ -446,7 +446,7 @@ Documentation:
 
 ## 📊 Stats System
 
-The **Stats System** provides the centralized character attribute and calculation framework for the Ecks Framework.
+The **Stats System** provides the centralized character attribute and calculation framework for the ecks Framework.
 
 It separates raw stat data, runtime calculations, and modifier sources through a layered architecture built around `StatBlock` and `StatManager`.
 
