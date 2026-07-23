@@ -1,299 +1,515 @@
-# ✨ Effect Resource Generator Architecture
+# ⚙️ Effect Resource Generator Architecture
 
-## 🧠 Overview
+## Overview
 
-The **Effect Resource Generator** converts a centralized CSV definition into individual `StatEffect` resources used throughout the engine.
+The Effect Resource Generator provides the asset creation pipeline for the global Effect System.
 
-Rather than creating gameplay effects manually in the Godot editor, designers define effects within a spreadsheet. The generator imports each row, constructs a fully configured `StatEffect` resource, saves it into the appropriate category folder, and rebuilds the runtime index used by the Effect Database.
+It converts CSV-defined effect data into runtime-safe `StatEffect` resources and automatically rebuilds the effect registry index.
 
-This pipeline allows gameplay effects to remain entirely data-driven while supporting large libraries of reusable effects.
+Like other engine data pipelines, the system follows the generated resource architecture:
 
----
+1. **CSV Definition Layer**
 
-# Responsibilities
+   * Creator-facing effect configuration
+   * Defines effect behavior and properties
+   * Supports all StatEffect settings
 
-The Effect Resource Generator is responsible for:
+2. **Resource Generator**
 
-* Reading the Effect CSV.
-* Parsing effect definitions.
-* Creating `StatEffect` resources.
-* Assigning all gameplay configuration fields.
-* Organizing resources into category folders.
-* Saving `.tres` resources.
-* Regenerating the Effect Index after generation.
+   * Converts CSV rows into `.tres` resources
+   * Applies effect configuration
+   * Organizes generated resources by category
 
----
+3. **Generated Index**
 
-# Does Not
+   * Automatically scans generated resources
+   * Creates deterministic runtime paths
+   * Eliminates runtime folder scanning
 
-The generator does **not**:
-
-* Execute gameplay effects.
-* Validate runtime behavior.
-* Apply stat modifications.
-* Handle combat.
-* Manage active buffs or debuffs.
-* Perform runtime lookups.
-* Load effect resources during gameplay.
-
-Its sole responsibility is asset generation.
+This allows effects to be created entirely through data without requiring custom scripts for every new gameplay modifier.
 
 ---
 
-# Generation Pipeline
+# 🏗️ Architecture Overview
+
+```text
+Effect System
+│
+├── Effect CSV Database
+│
+├── Effect Resource Generator
+│   │
+│   └── StatEffect Resources
+│
+├── Effect Index Generator
+│
+└── Runtime Effect Database
+```
+
+---
+
+# 📄 Effect CSV Definition Layer
+
+## effect_strings.csv
+
+The CSV file acts as the authoring database for effects.
+
+Each row represents one effect definition.
+
+Example:
+
+```text
+effect_id:
+burning
+
+category:
+damage
+
+subcategory:
+fire
+
+effect_type:
+DOT
+
+stat_name:
+HP
+
+amount:
+5
+
+duration:
+10
+```
+
+The CSV supports:
+
+* Effect identity
+* Stat modification
+* Effect behavior
+* Timing
+* Costs
+* Tags
+* Revive settings
+* Knockback settings
+
+---
+
+# 📦 Effect Resource Generator
+
+## effect_resource_generator.gd
+
+The generator converts CSV definitions into `StatEffect` resources.
+
+Generation flow:
+
+```text
+CSV Row
+   |
+   ↓
+Create StatEffect
+   |
+   ↓
+Apply Configuration
+   |
+   ↓
+Save .tres Resource
+   |
+   ↓
+Rebuild Effect Index
+```
+
+---
+
+# 🧬 StatEffect Resource Generation
+
+Each generated resource contains:
+
+## Identity
+
+```text
+effect_id
+display_name
+category
+subcategory
+```
+
+Used for:
+
+* Runtime lookup
+* Localization
+* Database organization
+
+---
+
+## Core Effect Data
+
+Generated through:
+
+```gdscript
+_apply_core()
+```
+
+Controls:
+
+* Target stat
+* Amount
+* Percent scaling
+* Effect type
+
+Example:
+
+```text
+Strength Buff
+
+Type:
+STAT_MOD
+
+Stat:
+Strength
+
+Amount:
+10
+```
+
+---
+
+# ⚔️ Effect Types
+
+The generator supports all global effect behaviors.
+
+```text
+STAT_MOD
+OVERRIDE
+HEAL
+DOT
+HOT
+REVIVE
+TEMP_BUFF
+TEMP_DEBUFF
+ENCHANT
+AURA
+PASSIVE
+KNOCKBACK
+```
+
+Examples:
+
+| Effect          | Type     |
+| --------------- | -------- |
+| Strength Potion | STAT_MOD |
+| Burning         | DOT      |
+| Regeneration    | HOT      |
+| Resurrection    | REVIVE   |
+| Weapon Fire     | ENCHANT  |
+| Battle Aura     | AURA     |
+
+---
+
+# ⏱️ Timing Configuration
+
+Generated through:
+
+```gdscript
+_apply_timing()
+```
+
+Supports:
+
+* Trigger type
+* Target type
+* Duration
+* Tick interval
+
+Examples:
+
+```text
+Burning
+
+Trigger:
+OnHit
+
+Duration:
+10 seconds
+
+Tick:
+1 second
+```
+
+---
+
+# 💸 Effect Cost Generation
+
+Generated through:
+
+```gdscript
+_apply_costs()
+```
+
+Effects can consume:
+
+* HP
+* MP
+* Class Resources
+
+Supported payment modes:
+
+```text
+NONE
+
+REQUIRE_FULL
+
+SPEND_AVAILABLE
+```
+
+Example:
+
+```text
+Blood Magic Effect
+
+Cost:
+25% HP
+
+Payment:
+SPEND_AVAILABLE
+```
+
+---
+
+# 🏷️ Effect Tag Generation
+
+Generated through:
+
+```gdscript
+_apply_tags()
+```
+
+CSV:
+
+```text
+fire;damage;magic
+```
+
+becomes:
+
+```text
+[
+ fire,
+ damage,
+ magic
+]
+```
+
+Tags allow future systems to filter and identify effects.
+
+---
+
+# 💀 Special Effect Configuration
+
+The generator supports specialized effect behaviors.
+
+---
+
+## Revive Effects
+
+```gdscript
+_apply_revive()
+```
+
+Supports:
+
+* HP restoration
+* MP restoration
+* Class resource restoration
+* Percentage-based revival
+
+---
+
+## Knockback Effects
+
+```gdscript
+_apply_knockback()
+```
+
+Supports:
+
+* Knockback force
+* Direction configuration
+
+---
+
+# 📁 Generated Resource Structure
+
+Resources are automatically organized by category.
+
+Example:
+
+```text
+effects
+│
+├── damage
+│   ├── fire
+│   │   └── burning.tres
+│   └── poison
+│       └── poison.tres
+│
+├── buff
+│   └── temporary
+│       └── battle_shout.tres
+│
+├── heal
+│   └── instant
+│       └── heal_small.tres
+│
+└── revive
+    └── resurrection
+        └── battle_resurrection.tres
+```
+
+---
+
+# 🗂️ Effect Index Generator
+
+## effect_index_generator.gd
+
+The index generator creates the runtime effect registry.
+
+Generated file:
+
+```text
+effect_index.gd
+```
+
+Contains:
+
+```gdscript
+const EFFECT_PATHS_ALL
+```
+
+with every generated effect resource.
+
+---
+
+# 🔄 Generator Workflow
+
+```text
+Creator Adds Effect CSV Entry
+              |
+              ↓
+Effect Resource Generator
+              |
+              ↓
+Create StatEffect Resource
+              |
+              ↓
+Save .tres File
+              |
+              ↓
+Effect Index Generator
+              |
+              ↓
+Runtime Database Loads Effects
+```
+
+---
+
+# 🛠️ Creator Workflow
+
+Creating a new effect requires:
+
+1. Add a row to the effect CSV.
+2. Configure effect behavior.
+3. Assign category and subcategory.
+4. Run the generator.
+
+The engine automatically:
+
+* ✅ Creates the resource
+* ✅ Places it into the correct folder
+* ✅ Updates the index
+* ✅ Makes the effect available at runtime
+
+---
+
+# 🌎 System Integration
+
+The Effect Resource Generator integrates with:
+
+* Effect Database
+* Effect Manager
+* Items
+* Abilities
+* Potions
+* Equipment
+* Difficulty System
+* Combat System
+
+Example:
 
 ```text
 Effect CSV
-      │
-      ▼
-Effect Resource Generator
-      │
-      ▼
-Parse CSV Row
-      │
-      ▼
-Create StatEffect Resource
-      │
-      ▼
-Assign Effect Properties
-      │
-      ▼
-Save .tres Resource
-      │
-      ▼
-Repeat For Every Row
-      │
-      ▼
-Generate Effect Index
-      │
-      ▼
-Runtime Ready
-```
 
----
+      ↓
 
-# Input
+Effect Resource
 
-The generator reads a single CSV file.
+      ↓
 
-Each row represents one complete gameplay effect.
-
-Typical data includes:
-
-* Effect ID
-* Display Name
-* Category
-* Subcategory
-* Effect Type
-* Target Stat
-* Amount
-* Percentage Mode
-* Trigger Type
-* Target Type
-* Duration
-* Tick Interval
-* Tags
-* Knockback Settings
-* Revive Settings
-* Cost Configuration
-
-The CSV serves as the authoritative source for all generated effect resources.
-
----
-
-# Generated Resource
-
-Each CSV row produces one `StatEffect` resource.
-
-Example:
-
-```text
-burning.tres
-heal_small.tres
-battle_resurrection.tres
-armor_percent.tres
-fire_weapon.tres
-```
-
-Every generated resource contains the full gameplay configuration required at runtime.
-
----
-
-# Property Assignment
-
-The generator separates resource construction into dedicated assignment stages.
-
-## Core Properties
-
-Assigns:
-
-* Effect ID
-* Display Name
-* Target Stat
-* Effect Type
-* Amount
-* Percentage Scaling
-
----
-
-## Timing Properties
-
-Assigns:
-
-* Trigger Type
-* Target Type
-* Duration
-* Tick Interval
-
----
-
-## Cost Properties
-
-Assigns:
-
-* Cost Payment Mode
-* HP Cost
-* MP Cost
-* Resource Cost
-* Percentage Cost Flags
-
----
-
-## Revive Properties
-
-Assigns:
-
-* Revive HP
-* Revive MP
-* Revive Resource
-* Percentage Revive Flags
-
----
-
-## Knockback Properties
-
-Assigns:
-
-* Knockback Force
-
----
-
-## Tags
-
-Parses semicolon-delimited tags from the CSV into the resource's tag array.
-
----
-
-# Output Organization
-
-Generated resources are organized automatically by category and subcategory.
-
-Example:
-
-```text
-effects/
-
-├── aura/
-│   └── support/
-│       └── mana_aura.tres
-│
-├── buff/
-│   ├── stats/
-│   └── temporary/
-│
-├── damage/
-│   ├── fire/
-│   └── poison/
-│
-├── heal/
-│   ├── instant/
-│   └── regen/
-│
-├── passive/
-│
-├── revive/
-│
-└── combat/
-    └── knockback/
-```
-
-This organization is generated entirely from CSV values and requires no manual folder management.
-
----
-
-# Runtime Index Generation
-
-After all resources have been written, the generator automatically executes the **Effect Index Generator**.
-
-The index generator scans every generated effect resource and produces:
-
-```text
-effect_index.gd
-```
-
-containing:
-
-```text
-EFFECT_PATHS_ALL
-```
-
-This master index enables deterministic runtime loading and guarantees export-safe resource inclusion.
-
----
-
-# Runtime Relationship
-
-The generator is part of the content creation pipeline.
-
-```text
-CSV
-   │
-   ▼
-Effect Resource Generator
-   │
-   ▼
-Generated StatEffect Resources
-   │
-   ▼
-Effect Index Generator
-   │
-   ▼
-effect_index.gd
-   │
-   ▼
 Effect Database
-   │
-   ▼
+
+      ↓
+
+Effect Manager
+
+      ↓
+
 Gameplay Systems
 ```
 
-The generator itself is never used during gameplay.
+---
+
+# 📦 Engine Benefits
+
+## Scalable
+
+Supports:
+
+* Unlimited effect definitions
+* New effect categories
+* Expansion content
+* Creator-authored effects
 
 ---
 
-# Design Goals
+## Data Driven
 
-The Effect Resource Generator was designed around several principles:
+Gameplay effects are configured through data instead of hardcoded scripts.
 
-* Spreadsheet-driven content creation.
-* One resource generated per effect.
-* Automatic directory organization.
-* Modular property assignment.
-* Export-safe runtime loading.
-* Minimal manual asset maintenance.
-* Scalable support for large effect libraries.
+Creators can modify:
+
+* Damage values
+* Buff strength
+* Duration
+* Costs
+* Triggers
+
+without changing engine code.
 
 ---
 
-# Benefits
+## Reliable
 
-This generation pipeline provides:
+Provides:
 
-* Rapid creation of large effect databases.
-* Consistent resource formatting.
-* Centralized gameplay balancing through CSV editing.
-* Automatic organization of generated assets.
-* Elimination of repetitive manual resource creation.
-* Seamless integration with the Effect Database and runtime index system.
+* ✅ Generated resources
+* ✅ Deterministic indexing
+* ✅ CSV-driven authoring
+* ✅ Centralized effect configuration
+* ✅ Runtime-safe loading
 
-The Effect Resource Generator serves as the authoring bridge between designer-managed spreadsheets and the engine's runtime effect resources, allowing hundreds or thousands of gameplay effects to be generated consistently from structured data.
+---
+
+# Summary
+
+The Effect Resource Generator provides the creation pipeline for the global Effect System.
+
+By converting CSV definitions into indexed runtime resources, the system allows effects to be authored as reusable gameplay components that can power combat, items, abilities, difficulty modifiers, and future content systems.
