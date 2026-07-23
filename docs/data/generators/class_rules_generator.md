@@ -13,7 +13,6 @@ It provides the rule layer for:
 * Armor restrictions
 * Starting equipment
 * Combat affiliation
-* Visual presentation
 * Class tags
 * Class restrictions
 
@@ -61,7 +60,6 @@ The ClassRuleResource is responsible for:
 * Defining equipment compatibility
 * Defining class identity restrictions
 * Providing starting equipment data
-* Providing visual references
 * Defining combat relationships
 
 ---
@@ -76,6 +74,7 @@ The resource does not:
 * Spawn entities
 * Manage player progression
 * Apply restrictions dynamically
+* Visual presentation
 
 Those systems consume the rule data.
 
@@ -115,27 +114,6 @@ Wizard Rules
 =
 Playable Wizard Entity
 ```
-
----
-
-# 🎨 Visual Configuration
-
-## Visual Group
-
-```gdscript
-@export var spritesheet: Texture2D
-@export var portrait: Texture2D
-@export var animation_library: String
-```
-
-Controls class presentation.
-
-Used by:
-
-* Entity rendering
-* Character creation
-* Dialogue systems
-* UI displays
 
 ---
 
