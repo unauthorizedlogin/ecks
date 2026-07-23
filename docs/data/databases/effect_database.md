@@ -1,6 +1,6 @@
-# Effect Database Architecture
+# ✨ Effect Database Architecture
 
-## Overview
+## 🧠 Overview
 
 The **Effect Database** is the central runtime repository for all reusable `StatEffect` resources within the engine.
 
