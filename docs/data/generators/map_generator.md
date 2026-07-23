@@ -182,4 +182,3 @@ Those responsibilities belong to:
 - Weather System
 - Audio System
 - Save System
-````
