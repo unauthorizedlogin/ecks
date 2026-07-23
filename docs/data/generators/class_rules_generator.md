@@ -510,7 +510,6 @@ Uses:
 
 Uses:
 
-* Visual data
 * Starting equipment
 * Class identity
 
