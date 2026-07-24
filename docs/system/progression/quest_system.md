@@ -311,9 +311,9 @@ Objectives
 Rewards / Dialogue / UI
 
 ```
+---
 
 The Quest System acts as the central authority for quest state, progression, and lifecycle management.
-```
 
 # 📜 Quest Menu System
 
