@@ -82,7 +82,7 @@ Includes:
 
 Documentation for the runtime gameplay systems that power the framework.
 
-📁 **Browse:** [system/](./system/)
+📁 **Browse:** [system](./system/)
 
 ---
 
