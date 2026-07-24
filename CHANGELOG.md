@@ -2,6 +2,32 @@
 
 ---
 
+## [v0.52.202] - 2026-07-24
+
+### Combat Effects & Event Logging
+
+**System(s) Affected:** Effect System, Event Viewer, Localization
+
+* Restored immediate healing effects by correcting StatEffect effect type resolution, re-enabling HP restoration and combat log generation.
+* Expanded localization coverage across combat damage, healing, health cost, and status effect events.
+* Standardized combat log formatting with a consistent source, value, and target message structure.
+* Centralized combat log color handling and enhanced event readability with dedicated source, target, damage, healing, and critical hit formatting.
+
+---
+
+## [v0.52.201] - 2026-07-23
+
+### Stat & Class Resource Improvements
+
+**System(s) Affected:** Stat, Class, Localization, Menus
+
+* Redesigned the stat rebuild pipeline with queued rebuild processing, preventing temporary stat inconsistencies during equipment changes.
+* Added dynamic class resource names sourced directly from StatBlocks for class-specific resource identity.
+* Expanded the localization database with 178 new class resource strings to support future classes and terminology.
+* Integrated dynamic class resource names throughout the UI, including localized regeneration labels and class-specific resource displays.
+
+---
+
 ## [v0.52.200] - 2026-07-22
 
 ### Combat, Effects & Event Viewer
@@ -57,15 +83,15 @@
 
 ## [v0.52.196] - 2026-07-18
 
-### Public Repo & SEO
+### Repository, Quest & UI Improvements
 
-**System(s) Affected:** Public Repository, Documentation, README, Changelog
+**System(s) Affected:** System Management, Stats, Quests, Menus
 
-* Expanded public repository documentation with remaining generator and database references.
-* Increased public documentation coverage to over 70 architecture and system documents.
-* Published and integrated the project changelog into the public repository.
-* Refined README feature sections to prioritize direct documentation links and improve navigation.
-* Updated repository links following documentation reorganization.
+* Expanded the public repository with dedicated documentation landing pages, improved navigation, and official project documentation including roadmap, changelog, contribution guidelines, security policy, and licensing.
+* Standardized private repository workflows with structured GitHub issue templates, pull request templates, version tracking, validation checklists, and architecture-based change tracking.
+* Simplified the Stat Formula Generator by consolidating runtime formula loading into a single deterministic index.
+* Added persistent quest tracking, preserving tracked side quests and the active Story Quest across save and load sessions.
+* Introduced animated Side Quest HUD transitions with smooth panel, objective, and title updates for improved quest tracking presentation.
 
 ---
 
