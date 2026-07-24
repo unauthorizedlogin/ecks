@@ -58,10 +58,11 @@ body:
       label: Affected System
       description: Which major system is affected?
       options:
-        - label: Core Framework
+        - label: System Management
         - label: Addons
         - label: Data
         - label: Economy
+        - label: Engine
         - label: Entity
         - label: Launch
         - label: Loot
