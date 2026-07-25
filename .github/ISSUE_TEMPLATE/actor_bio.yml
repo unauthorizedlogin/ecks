@@ -32,7 +32,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        # Phase: ⭐ Core Character Foundation
+        # ⭐ Core Character Foundation
 
         This section gives us everything needed to create your character.
 
@@ -127,43 +127,55 @@ body:
     id: strengths
     attributes:
       label: Greatest Strengths
-      description: What qualities make this character exceptional?
+      description: What abilities, talents, or qualities give this character an advantage?
       options:
-        - label: Courageous
-        - label: Intelligent
-        - label: Loyal
-        - label: Patient
-        - label: Compassionate
-        - label: Strategic
-        - label: Determined
-        - label: Creative
-        - label: Honest
-        - label: Adaptable
-        - label: Charismatic
-        - label: Disciplined
-        - label: Resourceful
-        - label: Fearless
+        - label: Natural Leader
+        - label: Skilled Fighter
+        - label: Master Strategist
+        - label: Quick Learner
+        - label: Problem Solver
+        - label: Strong Willpower
+        - label: Unbreakable Determination
+        - label: Excellent Communication
+        - label: Inspires Others
+        - label: Creative Thinker
+        - label: Highly Adaptable
+        - label: Exceptional Memory
+        - label: Deep Knowledge
+        - label: Resourceful Under Pressure
+        - label: Excellent Judgment
+        - label: Strong Sense of Justice
+        - label: Emotionally Resilient
+        - label: Patient Teacher
+        - label: Skilled Craftsman
+        - label: Natural Survivor
 
   - type: checkboxes
     id: weaknesses
     attributes:
       label: Greatest Weaknesses
-      description: What flaws or struggles hold this character back?
+      description: What flaws, habits, or struggles create problems for this character?
       options:
-        - label: Stubborn
-        - label: Reckless
-        - label: Prideful
-        - label: Impulsive
-        - label: Distrustful
-        - label: Short-tempered
-        - label: Selfish
-        - label: Fearful
-        - label: Overconfident
-        - label: Naive
-        - label: Overprotective
-        - label: Secretive
-        - label: Forgiving too easily
-        - label: Unable to let go
+        - label: Stubborn - refuses to change their mind even when wrong
+        - label: Reckless - acts before thinking about consequences
+        - label: Prideful - struggles to admit mistakes or accept help
+        - label: Impulsive - makes decisions based on emotion
+        - label: Distrustful - has trouble believing others' intentions
+        - label: Short-tempered - reacts strongly when frustrated
+        - label: Selfish - prioritizes personal wants over others
+        - label: Overconfident - underestimates challenges
+        - label: Naive - believes things too easily
+        - label: Overprotective - tries to control situations to keep others safe
+        - label: Secretive - hides important thoughts or feelings
+        - label: Too Forgiving - gives others too many chances
+        - label: Unable to Let Go - remains attached to past failures or losses
+        - label: Fear of Failure - avoids risks to prevent mistakes
+        - label: Fear of Rejection - struggles to open up to others
+        - label: Perfectionist - expects impossible standards from themselves
+        - label: Self-Doubt - questions their own abilities
+        - label: Easily Distracted - struggles to stay focused
+        - label: Holds Grudges - struggles to forgive
+        - label: Takes Too Much Responsibility - tries to solve everything alone
 
   - type: checkboxes
     id: fears
@@ -191,7 +203,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        # Phase: 🎭 Personality & Voice
+        # 🎭 Personality & Voice
 
         These details help us create realistic dialogue, reactions, and behaviors.
 
@@ -330,7 +342,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        # Phase: 📖 Legend & Lore
+        # 📖 Legend & Lore
 
         Optional deeper customization for characters with a longer story.
 
