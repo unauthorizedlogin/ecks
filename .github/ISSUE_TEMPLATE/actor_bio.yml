@@ -209,7 +209,13 @@ body:
       value: |
         # 🎭 Personality & Voice
 
-        These details help us create realistic dialogue, reactions, and behaviors.
+        This section adds depth to your character's dialogue, reactions, and everyday behavior.
+
+        ⭐ Everything here is optional.
+        
+        The more you provide, the more unique and accurate your character will become.
+
+        You can complete as much or as little as you want. Even a few details help us create a stronger personality, and you can always come back later to edit or expand your character.
 
   - type: textarea
     id: personality
@@ -348,7 +354,15 @@ body:
       value: |
         # 📖 Legend & Lore
 
-        Optional deeper customization for characters with a longer story.
+        This section is for deeper character development and storytelling.
+
+        ⭐ Everything here is optional.
+
+        Use this section if you want to explore your character's history, defining moments, secrets, and personal journey.
+
+        A simple character concept is enough to get started. The details you provide here simply help us create a richer story, stronger dialogue, and more meaningful interactions.
+
+        You can always return later to expand your character's legend.
 
   - type: textarea
     id: backstory
