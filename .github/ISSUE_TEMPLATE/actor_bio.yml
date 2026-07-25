@@ -32,7 +32,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        # ⭐ Phase 1: Character Foundation
+        # Phase: ⭐ Core Character Foundation
 
         This section gives us everything needed to create your character.
 
@@ -191,7 +191,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        # 🎭 Phase 2: Personality & Voice
+        # Phase: 🎭 Personality & Voice
 
         These details help us create realistic dialogue, reactions, and behaviors.
 
@@ -330,7 +330,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        # 📖 Phase 3: Legend & Lore
+        # Phase: 📖 Legend & Lore
 
         Optional deeper customization for characters with a longer story.
 
