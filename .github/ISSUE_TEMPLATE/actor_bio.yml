@@ -25,9 +25,8 @@ body:
 
         You do not need to complete everything at once.
 
-        You can always come back later and edit your character biography as more ideas come to you.
-
-        If you leave anything blank, we will fill in the missing details as best we can while staying true to your character.
+        After submitting, your character profile can be reviewed and expanded. 
+        If you think of additional details later, leave a comment on your submission and we'll incorporate them.
 
 # =========================================================
 # ⭐ CORE CHARACTER FOUNDATION
@@ -215,7 +214,7 @@ body:
         
         The more you provide, the more unique and accurate your character will become.
 
-        You can complete as much or as little as you want. Even a few details help us create a stronger personality, and you can always come back later to edit or expand your character.
+        You can complete as much or as little as you want. Even a few details help us create a stronger personality.
 
   - type: textarea
     id: personality
@@ -286,6 +285,7 @@ body:
       placeholder: |
         Example:
         "Despite his intimidating reputation, he spends his free time carving wooden figures and leaving them anonymously for children in the village."
+        "Despite being known as a ruthless bounty hunter, she spends her evenings tending a small garden and secretly writes letters of encouragement to people she has helped."
 
         Think about:
         - What do they do to relax?
@@ -360,9 +360,10 @@ body:
 
         Use this section if you want to explore your character's history, defining moments, secrets, and personal journey.
 
-        A simple character concept is enough to get started. The details you provide here simply help us create a richer story, stronger dialogue, and more meaningful interactions.
+        A simple character concept is enough to get started. 
+        
+        The details you provide here simply help us create a richer story, stronger dialogue, and more meaningful interactions.
 
-        You can always return later to expand your character's legend.
 
   - type: textarea
     id: backstory
