@@ -1,6 +1,6 @@
 name: 👤 Character Biography
 description: Help us build your in-game character and dialogue profile.
-title: "[Character]: "
+title: "👤 [Character]: "
 labels:
   - character
   - biography
@@ -17,7 +17,28 @@ body:
 
         There are no right or wrong answers.
 
+        ⭐ Phase 1 creates your character foundation.
+        🎭 Phase 2 builds personality, voice, and behavior.
+        📖 Phase 3 adds deeper lore and customization.
+
         The more detail you provide, the more authentic your character will become.
+
+        If you leave anything blank, we will fill in the missing details as best we can while staying true to your character.
+
+---
+
+# =========================================================
+# ⭐ PHASE 1: CHARACTER FOUNDATION
+# =========================================================
+
+  - type: markdown
+    attributes:
+      value: |
+        # ⭐ Phase 1: Character Foundation
+
+        This section gives us everything needed to create your character.
+
+---
 
   - type: input
     id: clan_name
@@ -33,58 +54,17 @@ body:
     attributes:
       label: Character Title
       description: Optional nickname or title.
-      placeholder: The Wanderer
+      placeholder: The Realm Weaver
 
   - type: textarea
     id: summary
     attributes:
-      label: Describe Yourself
-      description: Give us a short summary of your character.
-      placeholder: Brave, sarcastic, loyal, stubborn...
-
-  - type: textarea
-    id: personality
-    attributes:
-      label: Personality
-      description: What kind of person are you?
-      placeholder: Tell us everything.
-
-  - type: textarea
-    id: strengths
-    attributes:
-      label: Strengths
-
-  - type: textarea
-    id: weaknesses
-    attributes:
-      label: Weaknesses
-
-  - type: textarea
-    id: motivations
-    attributes:
-      label: Motivations
-      description: What drives you?
-
-  - type: textarea
-    id: fears
-    attributes:
-      label: Fears
-
-  - type: textarea
-    id: backstory
-    attributes:
-      label: Character Backstory
-      description: Tell us your story.
-
-  - type: textarea
-    id: tragedy
-    attributes:
-      label: Greatest Tragedy
-
-  - type: textarea
-    id: achievement
-    attributes:
-      label: Greatest Achievement
+      label: Character Summary
+      description: Give us the quick version. If someone met this character for the first time, how would you describe them?
+      placeholder: |
+        Example:
+        A stubborn blacksmith who acts tough but secretly cares deeply about everyone around them.
+        A retired mercenary with a sarcastic attitude and a soft spot for protecting children.
 
   - type: dropdown
     id: alignment
@@ -101,11 +81,222 @@ body:
         - Neutral Evil
         - Chaotic Evil
 
+  - type: checkboxes
+    id: traits
+    attributes:
+      label: Personality Traits
+      options:
+        - label: Calm
+        - label: Aggressive
+        - label: Patient
+        - label: Curious
+        - label: Intelligent
+        - label: Loyal
+        - label: Protective
+        - label: Competitive
+        - label: Honest
+        - label: Manipulative
+        - label: Brave
+        - label: Cowardly
+        - label: Emotional
+        - label: Logical
+        - label: Optimistic
+        - label: Pessimistic
+        - label: Introverted
+        - label: Extroverted
+
+  - type: checkboxes
+    id: motivations
+    attributes:
+      label: Dreams & Goals
+      description: What drives this character forward? Choose the things that matter most to them.
+      options:
+        - label: Protecting others
+        - label: Seeking power
+        - label: Finding purpose
+        - label: Gaining knowledge
+        - label: Achieving freedom
+        - label: Seeking revenge
+        - label: Proving themselves
+        - label: Building a legacy
+        - label: Wealth and prosperity
+        - label: Adventure and discovery
+        - label: Loyalty to others
+        - label: Redemption
+        - label: Justice
+        - label: Recognition
+        - label: Survival
+
+  - type: checkboxes
+    id: strengths
+    attributes:
+      label: Greatest Strengths
+      description: What qualities make this character exceptional?
+      options:
+        - label: Courageous
+        - label: Intelligent
+        - label: Loyal
+        - label: Patient
+        - label: Compassionate
+        - label: Strategic
+        - label: Determined
+        - label: Creative
+        - label: Honest
+        - label: Adaptable
+        - label: Charismatic
+        - label: Disciplined
+        - label: Resourceful
+        - label: Fearless
+
+  - type: checkboxes
+    id: weaknesses
+    attributes:
+      label: Greatest Weaknesses
+      description: What flaws or struggles hold this character back?
+      options:
+        - label: Stubborn
+        - label: Reckless
+        - label: Prideful
+        - label: Impulsive
+        - label: Distrustful
+        - label: Short-tempered
+        - label: Selfish
+        - label: Fearful
+        - label: Overconfident
+        - label: Naive
+        - label: Overprotective
+        - label: Secretive
+        - label: Forgiving too easily
+        - label: Unable to let go
+
+  - type: checkboxes
+    id: fears
+    attributes:
+      label: Greatest Fears
+      description: What fears influence this character's choices?
+      options:
+        - label: Losing someone they love
+        - label: Failure
+        - label: Being forgotten
+        - label: Betrayal
+        - label: Losing control
+        - label: Being powerless
+        - label: Becoming like their enemies
+        - label: Being alone
+        - label: Revealing their true self
+        - label: Repeating past mistakes
+        - label: Death
+        - label: Disappointing others
+
+---
+
+# =========================================================
+# 🎭 PHASE 2: PERSONALITY & VOICE
+# =========================================================
+
+  - type: markdown
+    attributes:
+      value: |
+        # 🎭 Phase 2: Personality & Voice
+
+        These details help us create realistic dialogue, reactions, and behaviors.
+
+---
+
+  - type: textarea
+    id: personality
+    attributes:
+      label: Personality
+      description: What makes this character who they are? Describe their attitudes, behaviors, beliefs, and the way they interact with others.
+      placeholder: |
+        Example:
+        He avoids talking about his past and uses humor to hide discomfort.
+        She trusts actions more than words and respects people who keep their promises.
+        Things You Like
+        Things You Dislike
+
+  - type: checkboxes
+    id: quirks
+    attributes:
+      label: Character Quirks
+      description: Choose the little things that make this character unique.
+      options:
+        - label: Always gets lost
+        - label: Talks to themselves
+        - label: Gives everything a nickname
+        - label: Collects strange objects
+        - label: Cannot resist a challenge
+        - label: Always hungry
+        - label: Falls asleep anywhere
+        - label: Has terrible luck
+        - label: Overthinks everything
+        - label: Takes everything literally
+        - label: Makes inappropriate jokes at the worst time
+        - label: Pretends not to care but secretly does
+        - label: Has a weird superstition
+        - label: Keeps a personal ritual
+        - label: Always breaks something by accident
+        - label: Talks too much when nervous
+        - label: Gets embarrassed easily
+        - label: Cannot admit when they are wrong
+        - label: Names their equipment
+        - label: Has an unusual hobby
+
+  - type: textarea
+    id: unique_quirk
+    attributes:
+      label: The One Thing Nobody Else Does
+      description: What is the strange, funny, or unexpected thing that makes this character unforgettable?
+      placeholder: |
+        Example:
+        "Despite being a legendary warrior, he is absolutely terrified of frogs."
+
+  - type: textarea
+    id: contradiction
+    attributes:
+      label: Character Contradiction
+      description: What makes this character unexpectedly different from how they appear?
+      placeholder: |
+        Examples:
+        - Looks intimidating but is extremely kind.
+        - Acts lazy but secretly trains constantly.
+        - Claims not to care but always helps others.
+        - Is a genius but terrible at common sense.
+
+  - type: textarea
+    id: hobbies
+    attributes:
+      label: Hobbies & Interests
+      description: Optional. What does this character enjoy doing when they aren't fighting, working, or chasing their goals? What small activities reveal who they really are?
+      placeholder: |
+        Example:
+        "Despite his intimidating reputation, he spends his free time carving wooden figures and leaving them anonymously for children in the village."
+
+        Think about:
+        - What do they do to relax?
+        - What topics can they talk about for hours?
+        - What skill do they practice outside of necessity?
+        - What would someone find them doing during a quiet moment?
+
   - type: textarea
     id: speech
     attributes:
       label: Speech Style
       description: How do you normally speak?
+
+  - type: checkboxes
+    id: humor
+    attributes:
+      label: Humor Style
+      options:
+        - label: Sarcastic
+        - label: Dry Humor
+        - label: Dad Jokes
+        - label: Dark Humor
+        - label: Wholesome
+        - label: Deadpan
+        - label: Chaotic
+        - label: Rarely Jokes
 
   - type: textarea
     id: phrases
@@ -134,79 +325,88 @@ body:
         • You win
 
   - type: textarea
-    id: quirks
+    id: dialogue_examples
     attributes:
-      label: Habits & Quirks
+      label: Dialogue Examples
+      description: Write 5-10 things your character might naturally say.
+
+---
+
+# =========================================================
+# 📖 PHASE 3: LEGEND & LORE
+# =========================================================
+
+  - type: markdown
+    attributes:
+      value: |
+        # 📖 Phase 3: Legend & Lore
+
+        Optional deeper customization for characters with a longer story.
+
+---
 
   - type: textarea
-    id: hobbies
+    id: backstory
     attributes:
-      label: Hobbies & Interests
+      label: Character Backstory
+      description: Before becoming who they are today, this character lived a different life. Tell us about the experiences, struggles, victories, and turning points that shaped them.
+      placeholder: |
+        Example:
+        Once a gifted warrior, he abandoned his homeland after failing to protect his family.
+        Years of wandering taught her patience, compassion, and the importance of helping others.
 
   - type: textarea
-    id: likes
+    id: turning_point
     attributes:
-      label: Things You Like
+      label: The Turning Point
+      description: What single moment changed this character forever?
+      placeholder: |
+        The battle they lost.
+        The person they failed.
+        The discovery they made.
+        The promise they swore.
 
   - type: textarea
-    id: dislikes
+    id: tragedy
     attributes:
-      label: Things You Dislike
+      label: Greatest Tragedy
+      description: What is the hardest moment this character has faced? How did it change them, and what scars did they carry forward?
+      placeholder: |
+        A loss they never recovered from.
+        A mistake they still regret.
+        Someone they failed to protect.
+        A choice that changed everything.
 
   - type: textarea
-    id: goals
+    id: achievement
     attributes:
-      label: Dreams & Goals
+      label: Greatest Achievement
+      description: What is the moment this character is most proud of? What did they overcome, and why does this accomplishment matter to them?
+      placeholder: |
+        A battle they survived.
+        A person they saved.
+        Something they built.
+        A challenge nobody thought they could overcome.
 
   - type: textarea
     id: secrets
     attributes:
       label: Secrets
       description: Optional. Things your character keeps hidden.
+      placeholder: |
+        Example:
+        "The famous hero everyone admires was actually saved by the enemy he now hunts."
+        "She pretends to hate magic, but secretly practices forbidden spells in private."
 
   - type: textarea
-    id: dialogue_examples
+    id: defining_trait
     attributes:
-      label: Dialogue Examples
-      description: Write 5-10 things your character might naturally say.
-
-  - type: checkboxes
-    id: humor
-    attributes:
-      label: Humor Style
-      options:
-        - label: Sarcastic
-        - label: Dry Humor
-        - label: Dad Jokes
-        - label: Dark Humor
-        - label: Wholesome
-        - label: Deadpan
-        - label: Chaotic
-        - label: Rarely Jokes
-
-  - type: checkboxes
-    id: traits
-    attributes:
-      label: Personality Traits
-      options:
-        - label: Calm
-        - label: Aggressive
-        - label: Patient
-        - label: Curious
-        - label: Intelligent
-        - label: Loyal
-        - label: Protective
-        - label: Competitive
-        - label: Honest
-        - label: Manipulative
-        - label: Brave
-        - label: Cowardly
-        - label: Emotional
-        - label: Logical
-        - label: Optimistic
-        - label: Pessimistic
-        - label: Introverted
-        - label: Extroverted
+      label: What Makes This Character Unique?
+      description: Explain anything the selections above don't capture.
+      placeholder: |
+        Example:
+        "He is afraid of failure, but that fear is exactly what makes him prepare harder than anyone else."
+        "She isn't seeking redemption because she feels guilty. She's seeking it because she wants to prove the person she became isn't who she truly is."
 
   - type: textarea
     id: final_notes
