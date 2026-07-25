@@ -17,16 +17,16 @@ body:
 
         There are no right or wrong answers.
 
-        ⭐ Phase 1 creates your character foundation.
-        🎭 Phase 2 builds personality, voice, and behavior.
-        📖 Phase 3 adds deeper lore and customization.
+        ⭐ Core Character Foundation creates your character foundation.
+        🎭 Personality & Voice builds personality, voice, and behavior.
+        📖 Legend & Lore adds deeper lore and customization.
 
         The more detail you provide, the more authentic your character will become.
 
         If you leave anything blank, we will fill in the missing details as best we can while staying true to your character.
 
 # =========================================================
-# ⭐ PHASE 1: CHARACTER FOUNDATION
+# ⭐ CORE CHARACTER FOUNDATION
 # =========================================================
 
   - type: markdown
@@ -242,6 +242,7 @@ body:
       placeholder: |
         Example:
         "Despite being a legendary warrior, he is absolutely terrified of frogs."
+        "Despite being known as the coldest assassin in the kingdom, she secretly rescues every stray animal she finds and gives them ridiculous names."
 
   - type: textarea
     id: contradiction
