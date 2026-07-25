@@ -291,12 +291,6 @@ body:
         - What skill do they practice outside of necessity?
         - What would someone find them doing during a quiet moment?
 
-  - type: textarea
-    id: speech
-    attributes:
-      label: Speech Style
-      description: How do you normally speak?
-
   - type: checkboxes
     id: humor
     attributes:
@@ -312,10 +306,16 @@ body:
         - label: Rarely Jokes
 
   - type: textarea
-    id: phrases
+    id: speech
     attributes:
-      label: Common Sayings
-      description: List words or phrases you say often.
+      label: Speech Style
+      description: How do you normally speak?
+
+  - type: textarea
+    id: dialogue_examples
+    attributes:
+      label: Dialogue Examples
+      description: Write 5-10 words or phrases your character might naturally say.
 
   - type: textarea
     id: never_say
@@ -336,12 +336,6 @@ body:
         • Someone lies to you
         • You lose
         • You win
-
-  - type: textarea
-    id: dialogue_examples
-    attributes:
-      label: Dialogue Examples
-      description: Write 5-10 things your character might naturally say.
 
 # =========================================================
 # 📖 LEGEND & LORE
