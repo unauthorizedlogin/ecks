@@ -1,0 +1,214 @@
+name: 👤 Character Biography
+description: Help us build your in-game character and dialogue profile.
+title: "[Character]: "
+labels:
+  - character
+  - biography
+
+body:
+
+  - type: markdown
+    attributes:
+      value: |
+        # 👋 Welcome!
+
+        This form helps us build your in-game character, dialogue, personality, and behavior.
+
+        There are no right or wrong answers.
+
+        The more detail you provide, the more authentic your character will become.
+
+  - type: input
+    id: clan_name
+    attributes:
+      label: Clan Name
+      description: What should your character be called?
+      placeholder: Red
+    validations:
+      required: true
+
+  - type: input
+    id: title
+    attributes:
+      label: Character Title
+      description: Optional nickname or title.
+      placeholder: The Wanderer
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Describe Yourself
+      description: Give us a short summary of your character.
+      placeholder: Brave, sarcastic, loyal, stubborn...
+
+  - type: textarea
+    id: personality
+    attributes:
+      label: Personality
+      description: What kind of person are you?
+      placeholder: Tell us everything.
+
+  - type: textarea
+    id: strengths
+    attributes:
+      label: Strengths
+
+  - type: textarea
+    id: weaknesses
+    attributes:
+      label: Weaknesses
+
+  - type: textarea
+    id: motivations
+    attributes:
+      label: Motivations
+      description: What drives you?
+
+  - type: textarea
+    id: fears
+    attributes:
+      label: Fears
+
+  - type: textarea
+    id: backstory
+    attributes:
+      label: Character Backstory
+      description: Tell us your story.
+
+  - type: textarea
+    id: tragedy
+    attributes:
+      label: Greatest Tragedy
+
+  - type: textarea
+    id: achievement
+    attributes:
+      label: Greatest Achievement
+
+  - type: dropdown
+    id: alignment
+    attributes:
+      label: Moral Alignment
+      options:
+        - Lawful Good
+        - Neutral Good
+        - Chaotic Good
+        - Lawful Neutral
+        - True Neutral
+        - Chaotic Neutral
+        - Lawful Evil
+        - Neutral Evil
+        - Chaotic Evil
+
+  - type: textarea
+    id: speech
+    attributes:
+      label: Speech Style
+      description: How do you normally speak?
+
+  - type: textarea
+    id: phrases
+    attributes:
+      label: Common Sayings
+      description: List words or phrases you say often.
+
+  - type: textarea
+    id: never_say
+    attributes:
+      label: Things You Would Never Say
+
+  - type: textarea
+    id: reactions
+    attributes:
+      label: How Do You React?
+      description: |
+        Tell us how you react when...
+
+        • Someone insults you
+        • Someone compliments you
+        • Someone needs help
+        • Someone betrays you
+        • Someone lies to you
+        • You lose
+        • You win
+
+  - type: textarea
+    id: quirks
+    attributes:
+      label: Habits & Quirks
+
+  - type: textarea
+    id: hobbies
+    attributes:
+      label: Hobbies & Interests
+
+  - type: textarea
+    id: likes
+    attributes:
+      label: Things You Like
+
+  - type: textarea
+    id: dislikes
+    attributes:
+      label: Things You Dislike
+
+  - type: textarea
+    id: goals
+    attributes:
+      label: Dreams & Goals
+
+  - type: textarea
+    id: secrets
+    attributes:
+      label: Secrets
+      description: Optional. Things your character keeps hidden.
+
+  - type: textarea
+    id: dialogue_examples
+    attributes:
+      label: Dialogue Examples
+      description: Write 5-10 things your character might naturally say.
+
+  - type: checkboxes
+    id: humor
+    attributes:
+      label: Humor Style
+      options:
+        - label: Sarcastic
+        - label: Dry Humor
+        - label: Dad Jokes
+        - label: Dark Humor
+        - label: Wholesome
+        - label: Deadpan
+        - label: Chaotic
+        - label: Rarely Jokes
+
+  - type: checkboxes
+    id: traits
+    attributes:
+      label: Personality Traits
+      options:
+        - label: Calm
+        - label: Aggressive
+        - label: Patient
+        - label: Curious
+        - label: Intelligent
+        - label: Loyal
+        - label: Protective
+        - label: Competitive
+        - label: Honest
+        - label: Manipulative
+        - label: Brave
+        - label: Cowardly
+        - label: Emotional
+        - label: Logical
+        - label: Optimistic
+        - label: Pessimistic
+        - label: Introverted
+        - label: Extroverted
+
+  - type: textarea
+    id: final_notes
+    attributes:
+      label: Anything Else?
+      description: Tell us anything that helps bring your character to life.
