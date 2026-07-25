@@ -185,7 +185,7 @@ body:
         - label: Disappointing others
 
 # =========================================================
-# 🎭 PHASE 2: PERSONALITY & VOICE
+# 🎭 PERSONALITY & VOICE
 # =========================================================
 
   - type: markdown
@@ -324,7 +324,7 @@ body:
       description: Write 5-10 things your character might naturally say.
 
 # =========================================================
-# 📖 PHASE 3: LEGEND & LORE
+# 📖 LEGEND & LORE
 # =========================================================
 
   - type: markdown
