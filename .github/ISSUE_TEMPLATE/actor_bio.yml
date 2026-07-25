@@ -25,8 +25,6 @@ body:
 
         If you leave anything blank, we will fill in the missing details as best we can while staying true to your character.
 
----
-
 # =========================================================
 # ⭐ PHASE 1: CHARACTER FOUNDATION
 # =========================================================
@@ -37,8 +35,6 @@ body:
         # ⭐ Phase 1: Character Foundation
 
         This section gives us everything needed to create your character.
-
----
 
   - type: input
     id: clan_name
@@ -188,8 +184,6 @@ body:
         - label: Death
         - label: Disappointing others
 
----
-
 # =========================================================
 # 🎭 PHASE 2: PERSONALITY & VOICE
 # =========================================================
@@ -200,8 +194,6 @@ body:
         # 🎭 Phase 2: Personality & Voice
 
         These details help us create realistic dialogue, reactions, and behaviors.
-
----
 
   - type: textarea
     id: personality
@@ -330,8 +322,6 @@ body:
       label: Dialogue Examples
       description: Write 5-10 things your character might naturally say.
 
----
-
 # =========================================================
 # 📖 PHASE 3: LEGEND & LORE
 # =========================================================
@@ -343,8 +333,6 @@ body:
 
         Optional deeper customization for characters with a longer story.
 
----
-
   - type: textarea
     id: backstory
     attributes:
@@ -354,7 +342,7 @@ body:
         Example:
         Once a gifted warrior, he abandoned his homeland after failing to protect his family.
         Years of wandering taught her patience, compassion, and the importance of helping others.
-
+        
   - type: textarea
     id: turning_point
     attributes:
