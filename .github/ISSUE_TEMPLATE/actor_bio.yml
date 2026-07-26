@@ -57,51 +57,32 @@ body:
     id: npc_class
     attributes:
       label: Preferred Class
-      description: If your character became an adventurer, what class would they most likely be?
+      description: If your character became an adventurer, what archetype would they most likely be?
       options:
-        - No Preference
-        - Warrior
-        - Rogue
-        - Ranger
-        - Mage
         - Enchanter
         - Healer
+        - Mage
+        - Rogue
+        - Warrior
 
   - type: dropdown
     id: npc_profession
     attributes:
       label: Preferred Profession
-      description: What kind of life would your character most likely live?
+      description: What kind of job would you most like for your character?
       options:
-        - No Preference
-        - Blacksmith
-        - Merchant
-        - Innkeeper
-        - Farmer
-        - Fisher
-        - Hunter
-        - Lumberjack
-        - Miner
-        - Herbalist
-        - Alchemist
-        - Tailor
-        - Carpenter
-        - Cook
-        - Baker
-        - Guard
-        - Soldier
-        - Scholar
-        - Librarian
-        - Priest
-        - Noble
-        - Tavern Musician
-        - Stable Keeper
-        - Courier
-        - Explorer
-        - Monster Hunter
-        - Adventurer
-        - Craftsman
-        - Town Official
+        - Alchemist        # Potions
+        - Blacksmith       # Weapons / Armor / Metal
+        - Carpenter        # Misc / Furniture / Wood
+        - Chef             # Consumables
+        - Farmer           # Ingredients
+        - Fisher           # Ingredients
+        - Gemcutter        # Gems / Stones
+        - Innkeeper        # Services / Food
+        - Librarian        # Lore / Books / Quests
+        - Merchant         # General Goods
+        - Miner            # Metals / Minerals / Stones
+        - Stable Keeper    # Mounts / Animals
         - Other
 
   - type: dropdown
@@ -110,18 +91,26 @@ body:
       label: Preferred NPC Role
       description: What role would you enjoy most in the world?
       options:
-        - No Preference
-        - Quest Giver
-        - Merchant
-        - Companion
-        - Trainer
-        - Crafter
-        - Town Resident
-        - Traveling NPC
+        - Adventurer
         - Boss Encounter
-        - Story Character
+        - Companion
+        - Crafter
+        - Explorer
+        - Guard
         - Hidden NPC
+        - Merchant
+        - Monster Hunter
+        - Noble
+        - Priest
+        - Quest Giver
         - Random Encounter
+        - Scholar
+        - Soldier
+        - Story Character
+        - Town Official
+        - Town Resident
+        - Trainer
+        - Traveling NPC
 
   - type: textarea
     id: summary
