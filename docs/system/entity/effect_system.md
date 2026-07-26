@@ -1,4 +1,4 @@
-# ✨ Effect Manager (`al_effect_manager.gd`)
+# ✨ Effect Manager
 
 ## Overview
 
