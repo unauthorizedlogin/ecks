@@ -8,6 +8,8 @@ ecks focuses on reducing the amount of custom code required when building RPGs b
 
 The framework is developed alongside a full Adventure RPG project, where every system is tested through real gameplay requirements before being expanded into reusable tools.
 
+`This repository contains project documentation only. All source code is maintained in a separate private repository and is not publicly available.`
+
 ## Vision
 
 ecks is designed to provide developers with a reusable foundation for creating RPGs in Godot.
