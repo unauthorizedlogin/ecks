@@ -53,6 +53,76 @@ body:
       description: Optional nickname or title.
       placeholder: The Realm Weaver
 
+  - type: dropdown
+    id: npc_class
+    attributes:
+      label: Preferred Class
+      description: If your character became an adventurer, what class would they most likely be?
+      options:
+        - No Preference
+        - Warrior
+        - Rogue
+        - Ranger
+        - Mage
+        - Enchanter
+        - Healer
+
+  - type: dropdown
+    id: npc_profession
+    attributes:
+      label: Preferred Profession
+      description: What kind of life would your character most likely live?
+      options:
+        - No Preference
+        - Blacksmith
+        - Merchant
+        - Innkeeper
+        - Farmer
+        - Fisher
+        - Hunter
+        - Lumberjack
+        - Miner
+        - Herbalist
+        - Alchemist
+        - Tailor
+        - Carpenter
+        - Cook
+        - Baker
+        - Guard
+        - Soldier
+        - Scholar
+        - Librarian
+        - Priest
+        - Noble
+        - Tavern Musician
+        - Stable Keeper
+        - Courier
+        - Explorer
+        - Monster Hunter
+        - Adventurer
+        - Craftsman
+        - Town Official
+        - Other
+
+  - type: dropdown
+    id: npc_role
+    attributes:
+      label: Preferred NPC Role
+      description: What role would you enjoy most in the world?
+      options:
+        - No Preference
+        - Quest Giver
+        - Merchant
+        - Companion
+        - Trainer
+        - Crafter
+        - Town Resident
+        - Traveling NPC
+        - Boss Encounter
+        - Story Character
+        - Hidden NPC
+        - Random Encounter
+
   - type: textarea
     id: summary
     attributes:
