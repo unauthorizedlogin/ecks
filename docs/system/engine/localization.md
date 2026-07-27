@@ -526,16 +526,16 @@ TranslationServer          Translation Files
 
 The localization framework provides:
 
-✅ 23 supported languages
-✅ English-key translation architecture
-✅ Runtime locale switching
-✅ Saved player language preference
-✅ Dynamic translation loading
-✅ CSV-driven translation management
-✅ PO generation pipeline
-✅ Translator comments
-✅ Existing translation preservation
-✅ Editor-integrated generation workflow
+- ✅ 23 supported languages
+- ✅ English-key translation architecture
+- ✅ Runtime locale switching
+- ✅ Saved player language preference
+- ✅ Dynamic translation loading
+- ✅ CSV-driven translation management
+- ✅ PO generation pipeline
+- ✅ Translator comments
+- ✅ Existing translation preservation
+- ✅ Editor-integrated generation workflow
 
 ---
 
