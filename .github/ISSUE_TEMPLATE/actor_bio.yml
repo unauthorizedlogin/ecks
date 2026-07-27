@@ -365,6 +365,21 @@ body:
         - label: Rarely Jokes
 
   - type: textarea
+    id: humor_examples
+    attributes:
+      label: Funny Stories & Anecdotes
+      description: Share a funny story, personal joke, embarrassing moment, or example of the kind of humor your character would use.
+      placeholder: |
+        Example:
+        "She once challenged a dragon to a drinking contest because she was convinced dragons couldn't handle dwarven ale. She was wrong, but she still claims the dragon cheated."
+
+        Think about:
+        - What kind of jokes does your character tell?
+        - Do they laugh at themselves?
+        - Do they embarrass themselves often?
+        - What story would their friends tell about them?
+
+  - type: textarea
     id: speech
     attributes:
       label: Speech Style
