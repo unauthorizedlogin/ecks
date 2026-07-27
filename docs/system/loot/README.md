@@ -1,4 +1,4 @@
-# 🎒 Loot System README
+# 🎒 Loot System
 
 ## Overview
 
@@ -15,7 +15,7 @@ The system is designed around a **data-driven item architecture**, separating:
 
 The Loot System does not rely on a single universal inventory pipeline. Instead, item categories are handled through dedicated managers responsible for their own routing, behavior, and serialization.
 
-## **Purpose:**
+## Purpose
 
 - Unified item database supporting equipment, consumables, resources, currencies, and progression items
 - Modular item category system supporting:
@@ -30,16 +30,16 @@ The Loot System does not rely on a single universal inventory pipeline. Instead,
   - Minerals
   - Stones
   - Potions
-  - Quest items
-  - Miscellaneous items
+  - Quest Items
+  - Miscellaneous Items
   - Additional expandable categories
-- Equipment and inventory management integrated into the same item pipeline
+- Equipment and inventory management integrated through the same item pipeline
 
 ---
 
 # 🧠 System Architecture
 
-The Loot System is organized into four primary systems:
+The Loot System is organized into dedicated item management systems:
 
 ```text
                          Item Database
@@ -65,108 +65,7 @@ The Loot System is organized into four primary systems:
  (Consumables, Currency, Ammo, etc.)
 ````
 
-Each system owns its own runtime data and serialization.
-
----
-
-# 📦 Chest Loot System
-
-The Chest Loot System provides interactive world containers for item rewards, exploration rewards, and persistent player storage.
-
-Chests are designed as world-based loot objects that connect gameplay interaction with the Loot System architecture.
-
-The system currently supports two primary chest types:
-
-- Dynamic Loot Chests
-- Storage Chests
-
-Both chest types share common interaction behavior while serving different gameplay purposes.
-
----
-
-Documentation:
-
-- [Chest Loot System](loot/chests.md)
-
----
-
-## 🛡️ Equipment Manager
-
-The Equipment Manager controls equipped item state after equipment has been moved from inventory into active equipment slots.
-
-Responsibilities include:
-
-- Equipment slot management
-- Equip and unequip handling
-- Equipment validation
-- Equipment modifier processing
-- Equipment effect synchronization
-- Equipment serialization
-
-Equipment integrates with the Stat and Effect systems to apply active bonuses from equipped items.
-
----
-
-Documentation:
-
-➡️ [Equipment Manager Documentation](loot/equipment_manager.md)
-
----
-
-## 🎒 Inventory Manager
-
-The Inventory Manager manages player item ownership and storage systems.
-
-Responsibilities include:
-
-- Player inventory slots
-- Storage chest inventories
-- Item transfers
-- Stack management
-- Inventory serialization
-
-Equipment items are stored here when acquired and moved to the Equipment Manager after being equipped.
-
-The Inventory Manager focuses on item ownership and storage. Other item categories will use dedicated managers as their systems expand.
-
----
-
-Documentation:
-
-📄 [Inventory Manager Documentation](loot/inventory_manager.md)
-
----
-
-## 📦 Item Resource
-
-The Item Resource is the foundation data definition for all item objects within the Loot System.
-
-It provides the shared item structure used across:
-
-- Equipment
-- Inventory items
-- Materials
-- Consumables
-- Quest items
-- Future item categories
-
-Item resources define:
-
-- Item identity and classification
-- Visual data
-- Stack rules
-- Economy values
-- Equipment requirements
-- Stat modifiers
-- Runtime effects
-
-All item systems reference Item Resources through the Item Database, allowing item behavior to remain data-driven and expandable.
-
----
-
-Documentation:
-
-📄 [Item Resource Documentation](loot/item_resource.md)
+Each system owns its own runtime data and serialization while integrating through shared item resources and database pipelines.
 
 ---
 
@@ -174,7 +73,7 @@ Documentation:
 
 The Loot System is designed to expand beyond traditional inventory storage.
 
-Future item categories will have dedicated managers responsible for:
+Item categories are handled through dedicated managers responsible for:
 
 * Routing
 * Runtime handling
@@ -204,5 +103,25 @@ Ammo
 Ammo Manager
 ```
 
-This allows each item category to evolve independently without bloating the Inventory Manager.
+This allows each item category to evolve independently without creating a monolithic Inventory Manager.
 
+---
+
+# 🔗 Loot System Documentation
+
+The following systems make up the Loot layer.
+
+| System | Purpose | Documentation |
+|---|---|---|
+| 🧰 Chest Loot System  | World containers, storage chests, and interactive loot objects | [Chest Loot System](./loot/chests.md)            |
+| 🛡️ Equipment Manager | Equipped item state, slot management, and equipment processing | [Equipment Manager](./loot/equipment_manager.md) |
+| 🎒 Inventory Manager  | Item ownership, storage, transfers, and inventory management   | [Inventory Manager](./loot/inventory_manager.md) |
+| 📦 Item Resource      | Core item definitions, metadata, and shared item structure     | [Item Resource](./loot/item_resource.md)         |
+
+---
+
+# Summary
+
+The Loot System provides a scalable item framework through shared item resources, centralized databases, and modular runtime managers.
+
+Each subsystem specializes in a specific item responsibility while allowing additional item categories to expand through dedicated management pipelines.
