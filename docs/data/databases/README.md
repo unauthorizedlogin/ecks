@@ -144,16 +144,16 @@ Implemented databases:
 
 | Database | Purpose | Documentation |
 |---|---|---|
-| Ability Database | Ability definitions | [Ability Database](./ability_database.md) |
-| Class Database | Entity classes and progression data | [Class Database](./class_database.md) |
-| Dialogue Database | Dialogue resources and conversations | [Dialogue Database](./dialogue_database.md) |
-| Difficulty Database | Gameplay difficulty configurations | [Difficulty Database](./difficulty_database.md) |
-| Effect Database | Gameplay effects and effect definitions | [Effect Database](./effect_database.md) |
-| Item Database | Items, equipment, and gameplay objects | [Item Database](./item_database.md) |
-| Map Database | World maps and level resources | [Map Database](./map_database.md) |
-| NPC Database | NPC identity and references | [NPC Database](./npc_database.md) |
-| Quest Database | Quest definitions and objectives | [Quest Database](./quest_database.md) |
-| Stat Formula Database | Stat calculations and conversions | [Stat Formula Database](./stat_formula_database.md) |
+| ⚡ Ability Database | Ability definitions | [Ability Database](./ability_database.md) |
+| 🧬 Class Database | Entity classes and progression data | [Class Database](./class_database.md) |
+| 💬 Dialogue Database | Dialogue resources and conversations | [Dialogue Database](./dialogue_database.md) |
+| ⚖️ Difficulty Database | Gameplay difficulty configurations | [Difficulty Database](./difficulty_database.md) |
+| ✨ Effect Database | Gameplay effects and effect definitions | [Effect Database](./effect_database.md) |
+| 📦 Item Database | Items, equipment, and gameplay objects | [Item Database](./item_database.md) |
+| 🗺️ Map Database | World maps and level resources | [Map Database](./map_database.md) |
+| 👤 NPC Database | NPC identity and references | [NPC Database](./npc_database.md) |
+| 📜 Quest Database | Quest definitions and objectives | [Quest Database](./quest_database.md) |
+| 🧮 Stat Formula Database | Stat calculations and conversions | [Stat Formula Database](./stat_formula_database.md) |
 
 # Summary
 
