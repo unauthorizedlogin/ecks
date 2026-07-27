@@ -55,16 +55,5 @@ The following systems make up the UI layer.
 The UI System provides a unified interface management layer through centralized coordination, modular UI components, and gameplay system integration.
 
 Each UI subsystem specializes in a specific presentation or interaction responsibility while connecting through shared UI management infrastructure.
-
-```
-
-I also removed the separate **UI Manager** section from the body because the architecture diagram already establishes it as the authority, and the detailed responsibilities belong in `ui_manager.md`.
-
-This now matches the standard we established with:
-- Entity Systems
-- World Systems
-- Database Architecture
-- Generator Architecture
-
 The README acts as a **map**, not a duplicate manual.
 ```
