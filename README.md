@@ -37,12 +37,12 @@ Development updates, system breakdowns, and framework progress are shared throug
 - Stage: pre-alpha
 - Version: 0.52.202
 - Date: 7/24/2026
-- [Changelog](./docs/CHANGELOG.md)
+- [Changelog](./CHANGELOG.md)
 
 ## 📖 Documentation:
 
 - [Contributing](./CONTRIBUTING.md)
-- [Roadmap](./docs/ROADMAP.md)
+- [Roadmap](./ROADMAP.md)
 - [Support](./SUPPORT.md)
 
 ## 🎨 Media:
