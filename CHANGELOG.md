@@ -2,6 +2,21 @@
 
 ---
 
+## [v0.52.204] - 2026-07-26
+
+### Ability System Foundation
+
+**System(s) Affected:** Ability System, Effect System, Stats, Generator Framework
+
+* Established the ability data pipeline with CSV-to-resource generation, dedicated databases, indexes, and AbilityDefinition resources.
+* Introduced the AbilityManager to centralize ability validation, execution flow, and ability logic handling.
+* Added support for DAMAGE StatEffects, enabling abilities to apply damage through the existing combat request pipeline.
+* Added ability requirement definitions supporting class, level, stat, quest, item, and faction-based unlock conditions.
+* Added AbilityRole classification to organize abilities into offensive, defensive, support, and utility categories.
+* Fixed stat rebuild handling to preserve equipment-derived Damage values during derived stat calculations.
+
+---
+
 ## [v0.52.203] - 2026-07-25
 
 ### Community Character Biography System
