@@ -176,20 +176,20 @@ All runtime systems reference localization keys rather than hardcoded player-fac
 
 The Localization Generator System:
 
-✅ Converts CSV translation data into PO files
-✅ Supports multiple languages
-✅ Generates Godot-compatible translation files
-✅ Maintains translation comments
-✅ Preserves existing translations
-✅ Centralizes localization management
+- ✅ Converts CSV translation data into PO files
+- ✅ Supports multiple languages
+- ✅ Generates Godot-compatible translation files
+- ✅ Maintains translation comments
+- ✅ Preserves existing translations
+- ✅ Centralizes localization management
 
 The Localization Generator System does **not**:
 
-❌ Translate text automatically
-❌ Modify gameplay systems
-❌ Replace runtime localization calls
-❌ Handle dialogue logic
-❌ Manage UI presentation
+- ❌ Translate text automatically
+- ❌ Modify gameplay systems
+- ❌ Replace runtime localization calls
+- ❌ Handle dialogue logic
+- ❌ Manage UI presentation
 
 Those responsibilities belong to:
 
