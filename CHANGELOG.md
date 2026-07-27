@@ -2,6 +2,19 @@
 
 ---
 
+## [v0.52.203] - 2026-07-25
+
+### Community Character Biography System
+
+**System(s) Affected:** Public Repository, Community Tools, NPC/Dialogue Systems
+
+* Added a structured Character Biography submission workflow for community-created NPC concepts.
+* Introduced a phased character creation process covering foundation, personality, and optional lore expansion.
+* Added guided prompts, examples, and flexible completion flow to support both quick submissions and detailed character development.
+* Established the framework for integrating community-created characters into future NPC and dialogue systems.
+
+---
+
 ## [v0.52.202] - 2026-07-24
 
 ### Combat Effects & Event Logging
