@@ -378,18 +378,45 @@ body:
         - Do they laugh at themselves?
         - Do they embarrass themselves often?
         - What story would their friends tell about them?
-
+        
   - type: textarea
     id: speech
     attributes:
       label: Speech Style
-      description: How do you normally speak?
+      description: How does this character normally speak? Describe their tone, vocabulary, pacing, and the way they communicate with others.
+      placeholder: |
+        Example:
+        - Speaks calmly and rarely raises their voice, even during stressful situations.
+        - Uses sarcasm and jokes to hide when they are uncomfortable.
+        - Talks formally and chooses words carefully.
+        - Speaks bluntly and gets straight to the point.
+        - Uses old sayings and stories instead of giving direct answers.
+        - Has a habit of rambling when excited.
+
+        Think about:
+        - Do they speak formally or casually?
+        - Do they use humor often?
+        - Are they serious, dramatic, friendly, or intimidating?
+        - Do they have a favorite phrase or way of speaking?
 
   - type: textarea
     id: dialogue_examples
     attributes:
       label: Dialogue Examples
-      description: Write 5-10 words or phrases your character might naturally say.
+      description: Write 5-10 words, phrases, or sentences your character might naturally say.
+      placeholder: |
+        Example:
+        "I've survived worse. Usually by making better decisions than this."
+        "The plan is simple. Whether it's a good plan is another question."
+        "I don't trust anyone who says they have nothing to hide."
+        "Relax. I've made mistakes before. Most of them only almost killed me."
+        "If you're going to do something reckless, at least make sure it's interesting."
+
+        Think about:
+        - What would they say when greeting someone?
+        - What would they say when angry?
+        - What would they say when joking?
+        - What phrase would their friends recognize as uniquely theirs?
 
   - type: textarea
     id: never_say
