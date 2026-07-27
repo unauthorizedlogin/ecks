@@ -1,25 +1,22 @@
-# 🌎 World Systems README
+# 🌎 World Systems
 
 ## Overview
 
-The World Systems framework provides the foundation for managing world loading, map structure, environmental presentation, interactive objects, and player navigation.
+The World Systems layer provides the framework foundation for managing world structure, loading, environmental presentation, interactive objects, and player navigation.
 
-The system is designed around a **data-driven world architecture**, separating:
+The system uses a data-driven architecture separating:
 
-- Map data definitions
-- Chunk loading and unloading
-- Runtime world streaming
-- Interactive world objects
+- World and map definitions
+- Runtime streaming
+- Interactive objects
 - Environmental systems
 - Player transportation
 
-World systems are responsible for managing the game world state while remaining independent from gameplay systems such as quests, combat, and progression.
+World systems manage world state while remaining independent from gameplay systems such as quests, combat, and progression.
 
 ---
 
 # 🧠 System Architecture
-
-The World Systems are organized into independent systems working together:
 
 ```text
                          Map Resource
@@ -33,155 +30,37 @@ The World Systems are organized into independent systems working together:
         ┌──────────────┬──────────────┬──────────────┐
         ↓              ↓              ↓              ↓
 
-     Chunks       Environment     Destroyables   Teleporters
+     Chunks       Environment     Destroyables   Audio
+
         |
         ↓
+
  Chunk Manager
         |
         ↓
+
  Chunk Loader
-```
+````
 
 ---
 
-# 🗺️ Map System
+# 🔗 World System Documentation
 
-The Map System provides the foundation for all playable world areas through reusable map scenes and data-driven map resources.
+The following systems make up the World layer.
 
-Responsibilities include:
-
-- Base map architecture
-- World metadata
-- Environment integration
-- Chunk streaming support
-- Map-specific gameplay rules
-- Persistence configuration
-
-Documentation:
-
-📄 [Map System Documentation](world/maps.md)
+| System | Purpose | Documentation |
+|---|---|---|
+| 🔊 Audio System | Dynamic music, sound effects, ambience, and world audio zones | [Audio System](./docs/system/world/audio_system.md) |
+| 🧩 Chunk Loader | Connects maps to runtime chunk streaming configuration | [Chunk Loader](./docs/system/world/chunk_loader.md) |
+| 🗺️ Chunk Manager | Handles runtime world streaming and chunk lifecycle management | [Chunk Manager](./docs/system/world/chunk_manager.md) |
+| 💥 Destroyables | Interactive world objects with damage, destruction, and persistence support | [Destroyables](./docs/system/world/destroyables.md) |
+| 🌦️ Environment System | Data-driven weather, atmosphere, lighting, and world environments | [Environment System](./docs/system/world/environment_system.md) |
+| 🗺️ Map System | Defines playable world areas, metadata, and map configuration | [Maps](./docs/system/world/maps.md) |
 
 ---
 
-# 🌍 Chunk Manager
+# Summary
 
-The Chunk Manager provides the runtime world streaming foundation for large-scale environments.
+The World Systems layer provides a scalable foundation for building and managing game environments through modular, data-driven systems.
 
-It manages dynamic chunk loading, unloading, world isolation, LOD support, chunk persistence, and player spawn placement.
-
-The system allows maps to be divided into manageable world sections while maintaining a seamless exploration experience.
-
-Responsibilities include:
-
-- Dynamic chunk streaming
-- Grid-based world management
-- Asynchronous chunk loading
-- Chunk unloading
-- LOD selection support
-- Multi-world isolation
-- Persistent world state handling
-- Teleport spawn integration
-
-Documentation:
-
-📄 [Chunk Manager Documentation](world/chunk_manager.md)
-
----
-
-# 🧱 Chunk Loader
-
-The Chunk Loader provides the connection layer between active maps and the runtime chunk streaming system.
-
-It initializes world streaming, provides chunk configuration data, and delegates loading behavior to the Chunk Manager.
-
-The system is designed around data-driven world configuration, allowing creators to define chunk templates, boundaries, loading rules, and LOD settings per world.
-
-Responsibilities include:
-
-- Initializing chunk streaming
-- Connecting maps to the Chunk Manager
-- Providing chunk configuration
-- Managing chunk loading updates
-- Supporting LOD-based streaming
-- Validating world streaming setup
-
-Documentation:
-
-📄 [Chunk Loader Documentation](world/chunk_loader.md)
-
----
-
-## 💥 Destroyables
-
-The **Destroyable System** provides a reusable framework for creating interactive world objects that can receive damage, react to hits, and be removed from the environment.
-
-Destroyables are modular gameplay objects built from reusable components, allowing creators to quickly create breakable props, destructible scenery, environmental hazards, and interactive objects without requiring custom scripts for each object.
-
-The system separates health management, damage handling, hit detection, and visual feedback into independent layers, allowing destroyable objects to integrate directly with the framework's combat and world systems.
-
-Supports:
-
-- Breakable objects
-- Damage reception
-- Health-based destruction
-- Knockback reactions
-- Hit feedback
-- Particle effects
-- Combat integration
-- World persistence support
-
-Documentation:
-
-📄 [Destroyables Documentation](world/destroyables.md)
-
----
-
-## 🌦️ Environment System
-
-The **Environment System** provides a fully data-driven framework for creating dynamic world regions with custom weather, atmosphere, lighting, audio, and camera behavior.
-
-Instead of manually scripting environmental behavior into each map, creators define reusable environment resources and assign them to configurable environment zones.
-
-The system allows worlds to contain unique biomes, weather regions, ambience zones, and atmospheric transitions while keeping environmental logic centralized and reusable.
-
-Supports:
-
-- Data-driven environment presets
-- Weather effects
-- Ambient audio and music transitions
-- Fog and atmospheric effects
-- Lighting and color adjustments
-- Zone-based environmental switching
-- Reusable environment resources
-- Editor visualization tools
-- Map and world system integration
-
-Documentation:
-
-📄 [Environment Documentation](world/environment_system.md)
-
----
-
-## 🎧 Audio System
-
-The **Audio System** provides a fully data-driven framework for managing music, sound effects, environmental ambience, weather audio, and dynamic world audio zones.
-
-Instead of relying on hardcoded audio logic inside maps, creators build immersive soundscapes using reusable audio components, configurable zones, and centralized audio routing.
-
-The system supports layered world audio, category-based mixing, environmental sound design, and runtime-safe creator workflows.
-
-Supports:
-
-- Dedicated audio bus architecture
-- Music and sound effect routing
-- Environmental audio layers
-- Dynamic ambient sound zones
-- Randomized audio playback
-- Weather and biome audio integration
-- Audio presets and reusable components
-- Editor visualization tools
-- Runtime-safe helper systems
-
-Documentation:
-
-📄 [Audio Documentation](world/audio_system.md)
+Each subsystem specializes in a specific aspect of world management while integrating through shared resources, managers, and runtime pipelines.
