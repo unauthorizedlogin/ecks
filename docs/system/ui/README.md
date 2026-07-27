@@ -1,14 +1,3 @@
-Yep. Following the new standard, this README should keep:
-
-1. **Overview**
-2. **Architecture diagram**
-3. **Documentation index table**
-
-The individual system details belong in their own docs now.
-
-Here is the trimmed full version:
-
-````md
 # 🖥️ UI System
 
 ## Overview
