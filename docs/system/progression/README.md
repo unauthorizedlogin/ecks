@@ -4,7 +4,7 @@
 
 The Progression System provides the framework responsible for player progression through dialogue, quests, and narrative-driven gameplay.
 
-The system is designed around a **data-driven progression architecture**, separating:
+The system is designed around a data-driven progression architecture, separating:
 
 - NPC conversations
 - Quest progression
@@ -19,7 +19,7 @@ Dialogue and quests remain independent systems while integrating through shared 
 
 # 🧠 System Architecture
 
-The Progression System is organized into two primary systems:
+The Progression System is organized into dedicated systems responsible for narrative interaction and player progression.
 
 ```text
                     NPC Interaction
@@ -38,52 +38,27 @@ The Progression System is organized into two primary systems:
  Dialogue Resources               Quest Resources
  Quest UI Adapter                 Objective System
  Quest Offer Controller
+````
+
+Each subsystem maintains its own runtime authority while communicating through shared progression events and data resources.
+
+---
+
+# 🔗 Progression System Documentation
+
+The following systems make up the Progression layer.
+
+| System | Purpose | Documentation |
+|---|---|---|
+| 🎭 Dialogue System | NPC conversations, dialogue playback, and narrative interactions | [Dialogue System](./progression/dialogue_system.md) |
+| 📜 Quest System    | Quest progression, objectives, rewards, and lifecycle management | [Quest System](./progression/quest_system.md)       |
+
+---
+
+# Summary
+
+The Progression System provides a unified narrative framework through modular dialogue and quest systems.
+
+Each subsystem manages its own gameplay responsibilities while integrating through shared resources, runtime managers, and progression events.
+
 ```
-
-Both systems own their own runtime state while communicating through shared progression events.
-
----
-
-## 🎭 Dialogue System
-
-The Dialogue System manages conversations between the player and NPCs.
-
-Responsibilities include:
-
-- NPC interaction
-- Dialogue playback
-- Conversation state
-- Dynamic dialogue options
-- Quest dialogue integration
-- Shop dialogue integration
-
-Dialogue content is authored through data-driven resources, allowing conversations to respond dynamically to player progression.
-
----
-
-Documentation:
-
-📄 [Dialogue System Documentation](progression/dialogue_system.md)
-
----
-
-## 📜 Quest System
-
-The Quest System manages player objectives, progression, and rewards.
-
-Responsibilities include:
-
-- Quest lifecycle management
-- Objective tracking
-- Quest state progression
-- Reward distribution
-- Quest persistence
-- Dialogue integration
-
-The Quest System acts as the authoritative source for quest progression while remaining independent from dialogue presentation.
-
----
-
-Documentation:
-
-📄 [Quest System Documentation](progression/quest_system.md)
