@@ -2,6 +2,20 @@
 
 ---
 
+## [v0.52.205] - 2026-07-27
+
+### Ability Runtime & Resource Architecture
+
+**System(s) Affected:** Ability System, Runtime Architecture, System Management
+
+* Introduced the AbilityRuntime execution layer to manage active ability instances, lifecycle events, and interruption handling.
+* Expanded the ability framework with runtime-based execution, active ability tracking, and configurable cast behavior support.
+* Refactored ability execution responsibilities from AbilityManager into AbilityRuntime, simplifying manager responsibilities and eliminating duplicate execution paths.
+* Standardized resource inspector layouts, export categories, and editor organization across the framework to improve authoring consistency.
+* Simplified QuestDefinition architecture by removing legacy dialogue fields, redundant configuration, and obsolete quest-owned data.
+
+---
+
 ## [v0.52.204] - 2026-07-26
 
 ### Ability System Foundation
