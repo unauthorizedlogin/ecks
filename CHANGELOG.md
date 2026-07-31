@@ -2,6 +2,36 @@
 
 ---
 
+## [v0.52.207] - 2026-07-29
+
+### Database Routing & Stat Architecture
+
+**System(s) Affected:** Database Framework, Generator Framework, Stats, Class System
+
+* Standardized generated resource routing by introducing dedicated folder and subfolder fields, separating filesystem organization from gameplay metadata.
+* Updated database generators and CSV layouts to use the new routing model, simplifying resource organization and data management.
+* Refactored the stat architecture by separating StatBlocks from class ownership and introducing `statblock_id` as the primary resource identifier.
+* Converted the StatBlock generation and database pipeline to use generic StatBlock resources with statblock-based loading and caching.
+* Introduced the new ClassData resource and generation pipeline, allowing classes to compose StatBlocks and abilities instead of directly owning their data.
+* Completed the first stage of the StatBlock-to-ClassData architecture decoupling.
+
+---
+
+## [v0.52.206] - 2026-07-28
+
+### Achievement System & Quest Framework Expansion
+
+**System(s) Affected:** Quest System, Achievement System, Menus, System Management
+
+* Expanded the Quest framework with automatic behaviors, priority, hidden quests, auto-start, auto-complete, and a streamlined authoring model by removing unused legacy fields.
+* Introduced Achievements as a dedicated quest category with specialized behavior, filtering, and tracking rules.
+* Added a dedicated Achievement Menu with grid-based browsing and reusable achievement cards built on the existing Quest architecture.
+* Added achievement-specific notifications, event channels, and filtering to separate achievement progression from standard quest events.
+* Updated quest loading and journal behavior to properly initialize automatic quests while excluding hidden and achievement content where appropriate.
+* Standardized generated resource asset references by replacing string paths with Resource-based icon and portrait references for improved editor integration and asset preview support.
+
+---
+
 ## [v0.52.205] - 2026-07-27
 
 ### Ability Runtime, Quest Expansion & Resource Architecture
