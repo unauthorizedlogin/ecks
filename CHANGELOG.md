@@ -2,6 +2,23 @@
 
 ---
 
+## [v0.52.208] - 2026-07-30
+
+### ClassData Migration & Ability Combat Integration
+
+**System(s) Affected:** Class System, Stats, Combat System, Ability System, Effect System
+
+* Completed the ClassData migration by separating class identity from StatBlocks, introducing composable stat block collections, starting abilities, archetypes, and equipment definitions.
+* Refactored the stat pipeline to support multiple StatBlocks per actor while preserving base stats, level scaling, equipment modifiers, derived calculations, and runtime stat access.
+* Updated player, NPC, combat, effect, and UI systems to consume the new runtime stat architecture following the StatBlock decoupling.
+* Migrated equipment stat handling to resource-driven StatBlocks with database lookups, replacing legacy modifier dictionaries and adding support for multiple StatBlocks per item.
+* Fully integrated abilities into the combat pipeline, routing ability effects, damage, and multi-effect execution through the EffectManager, CombatManager, and DamageRequest workflow.
+* Implemented the automated ability-based auto attack pipeline with attack speed scaling, dynamic ability resolution, and timer-driven combat execution.
+* Expanded ability validation with range, class, level, stat, quest, item, and equipment requirement checks while ensuring auto attacks only execute when all conditions are satisfied.
+* Improved combat reliability by preventing delayed or invalid auto attacks, preserving consistent combat timing, and validating the complete ability execution pipeline.
+
+---
+
 ## [v0.52.207] - 2026-07-29
 
 ### Database Routing & Stat Architecture
