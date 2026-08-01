@@ -2,6 +2,22 @@
 
 ---
 
+## [v0.52.209] - 2026-07-31
+
+### Item, Data & UI Pipeline Standardization
+
+**System(s) Affected:** Item System, Ability System, Data Framework, Requirements System, UI
+
+* Added item-based ability integration, allowing equipment to grant abilities through AbilityManager and execute through the existing AbilityRuntime combat pipeline.
+* Introduced the ItemRequirement resource system with support for class, level, stat, quest, equipped item, and faction requirements.
+* Replaced hardcoded item restrictions with extensible requirement definitions and CSV-driven requirement parsing.
+* Standardized resource display naming by migrating data resources to a unified `display_name` property across items, quests, classes, and levels.
+* Centralized display name retrieval through database systems, improving localization support and removing direct dependencies on internal IDs.
+* Improved requirement validation messaging with player-facing localized names instead of raw resource identifiers.
+* Updated save/load UI presentation with RichTextLabel styling, semantic colors, and configurable inspector-driven appearance controls.
+
+---
+
 ## [v0.52.208] - 2026-07-30
 
 ### ClassData Migration & Ability Combat Integration
