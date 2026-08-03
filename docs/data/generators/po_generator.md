@@ -25,150 +25,242 @@ See:
 
 ---
 
-## 📄 Localization Data Architecture
+# 🛠️ CSV → PO Generator — Localization Authoring Pipeline
 
-All localized strings originate from a master CSV translation database.
+The CSV Generator is the developer-facing localization tool.
 
-Example structure:
+Its responsibility:
 
+Convert:
+
+```text
+Master CSV
 ```
+
+into:
+
+```text
+Godot .po Translation Files
+```
+
+---
+
+# 📄 Master Translation CSV
+
+All localization data originates from one source file:
+
+```text
+translations.csv
+```
+
+Structure:
+
+```csv
+key,comment,en,es,id
+main_menu,Main Menu Title,Main Menu,Menú Principal,Menu Utama
+```
+
+Columns:
+
+| Column          | Purpose             |
+| --------------- | ------------------- |
+| key             | Internal identifier |
+| comment         | Translator context  |
+| en              | English source      |
+| Other languages | Translated values   |
+
+---
+
+# 🔄 Translation Generation Flow
+
+```text
 translations.csv
 
-key,comment,en,es,id
-main_menu,Main menu title,Main Menu,Menú Principal,Menu Utama
+      |
+      ↓
+
+CSV Parser
+
+      |
+      ↓
+
+Language Detection
+
+      |
+      ↓
+
+PO Generation
+
+      |
+      ↓
+
+strings_<locale>.po
+
+      |
+      ↓
+
+Godot Import
+
+      |
+      ↓
+
+.translation Resource
 ```
 
-Each entry contains:
-
-* localization key
-* translator notes/comments
-* language-specific translations
-
-The CSV acts as the source of truth for all supported languages.
-
 ---
 
-## 🔤 Translation Key System
+# 🌐 Automatic Language Detection
 
-All player-visible text is designed around explicit localization keys.
+The generator automatically detects languages from CSV headers.
 
-Supported content includes:
+Example:
 
-* UI labels
-* buttons
-* menus
-* item names
-* item descriptions
-* quests
-* objectives
-* dialogue
-* system messages
-* gameplay text
-
-Every visible string is prepared for localization rather than relying on runtime text replacement.
-
-The project does not depend on automatic translation.
-
----
-
-## 📦 PO File Generation
-
-The generator converts CSV translation data into standard `.po` files compatible with Godot's localization system.
-
-Generated files include:
-
-```
-localization/
-├── strings_en.po
-├── strings_es.po
-├── strings_id.po
-├── strings_fr.po
-└── ...
+```csv
+key,comment,en,fr,de,ja
 ```
 
-Each language receives its own translation file.
+Creates:
 
-The generated PO files include:
+```text
+strings_en.po
+strings_fr.po
+strings_de.po
+strings_ja.po
+```
 
-* language metadata
-* UTF-8 encoding
-* translation entries
-* translator comments
-* revision timestamps
-
----
-
-## 🌍 Multilingual Support
-
-The localization pipeline is designed to scale across many languages.
-
-The system supports:
-
-* unlimited language columns
-* independent translation files
-* large translation databases
-* incremental updates
-
-Adding a new language requires only adding a new language column to the CSV source.
-
-The generator automatically creates the corresponding `.po` file.
+No manual language configuration is required.
 
 ---
 
-## 📝 Translation Preservation
+# 📝 Translation Preservation
 
-The generator safely updates existing PO files.
+The generator preserves existing PO data.
 
-When regenerating translations:
+Before overwriting:
 
-* existing translation data is loaded
-* unchanged translations are preserved
-* updated strings are refreshed
-* new strings are added automatically
+```text
+Existing PO
+      |
+      ↓
+Read Existing Entries
+      |
+      ↓
+Compare CSV Changes
+      |
+      ↓
+Update Changed Strings Only
+```
 
-This allows the translation database to evolve without destroying previous localization work.
+This prevents:
 
----
-
-## ⚙️ Generation Pipeline
-
-The generation process:
-
-1. Reads the master localization CSV
-2. Detects available language columns
-3. Loads existing PO translation data
-4. Processes translation entries
-5. Updates changed strings
-6. Generates language-specific `.po` files
-7. Outputs updated translation resources
+* lost translations
+* unnecessary overwrites
+* translator progress loss
 
 ---
 
-## 🛠️ Editor Integration
+# 💬 Translator Comments
 
-The Localization Generator runs directly inside the Godot editor.
+CSV comments become PO translator notes.
 
-Features include:
+CSV:
 
-* automatic generation on load
-* manual generation button
-* editor-side translation updates
+```csv
+key,comment,en
+exit_button,Button text,Exit
+```
 
-This allows localization files to be rebuilt without leaving the development environment.
+Generated:
+
+```po
+#. Button text
+msgid "Exit"
+msgstr "Exit"
+```
+
+Provides context for translators.
 
 ---
 
-## 📚 Localization Workflow
+# 🖥️ Editor Integration
 
-The recommended workflow:
+The generator runs inside the Godot editor.
 
-1. Add new localization keys to the CSV
-2. Provide translations for supported languages
-3. Run the CSV → PO generator
-4. Godot imports updated translation files
-5. Runtime systems consume localized strings through `tr()`
+Provides:
 
-All runtime systems reference localization keys rather than hardcoded player-facing text.
+```text
+Generate .po Files
+```
+
+button.
+
+Workflow:
+
+```text
+Open Editor
+      |
+      ↓
+Modify CSV
+      |
+      ↓
+Press Button
+      |
+      ↓
+Regenerate Translation Files
+```
+
+---
+
+# 📦 Generated File Structure
+
+Recommended structure:
+
+```text
+localization
+ |
+ ├── translations.csv
+ |
+ ├── strings_en.po
+ ├── strings_es.po
+ ├── strings_fr.po
+ ├── strings_ja.po
+ |
+ └── strings_<locale>.translation
+```
+
+---
+
+# 🔗 System Relationships
+
+Final architecture:
+
+```text
+                 Localization System
+
+                        |
+        +---------------+---------------+
+        |                               |
+        ↓                               ↓
+
+ LanguageManager              CSV → PO Generator
+
+ Runtime                       Development
+
+        |                               |
+        ↓                               ↓
+
+TranslationServer          Translation Files
+
+        |
+        ↓
+
+      UI / Gameplay Systems
+
+        |
+        ↓
+
+      tr("KEY")
+```
 
 ---
 
