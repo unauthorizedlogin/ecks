@@ -8,6 +8,23 @@ The system provides a customizable foundation for creators while maintaining cen
 
 ---
 
+# 🖥 Menu Overview
+
+The Pause Menu provides the player-facing interface for managing gameplay interruption, saving, and returning to active play.
+
+![Pause Menu](../../../media/screenshots/pause_menu.png)
+
+The menu presents:
+
+* Resume gameplay
+* Save game access
+* Settings functionality
+* Pause state controls
+
+The interface is responsible for presenting pause-related actions only. Game state transitions, save handling, and global UI coordination are managed by GameManager, SaveManager, and UIManager.
+
+---
+
 # 🎯 Core Responsibilities
 
 The Pause Menu handles:
