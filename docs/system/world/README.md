@@ -56,6 +56,7 @@ The following systems make up the World layer.
 | 💥 Destroyables | Interactive world objects with damage, destruction, and persistence support | [Destroyables](./docs/system/world/destroyables.md) |
 | 🌦️ Environment System | Data-driven weather, atmosphere, lighting, and world environments | [Environment System](./docs/system/world/environment_system.md) |
 | 🗺️ Map System | Defines playable world areas, metadata, and map configuration | [Maps](./docs/system/world/maps.md) |
+| 🌍 World Manager | World state, map loading, scene transitions, and world lifecycle | [World Manager](./docs/system/world/world_manager.md) |
 
 ---
 
