@@ -6,6 +6,25 @@ Rather than hardcoding button labels, each built-in action includes a large coll
 
 ---
 
+# 🖥 Menu Overview
+
+The Game Over menu provides the player-facing interface displayed after player defeat.
+
+![Game Over Menu](../../../media/screenshots/game_over.png)
+
+The menu presents:
+
+* Death state feedback
+* Recovery actions
+* Restart options
+* Checkpoint recovery
+* Revive options
+* Return to menu controls
+
+The interface is responsible for presenting available recovery actions only. Game state transitions, save loading, player recovery, and level restarting are handled by the appropriate game systems.
+
+---
+
 # 🎯 Features
 
 - Ready-to-use Game Over screen
