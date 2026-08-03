@@ -214,7 +214,7 @@ For an overview of the system check out the README:
 Or, if you'd prefer a specific topic you can access them directly here:
 
 - 🚀 [Boot Orchestrator](./docs/system/engine/boot_orchestrator.md)
-- 🎮 [Game Manager](./docs/system/engine/game_manager.md)
+- 🧠 [Game Manager](./docs/system/engine/game_manager.md)
 - 🌐 [Localization](./docs/system/engine/localization.md)
 - 🔑 [Requirements Manager](./docs/system/engine/requirements_manager.md)
 - 💾 [Save System](./docs/system/engine/save_system.md)
@@ -236,7 +236,7 @@ Or, if you'd prefer a specific topic you can access them directly here:
 
 - ⚡ [Ability System](./docs/system/entity/ability_system.md)
 - 🐾 [Behaviors](./docs/system/entity/behaviors.md)
-- 🧍 [Actor Controllers](./docs/system/entity/character_controllers.md)
+- 🎮 [Actor Controllers](./docs/system/entity/character_controllers.md)
 - 🧬 [Class System](./docs/system/entity/class_system.md)
 - ⚔️ [Combat System](./docs/system/entity/combat_system.md)
 - 🎚️ [Difficulty System](./docs/system/entity/difficulty_system.md)
