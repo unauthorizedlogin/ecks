@@ -1,4 +1,4 @@
-# 💰 al_currency_manager.gd
+# 💰 CurrencyManager
 
 ## Overview
 
