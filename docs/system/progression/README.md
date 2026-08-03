@@ -50,6 +50,7 @@ The following systems make up the Progression layer.
 
 | System | Purpose | Documentation |
 |---|---|---|
+| 🏆 Achievements    | Achievement tracking, unlock conditions, and menu presentation   | [Achievements](./progression/achievement_system.md) |
 | 🎭 Dialogue System | NPC conversations, dialogue playback, and narrative interactions | [Dialogue System](./progression/dialogue_system.md) |
 | 📜 Quest System    | Quest progression, objectives, rewards, and lifecycle management | [Quest System](./progression/quest_system.md)       |
 
