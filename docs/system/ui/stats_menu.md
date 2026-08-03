@@ -10,6 +10,27 @@ The menu dynamically reads from the player's `StatBlock`, `VitalComponent`, and 
 
 ---
 
+# 🖥 Menu Overview
+
+The Player Stats Menu provides the player-facing interface for viewing character progression, attributes, combat values, and derived statistics.
+
+![Player Stats Menu](../../../media/screenshots/player_stats.png)
+
+The menu presents:
+
+* Character level and experience progress
+* Current health and resource values
+* Base attributes
+* Primary and secondary stats
+* Combat statistics
+* Resistances
+* Movement and speed values
+* Derived ratings
+
+The interface is responsible for displaying player data only. Stat calculation, progression, leveling, and vital management remain owned by the player, stat, and progression systems.
+
+---
+
 # 🎯 Responsibilities
 
 The Player Stats Menu is responsible for:
