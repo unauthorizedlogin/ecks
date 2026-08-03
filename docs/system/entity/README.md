@@ -62,7 +62,7 @@ The following systems make up the Entity layer.
 | 🎚️ Difficulty System | Data-driven gameplay difficulty scaling | [Difficulty System](docs/entity/difficulty_system.md) |
 | ✨ Effect System | Gameplay modifiers, buffs, debuffs, and stat effects | [Effect System](docs/entity/effect_system.md) |
 | 👤 NPC System | NPC identities and runtime references | [NPC System](docs/entity/npc_system.md) |
-| 🧍 Player Manager | Player lifecycle management, bootstrap flow, runtime references, and state handling | [Player Manager](docs/entity/player_manager.md) |
+| 🧍 Player Manager | Player lifecycle, bootstrap flow, runtime references, and state management | [Player Manager](docs/entity/player_manager.md) |
 | 📊 Stats System | Runtime statistics, calculations, and modifiers | [Stats System](docs/entity/stats_system.md) |
 | 📈 XP System | Experience, leveling, and character progression | [XP System](docs/entity/xp_system.md) |
 
