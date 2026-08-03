@@ -1,4 +1,4 @@
-# 🛒 al_shop_manager.gd
+# 🛒 ShopManager
 
 ## Overview
 
