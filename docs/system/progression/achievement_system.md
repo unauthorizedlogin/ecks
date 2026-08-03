@@ -30,6 +30,24 @@ See:
 
 ---
 
+# 🖥 Menu Overview
+
+The Achievement Menu provides the player-facing interface for browsing achievement progress.
+
+![Achievement Menu](../../media/screenshots/achievement_menu.png)
+
+The menu presents:
+
+* Achievement categories
+* Completion states
+* Progress tracking
+* Achievement details
+* Reward information
+
+The interface is responsible for presentation only. Achievement progression and state management remain owned by the Quest System.
+
+---
+
 # 🧩 Architecture Role
 
 The Achievement Menu is a presentation and discovery layer.
