@@ -1,687 +1,291 @@
-# 🎮 Game Manager — Global Game Flow Authority
+# 🧠 Game Manager — Global Game Flow Authority
 
-`GameManager` is the **central authority for runtime game flow**.
+## Overview
 
-It manages the lifecycle of a play session by controlling:
+The **Game Manager** is the central authority for global game flow and session state within the framework.
 
-* Game states
-* Scene and level transitions
-* Player persistence
-* World loading
-* Pause/game-over flow
-* Session tracking
-* Save/load integration
-* Debug controls
+It owns the current game state, coordinates high-level game transitions, manages session information, and serves as the bridge between the menu flow and active gameplay.
 
-`GameManager` does not define gameplay systems. Instead, it coordinates the systems responsible for gameplay.
+The Game Manager does **not** manage world generation, player lifecycle, combat, or save serialization. Those responsibilities belong to their dedicated systems.
 
-It acts as the bridge between:
+This includes:
+
+* 🎮 Global game state
+* 🚀 New game initialization
+* 🗺️ Scene transitions
+* ⏸️ Pause and resume flow
+* ☠️ Game over handling
+* 🎬 Credits flow
+* ⏱️ Session tracking
+* 🧪 Debug session controls
+
+---
+
+# 🧠 Core Responsibilities
+
+The Game Manager provides:
+
+* Global state management
+* Session initialization
+* Scene transition coordination
+* Pause and resume control
+* Session statistics
+* Gameplay timing
+* High-level game flow events
+
+The Game Manager represents the current state of the game—not the state of the player or world.
+
+---
+
+# ⚙️ Initialization
+
+```gdscript
+func initialize()
+```
+
+Initializes the internal transition timer used during scene changes.
+
+Registers the Game Manager as an active gameplay system.
+
+Output:
 
 ```text
-Boot
- ↓
-Game Session
- ↓
-World
- ↓
-Player
- ↓
-Save System
- ↓
-UI / Transitions
+🧠 GameManager initialized
 ```
 
 ---
 
-# 🧠 Core Responsibility
+# 🎮 Game State System
 
-The Game Manager answers:
+The manager maintains the current global game state.
 
-> "What state is the game currently in, what world should be active, and how should the game transition between states?"
+Supported states include:
 
-It provides a single authority for:
+* MENU
+* PLAYING
+* PAUSED
+* CUTSCENE
+* LOADING
 
-* entering gameplay
-* leaving gameplay
-* loading worlds
-* pausing
-* resuming
-* ending runs
-* restoring sessions
+Every state transition records both the previous and current state, allowing systems to react appropriately when gameplay changes.
 
 ---
 
-# 📘 Game State Management
+# 🔄 State Transition Pipeline
 
-The Game Manager maintains the global runtime state through:
-
-```gdscript
-enum GameState {
-    MENU,
-    PLAYING,
-    PAUSED,
-    CUTSCENE,
-    LOADING
-}
-```
-
-Current state:
-
-```gdscript
-state
-```
-
-Previous state:
-
-```gdscript
-previous_state
-```
-
-Example flow:
+All state changes follow a centralized flow.
 
 ```text
-MENU
- ↓
-LOADING
- ↓
-PLAYING
- ↓
-PAUSED
- ↓
-PLAYING
- ↓
-GAME OVER
-```
-
----
-
-# 🔔 State Change Broadcasting
-
-State transitions emit:
-
-```gdscript
-signal game_state_changed(old_state, new_state)
-```
-
-Allows systems to react without directly depending on GameManager logic.
-
-Examples:
-
-```text
-GameManager
-      |
-      |
-      ↓
-
-UI Manager
-  Pause Menu
-
-Audio Manager
-  Music State
-
-Combat System
-  Enable / Disable
-
-Input Manager
-  Lock Controls
-```
-
----
-
-# 🚀 New Game Initialization
-
-Starting a new game is handled through:
-
-```gdscript
-start_new_game()
-```
-
-Responsibilities:
-
-* Set player name
-* Select starting class
-* Set difficulty
-* Reset deaths
-* Reset playtime
-* Clear save-loading state
-* Transition into first level
-
-Example:
-
-```gdscript
-start_new_game(
-    "Hero",
-    "difficulty_normal",
-    "warrior"
-)
-```
-
-Flow:
-
-```text
-New Game
-    |
-    ↓
-Reset Session Data
-    |
-    ↓
-Set LOADING
-    |
-    ↓
-Fade Out
-    |
-    ↓
-Load Starting World
-    |
-    ↓
-PLAYING
-```
-
----
-
-# 🌍 Scene Loading Authority
-
-GameManager owns scene transitions.
-
-Scene requests are protected by:
-
-```gdscript
-is_transitioning
-```
-
-This prevents:
-
-* duplicate loads
-* multiple scene changes
-* transition conflicts
-
----
-
-# 🎬 Transition Pipeline
-
-All major scene changes follow:
-
-```text
-Request Scene
-      |
-      ↓
-Check Transition Lock
-      |
-      ↓
-Emit loading_scene
-      |
-      ↓
-TransitionManager.fade_out()
-      |
-      ↓
-Load Scene
-      |
-      ↓
-Emit scene_loaded
-      |
-      ↓
-TransitionManager.fade_in()
-```
-
-Signals:
-
-```gdscript
-loading_scene(path)
-
-scene_loaded(path)
-```
-
-allow transition UI and loading screens to react.
-
----
-
-# 🗺️ Level Loading System
-
-The Game Manager supports two level workflows.
-
----
-
-# 📊 Legacy Level Loading
-
-Using:
-
-```gdscript
-load_level(level:int)
-```
-
-Levels are resolved through:
-
-```gdscript
-LevelData
-```
-
-Structure:
-
-```text
-LevelData
-    |
-    |
-    +── LevelEntry
-          |
-          ├── Level Number
-          ├── Title
-          └── PackedScene
-```
-
-Example:
-
-```text
-Level 1
- |
- └── Forest Valley
-
-Level 2
- |
- └── Ancient Ruins
-```
-
----
-
-# 🗺️ Data-Driven Level IDs
-
-Modern transitions use:
-
-```gdscript
-change_level(level_id)
-```
-
-Levels are resolved through:
-
-```gdscript
-LevelDatabase
-```
-
-Flow:
-
-```text
-Level ID
-    |
-    ↓
-Level Database
-    |
-    ↓
-Scene Path
-    |
-    ↓
-PackedScene
-    |
-    ↓
-World Generation
-```
-
-Example:
-
-```gdscript
-change_level(
-    "forest_region",
-    "north_gate"
-)
-```
-
----
-
-# 🌎 World Replacement Pipeline
-
-When loading a new world:
-
-```text
-Current World
-      |
-      ↓
-Free Existing Scene
-      |
-      ↓
-Instantiate New World
-      |
-      ↓
-Attach To Scene Tree
-      |
-      ↓
-Rebuild Environment
-      |
-      ↓
-Restore Player
-      |
-      ↓
-Restore Chunk State
-      |
-      ↓
-Enable Gameplay
-```
-
----
-
-# 🧍 Player Injection System
-
-GameManager owns player persistence between worlds.
-
-The player is injected into the active world after loading.
-
-Search priority:
-
-```text
-SpawnPoints
-      ↓
-TileMap
-      ↓
-World Root
-```
-
-Flow:
-
-```text
-Player Instance
-        |
+Requested State
         ↓
-GameManager
-        |
+Validate Change
         ↓
-New World
-        |
+Update Previous State
         ↓
-Spawn Position
+Update Current State
+        ↓
+Broadcast State Event
 ```
 
-This allows:
-
-* persistent player instances
-* seamless level transitions
-* save restoration
+This ensures every system receives consistent state notifications.
 
 ---
 
-# 📦 Save System Integration
+# 🚀 New Game Flow
 
-GameManager provides world/session data required by SaveManager.
+Starting a new game initializes a fresh gameplay session.
 
-Tracked data:
+Session initialization includes:
 
-```gdscript
-current_level
-current_level_id
-player_position
-chunk_state
-```
+* Player identity
+* Selected class
+* Difficulty
+* Session statistics
+* Playtime
+* Death counter
 
----
-
-# 💾 World Serialization
-
-World state is collected through:
-
-```gdscript
-serialize_world()
-```
-
-Currently tracks:
+Once the session has been prepared, control is handed to the World Manager to load the starting level.
 
 ```text
-Chunks
- |
- └── Destroyed State
-```
-
-Example:
-
-```json
-{
-    "chunk_01": {
-        "destroyed": true
-    }
-}
+Start New Game
+        ↓
+Initialize Session
+        ↓
+Set Loading State
+        ↓
+Transition
+        ↓
+WorldManager
+        ↓
+Load Starting Level
 ```
 
 ---
 
-# 🔄 World Restoration
+# 🗺️ Scene Transition System
 
-Saved world data is restored through:
+The Game Manager coordinates high-level scene transitions.
 
-```gdscript
-deserialize_world()
-```
+Responsibilities include:
 
-Restores:
+* Preventing duplicate transitions
+* Transition timing
+* Scene change requests
+* Transition events
+* Fade synchronization
 
-* destroyed objects
-* chunk changes
-* world persistence
-
----
-
-# 🧱 Chunk System Integration
-
-GameManager coordinates with:
-
-```gdscript
-ChunkManager
-```
-
-During loading:
-
-```text
-Save Data
-    |
-    ↓
-Chunk State
-    |
-    ↓
-ChunkManager.deserialize_chunk_state()
-    |
-    ↓
-World Restored
-```
-
-This allows persistent procedural worlds.
+Scene loading is intentionally buffered through an internal timer to allow transition effects to complete before changing scenes.
 
 ---
 
 # ⏸️ Pause System
 
-Pause control is centralized:
+Gameplay may be paused only while actively playing.
 
-```gdscript
-pause_game()
-resume_game()
-```
+When paused, the manager:
 
-Pause flow:
+* Changes the game state
+* Pauses the SceneTree
+* Opens the pause interface
 
-```text
-PLAYING
-   |
-   ↓
-PAUSED
-   |
-   ↓
-Freeze Game Tree
-   |
-   ↓
-Open Pause UI
-```
-
-Uses:
-
-```gdscript
-get_tree().paused
-```
+Resuming gameplay restores the previous gameplay flow and closes the pause interface.
 
 ---
 
-# ☠️ Game Over Flow
+# ☠️ Game Flow Events
 
-Game over handling:
+The manager coordinates major gameplay transitions beyond normal play.
 
-```gdscript
-go_to_game_over()
-```
+Supported flows include:
 
-Pipeline:
+* Return to menu
+* Game over
+* Credits
 
-```text
-Player Death
-      |
-      ↓
-Pause State
-      |
-      ↓
-Fade Out
-      |
-      ↓
-Open Game Over UI
-```
+These flows are responsible for coordinating state changes and transition effects before handing control to the appropriate UI or scene.
 
 ---
 
-# 🏆 Credits Flow
+# 📊 Session Tracking
 
-Ending the game:
+The Game Manager owns runtime session information.
 
-```gdscript
-go_to_credits()
-```
+Tracked session data includes:
 
-Pipeline:
+* Current level
+* Current level identifier
+* Selected class
+* Difficulty
+* Player name
+* Total playtime
+* Death count
 
-```text
-Gameplay
-    |
-    ↓
-LOADING
-    |
-    ↓
-Credits Scene
-```
+This information represents the current play session rather than persistent character progression.
 
 ---
 
-# ⏱️ Session Tracking
+# ⏱️ Playtime Tracking
 
-GameManager tracks:
+Playtime is accumulated only while the game is actively being played.
 
-```gdscript
-total_playtime
-```
+States such as:
 
-Only increases while:
+* Menu
+* Pause
+* Loading
+* Cutscenes
 
-```gdscript
-GameState.PLAYING
-```
-
-Example:
-
-```text
-PLAYING
- + Time Added
-
-PAUSED
- + No Time Added
-
-MENU
- + No Time Added
-```
+do not contribute toward gameplay time.
 
 ---
 
 # 💀 Death Tracking
 
-Player deaths are tracked globally:
+The Game Manager records player deaths during the active session.
 
-```gdscript
-deaths
-```
+Each registered death:
 
-Updated through:
+* Increments the session counter
+* Broadcasts a gameplay event through the Event Manager
 
-```gdscript
-register_death()
-```
-
-Used for:
-
-* statistics
-* achievements
-* difficulty tracking
-* analytics
+This provides a centralized session statistic without coupling death tracking to combat systems.
 
 ---
 
-# 🧪 Debug Authority
+# 🔔 System Events
 
-GameManager provides development tools:
+The manager broadcasts lifecycle events whenever major game flow changes occur.
 
-```gdscript
-enable_debug_mode()
+Supported events include:
 
-skip_to_level()
+* Game state changed
+* Scene loading
+* Scene loaded
 
-force_state()
-```
+These signals allow UI, audio, world systems, and other managers to react without direct dependencies.
 
-Debug tools allow:
+---
 
-* instant level testing
-* state testing
-* rapid iteration
+# 🧪 Debug Controls
+
+Optional debug functionality allows controlled manipulation of the current session.
+
+Supported operations include:
+
+* Enable debug mode
+* Skip levels
+* Force game states
+
+These tools are isolated behind the debug flag to prevent accidental use during normal gameplay.
 
 ---
 
 # 🔗 System Relationships
 
-Final architecture:
-
 ```text
-                    BootManager
-                        |
-                        ↓
-
-                 GameManager
-                        |
-        +---------------+---------------+
-        |               |               |
-        ↓               ↓               ↓
-
- TransitionManager  SaveManager   LevelDatabase
-
-        |
-        ↓
-
-     World Scene
-        |
-        +-------------+
-        |             |
-        ↓             ↓
-
- ChunkManager     Player
-
-        |
-        ↓
-
-      UIManager
+              Launch Flow
+                   |
+                   ↓
+             Game Manager
+                   |
+      ┌────────────┼────────────┐
+      ↓            ↓            ↓
+Transition     WorldManager   UIManager
+ Manager            |             |
+      ↓             |             |
+ Scene Changes      |        Pause/Game Over
+                    |
+                    ↓
+              Active Gameplay
+                    |
+                    ↓
+              Session Tracking
 ```
 
 ---
 
-# Framework Role
+# 🧭 System Boundaries
 
-The Game Manager provides:
+The Game Manager intentionally delegates specialized responsibilities to dedicated systems.
 
-✅ centralized game state authority
-✅ safe scene transitions
-✅ data-driven level loading
-✅ persistent player handling
-✅ save/load coordination
-✅ world restoration
-✅ pause and game-over flow
-✅ session statistics
-✅ debug tooling
+| Responsibility    | System          |
+| ----------------- | --------------- |
+| World loading     | World Manager   |
+| Player lifecycle  | Player Manager  |
+| Save loading      | Save Manager    |
+| Combat            | Combat Manager  |
+| Ability execution | Ability Manager |
+| Effects           | Effect Manager  |
+| UI windows        | UI Manager      |
 
-The Game Manager prevents individual systems from controlling global flow independently.
+This separation keeps the Game Manager focused exclusively on coordinating global game flow.
 
-Instead, every major runtime transition passes through a single authority, creating a predictable foundation for large-scale RPG architecture.
+---
+
+# ✅ Design Rule
+
+**GameManager is the single authority for global game state and session flow.**
+
+It should coordinate gameplay transitions and maintain session state, but it should never own gameplay systems such as player management, world management, combat, saves, or effects.
+
+All engine systems should react to the Game Manager's state rather than attempting to control global game flow themselves.
