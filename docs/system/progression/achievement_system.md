@@ -34,7 +34,7 @@ See:
 
 The Achievement Menu provides the player-facing interface for browsing achievement progress.
 
-![Achievement Menu](../../media/screenshots/achievement_menu.png)
+![Achievement Menu](../../../media/screenshots/achievement_menu.png)
 
 The menu presents:
 
