@@ -13,6 +13,25 @@ All gameplay systems send player-facing notifications through this system. Comba
 
 ---
 
+# 🖥 Menu Overview
+
+The Event Viewer provides the player-facing interface for viewing, filtering, and organizing runtime events.
+
+![Event Viewer Panel](../../../media/screenshots/event_view_panel.png)
+
+The menu presents:
+
+* Event message history
+* Custom event views
+* Event category filtering
+* Filter color customization
+* View management
+* Runtime event organization
+
+The interface is responsible for event presentation only. Event generation, routing, filtering rules, and persistence are managed by the Event Manager systems.
+
+---
+
 # 🧠 Core Responsibility
 
 EventManager provides:
