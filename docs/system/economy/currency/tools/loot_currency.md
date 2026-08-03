@@ -8,7 +8,7 @@ The pickup behavior itself is inherited from `PickupBase`.
 
 📄 Related Documentation:
 
-- [Pickup Base System](docs/system/loot/items/tools)
+- [Pickup Base System](../../../loot/items/tools/loot_pickup_item.md)
 
 ---
 
