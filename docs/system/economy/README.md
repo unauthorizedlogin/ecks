@@ -58,9 +58,9 @@ The following systems make up the Economy layer.
 
 | System             | Purpose                                                               | Documentation                           |
 | ------------------ | --------------------------------------------------------------------- | --------------------------------------- |
-| 🪙 Currency System | Player currency management, balances, and economy values              | [Currency System](./currency_system.md) |
-| 🏪 Shop System     | Merchant transactions, inventories, pricing, and buying/selling logic | [Shop System](./shop_system.md)         |
-| 🧍 Shop Vendor     | Merchant definitions, configurations, and vendor behavior data        | [Shop Vendor](./shop_vendor.md)         |
+| 💰 Currency System | Player currency management, balances, and economy values              | [Currency System](./currency/runtime/currency_system.md) |
+| 🏪 Shop System     | Merchant transactions, inventories, pricing, and buying/selling logic | [Shop System](./shop/runtime/shop_system.md)         |
+| 🧍 Shop Vendor     | Merchant definitions, configurations, and vendor behavior data        | [Shop Vendor](./shop/tools/shop_vendor.md)         |
 
 ---
 
