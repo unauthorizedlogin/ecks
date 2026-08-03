@@ -2,19 +2,54 @@
 
 ---
 
+## [v0.52.211] - 2026-08-02
+
+### Framework Architecture & Lifecycle Improvements
+
+**System(s) Affected:** System Management, Requirements System, Character System, PlayerManager
+
+* Audited framework architecture and improved editor-facing class structure by converting non-scene scripts to RefCounted, adding missing class registrations, and removing unnecessary base inheritance from generators.
+* Began standardizing legacy Assignor classes toward component-based architecture naming.
+* Introduced the centralized RequirementsManager for shared validation logic across abilities, equipment, and quests.
+* Migrated requirement validation out of individual managers into dedicated pipelines while preserving system-specific failure messages and improving consistency.
+* Completed localization integration for requirement validation, ensuring failure messages and display helpers support translated output.
+* Refactored player lifecycle initialization into PlayerManager, centralizing bootstrap flow, module setup, UI binding, stats, equipment, progression, vitals, and spawn finalization.
+* Restored reliable save/load initialization by enforcing authoritative player setup order and resolving missing component, stat, and reference initialization issues.
+
+---
+
+## [v0.52.210] - 2026-08-01
+
+### Manager Architecture Refactor
+
+**System(s) Affected:** System Management, Game State, Player Management, World Management, Save System
+
+* Completed the GameManager decomposition by separating responsibilities into dedicated GameManager, PlayerManager, and WorldManager ownership layers.
+* Reduced GameManager scope to centralized game state management while moving world loading and transition workflows into WorldManager.
+* Migrated player lifecycle management, spawning, positioning, and persistence handling into PlayerManager.
+* Updated startup, world rebuild, and save/load pipelines to follow the new state ownership model:
+  * Game State → GameManager
+  * Player State → PlayerManager
+  * World State → WorldManager
+* Separated chunk persistence from world persistence and updated serialization ownership boundaries.
+* Integrated Difficulty Database loading into the launch pipeline.
+* Resolved camera initialization issues during the manager migration and stabilized the new boot flow architecture.
+
+---
+
 ## [v0.52.209] - 2026-07-31
 
-### Item, Data & UI Pipeline Standardization
+### Item, Data & Progression Pipeline Expansion
 
-**System(s) Affected:** Item System, Ability System, Data Framework, Requirements System, UI
+**System(s) Affected:** Item System, Ability System, Data Framework, UI, Achievement System
 
 * Added item-based ability integration, allowing equipment to grant abilities through AbilityManager and execute through the existing AbilityRuntime combat pipeline.
-* Introduced the ItemRequirement resource system with support for class, level, stat, quest, equipped item, and faction requirements.
-* Replaced hardcoded item restrictions with extensible requirement definitions and CSV-driven requirement parsing.
-* Standardized resource display naming by migrating data resources to a unified `display_name` property across items, quests, classes, and levels.
-* Centralized display name retrieval through database systems, improving localization support and removing direct dependencies on internal IDs.
-* Improved requirement validation messaging with player-facing localized names instead of raw resource identifiers.
-* Updated save/load UI presentation with RichTextLabel styling, semantic colors, and configurable inspector-driven appearance controls.
+* Introduced the ItemRequirement resource system with extensible support for class, level, stat, quest, equipped item, and faction-based requirements.
+* Replaced hardcoded item restrictions with CSV-driven requirement definitions and reusable requirement parsing.
+* Standardized resource display naming across data systems by migrating resources to a unified `display_name` property and centralized database lookups.
+* Improved validation and UI messaging by replacing internal IDs with localized player-facing resource names across items, quests, classes, and levels.
+* Updated save/load UI presentation with RichTextLabel formatting, semantic colors, and inspector-controlled styling options.
+* Expanded achievement progression handling with chained visibility, completion history sorting, and improved menu flow using the existing quest progression architecture.
 
 ---
 
