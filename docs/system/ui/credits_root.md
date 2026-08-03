@@ -18,6 +18,25 @@ Scrollable Credits Presentation
 
 ---
 
+# 🖥 Menu Overview
+
+The Credits UI provides the player-facing presentation layer for contributor acknowledgements, music credits, legal attributions, special thanks, and dedications.
+
+![Credits Menu](../../../media/screenshots/end_credits.png)
+
+The menu presents:
+
+* Contributor departments
+* Contributor names and roles
+* Music credits
+* Legal attributions
+* Special thanks
+* Dedications
+
+The interface is responsible for dynamic credits presentation only. Credits data, contributor definitions, and content management are handled through the credits data source.
+
+---
+
 # 🎯 Core Responsibility
 
 The Credits System manages:
