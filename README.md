@@ -216,6 +216,7 @@ Or, if you'd prefer a specific topic you can access them directly here:
 - 🚀 [Boot Orchestrator](./docs/system/engine/boot_orchestrator.md)
 - 🎮 [Game Manager](./docs/system/engine/game_manager.md)
 - 🌐 [Localization](./docs/system/engine/localization.md)
+- 🔑 [Requirements Manager](./docs/system/engine/requirements_manager.md)
 - 💾 [Save System](./docs/system/engine/save_system.md)
 - 🔄 [Transition Manager](./docs/system/engine/transition_manager.md)
 
@@ -241,6 +242,7 @@ Or, if you'd prefer a specific topic you can access them directly here:
 - 🎚️ [Difficulty System](./docs/system/entity/difficulty_system.md)
 - ✨ [Effect System](./docs/system/entity/effect_system.md)
 - 👤 [NPC System](./docs/system/entity/npc_system.md)
+- 🧍 [Player Manager](./docs/system/entity/player_manager.md)
 - 📊 [Stats System](./docs/system/entity/stats_system.md)
 - 📈 [XP System](./docs/system/entity/xp_system.md)
 
@@ -338,6 +340,7 @@ Or, if you'd prefer a specific topic you can access them directly here:
 - 💥 [Destroyables](./docs/system/world/destroyables.md)
 - 🌿 [Environment System](./docs/system/world/environment_system.md)
 - 🗺️ [Maps](./docs/system/world/maps.md)
+- 🌍 [World Manager](./docs/system/world/world_manager.md)
 
 ---
 
