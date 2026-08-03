@@ -13,6 +13,24 @@ The menu is designed as a reusable framework component and can be used from:
 
 ---
 
+# 🖥 Menu Overview
+
+The Settings Menu provides the player-facing interface for accessing game configuration, save management, loading, and exit options.
+
+![Settings Menu](../../../media/screenshots/settings_menu.png)
+
+The menu presents:
+
+* Load game access
+* Save game access
+* Settings configuration
+* Quit functionality
+* Modal window navigation
+
+The interface is responsible for presenting menu actions and routing player input only. Save handling, configuration management, and application state changes are managed by their respective systems.
+
+---
+
 # 🎯 Core Responsibilities
 
 The Settings System manages:
