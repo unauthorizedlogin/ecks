@@ -295,6 +295,7 @@ For an overview of the system check out the README:
 
 Or, if you'd prefer a specific topic you can access them directly here:
 
+- 🏆 [Achievements](./docs/system/progression/achievement_system.md)
 - 💬 [Dialogue System](./docs/system/progression/dialogue_system.md)
 - 📜 [Quest System](./docs/system/progression/quest_system.md)
 
