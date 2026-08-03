@@ -45,10 +45,9 @@ The following systems make up the Engine layer.
 
 | System | Purpose | Documentation |
 |---|---|---|
-| 🚀 Boot Orchestrator   | Framework startup, initialization sequencing, and system readiness management  | [Boot Orchestrator](./boot_orchestrator.md)   |
-| 🧠 Game Manager        | Runtime game flow, session state, world coordination, and system communication | [Game Manager](./game_manager.md)             |
-| 🌐 Localization System | Runtime language management and translation infrastructure                     | [Localization System](./localization.md)      |
-| 🔑 Requirements        | Centralized gameplay requirement validation for game systems                   | [Requirements](./requirements_manager.md)     |
-| 💾 Save System         | Persistent game state management and serialization pipeline                    | [Save System](./save_manager.md)              |
-| 🌗 Transition Manager  | Visual scene transitions, fades, and loading presentation                      | [Transition Manager](./transition_manager.md) |
-
+| 🚀 Boot Orchestrator   | Framework startup, initialization sequencing, and system readiness management  | [Boot Orchestrator](./boot/boot_orchestrator.md)   |
+| 🧠 Game Manager        | Runtime game flow, session state, world coordination, and system communication | [Game Manager](./gamestate/game_manager.md)             |
+| 🌐 Localization System | Runtime language management and translation infrastructure                     | [Localization System](./localization/localization.md)      |
+| 🔑 Requirements        | Centralized gameplay requirement validation for game systems                   | [Requirements](./requirements/requirements_manager.md)     |
+| 💾 Save System         | Persistent game state management and serialization pipeline                    | [Save System](./save/save_manager.md)              |
+| 🌗 Transition Manager  | Visual scene transitions, fades, and loading presentation                      | [Transition Manager](./transition/transition_manager.md) |
