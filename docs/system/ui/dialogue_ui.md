@@ -24,6 +24,25 @@ See:
 
 ---
 
+# 🖥 Menu Overview
+
+The Dialogue UI provides the player-facing interface for NPC conversations, dialogue progression, and interaction options.
+
+![Quest Dialogue Menu](../../../media/screenshots/quest_dialogue_menu.png)
+
+The menu presents:
+
+* NPC speaker information
+* Dialogue text
+* Conversation options
+* Quest interaction options
+* Special interaction options
+* Exit dialogue controls
+
+The interface is responsible for presentation only. Dialogue flow, NPC data, quest logic, and option generation remain owned by the Dialogue and Quest systems.
+
+---
+
 # 🧩 Architecture Role
 
 The Dialogue UI is responsible for rendering active dialogue states and forwarding player selections.
