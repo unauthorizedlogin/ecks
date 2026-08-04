@@ -2,6 +2,20 @@
 
 ---
 
+## [v0.52.212] - 2026-08-03
+
+### Ability, Combat & Framework Integration
+
+**System(s) Affected:** Character, Ability, System Management, UI, Documentation
+
+* Unified Save and Load menu slot presentation, removing duplicate formatting paths and preventing editor-time access to runtime-only manager state.
+* Added architecture documentation for GameManager, RequirementsManager, PlayerManager, WorldManager, and Achievement System, with cross-links from system READMEs and the main project README.
+* Refined auto attack validation with explicit CastResult states, blocked-state handling, and attack interval control to prevent invalid abilities from repeatedly firing while preserving normal attack behavior.
+* Integrated Attack Speed directly into the auto-attack timing pipeline, changing `AtkSpd` to use direct attacks-per-second multipliers and preventing attacks when the value is `0.0`.
+* Updated Attack Speed stat calculations, equipment override cleanup, and player stat UI to use the new authored multiplier representation with two-decimal display.
+
+---
+
 ## [v0.52.211] - 2026-08-02
 
 ### Framework Architecture & Lifecycle Improvements
