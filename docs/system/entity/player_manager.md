@@ -2,22 +2,26 @@
 
 ## Overview
 
-The **Player Manager** is the central authority for the player lifecycle within the framework.
+The **Player Manager** is the central authority for player lifecycle management.
 
-It is responsible for creating the player, maintaining the active player reference, coordinating player bootstrap, and managing player serialization during save and load operations.
+It owns the active player reference, coordinates player creation and discovery, manages player position persistence, and orchestrates the player's runtime bootstrap sequence.
 
-Rather than allowing gameplay systems to instantiate or configure the player independently, the Player Manager provides a single, deterministic initialization pipeline that prepares the player for gameplay.
+The Player Manager does not own individual gameplay systems. Instead, it connects the player to the systems required for a functional gameplay session.
 
 This includes:
 
-* 🧍 Player creation
-* 🔎 Player lookup
-* 🚀 Player bootstrap
-* 📍 Position management
-* 💾 Player serialization
-* 📂 Player deserialization
-* 🔗 System integration
-* 🎮 Spawn finalization
+* 🧍 Player creation and lookup
+* 💾 Player position persistence
+* 🧠 Class and core identity initialization
+* 🎒 Inventory integration
+* ⚔️ Equipment integration
+* 🔑 Requirement system integration
+* 📜 Quest state synchronization
+* 📊 Stat initialization and finalization
+* ❤️ Vital component configuration
+* 📈 Progression initialization
+* 🖥️ UI binding
+* 🌍 New-game startup flow
 
 ---
 
@@ -25,27 +29,37 @@ This includes:
 
 The Player Manager provides:
 
-* Player lifecycle management
-* Player reference ownership
-* Bootstrap coordination
-* Save/load preparation
-* Player discovery
-* Position management
-* System registration
+* Centralized player ownership
+* Player instance creation
+* Active player lookup
+* Player position access
+* Save/load player data staging
+* Player subsystem binding
+* Player stat bootstrap
+* Equipment synchronization
+* Vital component configuration
+* Progression initialization
+* Player UI integration
+* New-game initialization
+* Final player bootstrap signaling
 
-The Player Manager owns the player lifecycle—not gameplay behavior.
+The manager acts as the **lifecycle coordinator** for the player without becoming the owner of the individual systems it initializes.
 
 ---
 
 # ⚙️ Initialization
 
 ```gdscript
-func initialize()
+func initialize() -> void
 ```
 
-Registers the Player Manager as an active gameplay system.
+Registers the Player Manager as an active system.
 
-Prevents duplicate initialization.
+Initialization is guarded by:
+
+```gdscript
+is_initialized
+```
 
 Output:
 
@@ -55,74 +69,156 @@ Output:
 
 ---
 
-# 🧍 Player Lifecycle
+# 🧍 Player Instance Management
 
-The Player Manager guarantees a single active player instance throughout gameplay.
+## `get_or_create_player()`
 
-Player creation follows a lazy initialization model.
+Creates the player when no active player instance exists.
+
+The player scene is instantiated and stored as the manager's active reference.
+
+If pending player data exists, position data is applied during creation.
+
+Pipeline:
 
 ```text
 Player Request
-       ↓
+      ↓
 Existing Player?
-   ↓        ↓
- Yes       No
-  ↓         ↓
-Return   Instantiate
-            ↓
-      Apply Pending Data
-            ↓
-      Return Player
+   ↙       ↘
+ Yes        No
+  ↓          ↓
+Return    Instantiate
+             ↓
+       Apply Pending Data
+             ↓
+       player_ready
+             ↓
+        Return Player
 ```
 
-This prevents duplicate player creation while allowing save data to be restored before the player enters the world.
+The `player_ready` signal announces that the player instance has been created and registered.
 
 ---
 
 # 🔎 Player Lookup
 
-The manager provides centralized access to the active player.
+## `get_player()`
 
-If no cached player reference exists, the manager searches the active scene hierarchy and restores the reference automatically.
+Provides centralized access to the active player.
 
-This allows gameplay systems to safely request the player without maintaining their own references.
+The manager first checks its stored reference.
 
----
+If no reference exists, it searches the current world scene recursively for the player node.
 
-# 📍 Position Management
+This provides resilience between:
 
-The manager owns player position persistence.
+* Dynamically instantiated players
+* Scene-provided players
+* World transitions
+* Runtime player reconstruction
 
-Supported operations include:
-
-* Retrieve current position
-* Restore saved position
-* Spawn positioning
-
-Position handling is isolated from save logic, allowing world loading and player spawning to remain independent systems.
+If no player can be located, the failure is reported through the Event Manager.
 
 ---
 
-# 🚀 Player Bootstrap
+## Recursive Discovery
 
-After the player has been created, the manager performs a structured bootstrap sequence to prepare gameplay.
+```gdscript
+find_node_recursive()
+```
 
-The bootstrap process configures every major gameplay system before control is returned to the player.
+Provides the internal scene traversal used by player lookup.
+
+The function searches the active scene hierarchy until the requested player node is located.
+
+This keeps scene discovery contained within the Player Manager rather than requiring other systems to know where the player exists in the world hierarchy.
+
+---
+
+# 📍 Player Position
+
+## `get_player_position()`
+
+Provides the canonical player position used by persistence systems.
+
+The manager resolves the active player and returns its global position.
+
+---
+
+## `set_player_position()`
+
+Restores a saved or externally supplied player position.
+
+If the player provides a dedicated `set_position()` method, that interface is used.
+
+Otherwise, the manager falls back to directly assigning `global_position`.
+
+This allows player positioning to remain compatible with both specialized and standard player implementations.
+
+---
+
+# 💾 Pending Player Data
+
+The manager maintains:
+
+```gdscript
+pending_player_data
+```
+
+This provides a staging area for player data loaded before the player instance exists.
+
+Current persisted data includes:
 
 ```text
-Create Player
+Position
+```
+
+Flow:
+
+```text
+SaveManager
+     ↓
+deserialize_player()
+     ↓
+pending_player_data
+     ↓
+Player Creation
+     ↓
+Apply Position
+```
+
+This separates **save loading** from **player instantiation timing**.
+
+Future player persistence can expand this structure to include:
+
+* Stats
+* Equipment
+* Abilities
+* Additional player state
+
+---
+
+# 🚀 Player Bootstrap Architecture
+
+## `bootstrap_player()`
+
+The bootstrap process establishes the player's complete runtime state after the player has entered the world.
+
+The sequence is intentionally staged:
+
+```text
+Bootstrap Player
       ↓
-Core Initialization
+Core Identity
       ↓
-Gameplay Modules
+System Bindings
       ↓
-User Interface
-      ↓
-Statistics
+Stats
       ↓
 Equipment
       ↓
-Starting Flow
+New Game Flow
       ↓
 Vitals
       ↓
@@ -130,210 +226,479 @@ Finalize Stats
       ↓
 Progression
       ↓
-Spawn Complete
+Spawn Finalization
+      ↓
+UI Binding
 ```
 
-Each stage has a clearly defined responsibility and executes in a deterministic order.
+This establishes dependencies before systems that rely on those dependencies are finalized.
 
 ---
 
-# 🧱 Core Initialization
+# 🧠 Core Player Initialization
 
-The first bootstrap stage establishes the player's identity.
+## `_bootstrap_core()`
 
-This includes:
+Establishes the player's fundamental identity.
 
-* Selected class
-* Class data
-* Level component configuration
+Responsibilities:
 
-Without a valid class definition, bootstrap is halted to prevent incomplete player initialization.
+* Assign selected class ID
+* Resolve class data
+* Assign class ID to the level component
+* Validate required class configuration
 
----
+Flow:
 
-# 🔗 Gameplay Module Integration
+```text
+GameManager.selected_class_id
+          ↓
+Player.class_id
+          ↓
+ClassDatabase
+          ↓
+Player.class_data
+          ↓
+LevelComponent.class_id
+```
 
-The Player Manager connects the player to gameplay systems that require a player context.
-
-Current integrations include:
-
-* Inventory Manager
-* Equipment Manager
-* Requirements Manager
-* Quest Manager
-
-This centralizes player registration rather than requiring every manager to discover the player independently.
-
----
-
-# 🖥️ User Interface Integration
-
-The manager connects gameplay UI to the active player.
-
-Supported initialization includes:
-
-* Player HUD
-* Player statistics panel
-* UI movement events
-
-This ensures interface components receive the correct player reference before gameplay begins.
+Bootstrap is halted if the player has no valid class configuration.
 
 ---
 
-# 📊 Statistics Initialization
+# 🔗 System Binding
 
-Player statistics are initialized before equipment and progression systems begin operating.
+## `_bootstrap_modules()`
 
-Once initialization is complete, final runtime statistics are rebuilt and applied to the player.
+Connects the player to the systems that require an active player reference.
 
-This guarantees that every gameplay system works with finalized character statistics.
+The manager assigns the player to:
 
----
+```text
+InventoryManager
+EquipmentManager
+RequirementsManager
+```
 
-# 🛡️ Equipment Initialization
+It also synchronizes the player's progression state with:
 
-Equipment synchronization occurs after statistics have been initialized.
+```text
+QuestManager
+```
 
-This allows equipment bonuses to be applied using the finalized player stat framework rather than partially initialized values.
-
----
-
-# 🌍 Starting Game Flow
-
-When beginning a completely new game, the manager performs first-time player setup.
-
-This includes:
-
-* Starting equipment
-* Initial inventory
-* Equipment synchronization
-* Initial quests
-* Automatic quests
-* Initial save creation
-
-These operations occur only once during a new game session and are skipped when loading an existing save.
+This establishes the player as the active subject for systems that operate against player state.
 
 ---
 
-# ❤️ Vital Initialization
+# 🎒 Inventory Integration
 
-The manager configures the player's vital systems.
+The Player Manager does not manage inventory contents itself.
 
-Initialization includes:
+Instead, it establishes the player reference used by `InventoryManager`.
 
-* Stat ownership
-* Damage team assignment
-* Death event connections
+This maintains separation between:
 
-This prepares the player for participation in combat while keeping combat systems independent from player creation.
+```text
+PlayerManager
+     ↓
+Player Lifecycle
 
----
-
-# 📈 Progression Integration
-
-After gameplay initialization, progression systems are connected.
-
-Current integration includes:
-
-* Experience initialization
-* Level growth events
-* Maximum level events
-
-This stage prepares the player for ongoing character progression throughout the session.
+InventoryManager
+     ↓
+Inventory State
+```
 
 ---
 
-# 🎮 Spawn Finalization
+# ⚔️ Equipment Integration
 
-The final bootstrap stage completes player readiness.
+The Player Manager establishes the player reference with `EquipmentManager`.
+
+Equipment state is then synchronized during bootstrap through:
+
+```gdscript
+EquipmentManager.sync_equipment_state()
+```
+
+The synchronization occurs after a frame boundary to ensure the required player state and scene components are available.
+
+---
+
+# 🔑 Requirements Integration
+
+The active player is assigned to `RequirementsManager`.
+
+This allows item, quest, and other requirement validation to operate against the current player without other systems needing to manage their own player references.
+
+---
+
+# 📊 Stat Initialization
+
+## `_bootstrap_stats()`
+
+Initializes the player's stat structures through the player itself:
+
+```gdscript
+player.safe_initialize_stats()
+```
+
+The Player Manager coordinates initialization but does not calculate the player's final stats directly.
+
+---
+
+# 📐 Stat Finalization
+
+## `_finalize_stats()`
+
+Finalizes the player's runtime stat state after initialization and equipment synchronization.
+
+Pipeline:
+
+```text
+Player Stat Blocks
+       ↓
+StatManager.rebuild_stats()
+       ↓
+Player.apply_runtime_stats()
+       ↓
+PlayerManager.stats_finalized
+```
+
+The `stats_finalized` signal establishes a centralized lifecycle event indicating that the player's runtime stats are ready.
+
+This allows other systems to respond to completed player stat initialization without owning or duplicating the bootstrap sequence.
+
+---
+
+# ❤️ Vital Component Bootstrap
+
+## `_bootstrap_vitals()`
+
+Configures the player's `VitalComponent` after the player's core identity and stat configuration are established.
+
+The manager assigns:
+
+```text
+stat_owner
+damage_team
+```
+
+The damage team is resolved from the player's class configuration.
+
+The player's death signal is also connected to the Quest Manager.
+
+Flow:
+
+```text
+Player Class
+     ↓
+ClassDatabase
+     ↓
+Damage Team
+     ↓
+VitalComponent
+```
+
+This keeps the Vital Component itself entity-agnostic while allowing the Player Manager to provide the player-specific configuration required by it.
+
+---
+
+# 📈 Progression Bootstrap
+
+## `_bootstrap_progression()`
+
+Initializes the player's progression system after stats have been finalized.
 
 Responsibilities include:
 
-* Runtime stat application
-* Final gameplay signals
-* Cursor initialization
-* Spawn completion
+* XP initialization
+* Level growth event binding
+* Maximum-level event binding
 
-Once this stage finishes, the player is fully prepared for gameplay.
-
----
-
-# 💾 Serialization
-
-The Player Manager owns player-specific save data.
-
-Current serialized information includes:
-
-* Player position
-
-The serialization pipeline is designed to expand as additional player systems become persistent.
-
-Future support includes:
-
-* Statistics
-* Equipment
-* Abilities
-* Additional player progression
+The Player Manager establishes the player's progression lifecycle without becoming the owner of progression calculations.
 
 ---
 
-# 📂 Deserialization
+# 🆕 New Game Flow
 
-During loading, player data is staged before player creation.
+## `_bootstrap_start_flow()`
 
-Pending data is applied automatically when the player is instantiated.
+Handles player-specific initialization that should occur only when starting a new game.
 
-The manager also maintains compatibility with legacy save formats by recognizing previous data structures during deserialization.
+The flow is skipped when:
+
+```text
+Loading From Save
+```
+
+or:
+
+```text
+New Game Already Initialized
+```
+
+For a new game, the manager:
+
+* Marks the new-game initialization state
+* Grants class starting equipment
+* Adds starting items to inventory
+* Equips starting equipment
+* Emits the world-ready message
+* Starts the initial quest
+* Starts automatic quests
+* Creates the initial save
+
+Flow:
+
+```text
+New Game
+    ↓
+Class Data
+    ↓
+Starting Equipment
+    ↓
+Inventory
+    ↓
+Equipment
+    ↓
+Starting Quest
+    ↓
+Auto Quests
+    ↓
+Initial Save
+```
+
+This keeps new-game setup separate from save restoration.
+
+---
+
+# 🖥️ UI Integration
+
+## `_bootstrap_ui()`
+
+Connects the player to the runtime UI after the gameplay systems have been initialized.
+
+The manager locates:
+
+```text
+MenusUI
+PlayerStats
+PlayerHUD
+```
+
+and provides the active player to UI components that support player binding.
+
+It also connects UI movement state signals to the player's movement controls.
+
+This creates the relationship:
+
+```text
+UIManager
+    ↓
+Movement State
+    ↓
+PlayerControl
+```
+
+while keeping UI state ownership inside `UIManager`.
+
+---
+
+# 🖱️ Spawn Finalization
+
+## `_finalize_spawn()`
+
+Performs final player-session setup after the bootstrap sequence.
+
+Currently this establishes the gameplay cursor used by the player session.
+
+This stage provides a dedicated location for future spawn/session finalization without mixing it into core player initialization.
+
+---
+
+# 📡 Player Lifecycle Signal
+
+## `player_ready`
+
+Emitted when the Player Manager creates and registers a new player instance.
+
+This provides an external lifecycle event for systems that need to react to player creation.
+
+---
+
+## `stats_finalized`
+
+Emitted after:
+
+* Stat blocks are rebuilt
+* Runtime stats are applied
+
+This represents the completion of player stat initialization.
+
+Systems can therefore distinguish between:
+
+```text
+Player Exists
+```
+
+and:
+
+```text
+Player Is Fully Stat-Initialized
+```
+
+---
+
+# 💾 Player Serialization
+
+## `serialize_player()`
+
+Produces the player-specific save representation.
+
+Current persisted state:
+
+```text
+Position
+```
+
+The serialization boundary is intentionally centralized so additional player state can be added without requiring `SaveManager` to understand the player's internal structure.
+
+Future expansion includes:
+
+```text
+Stats
+Equipment
+Abilities
+```
+
+---
+
+# 🔄 Player Deserialization
+
+## `deserialize_player()`
+
+Loads saved player data into the manager's pending state.
+
+The current format stores:
+
+```text
+position
+```
+
+Legacy save data using:
+
+```text
+player_position
+```
+
+is also recognized.
+
+The manager therefore provides a compatibility boundary between saved player data and the current runtime player structure.
 
 ---
 
 # 🔗 System Relationships
 
 ```text
-             Save Manager
-                  |
-                  ↓
-          Player Manager
-                  |
-      ┌───────────┼────────────┐
-      ↓           ↓            ↓
- Create      Bootstrap    Serialization
-      |           |            |
-      ↓           ↓            ↓
-    Player   Gameplay Systems  Saves
-                  |
-      ┌───────────┼───────────────┐
-      ↓           ↓               ↓
- Inventory   Equipment      Requirements
-      ↓           ↓               ↓
-    Quest      Statistics      User Interface
+                         GameManager
+                              │
+                       Class / Game State
+                              │
+                              ↓
+                       PlayerManager
+                              │
+          ┌───────────────────┼───────────────────┐
+          ↓                   ↓                   ↓
+     ClassDatabase       PlayerControl       SaveManager
+                              │                   │
+                              │                   ↓
+                              │            Player Serialization
+                              │
+        ┌─────────────┬───────┼────────┬───────────────┐
+        ↓             ↓       ↓        ↓               ↓
+ InventoryManager  Equipment  Stats  VitalComponent  LevelComponent
+                    Manager   Manager
+        │             │        │         │              │
+        └─────────────┴────────┴─────────┴──────────────┘
+                              │
+                              ↓
+                       Player Runtime
+                              │
+                ┌─────────────┴─────────────┐
+                ↓                           ↓
+          QuestManager                RequirementsManager
 ```
+
+The Player Manager coordinates these relationships but does not absorb their responsibilities.
 
 ---
 
-# 🧭 System Boundaries
+# 🧠 Architectural Role
 
-The Player Manager coordinates player initialization but intentionally delegates specialized responsibilities.
+The Player Manager is the **player lifecycle coordinator**.
 
-| Responsibility  | System            |
-| --------------- | ----------------- |
-| World loading   | World Manager     |
-| Session state   | Game Manager      |
-| Saving files    | Save Manager      |
-| Inventory logic | Inventory Manager |
-| Equipment logic | Equipment Manager |
-| Combat          | Combat Manager    |
-| Statistics      | Stat Manager      |
-| User interface  | UI Manager        |
+It owns:
 
-This separation allows the player lifecycle to remain predictable while each gameplay system manages its own domain.
+* The active player reference
+* Player creation
+* Player discovery
+* Player bootstrap sequencing
+* Player persistence boundaries
+* Player lifecycle events
+
+It does **not** own:
+
+* Inventory state
+* Equipment state
+* Stat calculation
+* Quest state
+* Ability execution
+* Combat resolution
+* Progression calculations
+* UI state
+
+Those responsibilities remain with their respective systems.
+
+The Player Manager establishes the connections between those systems and the active player.
+
+---
+
+# 🚀 Expansion Model
+
+The Player Manager is structured around lifecycle coordination rather than a fixed player implementation.
+
+Future expansion can support:
+
+* Multiple player archetypes
+* Alternate player scenes
+* Additional player serialization
+* Expanded player modules
+* Different progression models
+* Multiple gameplay modes
+* Additional player-controlled entities
+
+The manager's role remains consistent:
+
+```text
+Create
+  ↓
+Bind
+  ↓
+Initialize
+  ↓
+Finalize
+  ↓
+Persist
+```
+
+This allows the broader Launch Flow to remain responsible for assembling the required gameplay systems while the Player Manager remains responsible for establishing a valid player runtime.
 
 ---
 
 # ✅ Design Rule
 
-**PlayerManager is the single authority for player lifecycle management.**
+**PlayerManager is the single authority for player lifecycle.**
 
-No gameplay system should instantiate, bootstrap, serialize, or maintain its own player instance.
+Systems should obtain the active player through the Player Manager rather than independently creating, discovering, or maintaining competing player references.
 
-All player creation, initialization, save restoration, and gameplay registration should flow through the Player Manager, ensuring a consistent and deterministic startup process across the framework.
+The Player Manager coordinates player initialization and system integration while individual managers retain ownership of their own domains.
