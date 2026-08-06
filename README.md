@@ -260,7 +260,10 @@ For an overview of the system check out the README:
 
 Or, if you'd prefer a specific topic you can access them directly here:
 
-- 🚀 [Launch System](./docs/system/launch/launch_system.md)
+- 🥾 [Bootloader](./docs/system/launch/00bootloader.md)
+- 🏠 [Title Screen](./docs/system/launch/01titlescreen.md)
+- 📋 [Start Menu](./docs/system/launch/02startmenu.md)
+- 🚀 [Launch World](./docs/system/launch/03launch_world.md)
 
 ---
 
