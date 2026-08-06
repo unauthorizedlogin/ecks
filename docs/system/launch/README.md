@@ -4,41 +4,92 @@ The Launch System provides the framework's application startup and game-entry pi
 
 It manages the progression from initial application boot through front-end navigation and into the active game world.
 
-The Launch System is responsible for:
+# 📦 System Responsibilities
 
-* Application boot and initialization
-* Front-end launch routing
-* New game configuration
-* World scene construction
+The Launch System follows a simple architectural rule:
+
+> **Launch decides what happens next. Managers own how their systems operate.**
+
+### Launch System Owns
+
+* Startup routing
+* World entry orchestration
 * Active map resolution
-* Launch-time system coordination
-* Transition from launch flow into runtime world management
+* Map scene instantiation
+* Manager attachment
+* Launch-order coordination
+* World boot completion
 
-The system is intentionally divided into discrete stages, allowing each stage to own its specific responsibilities while the overall Launch System provides the entry architecture.
+### Launch System Does Not Own
+
+* Player lifecycle
+* Camera implementation
+* Environment processing
+* Chunk streaming implementation
+* UI implementation
+* Settings implementation
+* World reconstruction internals
+* Global game state
+
+This keeps the launch layer lightweight and prevents it from becoming a central dependency for unrelated runtime behavior.
 
 ---
 
-# 🧠 Launch Architecture
+# ⚙️ Architecture Overview
+
+The Launch System is composed of several stages.
+
+### Bootloader
+
+Responsible for initial application startup and global boot configuration.
+
+### Title Screen
+
+Responsible for player-facing entry navigation.
+
+### Start Menu
+
+Responsible for collecting and establishing initial game configuration.
+
+### World Launch Controller
+
+`launch_03world.gd`
+
+Responsible for assembling the active world scene and orchestrating the transition into the world runtime.
+
+### World Manager
+
+Responsible for rebuilding and transitioning world state after the world scene has been instantiated.
+
+### Specialized Managers
+
+Dedicated managers own the individual runtime systems used during world initialization.
 
 ```text
-                    Launch System
-
-                          |
-        -----------------------------------------
-        |           |           |               |
-    Bootloader  Title Screen  Start Menu   World Launch
-        |           |           |               |
-        ↓           ↓           ↓               ↓
-   Application   Front-End   Game Setup    World Construction
-    Startup       Routing                  & Manager Handoff
-                                                |
-                                                ↓
-                                         WorldManager
-                                                |
-                           ---------------------|---------------------
-                           |          |          |          |
-                           ↓          ↓          ↓          ↓
-                      PlayerManager Camera   Environment  Chunk
+Launch System
+│
+├── Bootloader
+│   └── Initial application boot
+│
+├── Title Screen
+│   └── Front-end routing
+│
+├── Start Menu
+│   └── Initial session configuration
+│
+└── World Launch
+    ├── Map Resolution
+    ├── Map Generation
+    ├── Manager Attachment
+    ├── UI Initialization
+    ├── Settings Application
+    └── WorldManager.rebuild_world()
+            │
+            ├── PlayerManager
+            ├── CameraManager
+            ├── EnvironmentManager
+            ├── ChunkManager
+            └── Other World Runtime Systems
 ```
 
 The launch stages are responsible for **orchestrating entry into the game**, while specialized runtime managers own the systems that operate after launch.
@@ -85,3 +136,85 @@ The Launch System coordinates these systems without taking ownership of their in
 The Launch System provides the centralized entry architecture for the game.
 
 It separates application boot, front-end navigation, new game configuration, and world construction into discrete stages, with `03launch_world.gd` serving as the final orchestrator before control transitions into the runtime world systems.
+
+
+
+
+
+---
+
+
+
+---
+
+# ⚠️ Current Development Status
+
+The Launch System is functional infrastructure and now operates as a dedicated orchestration layer.
+
+The world launch controller no longer directly owns the individual responsibilities of camera management, environment management, player lifecycle, chunk streaming, or world reconstruction.
+
+Instead, it prepares the world and delegates those responsibilities to their appropriate managers.
+
+This establishes a cleaner separation between:
+
+* **Launch orchestration**
+* **World state management**
+* **Runtime system ownership**
+
+The launch pipeline can therefore continue expanding without turning the world launch script into a monolithic runtime controller.
+
+---
+
+# 🚀 Future Expansion
+
+The Launch System can be extended with additional orchestration stages without moving system-specific implementation back into the launch controller.
+
+Potential extensions include:
+
+* Save-game entry routing
+* Continue-game flow
+* Loading screen integration
+* Additional startup validation
+* World transition effects
+* Multiplayer session initialization
+* Mod/content initialization
+* Runtime world streaming transitions
+* Additional launch/testing modes
+
+These should remain orchestration concerns while specialized runtime behavior continues to reside within dedicated managers.
+
+---
+
+# 📌 Summary
+
+The Launch System provides the centralized entry architecture responsible for moving the game from application startup into a playable world.
+
+Its current architecture separates **orchestration from implementation**.
+
+The World Launch Controller:
+
+* Resolves the active map
+* Instantiates the map
+* Connects the world to required managers
+* Initializes UI and settings
+* Starts the world reconstruction process
+* Handles bootloader-specific world presentation
+
+Specialized managers then own their respective runtime responsibilities:
+
+```text
+Launch
+  ↓
+World Construction
+  ↓
+Manager Handoff
+  ↓
+WorldManager
+  ├── PlayerManager
+  ├── CameraManager
+  ├── EnvironmentManager
+  ├── ChunkManager
+  └── Other Runtime Systems
+```
+
+This makes `launch_03world.gd` a **proper world orchestrator rather than a monolithic world controller**, giving the Launch System a clear architectural boundary while preserving a single, predictable entry point into the playable runtime.This version keeps the **full scope of the old README**, but the ownership is now much cleaner: `launch_03world.gd` builds the stage and coordinates the handoff; it doesn't pretend to own every system that happens to participate in world startup.
