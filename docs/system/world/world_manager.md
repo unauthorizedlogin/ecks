@@ -2,22 +2,24 @@
 
 ## Overview
 
-The **World Manager** is the central authority for world state and level transitions within the framework.
+The **World Manager** is the central authority for managing active world state, map loading, map transitions, world reconstruction, and world-system initialization within the framework.
 
-It manages the loading, changing, and restoration of game environments while maintaining the current world context.
+It separates **game state** from **world state**.
 
-The World Manager owns **where the player exists**, while the Game Manager owns **what state the game is in**.
+`GameManager` controls the overall game state such as `MENU`, `PLAYING`, `PAUSED`, and `LOADING`, while `WorldManager` controls which map is active and how the active world is constructed and synchronized.
 
-This includes:
+The World Manager coordinates:
 
-* 🗺️ Level loading
-* 🚪 Level transitions
-* 🌍 World state management
-* 📍 Spawn point handling
-* 📦 World restoration
-* 🧩 Chunk state restoration
-* 💾 World serialization
-* 🔄 Environment refresh
+* 🗺️ Map loading
+* 🚪 Map transitions
+* 📍 Spawn point management
+* 🧍 Player placement
+* 🎥 Camera attachment
+* 🧩 Chunk system initialization
+* 🌦️ Environment system integration
+* 🎨 UI initialization
+* ⚙️ World system synchronization
+* 💾 World state serialization
 
 ---
 
@@ -25,15 +27,23 @@ This includes:
 
 The World Manager provides:
 
-* World lifecycle management
-* Level resolution
-* Scene loading
-* Active world replacement
-* World state tracking
-* Spawn coordination
-* Save restoration support
+* World initialization
+* Active map tracking
+* Map loading
+* Map transition validation
+* Map scene resolution
+* World reconstruction
+* Player placement
+* Camera synchronization
+* Chunk Manager initialization
+* Environment Manager integration
+* World UI initialization
+* World activation state
+* World save/load state
 
-The World Manager controls the world container, not gameplay systems within that world.
+The manager does not own global game state.
+
+That responsibility belongs to `GameManager`.
 
 ---
 
@@ -57,270 +67,586 @@ Output:
 
 # 🗺️ World State
 
-The World Manager maintains the current world context.
+The World Manager maintains the runtime state required to identify and reconstruct the active world.
 
-Tracked information includes:
+```gdscript
+var current_map_id: String = ""
 
-* Current level index
-* Current level identifier
-* Level data reference
-* Pending spawn point
-* Pending spawn position
-* Current save world data
+var pending_spawn_point_name: String = ""
+var pending_spawn_position: Vector2 = Vector2.ZERO
+var current_save_data: SaveData = null
 
-This state represents the loaded environment rather than the overall game session.
-
----
-
-# 🔄 Level Loading Pipeline
-
-The World Manager handles full world creation when loading a new level.
-
-```text
-Level Request
-       ↓
-Resolve Level Data
-       ↓
-Set Loading State
-       ↓
-Unload Current World
-       ↓
-Instantiate New World
-       ↓
-Restore World State
-       ↓
-Bootstrap Player
-       ↓
-Activate Gameplay
+var world_active := false
 ```
 
+The primary world identity is the active `map_id`.
+
+This allows world state to be referenced through stable database identifiers rather than direct scene paths.
+
 ---
 
-# 📚 Level Resolution
+# 🔁 Map Loading
 
-Levels are resolved through the framework's level data system.
-
-Resolution priority:
-
-```text
-LevelData
-     ↓
-Level Entry
-     ↓
-Packed Scene
+```gdscript
+func load_map(map_id: String)
 ```
 
-If no matching level entry exists, the manager falls back to the default world scene.
+Loads the framework world wrapper and prepares it to resolve and construct the requested map.
 
-This allows development environments and incomplete data sets to remain functional.
-
----
-
-# 🌍 World Scene Management
-
-When loading a new world, the manager handles:
-
-* Current scene cleanup
-* New scene instantiation
-* Scene tree registration
-* World activation
-
-The previous world is removed before the new world becomes active.
-
----
-
-# 🧩 World Stabilization
-
-After creating a new world, the manager allows the scene to complete initialization before continuing.
-
-This provides time for:
-
-* Map generation
-* Node initialization
-* Environment setup
-* World dependencies
-
-before gameplay systems are activated.
-
----
-
-# 🧍 Player Integration
-
-The World Manager coordinates with the Player Manager after the world is ready.
-
-Flow:
+The World Manager validates the requested `map_id` through `MapDatabase`.
 
 ```text
-World Loaded
-      ↓
-PlayerManager
-      ↓
-Bootstrap Player
-      ↓
-Gameplay Ready
+Map ID
+  ↓
+MapDatabase
+  ↓
+World Wrapper
+  ↓
+Map Resolution
+  ↓
+World Reconstruction
 ```
 
-The World Manager does not create or configure the player.
+The world wrapper provides the runtime environment in which the selected map is generated.
 
-It only ensures the player lifecycle begins after the correct world exists.
+This separates:
+
+**World**
+
+> The framework-level container responsible for hosting the active map.
+
+**Map**
+
+> The actual playable world-space content selected through `MapResource`.
 
 ---
 
-# 🚪 Level Transition System
+# 🚪 Map Transitions
 
-Level transitions occur without replacing the entire game session.
+```gdscript
+func change_map(new_map_id: String, spawn_point: String = "")
+```
 
-The manager supports changing levels while maintaining:
+Handles runtime transitions between maps without rebuilding the entire application flow.
 
-* Player session
-* World state
-* Gameplay systems
-* Save context
-
-Transition flow:
+The transition pipeline validates the requested map before modifying world state.
 
 ```text
-Level Change Request
-          ↓
-Validate Level ID
-          ↓
-Resolve Scene
-          ↓
-Reset World Systems
-          ↓
-Generate New Map
-          ↓
+Requested Map ID
+        ↓
+Validate ID
+        ↓
+MapDatabase
+        ↓
+Resolve Map Scene
+        ↓
+Reset Chunk System
+        ↓
+Generate Map
+        ↓
 Rebuild World
-          ↓
-Restore Gameplay
+        ↓
+Attach Player
+        ↓
+Attach Camera
+        ↓
+Initialize World Systems
+        ↓
+Activate World
+```
+
+Invalid map IDs are rejected before the transition proceeds.
+
+The manager also rejects direct scene paths and resource identifiers being passed as map IDs.
+
+---
+
+# 🛡️ Map Validation
+
+Map transitions perform several safety checks.
+
+### Empty ID
+
+```text
+change_map("")
+```
+
+is rejected.
+
+### Invalid Resource Path
+
+Values resembling:
+
+```text
+uid://...
+*.tscn
+```
+
+are rejected as invalid map identifiers.
+
+### Unknown Map
+
+The requested ID must exist within `MapDatabase`.
+
+```gdscript
+MapDatabase.has_map(new_map_id)
+```
+
+This establishes `map_id` as the authoritative identifier used by the runtime world system.
+
+---
+
+# 🗺️ Map Resolution
+
+Map scene paths are resolved through `MapDatabase`.
+
+```gdscript
+var map_path: String = MapDatabase.get_map_path(new_map_id)
+```
+
+The World Manager does not require callers to know the physical scene path.
+
+```text
+map_id
+   ↓
+MapDatabase
+   ↓
+MapResource
+   ↓
+scene path
+   ↓
+PackedScene
+```
+
+This maintains separation between runtime world logic and content storage.
+
+---
+
+# 🌍 World Reconstruction
+
+```gdscript
+func rebuild_world(world: Node, spawn_point_name: String = "")
+```
+
+Reconstructs the active world after a map has been loaded or changed.
+
+The reconstruction process establishes the runtime relationships between:
+
+* Map
+* Player
+* Camera
+* Environment
+* Chunks
+* UI
+* Difficulty
+
+The world remains inactive until the reconstruction process completes successfully.
+
+```text
+World
+ ↓
+Map
+ ↓
+Player
+ ↓
+Camera
+ ↓
+Environment
+ ↓
+Chunks
+ ↓
+UI
+ ↓
+World Active
 ```
 
 ---
 
-# 🔒 Level Validation
+# 🧹 Chunk System Reset
 
-Before transitioning, the manager validates:
+Before reconstructing a map, the existing chunk state is cleared.
 
-* Level identifier exists
-* Identifier is valid
-* Scene path resolves correctly
-* Active world supports rebuilding
+```gdscript
+ChunkManager.reset_chunk_manager()
+```
 
-Invalid transitions are rejected before affecting the current world.
+This prevents chunks belonging to the previous map from remaining attached to the newly active map.
 
----
-
-# 🧩 Chunk Integration
-
-The World Manager coordinates with the Chunk Manager during world transitions.
-
-Before rebuilding a new world:
-
-* Existing chunk state is reset
-* New chunk state is initialized
-* Saved chunk data is restored when available
-
-This allows procedural or streamed environments to transition safely.
+When the map uses world systems, the World Manager subsequently initializes the Chunk Manager using the new map's `MapResource`.
 
 ---
 
-# 📦 Save Restoration
+# 🧍 Player Placement
 
-When loading a saved world, the manager restores stored world state.
+The World Manager obtains the active player through `PlayerManager`.
 
-Supported restoration includes:
+```gdscript
+var player = PlayerManager.get_or_create_player()
+```
 
-* Current level
-* Current level identifier
-* Chunk state
+The player is detached from its previous parent and inserted into the active map's spawn hierarchy.
 
-World restoration occurs before gameplay resumes.
+Spawn resolution follows this order:
+
+```text
+Named Spawn Point
+        ↓
+First Available Spawn Point
+        ↓
+Map Root
+```
+
+A pending saved position takes priority when one exists.
+
+This allows both normal map transitions and save-game restoration to use the same world reconstruction pipeline.
 
 ---
 
-# 🌱 Environment Refresh
+# 🎥 Camera Integration
 
-After loading a world, environment systems may be refreshed.
+Once the player has been placed into the active map:
 
-Examples:
+```gdscript
+CameraManager.attach_player(player)
+```
 
-* Weather
-* Lighting
-* Environmental effects
-* Map presentation
+The Camera Manager then establishes the player as the active camera target.
 
-This allows world-specific systems to update after a transition.
+The World Manager therefore coordinates **when** the camera should attach, while `CameraManager` owns camera behavior itself.
+
+```text
+WorldManager
+     ↓
+Player Placement
+     ↓
+CameraManager
+     ↓
+Camera Target
+```
+
+---
+
+# 🌦️ Environment Integration
+
+Maps may opt into the framework's world systems through:
+
+```gdscript
+map.uses_world_systems
+```
+
+When enabled, the World Manager refreshes the environment:
+
+```gdscript
+EnvironmentManager.refresh_environment()
+```
+
+Maps that do not use world systems bypass environmental initialization.
+
+This allows the framework to support maps that do not require the full world presentation stack.
+
+```text
+Map
+ ↓
+uses_world_systems?
+ ├── YES → Environment + Chunk Systems
+ └── NO  → Skip World Systems
+```
+
+---
+
+# 🧩 World System Initialization
+
+```gdscript
+func init_world_systems(world: Node)
+```
+
+Initializes systems that depend on the active map and camera being fully established.
+
+The current `MapResource` is retrieved through `MapDatabase`.
+
+```text
+Current map_id
+      ↓
+MapDatabase
+      ↓
+MapResource
+      ↓
+WorldManager
+      ↓
+ChunkManager
+```
+
+The Chunk Manager receives:
+
+* Active map
+* Active camera
+* Chunk configuration
+* Chunk scene template
+* Chunk data template
+* LOD configuration
+* Chunk boundaries
+
+This ensures chunk streaming is configured from the currently active map's data rather than hardcoded world settings.
+
+---
+
+# 🎨 UI Integration
+
+Once the map, player, camera, and world systems have been established:
+
+```gdscript
+UIManager.init_ui(world)
+```
+
+The UI Manager is initialized against the active world.
+
+This places UI initialization within the world reconstruction lifecycle rather than requiring individual maps to manually initialize global UI systems.
+
+---
+
+# 🌍 World Activation
+
+The World Manager maintains:
+
+```gdscript
+var world_active := false
+```
+
+The world begins reconstruction in an inactive state.
+
+After the map, player, camera, environment, chunks, and UI have been synchronized, the manager marks the world active.
+
+```text
+World Created
+      ↓
+Map Ready
+      ↓
+Player Ready
+      ↓
+Camera Ready
+      ↓
+World Systems Ready
+      ↓
+UI Ready
+      ↓
+World Active
+```
+
+This provides a clear synchronization boundary for systems that depend on a fully constructed world.
+
+---
+
+# 🎮 Game State Coordination
+
+The World Manager does not own game state.
+
+Instead, it communicates world transitions to `GameManager`.
+
+```gdscript
+GameManager.set_state(GameManager.GameState.LOADING)
+```
+
+After reconstruction:
+
+```gdscript
+GameManager.set_state(GameManager.GameState.PLAYING)
+```
+
+This establishes the architectural separation:
+
+**GameManager**
+
+> Owns global game state.
+
+**WorldManager**
+
+> Owns active world state.
+
+---
+
+# 🔔 Map Changed Signal
+
+```gdscript
+signal map_changed(map)
+```
+
+The World Manager broadcasts map transitions through the `map_changed` signal.
+
+This allows other systems to respond to world changes without directly coupling themselves to the map-loading implementation.
 
 ---
 
 # 💾 World Serialization
 
-The World Manager provides world state persistence.
-
-Currently serialized data includes:
-
-```text
-Current Level
-Current Level ID
+```gdscript
+func serialize_world() -> Dictionary
 ```
 
-Additional world systems can expand this data.
+The World Manager exposes the minimum persistent world identity required to reconstruct the active world.
 
-Future support includes:
+Current serialized state:
 
-* World modifiers
-* Persistent objects
-* Environmental states
-* Region data
+```gdscript
+{
+    "current_map_id": current_map_id
+}
+```
+
+---
+
+# 💾 World Deserialization
+
+```gdscript
+func deserialize_world(state: Dictionary)
+```
+
+Restores the active map identity from saved world state.
+
+```text
+SaveData
+   ↓
+World State
+   ↓
+current_map_id
+   ↓
+WorldManager
+   ↓
+Map Reconstruction
+```
+
+This allows save data to identify the map without storing direct scene references.
 
 ---
 
 # 🔗 System Relationships
 
 ```text
-                 Game Manager
-                      |
-                      ↓
-               World Manager
-                      |
-        ┌─────────────┼─────────────┐
-        ↓             ↓             ↓
- Level Database   Chunk Manager  Save Manager
-        |             |             |
-        ↓             ↓             ↓
-   Level Scene   World State   Restore Data
-                      |
-                      ↓
-                Player Manager
-                      |
-                      ↓
-                 Active Player
+                    GameManager
+                         |
+                  Game State
+                         |
+                         ↓
+                   WorldManager
+                         |
+        ┌────────────────┼────────────────┐
+        ↓                ↓                ↓
+   MapDatabase     PlayerManager    CameraManager
+        |                |                |
+    MapResource        Player          Camera
+        |                |                |
+        └────────────┬───┴────────────────┘
+                     ↓
+                  Active Map
+                     |
+          ┌──────────┼──────────┐
+          ↓          ↓          ↓
+   ChunkManager  Environment  UIManager
 ```
+
+The World Manager acts as the orchestration layer connecting these systems during world construction and transitions.
 
 ---
 
 # 🧭 System Boundaries
 
-The World Manager coordinates world state but delegates specialized responsibilities.
+| Responsibility           | System              |
+| ------------------------ | ------------------- |
+| Global game state        | Game Manager        |
+| Active map state         | World Manager       |
+| Map definitions          | `MapResource`       |
+| Map lookup               | Map Database        |
+| Player lifecycle         | Player Manager      |
+| Camera behavior          | Camera Manager      |
+| Chunk streaming          | Chunk Manager       |
+| Environment presentation | Environment Manager |
+| UI initialization        | UI Manager          |
+| Difficulty configuration | Difficulty Database |
+| Save data                | Save Manager        |
 
-| Responsibility    | System         |
-| ----------------- | -------------- |
-| Global game state | Game Manager   |
-| Player lifecycle  | Player Manager |
-| Saving            | Save Manager   |
-| Chunk streaming   | Chunk Manager  |
-| Level definitions | Level Database |
-| UI transitions    | UI Manager     |
-| Combat            | Combat Manager |
+The World Manager coordinates these systems but does not absorb their individual responsibilities.
 
-This keeps world management focused on environments and transitions rather than gameplay logic.
+---
+
+# 🌱 Data-Driven World Architecture
+
+World construction is driven by map identity and map resource data.
+
+```text
+map_id
+   ↓
+MapDatabase
+   ↓
+MapResource
+   ↓
+WorldManager
+   ↓
+World Systems
+   ├── Player
+   ├── Camera
+   ├── Environment
+   ├── Chunks
+   └── UI
+```
+
+This allows maps to define their world requirements through data while the World Manager provides the common runtime construction pipeline.
+
+---
+
+# 🚀 Launch Flow Integration
+
+The World Manager is initialized as part of the centralized Launch Flow.
+
+The Launch Flow establishes the framework systems first, after which the World Manager becomes responsible for constructing the active playable world.
+
+```text
+Launch Flow
+    ↓
+Framework Initialization
+    ↓
+WorldManager
+    ↓
+Load Map
+    ↓
+Rebuild World
+    ↓
+Initialize World Systems
+    ↓
+Gameplay Ready
+```
+
+This establishes a consistent world startup path independent of individual map scenes.
+
+---
+
+# 🔮 Future Expansion
+
+The World Manager is intentionally structured as a world orchestration layer rather than a 2D-specific implementation.
+
+Future world configurations can provide different combinations of:
+
+* Camera systems
+* Environment systems
+* Streaming systems
+* Map representations
+* Player controllers
+* World presentation systems
+
+The World Manager can therefore remain responsible for **world lifecycle and orchestration** while specialized managers provide the implementation for different game formats.
+
+This supports the broader framework goal of allowing the Launch Flow to construct different types of games without making the core world lifecycle dependent on a single 2D RPG implementation.
 
 ---
 
 # ✅ Design Rule
 
-**WorldManager is the single authority for world state and level transitions.**
+**WorldManager is the central authority for active world state and world reconstruction.**
 
-No gameplay system should directly load levels, replace world scenes, or manage world restoration.
+`GameManager` determines **what state the game is in**.
 
-All environment changes should flow through the World Manager, ensuring consistent transitions, save restoration, and predictable world lifecycle management.
+`WorldManager` determines **what world is active and how that world is constructed**.
+
+`MapDatabase` and `MapResource` define **what map should be loaded**.
+
+Specialized managers determine **how individual world systems operate**.
+
+Future world systems should integrate through this orchestration boundary rather than embedding world lifecycle logic directly into maps or the Launch Flow.
