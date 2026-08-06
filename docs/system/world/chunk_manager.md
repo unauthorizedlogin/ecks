@@ -1,553 +1,589 @@
-# 🌍 ChunkManager System
+# 🧩 Chunk Manager
 
-`al_chunk_manager.gd`
+## Overview
 
-The `ChunkManager` handles dynamic world streaming for large grid-based environments. It manages asynchronous chunk loading, unloading, world isolation, LOD selection, chunk persistence, and player spawn placement.
+The **Chunk Manager** controls dynamic world chunk loading for large, grid-based environments.
+
+It manages the relationship between the active **Map**, **CameraGrid**, and streamed chunk scenes, allowing the world to load only the required portions of the map around the player.
+
+The system supports:
+
+* 🗺️ Grid-based world streaming
+* 📦 Asynchronous chunk loading
+* 🧹 Automatic chunk unloading
+* 🎯 Distance-based LOD selection
+* 📐 Configurable world bounds
+* 💾 Chunk destruction persistence
+* 🚪 Spawn-point resolution during teleportation
+* 🔄 Runtime rebinding when changing maps
+
+Chunk configuration is provided by the active `MapResource`, keeping world streaming behavior data-driven rather than hardcoded into the manager.
 
 ---
 
-# 🧱 Core Responsibilities
+# 🧠 Core Responsibilities
 
-The ChunkManager provides:
+The Chunk Manager provides:
 
-- Dynamic chunk streaming
-- Grid-based world loading
-- Asynchronous scene loading
-- Chunk unloading
-- Level of Detail (LOD) support
-- Multi-world isolation
-- Chunk persistence hooks
-- Teleport spawn placement
-- Chunk data loading
+* Chunk loader initialization
+* Map and camera binding
+* Player chunk-position resolution
+* Chunk range evaluation
+* LOD selection
+* Asynchronous scene loading
+* Chunk instantiation and placement
+* LOD replacement
+* Unloading of unused chunks
+* Chunk destruction serialization
+* Chunk destruction restoration
+* Teleport spawn resolution
+
+The manager owns **streaming state**, while the `MapResource` defines the configuration used to perform that streaming.
 
 ---
 
-# 🏗️ Base System
+# ⚙️ Initialization
 
 ```gdscript
-extends Node
-````
+func initialize() -> void
+```
 
-The manager operates as a global world streaming service.
+Registers the Chunk Manager as an active system.
 
----
-
-# 📦 Chunk Configuration
-
-## Chunk Size
+Initialization is guarded by:
 
 ```gdscript
-var chunk_size := Vector2i(512,512)
+is_initialized
 ```
-
-Defines the size of each world chunk in world units.
-
----
-
-## Load Radius
-
-```gdscript
-var chunk_load_radius := 3
-```
-
-Controls how far chunks load around the player.
-
-Example:
-
-```
-Radius 1:
-
-[ ][ ][ ]
-[ ][P][ ]
-[ ][ ][ ]
-
-3x3 loaded area
-```
-
----
-
-## LOD Distances
-
-```gdscript
-var lod_distances := [1,2,3]
-```
-
-Defines distance thresholds for future Level of Detail switching.
-
-Current support:
-
-```
-LOD0 = closest
-LOD1 = medium
-LOD2 = farthest
-```
-
----
-
-# 🌎 World Isolation System
-
-The ChunkManager supports multiple independent worlds.
-
-Each world maintains:
-
-```gdscript
-WorldChunkState
-```
-
----
-
-# 🌍 WorldChunkState
-
-Stores isolated runtime state.
-
-## World References
-
-| Variable      | Purpose                       |
-| ------------- | ----------------------------- |
-| `map`         | Active world map              |
-| `camera_grid` | Player tracking camera system |
-
----
-
-## Chunk Configuration
-
-| Variable              | Purpose                |
-| --------------------- | ---------------------- |
-| `chunk_size`          | Chunk dimensions       |
-| `chunk_load_radius`   | Streaming radius       |
-| `min_chunk_bounds`    | World minimum grid     |
-| `max_chunk_bounds`    | World maximum grid     |
-| `chunk_path_template` | Scene loading template |
-| `chunk_data_template` | Data resource template |
-| `lod_distances`       | LOD thresholds         |
-
----
-
-## Runtime State
-
-| Variable                      | Purpose                    |
-| ----------------------------- | -------------------------- |
-| `loaded_chunks`               | Active chunk instances     |
-| `initialized`                 | World initialization state |
-| `chunk_ready`                 | Streaming readiness        |
-| `chunk_update_missing_warned` | Prevents warning spam      |
-
----
-
-# 🌐 World Configuration Registry
-
-Worlds define their chunk templates.
-
-Example:
-
-```gdscript
-"world:level:001":
-{
-"path":
-"res://content/map/worlds/overworld/chunks/chunk_{0}_{1}_LOD{2}.tscn",
-
-"data":
-"res://content/map/worlds/overworld/chunk_data/chunk_{0}_{1}.tres"
-}
-```
-
-Each world controls:
-
-* Chunk scene location
-* Chunk data location
-* Streaming structure
-
----
-
-# 🔄 World Switching
-
-## set_world()
-
-```gdscript
-set_world(world_id)
-```
-
-Changes the active world configuration.
-
-Process:
-
-1. Set active world ID
-2. Validate configuration
-3. Load world chunk templates
-4. Update ChunkManager state
-
----
-
-# 🧠 Initialization
-
-## initialize()
-
-Bootstraps the manager.
 
 Output:
 
-```
-🌍 ChunkManager initialized
+```text
+🧩 ChunkManager initialized
 ```
 
 ---
 
-# 📥 Chunk Loader Binding
+# 🌍 World Binding
 
-## init_chunk_loader()
-
-Connects ChunkManager to a world instance.
-
-Receives:
+## `init_chunk_loader()`
 
 ```gdscript
-_map
-_camera
-_chunk_size
-_chunk_load_radius
-_min_chunk_bounds
-_max_chunk_bounds
-_chunk_path_template
-_chunk_data_template
-_lod_distances
+func init_chunk_loader(
+    _map: Node,
+    _camera: Node,
+    map_data: MapResource
+) -> void
 ```
 
----
+Binds the manager to the active world and loads its streaming configuration from `MapResource`.
 
-## Binding Process
+The manager receives:
 
-1. Reset previous world state
-2. Clear loaded chunks
-3. Remove previous references
-4. Bind new map
-5. Bind new camera
-6. Apply chunk configuration
-7. Begin loading
+* Active map
+* CameraGrid
+* Chunk size
+* Load radius
+* Minimum bounds
+* Maximum bounds
+* Chunk scene template
+* Chunk data template
+* LOD distances
 
----
-
-# 🧹 World Cleanup
-
-## reset_chunk_manager()
-
-Performs full world cleanup.
-
-Removes:
-
-* Loaded chunks
-* Map references
-* Camera references
-* Templates
-* Runtime flags
-
-Used during:
-
-* World transitions
-* Teleports
-* Reloads
-
----
-
-# 🧭 Dynamic Chunk Updating
-
-## update_chunk_loading()
-
-Main streaming loop.
-
-Responsibilities:
-
-* Determine player chunk position
-* Calculate required chunks
-* Select LOD level
-* Load missing chunks
-* Remove unused chunks
-
----
-
-# 📍 Player Chunk Calculation
-
-Player position:
-
-```gdscript
-global_position / chunk_size
-```
+This allows different maps to provide different streaming configurations without changing the manager itself.
 
 Example:
 
-```
-Player:
-
-X:1024
-Y:512
-
-
-Chunk:
-
-X:2
-Y:1
+```text
+MapResource
+     ↓
+ChunkManager
+     ├── Chunk Size
+     ├── Load Radius
+     ├── World Bounds
+     ├── Scene Template
+     ├── Data Template
+     └── LOD Distances
 ```
 
 ---
 
-# 🧩 Chunk Selection
+# 🔄 Runtime Reset
 
-The manager scans world bounds:
+## `reset_chunk_manager()`
 
-```gdscript
-for x in range(min,max)
-for y in range(min,max)
+Performs a complete streaming reset.
+
+Handles:
+
+* Unloading all active chunks
+* Clearing loaded chunk tracking
+* Removing map references
+* Removing camera references
+* Clearing scene/data templates
+* Resetting loader initialization state
+
+This is used when the active map changes.
+
+---
+
+# 🧭 Player Chunk Resolution
+
+The player's world position is converted into a grid coordinate.
+
+Conceptually:
+
+```text
+World Position
+      ↓
+Chunk Size
+      ↓
+Grid Position
 ```
 
-Each chunk receives:
+For example:
 
-* Grid position
-* Distance from player
-* LOD level
+```text
+Player:
+(1400, 700)
+
+Chunk Size:
+512 × 512
+
+Chunk:
+(2, 1)
+```
+
+The resulting grid position becomes the center point for determining which chunks should remain loaded.
+
+---
+
+# 📦 Chunk Loading System
+
+## `update_chunk_loading()`
+
+Evaluates the world around the player and determines which chunks should exist.
+
+The manager:
+
+1. Validates streaming configuration
+2. Validates map and camera references
+3. Determines the player's current chunk
+4. Scans the configured world bounds
+5. Calculates distance to each chunk
+6. Selects an appropriate LOD
+7. Loads required chunks
+8. Unloads chunks outside the active range
+
+The resulting state is maintained through:
+
+```gdscript
+loaded_chunks
+```
 
 ---
 
 # 🎯 LOD Selection
 
-Current logic:
+The manager supports multiple levels of detail.
+
+Current implementation uses:
 
 ```text
-Distance <= Load Radius
-        |
-        v
-       LOD0
-
-Distance <= LOD1 Range
-        |
-        v
-       LOD1
-
-Distance <= LOD2 Range
-        |
-        v
-       LOD2
+LOD0
+LOD1
+LOD2
 ```
+
+LOD selection is based on distance from the player's current chunk.
+
+Conceptually:
+
+```text
+Player
+  │
+  ├── Near       → LOD0
+  │
+  ├── Mid-range  → LOD1
+  │
+  └── Far        → LOD2
+```
+
+LOD distances are supplied by `MapResource`.
+
+This allows individual maps to define their own streaming characteristics.
 
 ---
 
-# 📦 Async Chunk Loading
+# 🧩 Chunk Identity
 
-## load_chunk_async()
+Loaded chunks use a composite identifier:
 
-Loads chunk scenes asynchronously.
-
-Pipeline:
-
-```
-Request Scene
-      |
-      v
-Threaded Loading
-      |
-      v
-Instantiate Chunk
-      |
-      v
-Apply Position
-      |
-      v
-Load Chunk Data
-      |
-      v
-Add To World
-```
-
----
-
-# 🗂️ Chunk Naming
-
-Loaded chunks use:
-
-```
-X_Y_LOD#
+```text
+X_Y_LOD
 ```
 
 Example:
 
+```text
+2_1_LOD0
+2_2_LOD1
+1_0_LOD2
 ```
-0_1_LOD0
-2_-1_LOD1
+
+This allows multiple LOD representations of the same grid position to be tracked independently while ensuring only one LOD remains active for a given chunk coordinate.
+
+---
+
+# ⚡ Asynchronous Loading
+
+## `load_chunk_async()`
+
+Chunks are loaded through Godot's threaded resource loading system.
+
+Pipeline:
+
+```text
+Chunk Request
+      ↓
+Build Scene Path
+      ↓
+Threaded Resource Load
+      ↓
+Instantiate Scene
+      ↓
+Assign World Position
+      ↓
+Load Optional Chunk Data
+      ↓
+Attach To Map
+      ↓
+Register In loaded_chunks
 ```
+
+The scene path is generated from the configured chunk template.
+
+Example:
+
+```text
+Chunk Template
+      ↓
+X = 2
+Y = 1
+LOD = 0
+      ↓
+2_1_LOD0.tscn
+```
+
+---
+
+# 📐 Chunk Placement
+
+Loaded chunks are positioned using their grid coordinate and the configured chunk size.
+
+```text
+Grid Position × Chunk Size
+             ↓
+      World Position
+```
+
+This keeps chunk scenes aligned to the world grid regardless of which chunk is loaded.
+
+---
+
+# 📄 Chunk Data
+
+Chunks may optionally reference separate `.tres` data resources.
+
+The data path is generated independently from the scene path.
+
+Pipeline:
+
+```text
+Chunk Scene
+    +
+Chunk Data Resource
+    ↓
+Chunk Instance
+```
+
+When supported by the chunk scene, the manager assigns:
+
+```gdscript
+chunk_data
+lod_map
+```
+
+This separates chunk presentation from serialized or generated chunk data.
 
 ---
 
 # 🔁 LOD Replacement
 
-Only one LOD version of a chunk exists at a time.
+When a chunk changes LOD, the manager removes previously loaded versions of that grid position before loading the new representation.
 
 Example:
 
-Before:
-
-```
-0_0_LOD1
-```
-
-Player approaches:
-
-```
-0_0_LOD0
+```text
+2_1_LOD1
+     ↓
+Player approaches
+     ↓
+Unload LOD1
+     ↓
+Load LOD0
 ```
 
-Manager removes:
-
-```
-0_0_LOD1
-```
-
-and replaces it.
-
----
-
-# 📄 Chunk Data Loading
-
-Optional `.tres` chunk resources are loaded.
-
-Example:
-
-```
-chunk_0_0.tres
-```
-
-Provides:
-
-* Chunk metadata
-* Persistent information
-* Runtime configuration
-
----
-
-# 🚀 Player Spawn Handling
-
-After loading:
-
-```gdscript
-TeleportManager.next_spawn_id
-```
-
-is checked.
-
-If valid:
-
-1. Find spawn point
-2. Move player
-3. Clear teleport target
+This prevents multiple LOD representations of the same chunk from occupying the world simultaneously.
 
 ---
 
 # 🧹 Chunk Unloading
 
-## unload_chunk()
+## `unload_chunk()`
 
-Safely removes chunk instances.
+Removes a chunk from the active world and the manager's tracking dictionary.
 
-Process:
+Unused chunks are identified during `update_chunk_loading()`.
 
-1. Validate chunk exists
-2. Queue free node
-3. Remove from tracking dictionary
+Pipeline:
+
+```text
+Chunk Outside Streaming Range
+            ↓
+unload_chunk()
+            ↓
+queue_free()
+            ↓
+Remove From loaded_chunks
+```
+
+This keeps the active world footprint bounded by the configured streaming range.
 
 ---
 
-# 💾 Chunk Persistence
+# 🚪 Teleport Spawn Integration
 
-## serialize_chunk_state()
+The Chunk Manager also participates in spawn-point resolution.
 
-Creates save data.
+When a teleport operation specifies a pending spawn ID, newly loaded chunks are checked for the requested spawn point.
 
-Currently tracks:
+Flow:
 
-```gdscript
-destroyed
+```text
+Teleport Request
+      ↓
+Pending Spawn ID
+      ↓
+Chunk Loaded
+      ↓
+Find Spawn Point
+      ↓
+Move Player
+      ↓
+Clear Pending Spawn ID
 ```
+
+This allows teleport destinations to exist inside streamed chunks without requiring the entire map to be loaded first.
+
+Save loading is respected so teleport spawning does not override player positioning during save restoration.
+
+---
+
+# 💾 Chunk State Persistence
+
+The manager supports persistence for chunk-level world state.
+
+Currently the primary persisted state is destruction.
 
 Example:
 
-```json
-{
- "0_0_LOD0":
- {
-   "destroyed": true
- }
-}
+```text
+Chunk:
+2_1_LOD0
+
+State:
+destroyed = true
 ```
 
 ---
 
-## deserialize_chunk_state()
+## Serialization
 
-Restores saved chunk state.
-
-Used for:
-
-* Destroyed objects
-* World changes
-* Persistent gameplay changes
-
----
-
-# 🏗️ Architecture
-
+```gdscript
+func serialize_chunk_state() -> Dictionary
 ```
-World
- |
- ├── ChunkManager
- |
- ├── WorldChunkState
- |       |
- |       ├── Map
- |       ├── CameraGrid
- |       ├── Loaded Chunks
- |       └── Templates
- |
- └── Chunk Instances
-         |
-         ├── Scene (.tscn)
-         └── Data (.tres)
+
+Collects the state of currently loaded chunks.
+
+A chunk can expose:
+
+```gdscript
+is_destroyed()
+```
+
+to participate in persistence.
+
+Serialized state follows the chunk identity:
+
+```text
+Chunk ID
+    ↓
+Destroyed State
 ```
 
 ---
 
-# 🔗 System Integrations
+## Deserialization
 
-## CameraGrid
+```gdscript
+func deserialize_chunk_state(saved_state: Dictionary) -> void
+```
 
-Provides:
+Restores saved destruction state to currently loaded chunks.
 
-* Player tracking
-* World position
-* Chunk calculation
+Chunks exposing:
 
----
+```gdscript
+set_destroyed()
+```
 
-## TeleportManager
+receive their saved state.
 
-Provides:
-
-* Spawn target
-* Post-load placement
-
----
-
-## GameManager
-
-Used to prevent teleport logic during save loading.
+Invalid or freed chunk references are removed from active tracking.
 
 ---
 
-# 🌍 Current Capabilities
+# 🌍 World-Level Chunk Serialization
 
-- ✅ Dynamic open-world streaming
-- ✅ Async chunk loading
-- ✅ Chunk unloading
-- ✅ Multi-world isolation
-- ✅ LOD framework
-- ✅ Chunk resource loading
-- ✅ Persistent chunk state hooks
-- ✅ Teleport spawn support
-- ✅ World-specific templates
+The manager also provides a broader serialization path:
 
+```gdscript
+serialize_chunks()
+deserialize_chunks()
+```
+
+This operates against chunks currently present in the active world scene and uses the `"chunks"` node group to identify them.
+
+This provides an additional world-state persistence layer for chunk-specific changes.
+
+---
+
+# 🗺️ World Boundary Control
+
+Chunk scanning is constrained by:
+
+```gdscript
+min_chunk_bounds
+max_chunk_bounds
+```
+
+This prevents the streaming system from evaluating an unlimited grid.
+
+Conceptually:
+
+```text
+┌───────────────────────────────┐
+│       Maximum Chunk Bounds    │
+│                               │
+│    ┌─────────────────────┐    │
+│    │   Active Streaming  │    │
+│    │       Region        │    │
+│    └─────────────────────┘    │
+│                               │
+│       Minimum Bounds          │
+└───────────────────────────────┘
+```
+
+The bounds are defined by `MapResource`, allowing individual maps to have different playable dimensions.
+
+---
+
+# 🔗 System Relationships
+
+```text
+                     MapResource
+                          │
+                          │ Streaming Configuration
+                          ↓
+                    ChunkManager
+                          │
+             ┌────────────┼────────────┐
+             ↓            ↓            ↓
+          Map        CameraGrid    SaveManager
+             │            │            │
+             │            ↓            │
+             │         Player          │
+             │                         │
+             ↓                         ↓
+        Chunk Scenes              Chunk State
+             │                         │
+             └──────────┬──────────────┘
+                        ↓
+                 Active World Chunks
+```
+
+The manager also integrates with:
+
+```text
+TeleportManager
+      ↓
+Spawn Resolution
+```
+
+and:
+
+```text
+WorldManager
+      ↓
+Map Transition
+      ↓
+Chunk Manager Reset / Rebind
+```
+
+---
+
+# 🧠 Architectural Role
+
+The Chunk Manager is a **world streaming service**, not a map-definition system.
+
+`MapResource` defines **what streaming configuration a map requires**.
+
+`ChunkManager` determines **what chunks should currently exist**.
+
+`Map` provides **the world container where chunks are placed**.
+
+`CameraGrid` provides **the player's spatial reference** used for streaming decisions.
+
+This separation allows the same streaming manager to operate across maps with different sizes, chunk layouts, LOD configurations, and scene/data templates.
+
+---
+
+# 🚀 Future Expansion
+
+The current implementation establishes the foundation for broader world streaming support.
+
+Potential expansion includes:
+
+* Dynamic LOD policies
+* Larger world bounds
+* Multiple chunk streaming strategies
+* Background world generation
+* More advanced persistence
+* 3D chunk streaming
+* Non-RPG world layouts
+* Camera-driven streaming independent of a specific player implementation
+
+The manager's dependence on `CameraGrid` as a spatial reference provides a natural expansion point for the broader **Launch Flow** architecture, where camera implementations can be supplied according to the type of game being launched.
+
+---
+
+# ✅ Design Rule
+
+**ChunkManager owns runtime world streaming state.**
+
+Maps define their streaming configuration through `MapResource`; the Chunk Manager evaluates that configuration and maintains the active chunk set.
+
+World systems should not directly manage individual chunk loading and unloading outside this pipeline.
+
+The architecture is intended to keep chunk streaming independent from the specific gameplay genre, with future camera and world implementations able to provide the spatial context required by the streaming system.
