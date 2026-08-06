@@ -1,340 +1,464 @@
-# 🧱 Chunk Loader System
+# 🧩 Chunk Loader
 
 ## Overview
 
-The Chunk Loader System provides dynamic world streaming capabilities for large-scale maps.
+The **Chunk Loader** is the world-facing runtime component responsible for activating and driving dynamic chunk streaming within the active world.
 
-It manages the loading, unloading, and updating of world chunks based on the player's position and camera location.
+It acts as the **scene-level integration layer** between the active world, `CameraManager`, `WorldManager`, and `ChunkManager`.
 
-Built around the Map System and Chunk Manager, the loader allows creators to build expansive worlds while only keeping required sections active.
+The Chunk Loader does not implement chunk streaming logic itself.
 
-The system is fully data-driven, allowing chunk behavior, templates, boundaries, and loading rules to be configured per world.
+Instead, it:
 
----
+* 🗺️ Resolves the active map configuration
+* 🎥 Validates the active camera and camera target
+* 🧩 Initializes `ChunkManager`
+* 🔄 Drives chunk loading updates during gameplay
+* ⏳ Waits for the world to become active
+* 🛡️ Prevents chunk processing before initialization is complete
 
-# 🎯 Responsibilities
-
-The Chunk Loader is responsible for:
-
-- Initializing chunk streaming for a world
-- Providing chunk configuration data
-- Connecting maps with the Chunk Manager
-- Controlling chunk loading updates
-- Supporting LOD-based chunk loading
-- Validating world streaming configuration
-
-The Chunk Loader acts as the bridge between the active world scene and the global chunk management system.
+This keeps chunk streaming logic centralized in `ChunkManager` while allowing the world scene to participate in the framework's Launch Flow.
 
 ---
 
-# 🏗️ Architecture
+# 🧠 Core Responsibilities
 
-The chunk pipeline:
+The Chunk Loader provides:
 
-```
+* Chunk system initialization
+* Active world integration
+* Camera target validation
+* Map configuration resolution
+* Chunk Manager initialization
+* Runtime chunk update driving
+* World activation gating
+* Scene-swap safety
 
-World
-│
-├── Map
-│
-├── CameraGrid
-│
-└── ChunkLoader
-│
-▼
-ChunkManager
-│
-▼
-Chunk Scenes
+The Chunk Loader does not:
 
-````
+* Load chunk scenes directly
+* Determine which chunks should exist
+* Manage LOD selection
+* Unload chunks directly
+* Store chunk persistence data
+* Define map chunk configuration
 
-The Chunk Loader does not directly manage chunk instances.
-
-Instead, it configures and delegates loading behavior to the Chunk Manager.
+Those responsibilities belong to `ChunkManager` and `MapResource`.
 
 ---
 
-# 📦 Data-Driven Configuration
-
-Chunk behavior is controlled through exported properties.
-
-Creators can configure:
-
-- Chunk size
-- Loading radius
-- World boundaries
-- Scene templates
-- Data templates
-- LOD distances
-
-Example:
+# ⚙️ Initialization
 
 ```gdscript
-chunk_size:
-512 x 512
-
-chunk_load_radius:
-3
-
-lod_distances:
-1, 2, 3
-````
-
----
-
-# 🗺️ Chunk Templates
-
-Chunks use generated templates for scalable world creation.
-
-## Scene Template
-
-Defines the chunk scene structure.
-
-Example:
-
-```
-chunk_{x}_{y}_LOD{level}.tscn
+func initialize(world: Node)
 ```
 
-Generates:
+Initializes the Chunk Loader against the currently active world.
 
-```
-chunk_0_0_LOD1.tscn
-chunk_0_0_LOD2.tscn
-chunk_0_0_LOD3.tscn
-```
+Initialization is intentionally **manual** rather than automatic.
 
----
+The loader does not initialize itself during `_enter_tree()` because world scenes may still be undergoing reconstruction when the node enters the scene tree.
 
-## Data Template
-
-Defines chunk metadata.
-
-Example:
-
-```
-chunk_{x}_{y}.tres
-```
-
-Stores:
-
-* Spawn data
-* Objects
-* World information
-* Persistent content
-
----
-
-# 🌍 World Initialization
-
-The Chunk Loader is intentionally initialized manually.
-
-It does not automatically start during scene loading.
-
-This prevents:
-
-* Duplicate initialization
-* Scene swap conflicts
-* Invalid camera references
-
-The world explicitly initializes the loader once the map and player are ready.
-
----
-
-# 🔄 Initialization Flow
-
-Startup sequence:
-
-```
-World Loaded
-      │
-      ▼
-Map Generated
-      │
-      ▼
-Player Spawned
-      │
-      ▼
-Camera Target Assigned
-      │
-      ▼
+```text
+World Created
+     ↓
+World Rebuilt
+     ↓
+Camera Available
+     ↓
+Player Available
+     ↓
 ChunkLoader.initialize()
-      │
-      ▼
-ChunkManager Configured
-      │
-      ▼
-World Streaming Enabled
+     ↓
+ChunkManager Ready
 ```
+
+This prevents chunk streaming from beginning against an incomplete world.
+
+---
+
+# 🌍 World Integration
+
+The Chunk Loader receives the active world during initialization.
+
+```gdscript
+var map = world.get_map()
+var camera = CameraManager.get_camera_grid()
+```
+
+The loader uses these references to establish the runtime dependencies required by `ChunkManager`.
+
+```text
+World
+ ├── Map
+ │
+ └── Camera
+       ↓
+ ChunkLoader
+       ↓
+ ChunkManager
+```
+
+The world itself remains responsible for constructing the map and establishing the player.
 
 ---
 
 # 🎥 Camera Integration
 
-The Chunk Loader uses the active camera target to determine loading position.
-
-Before initialization it validates:
-
-* Camera exists
-* Camera target exists
-* Player reference is valid
-
-If required, the system can restore the camera target after world swaps.
-
----
-
-# 🧱 Chunk Boundaries
-
-Creators can define world limits.
-
-Example:
+The Chunk Loader obtains the active camera through `CameraManager`.
 
 ```gdscript
-min_chunk_bounds:
-(-1, -1)
-
-max_chunk_bounds:
-(2, 2)
+CameraManager.get_camera_grid()
 ```
 
-This allows:
+The camera must have a valid target before chunk streaming can begin.
 
-* Small contained zones
-* Large open worlds
-* Controlled streaming areas
+If the camera target has been invalidated during a scene transition, the loader attempts to rebind it to the world player.
 
----
-
-# 📏 Load Radius
-
-The loader determines how many chunks surround the player remain active.
-
-Example:
-
-```
-Load Radius: 3
-
-+---+---+---+---+---+---+---+
-|   |   |   |   |   |   |   |
-+---+---+---+---+---+---+---+
-|   | 3 | 2 | 1 | 2 | 3 |   |
-+---+---+---+---+---+---+---+
-|   | 2 | 1 | P | 1 | 2 |   |
-+---+---+---+---+---+---+---+
-|   | 3 | 2 | 1 | 2 | 3 |   |
-+---+---+---+---+---+---+---+
+```text
+CameraManager
+      ↓
+CameraGrid
+      ↓
+Camera Target
+      ↓
+ChunkLoader
+      ↓
+ChunkManager
 ```
 
-Only required chunks remain active.
+The camera therefore provides the runtime positional reference used by the chunk system.
 
 ---
 
-# 🧬 Level of Detail Support
+# 🗺️ Map Configuration
 
-The system supports multiple chunk detail levels.
+The Chunk Loader resolves the active `MapResource` through `MapDatabase`.
 
-Example:
-
-```
-LOD 1
-High detail
-Near player
-
-LOD 2
-Medium detail
-
-LOD 3
-Low detail
-Far distance
+```gdscript
+MapDatabase.get_map_data(
+    WorldManager.current_map_id
+)
 ```
 
-This allows large environments without requiring every area to remain fully loaded.
+This keeps chunk configuration data-driven.
+
+The loader does not define chunk dimensions, bounds, templates, or LOD behavior itself.
+
+Instead:
+
+```text
+WorldManager.current_map_id
+          ↓
+      MapDatabase
+          ↓
+      MapResource
+          ↓
+     ChunkManager
+```
+
+The active `MapResource` provides the configuration required by the chunk streaming system.
 
 ---
 
-# 🔒 Safety Validation
+# 🧩 Chunk Manager Integration
 
-The loader performs validation before enabling streaming.
+Once the world, camera, camera target, and map data are validated, the Chunk Loader initializes `ChunkManager`.
 
-Checks include:
+```gdscript
+ChunkManager.init_chunk_loader(
+    map,
+    camera,
+    map_data
+)
+```
 
-* Valid world reference
-* Valid map reference
-* Valid camera reference
-* Valid player target
-* Valid chunk scene template
-* Valid chunk data template
+`ChunkManager` then becomes responsible for actual chunk streaming.
 
-Missing configuration prevents unsafe initialization.
+The separation is intentional:
 
----
+**Chunk Loader**
 
-# ⚙️ Runtime Updates
+> Connects the world to the chunk system.
 
-During gameplay the loader monitors:
+**Chunk Manager**
 
-* World active state
-* Initialization state
-* Camera target availability
-
-Only after all requirements are met does it update chunk loading.
-
-This prevents unnecessary processing during:
-
-* Menus
-* Loading screens
-* Scene transitions
+> Performs chunk streaming and chunk state management.
 
 ---
 
-# 🛠️ Creator Workflow
+# 🔄 Runtime Chunk Updates
 
-Creators configure chunk streaming by:
+During gameplay, the Chunk Loader drives the Chunk Manager's update cycle.
 
-1. Creating chunk scene templates
-2. Creating chunk data resources
-3. Defining world boundaries
-4. Setting load radius
-5. Configuring LOD distances
-6. Assigning templates to the map/world resource
+```gdscript
+ChunkManager.update_chunk_loading()
+```
 
-The framework handles runtime loading automatically.
+The loader performs this update only when all required conditions are satisfied.
 
----
+```text
+World Active?
+     ↓
+   YES
+     ↓
+Loader Active?
+     ↓
+   YES
+     ↓
+Loader Initialized?
+     ↓
+   YES
+     ↓
+Camera + Target Valid?
+     ↓
+   YES
+     ↓
+ChunkManager.update_chunk_loading()
+```
 
-# 🔗 System Integration
-
-The Chunk Loader integrates with:
-
-* Map System
-* World System
-* Chunk Manager
-* Camera System
-* Save System
-* Persistence Systems
-* Level Database
-
----
-
-# 🏆 Framework Benefits
-
-The Chunk Loader provides:
-
-- ✅ Large world support
-- ✅ Data-driven streaming
-- ✅ Generated chunk workflows
-- ✅ LOD support
-- ✅ Safe world transitions
-- ✅ Creator-configurable boundaries
-- ✅ Integration with persistent worlds
+This keeps chunk processing synchronized with the world lifecycle.
 
 ---
 
-# Summary
+# 🛡️ World Activation Gating
 
-The Chunk Loader System enables scalable world creation by separating chunk configuration from runtime management.
+The Chunk Loader does not process chunks until:
 
-Creators define how worlds are structured through data and templates, while the framework handles loading, unloading, and optimization.
+```gdscript
+WorldManager.world_active
+```
 
-Combined with the Map System and Chunk Manager, it provides the foundation for building large seamless environments without manually managing every loaded area.
+is true.
+
+This prevents chunk streaming from running while the World Manager is still reconstructing the world.
+
+```text
+World Reconstruction
+        ↓
+Player Placement
+        ↓
+Camera Attachment
+        ↓
+World Systems
+        ↓
+Chunk Loader
+        ↓
+World Active
+        ↓
+Chunk Updates
+```
+
+This establishes the World Manager as the authority over when the world is considered ready for runtime processing.
+
+---
+
+# 🚦 Active State
+
+The loader maintains:
+
+```gdscript
+var active := false
+```
+
+This provides an additional runtime gate independent of world activation.
+
+The loader must satisfy both:
+
+```text
+WorldManager.world_active
+        AND
+ChunkLoader.active
+        AND
+ChunkLoader.is_initialized
+```
+
+before it can drive chunk updates.
+
+This allows the loader to remain initialized while temporarily disabling runtime chunk processing.
+
+---
+
+# 🔁 Scene Swap Safety
+
+The Chunk Loader intentionally avoids automatic initialization.
+
+```gdscript
+func _enter_tree():
+    pass
+```
+
+World scenes may be created and destroyed during map transitions.
+
+Automatic initialization at scene entry could occur before:
+
+* The map exists
+* The camera is attached
+* The player exists
+* The correct `MapResource` is resolved
+* The world has completed reconstruction
+
+Manual initialization allows the Launch Flow and World Manager to control the correct initialization order.
+
+---
+
+# 🧱 Chunk Configuration
+
+The loader exposes configuration fields for scene-level configuration and compatibility:
+
+```gdscript
+@export var chunk_size := Vector2i(512, 512)
+@export var chunk_load_radius := 3
+@export var min_chunk_bounds := Vector2i(-1, -1)
+@export var max_chunk_bounds := Vector2i(2, 2)
+
+@export var chunk_path_template := ""
+@export var chunk_data_template := ""
+@export var lod_distances := [1, 2, 3]
+```
+
+Runtime world configuration is ultimately sourced from `MapResource` and passed into `ChunkManager`.
+
+This allows map-specific chunk configuration to remain data-driven rather than requiring each world scene to implement its own streaming logic.
+
+---
+
+# 🔗 System Relationships
+
+```text
+                    WorldManager
+                         |
+                  current_map_id
+                         ↓
+                    MapDatabase
+                         |
+                    MapResource
+                         |
+                         ↓
+World ─────────→ ChunkLoader
+                  /          \
+                 /            \
+                ↓              ↓
+       CameraManager      ChunkManager
+              |                |
+         CameraGrid       Chunk Streaming
+              |
+           Player
+```
+
+The Chunk Loader acts as the integration boundary between the active world and the centralized chunk streaming system.
+
+---
+
+# 🧭 System Boundaries
+
+| Responsibility           | System                      |
+| ------------------------ | --------------------------- |
+| World lifecycle          | World Manager               |
+| Active map identity      | World Manager               |
+| Map configuration        | `MapResource`               |
+| Map lookup               | Map Database                |
+| Camera lifecycle         | Camera Manager              |
+| Camera targeting         | Camera Manager              |
+| Chunk system integration | Chunk Loader                |
+| Chunk streaming          | Chunk Manager               |
+| Chunk LOD selection      | Chunk Manager               |
+| Chunk loading/unloading  | Chunk Manager               |
+| Chunk persistence        | Chunk Manager / Save System |
+
+The Chunk Loader should remain lightweight and should not absorb chunk-streaming responsibilities from `ChunkManager`.
+
+---
+
+# 🌱 Data-Driven Chunk Architecture
+
+Chunk configuration originates from the active map resource.
+
+```text
+Map ID
+  ↓
+MapDatabase
+  ↓
+MapResource
+  ↓
+ChunkLoader
+  ↓
+ChunkManager
+  ↓
+Chunk Streaming
+```
+
+This allows different maps to provide different:
+
+* Chunk sizes
+* Streaming radii
+* Chunk boundaries
+* LOD distances
+* Scene templates
+* Chunk data templates
+
+without changing the Chunk Loader implementation.
+
+---
+
+# 🚀 Launch Flow Integration
+
+The Chunk Loader is designed to participate in the centralized Launch Flow.
+
+It is intentionally separated from the actual chunk implementation so the Launch Flow can establish the world and its dependencies before enabling chunk streaming.
+
+```text
+Launch Flow
+    ↓
+WorldManager
+    ↓
+World Construction
+    ↓
+Player + Camera
+    ↓
+ChunkLoader.initialize()
+    ↓
+ChunkManager
+    ↓
+World Active
+    ↓
+Runtime Chunk Updates
+```
+
+This allows chunk streaming to become a modular world capability rather than a hardcoded responsibility of individual map scenes.
+
+---
+
+# 🔮 Future Expansion
+
+The Chunk Loader is positioned as an integration layer for future world-streaming architectures.
+
+Future expansion can introduce different streaming implementations while retaining the same world-level initialization pattern.
+
+Potential implementations include:
+
+* Grid-based chunk streaming
+* Large-world streaming
+* Region streaming
+* 3D terrain streaming
+* Multi-layer world streaming
+* LOD-driven world streaming
+* Platform-specific streaming strategies
+
+The World and Launch Flow layers can remain responsible for **when streaming is initialized**, while specialized managers determine **how world content is streamed**.
+
+---
+
+# ✅ Design Rule
+
+**ChunkLoader is the world-facing integration layer for the chunk streaming system.**
+
+The World Manager determines **when the world is ready**.
+
+The Chunk Loader establishes **the connection between that world and the chunk system**.
+
+`MapResource` defines **how the map should be streamed**.
+
+`ChunkManager` determines **which chunks are loaded, unloaded, and maintained**.
+
+Future streaming systems should preserve this separation rather than embedding streaming behavior directly into world scenes.
