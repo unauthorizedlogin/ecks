@@ -213,12 +213,13 @@ For an overview of the system check out the README:
 
 Or, if you'd prefer a specific topic you can access them directly here:
 
-- 🚀 [Boot Orchestrator](./docs/system/engine/boot_orchestrator.md)
-- 🧠 [Game Manager](./docs/system/engine/game_manager.md)
-- 🌐 [Localization](./docs/system/engine/localization.md)
-- 🔑 [Requirements Manager](./docs/system/engine/requirements_manager.md)
-- 💾 [Save System](./docs/system/engine/save_system.md)
-- 🔄 [Transition Manager](./docs/system/engine/transition_manager.md)
+- 🚀 [Boot Orchestrator](./docs/system/engine/boot/boot_orchestrator.md)
+- 🔄 [Audio Bus Layout](./docs/system/engine/default_bus_layout.md)
+- 🧠 [Game Manager](./docs/system/engine/gamestate/game_manager.md)
+- 🌐 [Localization](./docs/system/engine/localization/localization.md)
+- 🔑 [Requirements Manager](./docs/system/engine/requirements/requirements_manager.md)
+- 💾 [Save System](./docs/system/engine/save/save_system.md)
+- 🔄 [Transition Manager](./docs/system/engine/transition/transition_manager.md)
 
 ---
 
@@ -339,10 +340,12 @@ For an overview of the system check out the README:
 Or, if you'd prefer a specific topic you can access them directly here:
 
 - 🔊 [Audio System](./docs/system/world/audio_system.md)
+- 📷 [Camera Manager](./docs/system/world/camera_manager.md)
 - 🧩 [Chunk Loader](./docs/system/world/chunk_loader.md)
 - 🗺️ [Chunk Manager](./docs/system/world/chunk_manager.md)
 - 💥 [Destroyables](./docs/system/world/destroyables.md)
-- 🌿 [Environment System](./docs/system/world/environment_system.md)
+- 🌦️ [Environment Manager](./docs/system/world/environment_manager.md)
+- 🌦️ [Environment System](./docs/system/world/environment_system.md)
 - 🗺️ [Maps](./docs/system/world/maps.md)
 - 🌍 [World Manager](./docs/system/world/world_manager.md)
 
