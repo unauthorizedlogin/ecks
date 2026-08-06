@@ -1,765 +1,945 @@
-## 🚀 Launch System
+# 🚀 Launch System
 
-The Launch Flow System provides the complete game startup pipeline, responsible for transitioning from application boot → title screen → new game setup → world initialization.
+The Launch System provides the game's complete startup and entry pipeline, transitioning the application from initial boot through front-end configuration and into a fully initialized playable world.
 
-The system is designed as a **multi-stage launch pipeline**, separating:
+The system is organized as a **multi-stage launch pipeline**:
 
-* Initial boot configuration
-* Title screen routing
-* New game creation
-* Player/class/difficulty selection
-* World scene initialization
-* Runtime system activation
+```text
+Application Boot
+      ↓
+Bootloader
+      ↓
+Title Screen
+      ↓
+New Game Configuration
+      ↓
+World Launch
+      ↓
+World Reconstruction
+      ↓
+Playable Runtime
+```
 
-This creates a flexible entry framework that supports both a traditional game flow and direct injection/testing workflows.
+The architecture separates **launch orchestration** from the specialized systems responsible for world state, player lifecycle, camera control, environment presentation, UI, settings, and chunk streaming.
+
+The launch layer determines **what needs to happen and in what order**, while dedicated managers perform the actual system-specific work.
 
 ---
 
-### ⚠️ Current Development Status
+# ⚙️ Architecture Overview
 
-The Launch Flow System is currently considered **functional infrastructure but still undergoing refinement**.
+The Launch System is composed of several stages.
 
-The pipeline and scene routing architecture are implemented, but additional systems may continue to be integrated into the launch sequence as development progresses.
+### Bootloader
 
-Future expansion may include additional startup validation, loading stages, save initialization, and further runtime preparation steps.
+Responsible for initial application startup and global boot configuration.
+
+### Title Screen
+
+Responsible for player-facing entry navigation.
+
+### New Game Initialization
+
+Responsible for collecting and establishing initial game configuration.
+
+### World Launch Controller
+
+`launch_03world.gd`
+
+Responsible for assembling the active world scene and orchestrating the transition into the world runtime.
+
+### World Manager
+
+Responsible for rebuilding and transitioning world state after the world scene has been instantiated.
+
+### Specialized Managers
+
+Dedicated managers own the individual runtime systems used during world initialization.
+
+```text
+Launch System
+│
+├── Bootloader
+│   └── Initial application boot
+│
+├── Title Screen
+│   └── Front-end routing
+│
+├── New Game
+│   └── Initial session configuration
+│
+└── World Launch
+    ├── Map Resolution
+    ├── Map Generation
+    ├── Manager Attachment
+    ├── UI Initialization
+    ├── Settings Application
+    └── WorldManager.rebuild_world()
+            │
+            ├── PlayerManager
+            ├── CameraManager
+            ├── EnvironmentManager
+            ├── ChunkManager
+            └── Other World Runtime Systems
+```
+
+---
+
+# ⚠️ Current Development Status
+
+The Launch System is functional infrastructure and now operates as a dedicated orchestration layer.
+
+The world launch controller no longer directly owns the individual responsibilities of camera management, environment management, player lifecycle, chunk streaming, or world reconstruction.
+
+Instead, it prepares the world and delegates those responsibilities to their appropriate managers.
+
+This establishes a cleaner separation between:
+
+* **Launch orchestration**
+* **World state management**
+* **Runtime system ownership**
+
+The launch pipeline can therefore continue expanding without turning the world launch script into a monolithic runtime controller.
 
 ---
 
 # 🧩 Bootloader
 
-The Bootloader is the first runtime entry point.
+The Bootloader is the first runtime entry point into the Launch System.
 
-Responsibilities:
+Its responsibility is to establish the initial application state and prepare the game for front-end or direct world entry.
 
-* Sets initial game state
-* Loads required startup databases
-* Initializes core definitions
-* Applies user settings
-* Handles initial scene routing
-* Controls transition effects
+The Bootloader handles:
 
-The bootloader supports two launch modes:
+* Initial game state
+* Required startup configuration
+* Database initialization
+* User settings
+* Initial scene routing
+* Startup transition behavior
 
-### Title Screen
-
-Loads the standard player-facing entry flow.
-
-### Injector Mode
-
-Skips menus and directly loads the game world for testing or development workflows.
+The Bootloader can enter the world through different launch paths.
 
 ---
 
-# 🎬 Title Screen Flow
+## Title Screen Launch
 
-The Title Screen manages the first player-facing interaction layer.
+The normal player-facing route.
 
-Responsibilities:
-
-* Handles start input
-* Routes into the selected launch mode
-* Supports normal menu flow
-* Supports direct world injection
-
-The system is designed so the title screen can be expanded with:
-
-* Continue game
-* Save selection
-* Options
-* Credits
-* Additional front-end menus
-
----
-
-# 🎮 New Game Initialization
-
-The Start Menu handles creation of a new game session.
-
-Before starting, the player selects:
-
-* Player name
-* Character class
-* Difficulty
-
-Validation ensures required selections are completed before beginning the game.
-
-Once confirmed, the selected values are passed into the game runtime:
-
-```
-Player Name
-Class ID
-Difficulty ID
-```
-
-These become the initial session parameters used by downstream systems.
-
----
-
-# 🗺️ World Launch Controller
-
-## Overview
-
-`launch_03world.gd` is the primary controller for the active game world scene.
-
-It manages the complete world startup and rebuild lifecycle, including:
-
-- Map resource resolution
-- Dynamic map instantiation
-- Player placement
-- Camera initialization
-- Environment loading
-- Weather and visual effects
-- UI initialization
-- Chunk streaming startup
-- World readiness signaling
-
-The script acts as the bridge between global managers and the active world instance.
-
----
-
-# 🌍 World Responsibilities
-
-The World Launch Controller manages:
-
-```
-
+```text
 Bootloader
-↓
-launch_03world
-↓
-LevelResource Resolution
-↓
-Map Generation
-↓
-Player Placement
-↓
-Camera Setup
-↓
-Environment Setup
-↓
-Chunk Streaming
-↓
-World Ready
-
-````
-
----
-
-# Core Variables
-
-## Active Map
-
-```gdscript
-var map: Map
-````
-
-Stores the currently loaded map instance.
-
-The map is dynamically generated from:
-
-```gdscript
-LevelResource.scene
+    ↓
+Title Screen
+    ↓
+New Game / Continue / Other Front-End Flow
+    ↓
+World Launch
 ```
 
 ---
 
-## Starting Map
+## Direct World Injection
 
-```gdscript
-@export var starting_map: PackedScene
+The boot flow can also support direct world entry for development and testing.
+
+```text
+Bootloader
+    ↓
+World Launch
 ```
 
-Fallback map used when no active level ID has been assigned.
-
-Priority:
-
-```
-GameManager.current_level_id
-        ↓
-LevelDatabase lookup
-        ↓
-LevelResource.scene
-        ↓
-PackedScene load
-
-Fallback:
-starting_map
-```
-
----
-
-# Environment Systems
-
-The world controller caches environment presentation nodes.
-
-## Weather
-
-```gdscript
-rain
-snow
-cloud
-leaf
-raylight
-fog
-```
-
-Controlled through:
-
-```gdscript
-apply_environment()
-```
-
----
-
-## Audio
-
-```gdscript
-music
-```
-
-Environment resources can define:
-
-```gdscript
-ResourceEnvironment.music
-```
-
-The world automatically switches music based on the active environment.
-
----
-
-## Visual Effects
-
-```gdscript
-color_correction
-brightness_overlay
-transition
-```
-
-Handles:
-
-* Color grading
-* Brightness control
-* Screen transitions
-
----
-
-# Camera System
-
-References:
-
-```gdscript
-camera_grid
-pivot
-```
-
-Responsibilities:
-
-* Following the player
-* Camera transitions
-* Pivot synchronization
-
----
-
-# World State System
-
-The world lifecycle is tracked through:
-
-```gdscript
-enum WorldState
-```
-
-States:
-
-```gdscript
-BOOTING
-LOADING
-INITIALIZING
-MAP_READY
-PLAYER_READY
-FULLY_READY
-```
-
-Final state:
-
-```gdscript
-WorldState.FULLY_READY
-```
-
----
-
-# World Ready Signal
-
-```gdscript
-signal world_ready
-```
-
-Emitted after:
-
-* Map exists
-* Player exists
-* Camera target exists
-* Environment is initialized
-* Chunk systems are active
-
----
-
-# 🚀 Boot Sequence
-
-## `_ready()`
-
-Main startup function.
-
-Execution order:
-
-```
-Resolve Active Map
-        ↓
-Generate Map
-        ↓
-Initialize Camera
-        ↓
-Connect Signals
-        ↓
-Initialize UI
-        ↓
-Apply Settings
-        ↓
-Rebuild World
-        ↓
-World Ready
-```
-
----
-
-# Map Resolution
-
-The controller checks:
-
-```gdscript
-GameManager.current_level_id
-```
-
-If available:
-
-```
-Level ID
-   ↓
-LevelDatabase
-   ↓
-LevelResource
-   ↓
-Scene Path
-   ↓
-PackedScene
-```
-
-The resulting scene becomes the active world map.
-
----
-
-# Map Generation
-
-Function:
-
-```gdscript
-generate_map()
-```
-
-Responsibilities:
-
-* Remove previous map
-* Instantiate new map
-* Attach to world
-* Connect environment events
-
-Flow:
-
-```
-Existing Map
-      ↓
-queue_free()
-
-New PackedScene
-      ↓
-instantiate()
-
-New Map Instance
-      ↓
-Add Child
-```
-
----
-
-# Environment Pipeline
-
-## apply_environment()
-
-Updates world presentation from:
-
-```gdscript
-ResourceEnvironment
-```
-
-Controls:
-
-## Weather
-
-```gdscript
-RAIN
-SNOW
-CLOUD
-LEAF
-FOG
-RAY
-```
-
----
-
-## Music
-
-If environment contains music:
-
-```
-Environment Resource
-        ↓
-Music Change
-```
-
-Otherwise:
-
-```
-Stop Music
-```
-
----
-
-## Color
-
-Applies:
-
-```gdscript
-color_gradient
-```
-
-to:
-
-```gdscript
-ColorCorrection
-```
-
----
-
-# Bootloader Visual Handling
-
-Function:
+When the world is launched directly through the bootloader, the world controller can receive:
 
 ```gdscript
 bootloader_setup()
 ```
 
-Used when launching through the boot system.
-
-Purpose:
-
-Prevent duplicate brightness effects.
-
-Behavior:
-
-```
-Bootloader Launch
-        ↓
-Disable Brightness Overlay
-```
+This allows world-specific presentation adjustments without making the world controller responsible for bootloader behavior itself.
 
 ---
 
-# World Rebuild System
+# 🎬 Title Screen Flow
 
-## rebuild_world()
+The Title Screen provides the player-facing entry layer between application startup and gameplay.
 
-The primary world reconstruction pipeline.
+Its responsibilities include:
 
-Used for:
+* Handling initial player input
+* Routing into the appropriate game flow
+* Starting new game configuration
+* Providing an expandable front-end entry point
 
-* World loading
-* Save loading
-* Teleports
-* Map switching
+The front-end can be expanded with additional flows such as:
+
+* Continue Game
+* Save Selection
+* Options
+* Credits
+* Additional menus
+
+The Title Screen does not construct the playable world directly.
+
+Instead, it eventually routes the selected game flow into the Launch System.
 
 ---
 
-# Rebuild Order
+# 🎮 New Game Initialization
 
+The New Game flow establishes the initial parameters required to begin a game session.
+
+Typical player configuration includes:
+
+* Player name
+* Character class
+* Difficulty
+* Initial map or world configuration
+
+The resulting values become runtime configuration consumed by downstream systems.
+
+Example:
+
+```text
+Player Name
+Class ID
+Difficulty ID
+Map ID
+        ↓
+Game Runtime State
+        ↓
+World Launch
 ```
-Disable World
-        ↓
-Reset Chunk State
-        ↓
-Reset Environment
-        ↓
-Acquire Player
-        ↓
-Move Player To Spawn
-        ↓
-Assign Camera Target
-        ↓
-Emit Player Ready
-        ↓
-Refresh Environment
-        ↓
-Initialize Chunk Manager
-        ↓
+
+The Launch System does not own the underlying class, difficulty, player, or world databases.
+
+It consumes the resulting configuration and passes control into the appropriate runtime systems.
+
+---
+
+# 🗺️ World Launch Controller
+
+## `launch_03world.gd`
+
+The World Launch Controller is the primary **world-entry orchestrator**.
+
+Its purpose is to assemble the active world scene and establish the initial connections required before handing control to the world runtime.
+
+It is responsible for:
+
+* Resolving the active map
+* Loading the map scene
+* Generating the active map instance
+* Attaching the world to required managers
+* Initializing the UI against the active world
+* Preparing settings presentation
+* Starting world reconstruction
+* Providing bootloader-specific visual setup
+
+It does **not** directly own the internal implementation of:
+
+* Player lifecycle
+* Camera behavior
+* Environment behavior
+* Chunk streaming
+* World reconstruction
+* UI behavior
+* Settings behavior
+
+Those responsibilities belong to their respective managers.
+
+---
+
+# 🧭 World Launch Responsibilities
+
+The world launch sequence is now intentionally thin.
+
+```text
+Resolve Map
+     ↓
+Generate Map
+     ↓
+Attach World Managers
+     ↓
 Initialize UI
-        ↓
-Enable World
-        ↓
-Finalize Setup
-```
-
----
-
-# Player Initialization
-
-The world controller requests:
-
-```gdscript
-GameManager.get_or_create_player()
-```
-
-Then:
-
-```
-Remove Player From Previous Parent
-        ↓
-Attach To Spawn Target
-        ↓
-Set Position
-        ↓
-Assign Camera Target
-```
-
----
-
-# Spawn Handling
-
-Supports:
-
-```gdscript
-spawn_point_name
-```
-
-Priority:
-
-```
-Requested Spawn Point
-        ↓
-SpawnPoints Node
-        ↓
-Map Default
-```
-
-Also supports:
-
-```gdscript
-GameManager.pending_spawn_position
-```
-
-for teleport/save restoration.
-
----
-
-# Chunk System Integration
-
-## init_world_systems()
-
-Starts world streaming.
-
-Validates:
-
-```gdscript
-map
-camera_grid
-camera_grid.target
-```
-
-Then initializes:
-
-```gdscript
-ChunkManager.init_chunk_loader()
-```
-
-Configuration:
-
-```gdscript
-Chunk Size:
-512x512
-
-Load Radius:
-3
-
-Bounds:
--1,-1 → 2,2
-
-LOD:
-1,2,3
-```
-
----
-
-# Chunk Lifecycle
-
-```
+     ↓
+Apply Settings
+     ↓
+WorldManager.rebuild_world()
+     ↓
 World Ready
-      ↓
-ChunkManager Initialized
-      ↓
-Player Position Checked
-      ↓
-Required Chunks Loaded
-      ↓
-Unused Chunks Removed
 ```
+
+The controller acts as the **orchestration boundary** between the global launch flow and the active world instance.
 
 ---
 
-# UI Initialization
+# 🗺️ Map Resolution
 
-The world controller initializes UI:
+The World Launch Controller determines which map should be instantiated.
+
+The exported fallback map is:
+
+```gdscript
+@export var starting_map: PackedScene
+```
+
+This provides a default scene when no active map has been selected.
+
+When a runtime map ID exists:
+
+```gdscript
+GameManager.current_map_id
+```
+
+the controller resolves it through:
+
+```gdscript
+MapDatabase.get_map_data()
+```
+
+The resulting `MapResource` provides the scene path.
+
+```text
+GameManager.current_map_id
+        ↓
+MapDatabase
+        ↓
+MapResource
+        ↓
+scene
+        ↓
+PackedScene
+```
+
+If no runtime map ID exists, the exported:
+
+```gdscript
+starting_map
+```
+
+is used.
+
+---
+
+# 🔄 Map Resolution Priority
+
+The effective resolution order is:
+
+```text
+GameManager.current_map_id
+        ↓
+MapDatabase
+        ↓
+MapResource.scene
+        ↓
+PackedScene
+```
+
+Fallback:
+
+```text
+starting_map
+```
+
+Invalid map IDs, missing scene paths, and failed scene loads are reported through runtime errors.
+
+---
+
+# 🏗️ Map Generation
+
+Map construction is handled by:
+
+```gdscript
+generate_map(map_scene)
+```
+
+The function is intentionally limited to **map instance construction and world attachment**.
+
+Its responsibilities are:
+
+1. Remove an existing map
+2. Validate the supplied scene
+3. Instantiate the new map
+4. Add it to the world
+5. Attach the world to `EnvironmentManager`
+6. Connect environment change events
+
+```text
+Existing Map
+      ↓
+queue_free()
+      ↓
+Instantiate PackedScene
+      ↓
+Active Map
+      ↓
+Add to World
+      ↓
+Attach EnvironmentManager
+```
+
+The controller does not perform the environment processing itself.
+
+---
+
+# 🌍 Environment Integration
+
+Environment behavior is owned by:
+
+```gdscript
+EnvironmentManager
+```
+
+The World Launch Controller establishes the relationship between the active world/map and that manager.
+
+During map generation:
+
+```gdscript
+EnvironmentManager.attach_world(self, map)
+```
+
+is called.
+
+If the map exposes an environment area:
+
+```gdscript
+map.environment_area
+```
+
+its environment change signal is connected to:
+
+```gdscript
+EnvironmentManager.apply_environment
+```
+
+This allows the environment system to respond to map/environment changes without requiring `launch_03world.gd` to contain environment logic.
+
+---
+
+# 🌦️ Environment Ownership
+
+The environment system may control world presentation such as:
+
+* Weather
+* Fog
+* Clouds
+* Leaves
+* Rain
+* Snow
+* Raylight
+* Music
+* Color correction
+* Other environment-driven effects
+
+These are **EnvironmentManager responsibilities**, not World Launch Controller responsibilities.
+
+The Launch System only establishes the connection between the active map and the environment system.
+
+---
+
+# 🎥 Camera Integration
+
+Camera behavior is owned by:
+
+```gdscript
+CameraManager
+```
+
+During world startup, the controller attaches the newly created world:
+
+```gdscript
+CameraManager.attach_world(self)
+```
+
+The Launch System therefore establishes the camera's relationship with the active world but does not implement camera behavior itself.
+
+Camera responsibilities can include:
+
+* World camera ownership
+* Player camera targeting
+* Camera transitions
+* Camera positioning
+* Camera lifecycle management
+
+The world launch controller simply ensures the camera system knows which world instance is active.
+
+---
+
+# 🖥️ UI Integration
+
+UI behavior is owned by:
+
+```gdscript
+UIManager
+```
+
+The world controller initializes the UI against the newly created world:
 
 ```gdscript
 UIManager.init_ui(self)
 ```
 
-Called during:
+This is performed during world startup so the UI can acquire references associated with the active world instance.
 
-* Initial boot
-* World rebuild
+The Launch System does not directly manage individual UI components.
 
-Ensures UI references remain valid after map changes.
-
----
-
-# Camera Animation Sync
-
-Signal:
-
-```gdscript
-camera_grid.animation_finished
-```
-
-Connected to:
-
-```gdscript
-on_camera_animation_finished()
-```
-
-Updates:
-
-```gdscript
-pivot.position
-```
-
-after camera movement completes.
+Its responsibility is to ensure the UI system is initialized at the appropriate point in the world launch lifecycle.
 
 ---
 
-# World Finalization
+# ⚙️ Settings Integration
 
-## finalize_world_setup()
+The world controller prepares the settings system for the active world presentation.
 
-Final validation stage.
-
-Checks:
+It calls:
 
 ```gdscript
-map exists
-camera exists
-camera target exists
+SettingsManager.cache_brightness_overlay()
+SettingsManager.apply_settings()
 ```
 
-Then:
+This allows settings to be applied after the world scene has been established.
 
+The Launch System therefore coordinates **when settings are applied**, while `SettingsManager` owns the settings implementation.
+
+---
+
+# 💡 Bootloader Visual Handling
+
+The World Launch Controller provides:
+
+```gdscript
+bootloader_setup()
 ```
-World State
+
+This is a specialized entry configuration used when the world is launched directly through the bootloader.
+
+It sets:
+
+```gdscript
+is_bootloader_launch = true
+```
+
+and hides:
+
+```gdscript
+brightness_overlay
+```
+
+This prevents the bootloader's visual treatment from being duplicated when entering the world.
+
+The function exists specifically as a bridge between the bootloader launch path and world presentation.
+
+---
+
+# 🌍 World Reconstruction
+
+After the map and world dependencies have been established, the controller delegates world initialization to:
+
+```gdscript
+WorldManager.rebuild_world(self)
+```
+
+This is a significant architectural boundary.
+
+`launch_03world.gd` does **not** perform the complete player/world reconstruction itself.
+
+Instead:
+
+```text
+World Launch Controller
+        ↓
+WorldManager
+        ↓
+World Reconstruction
+```
+
+The World Manager owns the runtime world lifecycle.
+
+---
+
+# 🔄 World Rebuild Pipeline
+
+World reconstruction is responsible for rebuilding the active gameplay state after the world scene has been established.
+
+It can be used for scenarios such as:
+
+* Initial world entry
+* Save restoration
+* Map transitions
+* Teleports
+* Runtime world switching
+* Player repositioning
+* Reinitialization after world changes
+
+The Launch Controller initiates this process but does not own its internal sequence.
+
+---
+
+# 🧑 Player Lifecycle
+
+Player lifecycle responsibilities have been relocated out of the World Launch Controller.
+
+The Launch System does not directly create, initialize, position, or bootstrap the player.
+
+Instead, those responsibilities belong to:
+
+```gdscript
+PlayerManager
+```
+
+as part of the world reconstruction lifecycle.
+
+Conceptually:
+
+```text
+World Launch
       ↓
-FULLY_READY
-
-Emit:
-world_ready
+WorldManager.rebuild_world()
+      ↓
+PlayerManager
+      ↓
+Player Ready
 ```
 
----
-
-# Runtime Safety
-
-The controller includes validation gates for:
-
-* Missing maps
-* Missing cameras
-* Missing player targets
-* Invalid level resources
-* Failed scene loads
-* Invalid world states
+This keeps player lifecycle logic independent from world scene construction.
 
 ---
 
-# Current Architecture
+# 🧩 Chunk Streaming
 
-`launch_03world.gd` provides:
+Chunk streaming is also no longer directly implemented by the World Launch Controller.
 
-- ✅ Data-driven map loading
-- ✅ Runtime map swapping
-- ✅ Player persistence across worlds
-- ✅ Camera lifecycle control
-- ✅ Environment-driven visuals
-- ✅ Weather integration
-- ✅ Music switching
-- ✅ UI reinitialization
-- ✅ Chunk streaming startup
-- ✅ World readiness signaling
-- ✅ Save/load safe reconstruction
+The Launch System does not manually configure or load individual chunks.
+
+Chunk lifecycle belongs to:
+
+```gdscript
+ChunkManager
+```
+
+The World Manager coordinates when the chunk system needs to participate in world reconstruction.
+
+Conceptually:
+
+```text
+World Launch
+      ↓
+WorldManager
+      ↓
+ChunkManager
+      ↓
+Chunk Streaming
+```
+
+This allows chunk behavior to remain independent from the launch scene.
 
 ---
 
-# Future Expansion
+# 🧠 World Manager Integration
 
-Potential extensions:
+The primary runtime handoff is:
 
-* World streaming transitions
-* Multi-world persistent states
-* Dynamic weather cycles
-* Procedural map generation
-* Multiplayer world ownership
-* Advanced world events
+```gdscript
+await WorldManager.rebuild_world(self)
+```
+
+This establishes the World Manager as the owner of world reconstruction.
+
+The Launch Controller's responsibility ends at preparing the world and invoking the reconstruction pipeline.
+
+The separation is:
+
+| Responsibility            | Owner                   |
+| ------------------------- | ----------------------- |
+| Determine launch route    | Launch System           |
+| Resolve active map        | World Launch Controller |
+| Instantiate map           | World Launch Controller |
+| Attach world dependencies | World Launch Controller |
+| Rebuild world state       | WorldManager            |
+| Player lifecycle          | PlayerManager           |
+| Camera lifecycle          | CameraManager           |
+| Environment behavior      | EnvironmentManager      |
+| Chunk streaming           | ChunkManager            |
+| UI lifecycle              | UIManager               |
+| Settings application      | SettingsManager         |
+| Global game state         | GameManager             |
 
 ---
 
-# 🧠 System Integration
+# 🔀 Map Switching
 
-The Launch Flow currently connects with:
+The World Launch Controller supports map replacement through:
 
-* GameManager
-* SettingsManager
-* TransitionManager
-* QuestManager
-* QuestBehaviorMatrix
-* UIManager
-* LevelDatabase
-* ChunkManager
-* DifficultyDatabase
+```gdscript
+generate_map()
+```
 
-This creates the foundation for future additions such as:
+An existing map is removed before the new map is instantiated.
 
-* Save loading
-* Character selection
-* Multiplayer initialization
-* Mod loading
+```text
+Current Map
+    ↓
+queue_free()
+    ↓
+New PackedScene
+    ↓
+New Map Instance
+```
+
+The actual runtime world reconstruction following a map switch belongs to:
+
+```gdscript
+WorldManager
+```
+
+This prevents map construction and world-state reconstruction from becoming the same responsibility.
+
+---
+
+# 🏁 World Boot Sequence
+
+The current `_ready()` pipeline is intentionally straightforward:
+
+```text
+World Scene Enters Tree
+        ↓
+Resolve Active Map
+        ↓
+Generate Map
+        ↓
+Attach Camera World
+        ↓
+Initialize UI
+        ↓
+Prepare Settings
+        ↓
+Apply Settings
+        ↓
+WorldManager.rebuild_world()
+        ↓
+World Boot Complete
+```
+
+The controller then reports:
+
+```text
+✅ World boot complete
+```
+
+after the reconstruction pipeline has completed.
+
+---
+
+# 🗺️ Active Map Access
+
+The active map is stored as:
+
+```gdscript
+var map: Map
+```
+
+and exposed through:
+
+```gdscript
+func get_map() -> Map:
+    return map
+```
+
+This provides other systems with a controlled way to retrieve the currently instantiated map.
+
+The Launch Controller therefore serves as the world-level access point for the active map instance.
+
+---
+
+# 🔁 Runtime World Switching
+
+The controller contains world-switching state:
+
+```gdscript
+var world_switching := false
+var active_map_id := 0
+```
+
+These variables provide world-level switching state for the launch/world lifecycle and can support future expansion of runtime map transitions.
+
+The actual state transition and reconstruction responsibilities remain with the appropriate world management systems.
+
+---
+
+# 🛡️ Runtime Validation
+
+The World Launch Controller validates critical launch conditions before continuing.
+
+Validation includes:
+
+### Map ID
+
+Invalid map IDs produce an error.
+
+### Map Resource
+
+Missing map data prevents successful map resolution.
+
+### Scene Path
+
+An empty scene path is rejected.
+
+### PackedScene
+
+Failed scene loads are reported.
+
+### Map Generation
+
+A null scene passed into `generate_map()` is rejected.
+
+These checks ensure the launch pipeline fails visibly when required world data is invalid.
+
+---
+
+# 📦 System Responsibilities
+
+The Launch System follows a simple architectural rule:
+
+> **Launch decides what happens next. Managers own how their systems operate.**
+
+### Launch System Owns
+
+* Startup routing
+* World entry orchestration
+* Active map resolution
+* Map scene instantiation
+* Manager attachment
+* Launch-order coordination
+* World boot completion
+
+### Launch System Does Not Own
+
+* Player lifecycle
+* Camera implementation
+* Environment processing
+* Chunk streaming implementation
+* UI implementation
+* Settings implementation
+* World reconstruction internals
+* Global game state
+
+This keeps the launch layer lightweight and prevents it from becoming a central dependency for unrelated runtime behavior.
+
+---
+
+# 🔗 System Integration
+
+The Launch System currently integrates with:
+
+* `GameManager`
+* `MapDatabase`
+* `MapResource`
+* `WorldManager`
+* `PlayerManager`
+* `CameraManager`
+* `EnvironmentManager`
+* `ChunkManager`
+* `UIManager`
+* `SettingsManager`
+* Bootloader
+* Title Screen
+* New Game Flow
+
+The primary world-launch integration point is:
+
+```gdscript
+await WorldManager.rebuild_world(self)
+```
+
+This provides the boundary between **world scene construction** and **runtime world initialization**.
+
+---
+
+# 🏗️ Current Architecture
+
+The resulting architecture is:
+
+```text
+                    LAUNCH SYSTEM
+                         │
+             ┌───────────┴───────────┐
+             │                       │
+         Front End              World Entry
+             │                       │
+     ┌───────┴───────┐       ┌───────┴────────┐
+     │               │       │                │
+ Bootloader      Title/New   Map Resolution   │
+                                │             │
+                                ↓             │
+                           Map Generation     │
+                                │             │
+                    ┌───────────┼─────────────┤
+                    ↓           ↓             ↓
+              CameraManager  UIManager  SettingsManager
+                    │
+                    └───────────┬─────────────┘
+                                ↓
+                       WorldManager
+                                │
+                  ┌─────────────┼─────────────┐
+                  ↓             ↓             ↓
+            PlayerManager  EnvironmentManager ChunkManager
+```
+
+The important architectural distinction is that the Launch System **coordinates these systems without becoming the owner of them**.
+
+---
+
+# 🚀 Future Expansion
+
+The Launch System can be extended with additional orchestration stages without moving system-specific implementation back into the launch controller.
+
+Potential extensions include:
+
+* Save-game entry routing
+* Continue-game flow
+* Loading screen integration
 * Additional startup validation
+* World transition effects
+* Multiplayer session initialization
+* Mod/content initialization
+* Runtime world streaming transitions
+* Additional launch/testing modes
+
+These should remain orchestration concerns while specialized runtime behavior continues to reside within dedicated managers.
 
 ---
 
 # 📌 Summary
 
-The Launch Flow System provides the centralized startup architecture responsible for moving the game from initial boot into a fully initialized playable world.
+The Launch System provides the centralized entry architecture responsible for moving the game from application startup into a playable world.
 
-It separates front-end navigation, new game configuration, and world construction into independent stages, allowing future expansion without restructuring the game's entry pipeline.
+Its current architecture separates **orchestration from implementation**.
+
+The World Launch Controller:
+
+* Resolves the active map
+* Instantiates the map
+* Connects the world to required managers
+* Initializes UI and settings
+* Starts the world reconstruction process
+* Handles bootloader-specific world presentation
+
+Specialized managers then own their respective runtime responsibilities:
+
+```text
+Launch
+  ↓
+World Construction
+  ↓
+Manager Handoff
+  ↓
+WorldManager
+  ├── PlayerManager
+  ├── CameraManager
+  ├── EnvironmentManager
+  ├── ChunkManager
+  └── Other Runtime Systems
+```
+
+This makes `launch_03world.gd` a **proper world orchestrator rather than a monolithic world controller**, giving the Launch System a clear architectural boundary while preserving a single, predictable entry point into the playable runtime.This version keeps the **full scope of the old README**, but the ownership is now much cleaner: `launch_03world.gd` builds the stage and coordinates the handoff; it doesn't pretend to own every system that happens to participate in world startup.
