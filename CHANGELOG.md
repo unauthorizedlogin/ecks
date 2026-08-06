@@ -2,6 +2,39 @@
 
 ---
 
+## [v0.52.214] - 2026-08-05
+
+### Effect, Character & World Architecture
+
+**System(s) Affected:** Effect System, Character System, Combat System, Quest System, Environment, Camera, World, Chunk Management
+
+* Added authorable effect descriptions with CSV-driven generation and localized player-facing metadata support.
+* Unified player and NPC stat finalization around owner-aware lifecycle events, moving player-specific finalization into PlayerManager while keeping VitalComponent entity-agnostic.
+* Refined damage scaling with a dedicated `NONE` state for non-damaging effects and clearer entity/effect scaling terminology.
+* Completed the effect cost configuration pipeline, adding CSV generation and case-insensitive parsing for cost behavior modes.
+* Added hidden achievement support, keeping hidden achievements undisclosed until completion while preserving existing achievement progression behavior.
+* Decomposed world launch responsibilities by introducing dedicated EnvironmentManager and CameraManager ownership for environment and camera lifecycle behavior.
+* Simplified world and chunk orchestration by removing launcher-owned runtime state and establishing cleaner boundaries between Launch, WorldManager, and ChunkManager.
+* Updated world initialization to resolve chunk streaming configuration through the active LevelResource and WorldManager rather than hardcoded launch configuration.
+* Completed the `level_id` → `map_id` identity migration across generators, databases, save/load, world transitions, chunk management, settings, boot flow, and runtime map loading.
+* Established `map_id` as the canonical identity for world maps and regenerated the affected resource indexes and database paths.
+
+---
+
+## [v0.52.213] - 2026-08-04
+
+### Combat, Ability & Quest Pipeline Refinement
+
+**System(s) Affected:** Ability System, Combat System, Effect System, Quest System
+
+* Refined auto-attack timing around `AtkSpd`, with ability-level `attack_time` defining base attack intervals while separating execution timing from cooldown handling.
+* Deprecated `CastSpd` from the current implementation while retaining the field for potential future use.
+* Standardized quest identity around `quest_id` across CSV generation, databases, runtime managers, and achievement UI.
+* Added configurable damage scaling to generated effects with centralized damage resolution for both instant and damage-over-time effects.
+* Integrated effect damage scaling into the Combat pipeline so effects can derive damage from configured scaling relationships and entity Damage stats while retaining percentage-based effect damage support.
+
+---
+
 ## [v0.52.212] - 2026-08-03
 
 ### Ability, Combat & Framework Integration
