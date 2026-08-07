@@ -2,6 +2,20 @@
 
 ---
 
+## [v0.52.215] - 2026-08-06
+
+### World, Stats & Difficulty Architecture
+
+**System(s) Affected:** World Management, Launch System, Stats, Difficulty System, Effect System
+
+* Centralized world initialization in WorldManager with dedicated world rebuild and map-specific system initialization workflows.
+* Refactored StatBlock calculations into a dedicated StatCalculator, separating stat data and state management from derived stat calculation logic.
+* Expanded stat calculation into dedicated helpers for individual stat groups and derived values, improving the maintainability of the stat pipeline.
+* Implemented the Difficulty System using StatEffect-based stat modifications applied through the existing effect pipeline.
+* Removed the redundant `Passive` EffectType value to clearly separate effect classification from trigger behavior and prevent ambiguity in difficulty configuration.
+
+---
+
 ## [v0.52.214] - 2026-08-05
 
 ### Effect, Character & World Architecture
