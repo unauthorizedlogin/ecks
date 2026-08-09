@@ -93,11 +93,11 @@ Goal:
 
 Current focus:
 
-- [ ] Refactor Level system into Map system
-- [ ] Update save/load and map transition workflows
-- [ ] Move chunk configuration ownership into MapData
-- [ ] Connect MapData → Chunk Manager → Chunk Loader pipeline
-- [ ] Resolve remaining system integration issues
+- [x] Refactor Level system into Map system
+- [x] Update save/load and map transition workflows
+- [x] Move chunk configuration ownership into MapData
+- [x] Connect MapData → Chunk Manager → Chunk Loader pipeline
+- [x] Resolve remaining system integration issues
 
 ---
 
@@ -108,7 +108,7 @@ Goal:
 
 Current focus:
 
-- [ ] Separate player injection from launch responsibilities
+- [x] Separate player injection from launch responsibilities
 - [ ] Modularize camera injection
 - [ ] Modularize weather injection
 - [ ] Modularize map injection
@@ -125,7 +125,7 @@ Current focus:
 
 - [ ] Modularize character visuals and animations
 - [ ] Support swappable actor configurations
-- [ ] Expand class identity data
+- [x] Expand class identity data
 - [ ] Evaluate character appearance resource architecture
 
 ---
@@ -137,11 +137,11 @@ Goal:
 
 Current focus:
 
-- [ ] Expand combat framework
+- [x] Expand combat framework
 - [ ] Expand effects and status systems
-- [ ] Expand progression systems
+- [x] Expand progression systems
 - [ ] Continue creator tooling improvements
-- [ ] Expand documentation and examples
+- [x] Expand documentation and examples
 
 ---
 
