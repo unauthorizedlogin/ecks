@@ -1,184 +1,84 @@
 # 📈 XP & Level Progression System
 
-The XP System provides the centralized progression framework responsible for managing character experience, level advancement, stat growth, and progression state.
+The XP System provides the centralized framework for character experience, leveling, progression state, and level-based growth.
 
-The system is designed around a **data-driven progression pipeline**, separating:
+The system separates XP routing, runtime progression, and progression data so different classes and characters can use data-driven leveling paths.
 
-* XP calculation and routing
-* Level curve definitions
-* Level growth definitions
-* Runtime progression state
+The system is responsible for:
+
+* XP awarding and removal
+* Level progression
+* Level-based stat growth
+* XP modifiers
+* Progression state
 * Save/load persistence
 
-This allows classes, characters, and future progression systems to define their own growth paths without requiring hardcoded leveling logic.
+---
+
+# 🧠 XP Architecture
+
+```text
+                    XP System
+
+                         |
+                    XPManager
+                         |
+                         ↓
+               PlayerLevelComponent
+                         |
+             -------------------------
+             |                       |
+        Level Curve             Level Growth
+          Resource                  Data
+```
+
+`XPManager` routes experience into the appropriate progression component, while `PlayerLevelComponent` owns the character's runtime progression state.
+
+Level curves and growth data define how progression is calculated.
 
 ---
 
-# 🧠 System Architecture
+# 🔗 XP System Documentation
 
-The XP System is divided into three primary layers:
-
-```
-XPManager
-    |
-    ↓
-PlayerLevelComponent
-    |
-    ├── LevelCurveResource
-    |
-    └── LevelGrowthData
-```
+| Component                 | Purpose                                                               | Documentation                                       |
+| ------------------------- | --------------------------------------------------------------------- | --------------------------------------------------- |
+| 📈 XP Manager             | Central XP routing, awarding, and progression access                  | [XP Manager](xp_manager.md)                         |
+| 🧍 Player Level Component | Runtime XP, level state, level-up processing, and progression signals | [Player Level Component](player_level_component.md) |
+| 📊 Level Curve            | Defines XP requirements and level progression                         | [Level Curve](level_curve.md)              |
+| 📈 Level Growth           | Defines stat growth associated with progression                       | [Level Growth](level_growth.md)            |
 
 ---
 
-# 📈 XPManager
+# 🔗 System Integration
 
-`XPManager` acts as the central XP routing layer.
+The XP System integrates with:
 
-Responsibilities:
+* Character System
+* Class System
+* Stats System
+* Quest System
+* Combat System
+* Save System
+* Difficulty System
 
-* Award XP
-* Remove XP
-* Validate XP requests
-* Route XP into the owning level component
-* Provide progression inspection tools
-
-The manager does **not**:
-
-* Calculate level formulas
-* Handle stat growth
-* Manage UI
-* Own player progression state
-
-Those responsibilities belong to the level component and progression databases.
+Gameplay systems provide XP to the XP System, while the progression system handles the resulting level and growth changes.
 
 ---
 
-## ✨ XP Award Flow
+# 💾 Save Integration
 
-Example:
+Runtime progression state is persisted through the Save System, including:
 
-```
-Combat / Quest / Event
-        |
-        ↓
-XPManager.grant_xp()
-        |
-        ↓
-PlayerLevelComponent.add_xp()
-        |
-        ↓
-Level Curve Resolution
-        |
-        ↓
-Level Up Processing
-        |
-        ↓
-Stat Growth Application
-```
+* Current level
+* Total XP
+* XP modifiers
+
+Progression state is restored when the character is loaded.
 
 ---
 
-# 🧬 PlayerLevelComponent
+# 📌 Summary
 
-The `PlayerLevelComponent` is the runtime owner of player progression state.
+The XP System provides the framework's centralized experience and level progression pipeline.
 
-Responsibilities:
-
-* Store current XP
-* Store current level
-* Process XP gains
-* Detect level increases
-* Apply level growth
-* Emit progression signals
-* Provide save/load data
-
-The component intentionally does **not**:
-
-* Know about quests
-* Know about combat
-* Calculate XP curves
-* Manage UI
-
-It only manages progression state.
-
----
-
-# 📦 Runtime Progression Data
-
-Stored values:
-
-```gdscript
-current_level
-current_total_xp
-xp_multiplier
-```
-
-Supports future modifiers such as:
-
-* Difficulty scaling
-* Equipment bonuses
-* Temporary buffs
-* Global XP bonuses
-
----
-
-# 💾 Save System Integration
-
-XP progression is fully save compatible.
-
-Saved data:
-
-```gdscript
-{
-    "current_level": current_level,
-    "current_total_xp": current_total_xp,
-    "xp_multiplier": xp_multiplier
-}
-```
-
-On loading:
-
-```
-SaveData
-    |
-    ↓
-PlayerLevelComponent
-    |
-    ↓
-Restore XP
-    |
-    ↓
-Recalculate Level
-```
-
----
-
-# Current Implementation Summary
-
-✅ Central XP routing manager
-✅ Runtime player progression component
-✅ Data-driven level curves
-✅ Class-based XP progression
-✅ Class-based stat growth
-✅ Level-up event pipeline
-✅ Quest integration
-✅ Save/load persistence
-✅ Future XP modifier support
-
----
-
-# Future Expansion
-
-Designed to support:
-
-* Enemy XP rewards
-* Quest XP scaling
-* Difficulty-based XP modifiers
-* Rested XP systems
-* Experience bonuses
-* Party XP sharing
-* Alternative progression systems
-* Prestige / Ascension mechanics
-
-The XP System establishes a scalable RPG progression foundation where leveling, growth, and rewards remain data-driven instead of being tied directly to gameplay code.
+It separates **XP routing, runtime progression state, and progression data**, allowing leveling and character growth to remain reusable and data-driven across the framework.
