@@ -43,9 +43,9 @@ The Class Database provides centralized access to the class resources, while the
 | --------------- | ------------------------------------------------------------------------ | ------------------------------- |
 | 🧍 Class Data   | Core class identity, archetype, stats, starting abilities, and equipment | [Class Data](class_data.md)     |
 | ⚖️ Class Rules  | Class restrictions, tags, weapon/armor rules, and other gameplay rules   | [Class Rules](class_rules.md)   |
-| 📈 Level Curve  | Level progression requirements and progression curves                    | [Level Curve](level_curve.md)   |
-| 📊 Level Growth | Class stat growth throughout progression                                 | [Level Growth](level_growth.md) |
-| ⭐ XP Data       | XP progression data used by class leveling                               | [XP System](../xp_system.md)    |
+| 📈 Level Curve  | Level progression requirements and progression curves                    | [Level Curve](../xp/level_curve.md)   |
+| 📊 Level Growth | Class stat growth throughout progression                                 | [Level Growth](../xp/level_growth.md) |
+| ⭐ XP Data       | XP progression data used by class leveling                               | [XP System](../xp/xp_system.md)    |
 
 ---
 
