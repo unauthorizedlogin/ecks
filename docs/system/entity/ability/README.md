@@ -52,7 +52,7 @@ The `AbilityManager` coordinates ability activation and ownership, while `Abilit
 
 | Component            | Purpose                                                                                  | Documentation                               |
 | -------------------- | ---------------------------------------------------------------------------------------- | ------------------------------------------- |
-| ⚡ Ability Definition | Defines ability configuration, activation, targeting, categories, triggers, and behavior | [Ability Definition](ability_definition.md) |
+| ⚡ Ability Definition | Defines ability configuration, activation, targeting, categories, triggers, and behavior | [Ability Definition](resource_ability.md) |
 | 🧠 Ability Manager   | Central ability ownership, validation, casting, cooldowns, and runtime coordination      | [Ability Manager](ability_manager.md)       |
 | ▶️ Ability Runtime   | Executes active abilities and manages their runtime lifecycle                            | [Ability Runtime](ability_runtime.md)       |
 
