@@ -1,266 +1,377 @@
-# ⚡ Ability Definition 
+# ⚔️ Ability Definition Architecture
 
 ## Overview
 
-`AbilityDefinition` is the universal resource describing every ability available within the framework.
+The Ability Definition provides the data-driven configuration for individual abilities.
 
-Abilities are entirely data-driven and contain the information required to determine how an ability behaves, who may use it, how it is cast, and which gameplay effects it applies.
+Each ability is represented by an `AbilityDefinition` resource containing its identity, classification, activation rules, targeting configuration, casting behavior, requirements, effects, and presentation settings.
 
-The resource does not contain execution logic. Instead, it provides configuration consumed by the **Ability Manager** and **Ability Runtime**.
+The resource defines **what an ability is and how it is configured**.
 
-This resource supports:
-
-* ⚔️ Active abilities
-* ✨ Passive abilities
-* 🔄 Toggle abilities
-* ⏳ Cast-time abilities
-* 📡 Channeled abilities
-* 🎯 Multiple targeting modes
-* 📋 Progression requirements
-* ✨ Multi-effect execution
-* 🎞 Animation and audiovisual metadata
+Runtime execution is handled separately by the Ability Runtime.
 
 ---
 
-# 🧱 Resource Identity
+### 🧱 Ability Resource Architecture
 
-```gdscript
-ability_id
-```
+Each ability is represented by an `AbilityDefinition`.
 
-Unique identifier for the ability.
+The resource contains:
 
-Used for:
-
-* Database indexing
-* Runtime lookup
-* Save references
-* Cooldown tracking
-* Debugging
-
----
-
-# 🗂️ Generator Metadata
-
-```gdscript
-category
-subcategory
-```
-
-Used by the data generation pipeline for organization and automatic database construction.
+* Ability identity
+* Classification
+* Activation configuration
+* Trigger configuration
+* Targeting rules
+* Requirements
+* Cast behavior
+* Timing configuration
+* Range restrictions
+* Applied effects
+* Animation data
+* Visual effects
+* Audio effects
 
 Example:
 
+```text
+AbilityDefinition
+│
+├── Identity
+├── Classification
+├── Requirements
+├── Cast Settings
+├── Applied Effects
+└── Animation & Audio
 ```
-Abilities
-├── Warrior
-├── Mage
-├── Rogue
-└── Utility
+
+---
+
+### 🏷️ Ability Identity
+
+Abilities define their basic identity through:
+
+* `ability_id`
+* `display_name`
+* `icon`
+* `description`
+
+The `ability_id` provides the unique identifier used by other systems when referencing the ability.
+
+---
+
+### 🧩 Ability Classification
+
+Abilities can be classified using several independent configuration layers.
+
+#### Ability Type
+
+Defines the general ability behavior:
+
+```text
+ACTIVE
+PASSIVE
+TOGGLE
 ```
 
----
+#### Ability Role
 
-# ⚔️ Ability Classification
+Defines the gameplay purpose:
 
-Every ability belongs to a primary gameplay category.
+```text
+OFFENSE
+DEFENSE
+SUPPORT
+UTILITY
+```
 
-## Ability Type
+#### Ability Category
 
-Defines the overall behavior.
+Defines the broader ability classification:
 
-Supported types:
+```text
+ATTACK
+SPELL
+REACTION
+AURA
+PROC
+```
 
-* Active
-* Passive
-* Toggle
-
----
-
-## Ability Role
-
-Describes the intended gameplay purpose.
-
-Supported roles:
-
-* Offense
-* Defense
-* Support
-* Utility
-
-These roles assist with organization and future filtering without affecting runtime behavior.
+These classifications allow systems to query and organize abilities without requiring hardcoded ability-specific logic.
 
 ---
 
-# 🎯 Targeting System
+### 🚀 Activation
 
-Abilities define how targets are selected.
+Abilities define how they enter execution:
 
-Supported targeting modes include:
+```text
+MANUAL
+AUTO_ATTACK
+TRIGGERED
+PASSIVE
+```
 
-* Self
-* Target
-* Ground
-* Direction
-* Area
+Triggered abilities additionally define a `TriggerType`.
 
-Additional targeting properties define:
+Supported triggers include:
 
-* Maximum range
-* Area radius
-* Line-of-sight requirements
+* On Hit
+* On Critical Hit
+* On Damage Taken
+* On Kill
+* Health Threshold
+* Resource Threshold
+* Status Applied
+* Status Removed
+* Timer
 
-This separates targeting rules from execution logic.
-
----
-
-# 📋 Requirement System
-
-Abilities may define one or more requirements before they can be used.
-
-Supported requirement categories include:
-
-* Class
-* Level
-* Stat
-* Quest
-* Item
-
-Requirements are evaluated by the **Ability Manager** prior to runtime creation.
+A `trigger_value` can provide an additional numeric threshold or timing value where required.
 
 ---
 
-# ⏳ Casting System
+### 🎯 Targeting
 
-Abilities support multiple casting behaviors.
+Abilities define both the targeting mode and the valid target relationship.
 
-## Instant
+Target modes include:
 
-Executes immediately.
+```text
+SELF
+TARGET
+GROUND
+DIRECTION
+AREA
+```
 
-Examples:
+Target filters include:
 
-* Basic attacks
-* Instant heals
+```text
+ANY
+ALLIES
+ENEMIES
+```
 
----
-
-## Cast Time
-
-Requires a casting period before execution.
-
-Examples:
-
-* Fireball
-* Resurrection
-
----
-
-## Channel
-
-Executes repeatedly while channeling.
-
-Examples:
-
-* Beam attacks
-* Healing streams
-* Sustained effects
+This separates **how a target is selected** from **which entities are valid targets**.
 
 ---
 
-## Toggle
+### 📋 Requirements
 
-Remains active until manually disabled or interrupted.
-
-Examples:
-
-* Auras
-* Persistent stances
-
----
-
-# ⏱️ Timing Configuration
-
-Abilities define several timing properties.
-
-Supported timers include:
-
-* Cooldown
-* Cast time
-* Channel duration
-
-These values determine runtime behavior but are enforced by the Ability Manager and Ability Runtime rather than the resource itself.
-
----
-
-# ✨ Applied Effects
-
-Abilities reference one or more gameplay effects.
+Abilities can contain multiple `AbilityRequirement` resources.
 
 ```gdscript
-effects
+@export var requirements: Array[AbilityRequirement] = []
 ```
 
-Each entry references a `StatEffect` resource.
+Requirements provide the configuration layer for determining whether an ability can be used.
 
-During execution:
-
-```
-Ability
-      ↓
-Effect Manager
-      ↓
-Stat Effects
-```
-
-This allows a single ability to apply any combination of damage, healing, buffs, debuffs, crowd control, or other gameplay modifications without requiring unique ability logic.
+The ability definition stores the requirements but does not perform the runtime validation itself.
 
 ---
 
-# 🎞 Presentation Data
+### ⏱️ Cast Behavior
 
-Abilities also contain presentation metadata used by rendering systems.
+Abilities support multiple execution timing models:
 
-Supported data includes:
+```text
+INSTANT
+CAST_TIME
+CHANNEL
+TOGGLE
+```
+
+The selected cast behavior determines how the Ability Runtime executes the ability.
+
+```text
+AbilityDefinition
+       │
+       ↓
+Cast Behavior
+       │
+ ┌─────┼─────────────┐
+ ↓     ↓             ↓
+Instant Cast      Channel
+       │
+       └── Toggle
+```
+
+---
+
+### ⏲️ Ability Timing
+
+Abilities can define:
+
+* Attack time
+* Cooldown
+* Cast time
+* Channel time
+
+These values provide the timing configuration used by the runtime execution layer.
+
+---
+
+### 🛑 Restrictions
+
+Abilities can define execution restrictions including:
+
+* Interruptibility
+* Line-of-sight requirements
+
+These settings allow abilities to describe basic execution constraints without embedding those rules directly into individual ability scripts.
+
+---
+
+### 📏 Targeting Range
+
+Abilities support:
+
+* Minimum range
+* Maximum range
+* Area radius
+
+These values provide the spatial configuration required by targeting and runtime systems.
+
+---
+
+### ✨ Applied Effects
+
+Abilities reference effects through effect IDs:
+
+```gdscript
+@export var effects: Array[String] = []
+```
+
+The Ability Definition does not contain the effect implementation.
+
+Instead:
+
+```text
+AbilityDefinition
+      │
+      ↓
+Effect IDs
+      │
+      ↓
+Effect Database
+      │
+      ↓
+StatEffect
+```
+
+This allows multiple abilities to reuse the same effects.
+
+For runtime execution, see:
+
+* [Ability Runtime Architecture](./ability_runtime.md)
+* [Effect System Architecture → StatEffect Pipeline](../effect_system.md)
+
+---
+
+### 🎬 Animation & Presentation
+
+Abilities can define presentation data including:
 
 * Animation
 * Animation speed
-* Cast visual effects
-* Impact visual effects
-* Cast audio
-* Impact audio
+* Cast VFX
+* Impact VFX
+* Cast SFX
+* Impact SFX
 
-These values describe how an ability should be presented without affecting gameplay calculations.
+These values allow the ability definition to describe its presentation without owning the systems responsible for playing animations, visual effects, or audio.
 
 ---
 
-# 🔗 Ability Pipeline
+### 🔗 System Integration
 
-```
+The Ability Definition acts as the configuration layer connecting several systems.
+
+```text
 Ability Definition
-         |
-         ↓
- Ability Manager
-         |
-         ↓
- Ability Runtime
-         |
-         ↓
-  Effect Manager
-         |
-         ↓
-   StatEffect Resources
-         |
-         ↓
-Combat / Stats / Vitals
+        │
+        ├── Requirements
+        │
+        ├── Targeting
+        │
+        ├── Effects
+        │
+        ├── Animation
+        │
+        └── Audio
+                │
+                ↓
+         Ability Runtime
+                │
+                ↓
+          Gameplay Systems
 ```
+
+Primary integrations include:
+
+* Ability Runtime
+* Ability Database
+* Effect System
+* Requirement System
+* Targeting System
+* Combat System
+* Animation System
+* VFX System
+* Audio System
 
 ---
 
-# ✅ Design Rule
+### 🏭 Data-Driven Design
 
-`AbilityDefinition` is the universal data container for gameplay abilities.
+Abilities are configured as resources rather than implemented as individual scripts.
 
-Abilities should contain only configuration describing casting behavior, targeting, requirements, presentation, and applied effects.
+This allows creators to modify:
 
-Gameplay execution should always be delegated to the **Ability Manager**, while all gameplay modifications should ultimately resolve through the **Effect Manager** using `StatEffect` resources.
+* Ability classification
+* Activation behavior
+* Trigger conditions
+* Targeting
+* Timing
+* Requirements
+* Effects
+* Presentation
+
+without creating new runtime logic for every ability.
+
+---
+
+### 📦 Responsibilities
+
+The Ability Definition:
+
+✅ Stores ability identity
+✅ Defines ability classification
+✅ Defines activation and trigger configuration
+✅ Defines targeting rules
+✅ Stores ability requirements
+✅ Defines cast behavior
+✅ Stores timing and range configuration
+✅ References applied effects
+✅ Stores presentation configuration
+
+The Ability Definition does **not**:
+
+❌ Execute abilities
+❌ Apply effects
+❌ Resolve combat
+❌ Validate runtime targets
+❌ Manage cooldown state
+❌ Play animations
+❌ Play audio
+
+Those responsibilities belong to the appropriate runtime and gameplay systems.
+
+---
+
+### Summary
+
+The Ability Definition provides the **data layer for the ability system**.
+
+It describes what an ability is, how it is classified, how it activates, what it can target, how it is timed, what effects it references, and how it is presented.
+
+The configuration remains separate from execution, allowing the same Ability Runtime and supporting systems to execute a wide range of abilities without requiring ability-specific scripts.
