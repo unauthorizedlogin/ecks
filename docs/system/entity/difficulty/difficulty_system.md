@@ -242,10 +242,10 @@ Currently **not active**.
 
 # Current Implementation Summary
 
-✅ Data-driven DifficultyDefinition resource
-✅ Player / Enemy StatEffect containers
-✅ Effect System integration planned as the authoritative modifier pipeline
-✅ Future support for rewards, economy, spawning, bosses, and progression
+- ✅ Data-driven DifficultyDefinition resource
+- ✅ Player / Enemy StatEffect containers
+- ✅ Effect System integration planned as the authoritative modifier pipeline
+- ✅ Future support for rewards, economy, spawning, bosses, and progression
 
 🔄 Currently being finalized:
 
