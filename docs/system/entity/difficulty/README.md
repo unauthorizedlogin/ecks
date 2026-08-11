@@ -43,6 +43,8 @@ Difficulty acts as a **configuration layer**, while the Effect and Stat systems 
 | Component                 | Purpose                                                               | Documentation                                     |
 | ------------------------- | --------------------------------------------------------------------- | ------------------------------------------------- |
 | 🎚️ Difficulty Definition | Defines difficulty identity and difficulty-based player/enemy effects | [Difficulty Definition](resource_difficulty.md) |
+| 🎚️ Difficulty Effect     | Defines reusable stat effects used to apply difficulty-based mods     | [Difficulty Effect](difficulty_effect.md) |
+
 
 ---
 
