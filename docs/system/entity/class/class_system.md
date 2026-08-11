@@ -1,101 +1,73 @@
-## 🧬 Class Database — Class Identity & Rule Separation
+# 🧬 Class System
 
-The Class Database separates **class statistics** from **class behavior rules** by using two dedicated resources:
+The Class System provides the centralized, data-driven framework for defining and accessing character classes.
 
-* `StatBlock` → class identity and stat foundation
-* `ClassRuleResource` → class restrictions, visuals, equipment, and gameplay rules
+Classes are assembled from specialized resources, allowing identity, rules, progression, growth, and starting configuration to remain independently defined while the Class Database provides a unified runtime access layer.
 
-This keeps numerical progression separate from class logic and allows classes to share stat structures while maintaining unique behaviors.
+The system is responsible for:
+
+* Class definitions and identity
+* Class rules and restrictions
+* Stat block assignments
+* Starting abilities and equipment
+* Level progression and growth
+* XP progression data
+* Class lookup and filtering
 
 ---
 
-# 📊 StatBlock — Class Stat Authority
-
-`StatBlock` is the source of truth for class-based attributes.
-
-Each class references its own stat configuration through:
-
-```gdscript
-class_id
-```
-
-The StatBlock defines:
-
-* Base attributes
-* Derived combat values
-* Resource pools
-* Resistances
-* Offensive statistics
-* Defensive statistics
-* Growth values
-
-Examples:
+# 🧠 Class Architecture
 
 ```text
-Warrior
- ├── Strength
- ├── Vitality
- ├── Armor
- ├── HP
- └── Physical Damage
+                    Class System
 
-Mage
- ├── Intelligence
- ├── Wisdom
- ├── MP
- ├── Spell Power
- └── Elemental Resistance
+                         |
+                  Class Database
+                         |
+        -----------------------------------
+        |        |         |       |      |
+    ClassData  Rules   LevelCurve  Growth  XP
+        |
+   -------------
+   |     |     |
+ Stats Abilities Equipment
 ```
 
-The class database does not manually manage stats; it delegates all numerical values to StatBlock.
+The Class Database provides centralized access to the class resources, while the individual resources define their specific configuration.
 
 ---
 
-# 🏗️ Class Loading Structure
+# 🔗 Class System Documentation
 
-Final relationship:
-
-```text
-Class Database
-        |
-        |
-        +----------------+
-        |                |
-        ↓                ↓
-
-   StatBlock       ClassRuleResource
-
-   Numbers         Behavior
-   Growth          Restrictions
-   Combat Stats    Equipment
-   Resources       Visuals
-                   Tags
-```
-
-Player chooses Class
-        ↓
-ClassDatabase
-        ↓
-StatBlock + ClassRuleResource
-        ↓
-Player Entity
-        ↓
-StatManager builds final stats
-        ↓
-Gameplay
+| Resource        | Purpose                                                                  | Documentation                   |
+| --------------- | ------------------------------------------------------------------------ | ------------------------------- |
+| 🧍 Class Data   | Core class identity, archetype, stats, starting abilities, and equipment | [Class Data](class_data.md)     |
+| ⚖️ Class Rules  | Class restrictions, tags, weapon/armor rules, and other gameplay rules   | [Class Rules](class_rules.md)   |
+| 📈 Level Curve  | Level progression requirements and progression curves                    | [Level Curve](level_curve.md)   |
+| 📊 Level Growth | Class stat growth throughout progression                                 | [Level Growth](level_growth.md) |
+| ⭐ XP Data       | XP progression data used by class leveling                               | [XP System](../xp_system.md)    |
 
 ---
 
-# Framework Role
+# 🔗 System Integration
 
-The Class Database provides:
+The Class System provides configuration consumed by other gameplay systems, including:
 
-✅ data-driven classes
-✅ independent stat scaling
-✅ reusable rule definitions
-✅ equipment restrictions
-✅ weapon/armor permissions
-✅ future subclass support
-✅ clean separation between numbers and behavior
+* Character System
+* Player System
+* Enemy System
+* NPC System
+* Stats System
+* Ability System
+* Item / Equipment System
+* XP / Leveling System
 
-Classes are no longer hard-coded entities. They are assembled from **stat identity + gameplay rules**, allowing the framework to support large numbers of playable classes without code duplication.
+The Class System defines **what a class is and how it is configured**. Other systems consume that configuration to perform their runtime responsibilities.
+
+---
+
+# 📌 Summary
+
+The Class System provides a centralized, resource-driven architecture for defining character classes and their progression.
+
+Specialized resources keep class configuration modular, while the Class Database provides a consistent runtime interface for accessing and querying class data.
