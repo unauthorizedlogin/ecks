@@ -52,7 +52,7 @@ The following documents cover the major parts of the Effect System.
 | ---------------------- | ----------------------------------------------------------------------------------------------------- | --------------------------------------------- |
 | ✨ Effect Manager       | Central runtime authority for applying, tracking, and removing effects                                | [Effect Manager](effect_manager.md)           |
 | 📦 StatEffect Resource | Defines the data and configuration for gameplay effects                                               | [StatEffect Resource](resource_stateffect.md) |
-| 🧩 Effect Types        | Defines the supported effect behaviors such as stat mods, DOT, HOT, revive, aura, and passive effects | [Effect Types](effect_types.md)               |
+| 🧩 Stack Handler      | The Effect Stack Handler manages **stacking and duration behavior** for active `StatEffect` instances | [Effect Stacks](effect_stack_handler.md)       |
 | 🎯 Effect Triggers     | Defines when effects activate, including immediate, equip, hit, crit, over-time, and passive triggers | [Effect Triggers](effect_triggers.md)         |
 | 🔄 Effect Pipeline     | Defines how effects move from their source through runtime application and resolution                 | [Effect Pipeline](effect_pipeline.md)         |
 | ⏱️ Effect Lifecycle    | Covers active effects, duration, ticking, expiration, removal, and cleanup                            | [Effect Lifecycle](effect_lifecycle.md)       |
