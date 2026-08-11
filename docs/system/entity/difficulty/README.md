@@ -78,10 +78,8 @@ Difficulty modifiers can affect any statistics supported by the existing `StatEf
 Potential difficulty integrations include:
 
 * Loot and reward scaling
-* Economy modifiers
 * Death penalties
 * Enemy spawning
-* Boss scaling
 * Quest and progression scaling
 
 ---
