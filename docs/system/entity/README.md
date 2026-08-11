@@ -54,17 +54,17 @@ The following systems make up the Entity layer.
 
 | System | Purpose | Documentation |
 |---|---|---|
-| ⚡ Ability System | Defines and manages gameplay abilities and their runtime execution | [Ability System](docs/entity/ability_system.md) |
-| 🐾 Behavior System | Modular AI behaviors and reusable entity logic | [Behavior System](docs/entity/behaviors.md) |
-| 🧍 Character Controller System | Runtime control layer for player, NPC, and enemy entities | [Character Controller System](docs/entity/character_controllers.md) |
-| 🧬 Class System | Entity classes, archetypes, and gameplay rules | [Class System](docs/entity/class_system.md) |
-| ⚔️ Combat System | Centralized combat processing and damage resolution | [Combat System](docs/entity/combat_system.md) |
-| 🎚️ Difficulty System | Data-driven gameplay difficulty scaling | [Difficulty System](docs/entity/difficulty_system.md) |
-| ✨ Effect System | Gameplay modifiers, buffs, debuffs, and stat effects | [Effect System](docs/entity/effect_system.md) |
-| 👤 NPC System | NPC identities and runtime references | [NPC System](docs/entity/npc_system.md) |
-| 🧍 Player Manager | Player lifecycle, bootstrap flow, runtime references, and state | [Player Manager](docs/entity/player_manager.md) |
-| 📊 Stats System | Runtime statistics, calculations, and modifiers | [Stats System](docs/entity/stats_system.md) |
-| 📈 XP System | Experience, leveling, and character progression | [XP System](docs/entity/xp_system.md) |
+| ⚡ Ability System | Defines and manages gameplay abilities and their runtime execution | [Ability System](docs/entity/ability/ability_system.md) |
+| 🐾 Behavior System | Modular AI behaviors and reusable entity logic | [Behavior System](docs/entity/character/behaviors.md) |
+| 🧍 Character Controller System | Runtime control layer for player, NPC, and enemy entities | [Character Controller System](docs/entity/character/character_controllers.md) |
+| 🧬 Class System | Entity classes, archetypes, and gameplay rules | [Class System](docs/entity/class/class_system.md) |
+| ⚔️ Combat System | Centralized combat processing and damage resolution | [Combat System](docs/entity/combat/combat_system.md) |
+| 🎚️ Difficulty System | Data-driven gameplay difficulty scaling | [Difficulty System](docs/entity/difficulty/difficulty_system.md) |
+| ✨ Effect System | Gameplay modifiers, buffs, debuffs, and stat effects | [Effect System](docs/entity/effect/effect_system.md) |
+| 👤 NPC System | NPC identities and runtime references | [NPC System](docs/entity/npc/npc_system.md) |
+| 🧍 Player Manager | Player lifecycle, bootstrap flow, runtime references, and state | [Player Manager](docs/entity/character/player_manager.md) |
+| 📊 Stats System | Runtime statistics, calculations, and modifiers | [Stats System](docs/entity/stats/stats_system.md) |
+| 📈 XP System | Experience, leveling, and character progression | [XP System](docs/entity/xp/xp_system.md) |
 
 ---
 
