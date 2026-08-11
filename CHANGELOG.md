@@ -2,6 +2,73 @@
 
 ---
 
+## [v0.52.219] - 2026-08-10
+
+### Difficulty Effects, Effect Stacking & Reward Stats
+
+**System(s) Affected:** Difficulty, Effects, Stats, Combat, Progression, Currency
+
+* Expanded difficulty testing to enemy movement and resistance modifiers, establishing Normal difficulty as the baseline for resetting enemy-specific effects between difficulty states.
+* Fixed persistence of previous difficulty effects on enemies and resolved aura runtime errors when loading saves with active auras.
+* Implemented configurable effect stacking and duration behavior with `StackBehavior`, `DurationBehavior`, `stack_group`, `max_stacks`, and runtime stack tracking.
+* Added EffectStackHandler to resolve repeated effect applications, including add, replace, ignore, refresh, keep, and duration extension behaviors.
+* Added combat log visibility for effect stack and duration changes and updated StatManager to scale stat modifiers according to active stack counts.
+* Removed the obsolete `TEMP_BUFF` and `TEMP_DEBUFF` EffectType values.
+* Added flexible stack groups that can use Ability IDs or arbitrary strings to define shared stacking pools.
+* Added **Gold Find, Magic Find, and XP Gain** as fully supported character stats with StatCalculator, StatFormula, StatEffect, and Stats Menu integration.
+* Wired Gold Find and XP Gain into actual currency and experience acquisition so modifiers apply globally rather than only to quest rewards.
+* Integrated reward modifiers into the Difficulty System, allowing difficulty configurations to modify player gold and XP gains through the standard StatBlock pipeline.
+
+---
+
+## [v0.52.218] - 2026-08-09
+
+### Combat Resistances, Auras & Stats
+
+**System(s) Affected:** Combat, Effects, Stats, UI, Formula System
+
+* Refined Aura processing so each target receives a single application message per acquisition while preserving independent effect tracking and normal stat modifier stacking.
+* Enabled Aura StatEffect modifiers to affect Damage through the standard stat pipeline.
+* Implemented live resistance mitigation for direct and damage-over-time attacks, applying the appropriate resistance before Armor mitigation.
+* Standardized resistance values to a **0–100 percentage scale**, with `100 = 100%` resistance, replacing the previous 0–1000 rating model.
+* Expanded the combat system to **11 official damage types**, each with a corresponding StatBlock resistance, StatCalculator calculation, CombatResolver mitigation rule, and Event Viewer color.
+* Added AllResist contribution across all individual resistance stats and verified the complete damage-type-to-resistance pipeline through combat.
+* Expanded the Stats Menu with all 11 localized resistance values, dedicated scrolling, and the updated percentage display scale.
+* Simplified FormulaResourceDatabase by removing unused category/subcategory indexing and retaining only the runtime-required formula ID index.
+
+---
+
+## [v0.52.217] - 2026-08-08
+
+### Effects, Abilities & Stat Modifier Expansion
+
+**System(s) Affected:** Stats, Effects, Abilities, Combat
+
+* Expanded the Stat Modifier pipeline to apply flat, percentage, and override Effect modifiers to derived stats through the ordered Base → Level → Equipment → Derived → Effect rebuild process.
+* Added support for negative regeneration values as active resource drains, with resource clamping between zero and maximum and zero remaining the only no-op value.
+* Corrected stat rebuild behavior to prevent duplicate equipment modifiers and preserve existing Damage values during derived stat calculations.
+* Implemented persistent Aura abilities with radius-based target detection, target filtering, duplicate-target prevention, automatic application/removal, and runtime cleanup.
+* Added independent ability targeting controls through `target_mode` and `target_filter` while retaining effect-level targeting for effects used outside the Ability system.
+* Expanded the framework content catalog with **215 new effects** and **55 new abilities** covering abilities, effects, targeting, casting, auras, buffs/debuffs, passives, procs, reactions, and channels.
+* Updated ability attack-time parsing to allow zero-duration values for abilities that do not use attack timing.
+
+---
+
+## [v0.52.216] - 2026-08-07
+
+### Stats UI & Combat Damage Types
+
+**System(s) Affected:** UI, Stats, Effects, Combat, Event Viewer
+
+* Decoupled the Stats UI from the StatManager rebuild pipeline by routing player stat rebuild notifications through `PlayerControl.stats_updated`.
+* Added player-specific StatManager event filtering and guarded UI signal connections, removing direct UI update calls from stat rebuilding.
+* Introduced typed DamageType support for StatEffects, DamageRequest, and DamageResult with nine supported damage types.
+* Added CSV-driven damage type generation and dedicated Event Viewer colors for each damage type.
+* Separated damage type from damage origin so DoT remains a damage origin while retaining its configured elemental/physical damage type.
+* Updated combat logging to display damage types and removed remaining string-based damage type handling.
+
+---
+
 ## [v0.52.215] - 2026-08-06
 
 ### World, Stats & Difficulty Architecture
