@@ -54,8 +54,8 @@ The following systems make up the Entity layer.
 
 | System | Purpose | Documentation |
 |---|---|---|
-| ⚡ Ability System | Defines and manages gameplay abilities and their runtime execution | [Ability System](docs/entity/ability/) |
-| 🐾 Behavior System | Modular AI behaviors and reusable entity logic | [Behavior System](docs/entity/character/behaviors.md) |
+| ⚡ Ability System | Defines and manages gameplay abilities and their runtime execution | [Ability System](ability/) |
+| 🐾 Behavior System | Modular AI behaviors and reusable entity logic | [Behavior System](character/behaviors.md) |
 | 🧍 Character Controller System | Runtime control layer for player, NPC, and enemy entities | [Character Controller System](docs/entity/character/character_controllers.md) |
 | 🧬 Class System | Entity classes, archetypes, and gameplay rules | [Class System](docs/entity/class/) |
 | ⚔️ Combat System | Centralized combat processing and damage resolution | [Combat System](docs/entity/combat/) |
