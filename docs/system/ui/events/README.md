@@ -54,11 +54,9 @@ The Event Viewer UI consumes that data to provide customizable event presentatio
 | SystemPurposeDocumentation |                                                               |                          |
 | -------------------------- | ------------------------------------------------------------- | ------------------------ |
 | 📢 Event Manager           | Central event collection, routing, history, and configuration | [Event Manager](event_manager.md)            |
-| 🖥️ Event Viewer UI        | Main player-facing event viewer interface                     | [Event Viewer UI](event_viewer_ui.md)           |
+| 🖥️ Event Viewer UI         | Main player-facing event viewer interface                     | [Event Viewer UI](event_viewer_ui.md)           |
 | ✏️ Tab Rename Overlay      | Handles event viewer tab renaming                             | [Event Tab Rename Overlay](event_tab_rename_overlay.md)  |
-| 📡 Event Viewer Channel    | Defines event channel presentation and filtering              | [Event Viewer Channel](event_viewer_channel.md)      |
-| 📑 Event Viewer Tab        | Represents an individual event viewer tab                     | [Event Viewer Tab](event_viewer_tab.md)          |
-| 👁️ Event Viewer View      | Defines customizable event views and filter state             | [Event Viewer View](event_viewer_view.md)         |
+| 📡 Event Viewer Data       | Defines presentation filtering, for channels, tabs, and views | [Event Data](event_data.md)      |
 | 🔎 Filter Registry         | Central event category, channel, and filter definitions       | [Event Filter Registry](event_filter_registry.md)     |
 
 ---
