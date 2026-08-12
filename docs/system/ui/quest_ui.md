@@ -6,6 +6,8 @@
 
 The Quest Menu provides the full presentation interface for the player's quest log.
 
+![Quest Menu](../../../media/screenshots/quest_dialogue_menu.png)
+
 It is responsible for:
 
 * Displaying available quests
@@ -33,6 +35,8 @@ See:
 
 The HUD Tracker provides persistent quest progress without requiring the player to open the Quest Menu.
 
+![Quest HUD](../../../media/screenshots/player_hud.png)
+
 It is responsible for:
 
 * Displaying tracked quests
@@ -48,5 +52,5 @@ For HUD tracker behavior and implementation:
 
 See Documentation:
 
-[Quest Tracker](../progression/quest/hud_quest_tracker.md)
-[Side Quest Tracker](../progression/quest/quest_side_tracker.md)
+[Quest Tracker](../progression/quest/quest_tracker.md)
+[Side Quest Tracker](../progression/quest/side_quest_tracker.md)
