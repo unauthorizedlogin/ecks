@@ -210,3 +210,167 @@ Achievements outside of chains use:
 ```
 sort_order
 ```
+
+---
+
+# 🎯 Achievement Details Panel
+
+Selecting an achievement displays:
+
+## Achievement Information
+
+Displays:
+
+* Title
+* Description
+* Icon
+
+Source:
+
+```
+QuestDefinition
+```
+
+---
+
+# Objectives Display
+
+## Locked Achievement
+
+Displays objective descriptions only.
+
+Example:
+
+```
+Defeat 100 Monsters
+Collect 50 Gems
+```
+
+---
+
+## Active Achievement
+
+Displays objective progress.
+
+Example:
+
+```
+Defeat Monsters 45/100
+Collect Gems 23/50
+```
+
+---
+
+## Completed Objectives
+
+Displays:
+
+```
+✔ Objective Complete
+```
+
+---
+
+# Rewards Display
+
+Achievement rewards are displayed from the existing quest reward definitions.
+
+The menu resolves reward display names through:
+
+```
+ItemDatabase
+```
+
+Displayed information:
+
+* Reward name
+* Reward quantity
+
+---
+
+# 🔄 Refresh Pipeline
+
+The menu updates through QuestManager signals.
+
+Connected signals:
+
+```
+quest_started
+quest_updated
+quest_completed
+quest_failed
+```
+
+Flow:
+
+```
+QuestManager Signal
+        |
+        v
+Achievement Menu Refresh
+        |
+        +--> Rebuild Cards
+        |
+        +--> Update Selected Achievement
+```
+
+---
+
+# 🖥 Menu Controls
+
+## Open
+
+Opening the menu:
+
+* Shows UI
+* Notifies UIManager
+* Populates achievements
+* Restores selected achievement
+
+---
+
+## Close
+
+Closing the menu:
+
+* Hides UI
+* Preserves selection state
+
+---
+
+## Toggle
+
+Controlled through:
+
+```
+achievement_menu
+```
+
+---
+
+# System Dependencies
+
+| System        | Responsibility                                   |
+| ------------- | ------------------------------------------------ |
+| Quest System  | Achievement definitions, progression, completion |
+| QuestManager  | Achievement runtime state                        |
+| QuestInstance | Achievement objective progress                   |
+| ItemDatabase  | Reward display names                             |
+| UIManager     | Menu state handling                              |
+
+---
+
+# Current Features
+
+- ✅ Achievement category filtering
+- ✅ Achievement card generation
+- ✅ Achievement selection
+- ✅ Achievement progress display
+- ✅ Achievement completion display
+- ✅ Achievement objective rendering
+- ✅ Achievement reward display
+- ✅ Achievement chain visibility
+- ✅ Achievement sorting
+- ✅ Signal-driven updates
+- ⬜ Hidden achievement completion reveal filtering
+- ⬜ LIFE_TIME objective integration
