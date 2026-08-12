@@ -48,7 +48,7 @@ For dialogue flow, NPC data, dialogue runtime, and quest integration:
 
 See:
 
-[Dialogue System Documentation](./progression/dialogue/)
+[Dialogue System Documentation](../progression/dialogue/)
 
 ---
 
