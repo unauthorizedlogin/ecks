@@ -57,4 +57,3 @@ The UI System provides a unified interface management layer through centralized 
 
 Each UI subsystem specializes in a specific presentation or interaction responsibility while connecting through shared UI management infrastructure.
 The README acts as a **map**, not a duplicate manual.
-```
