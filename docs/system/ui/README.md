@@ -40,9 +40,9 @@ The following systems make up the UI layer.
 
 | System | Purpose | Documentation |
 |---|---|---|
-| 🎬 Credits System | Data-driven contributor credits, acknowledgements, and presentation management      | [Credits System](./ui/credits_root.md) |
+| 🎬 Credits System | Data-driven contributor credits, acknowledgements, and presentation management      | [Credits System](./ui/credits/) |
 | 💬 Dialogue UI    | Dialogue presentation, NPC info, conversation, and player interaction handling      | [Dialogue UI](./ui/dialogue_ui.md)     |
-| 📢 Event Viewer   | Centralized gameplay notifications, event routing, and message filtering            | [Event Viewer](./ui/event_viewer.md)   |
+| 📢 Event Viewer   | Centralized gameplay notifications, event routing, and message filtering            | [Event Viewer](./ui/events/)   |
 | 💀 Game Over      | Player death interface and post-death state management                              | [Game Over](./ui/game_over.md)         |
 | ⏸️ Pause Menu     | Gameplay pause control, state management, and menu coordination                     | [Pause Menu](./ui/pause_menu.md)       |
 | ⚙️ Settings Menu  | Player preferences, configuration, and persistent settings management               | [Settings Menu](./ui/settings_menu.md) |
