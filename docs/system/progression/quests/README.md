@@ -62,6 +62,7 @@ The following documents cover the Quest System components.
 | 🔑 Quest Requirement      | Defines prerequisites that must be satisfied before a quest can be started       | [Quest Requirement](resource_quest_requirements.md) |
 | 🎁 Quest Reward            | Defines reward type, reward identity, display information, and reward amount    | [Quest Reward](resource_quest_reward.md) |
 | 📋 Quest Instance          | Tracks runtime objective and quest progression state                            | [Quest Instance](quest_instance.md) |
+| 🧩 Quest Behavior Matrix   | Defines default runtime behavior rules for each quest category                  | [Quest Behavior Matrix](quest_behavior_matrix.md) |
 | 💬 Quest Dialogue          | Provides quest-specific dialogue resources and progression states               | [Quest Dialogue Resource]() |
 | 🎯 Quest Offer Controller  | Tracks temporary quest offer state during NPC dialogue                          | [Quest Offer Controller]()  |
 | 🔌 Quest UI Adapter        | Translates quest state into dialogue/UI presentation states                     | [Quest UI Adapter]()        |
