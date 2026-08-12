@@ -56,6 +56,7 @@ The following documents cover the Quest System components.
 | SystemPurposeDocumentation |                                                                                 |                         |
 | -------------------------- | ------------------------------------------------------------------------------- | ----------------------- |
 | 🧠 Quest Manager           | Manages quest runtime state, progression, acceptance, and completion            | [Quest Manager](quest_manager.md)   |
+| ⭐ Reward Manager           | Processes quest rewards and routes XP, currency, items, and other reward types | [Reward Manager](reward_manager.md)   |
 | 🎯 Quest Resource          | Defines quest identity, objectives, requirements, rewards, and progression data | [Quest Resource](resource_quest.md) |
 | 🎯 Objective Resource      | Defines objective types, targets, progress requirements, & completion data      | [Objective Resource](resource_quest_obj_def.md) |
 | 🔑 Quest Requirement      | Defines prerequisites that must be satisfied before a quest can be started       | [Quest Requirement](resource_quest_requirements.md) |
