@@ -63,6 +63,7 @@ The following documents cover the Quest System components.
 | 🎁 Quest Reward            | Defines reward type, reward identity, display information, and reward amount    | [Quest Reward](resource_quest_reward.md) |
 | 📋 Quest Instance          | Tracks runtime objective and quest progression state                            | [Quest Instance](quest_instance.md) |
 | 🧩 Quest Behavior Matrix   | Defines default runtime behavior rules for each quest category                  | [Quest Behavior Matrix](quest_behavior_matrix.md) |
+| 📜 Quest Menu              | Journal for quest visibility, selection, tracking, cancellation, & display      | [Quest Menu](quest_menu.md) |
 
 ---
 
