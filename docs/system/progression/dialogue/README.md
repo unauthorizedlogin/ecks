@@ -48,7 +48,8 @@ Quest and Shop systems remain responsible for their own gameplay state.
 | 🎬 Dialogue Runtime        | Active conversation state and line progression    | [Dialogue Runtime](dialoge_runtime.md)       |
 | 🎯 Quest Offer Controller  | Temporary quest offer state during dialogue       | [Quest Offer Controller](dialogue_offer_controller.md) |
 | 🔌 Quest UI Adapter        | Quest state translation for dialogue presentation | [Quest UI Adapter](dialogue_ui_adapter.md)       |
-| 💬 Dialogue Data           | Authored dialogue resources, states, speakers, lines, and interaction labels | [Dialogue Data](./progression/dialogue_data.md) |
+| 💬 Dialogue Data           | Authored dialogue resources, states, speakers, lines, and interaction labels | [Dialogue Data](dialogue_data.md) |
+| 🖥️ Dialogue Menu           | NPC dialogue, speaker display, dialogue progression, and interactions | [Dialogue Menu](dialogue_menu.md) |
 
 ---
 
