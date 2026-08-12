@@ -58,6 +58,8 @@ The following documents cover the Quest System components.
 | 🧠 Quest Manager           | Manages quest runtime state, progression, acceptance, and completion            | [Quest Manager](quest_manager.md)   |
 | 🎯 Quest Resource          | Defines quest identity, objectives, requirements, rewards, and progression data | [Quest Resource](resource_quest.md) |
 | 🎯 Objective Resource      | Defines objective types, targets, progress requirements, & completion data      | [Objective Resource](resource_quest_obj_def.md) |
+| 🔑 Quest Requirement      | Defines prerequisites that must be satisfied before a quest can be started       | [Quest Requirement](resource_quest_requirements.md) |
+| 🎁 Quest Reward            | Defines reward type, reward identity, display information, and reward amount    | [Quest Reward](resource_quest_reward.md) |
 | 📋 Quest Instance          | Tracks runtime objective and quest progression state                            | [Quest Instance](quest_instance.md) |
 | 💬 Quest Dialogue          | Provides quest-specific dialogue resources and progression states               | [Quest Dialogue Resource]() |
 | 🎯 Quest Offer Controller  | Tracks temporary quest offer state during NPC dialogue                          | [Quest Offer Controller]()  |
