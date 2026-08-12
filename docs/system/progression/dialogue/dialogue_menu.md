@@ -6,7 +6,7 @@
 
 The Dialogue Menu provides the player-facing interface for NPC conversations.
 
-![Dialogue Menu](../../../../media/screenshots/quest_dialogue_menu.png)
+![Dialogue Menu](../../../../media/screenshots/dialogue_menu.png)
 
 It is responsible for:
 
