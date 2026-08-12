@@ -172,7 +172,7 @@ ItemResource
 
 | Property | Description |
 |---|---|
-| modifiers | Dictionary of stat modifiers applied by the item |
+| stat_blocks | Array of StatBlock resources attached to the item |
 
 ---
 
@@ -181,3 +181,9 @@ ItemResource
 | Property | Description |
 |---|---|
 | effects | Array of StatEffect resources attached to the item |
+
+# Abilities
+
+| Property | Description |
+|---|---|
+| abilities | Array of AbilityDefinition resources attached to the item |
