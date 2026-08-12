@@ -235,17 +235,17 @@ For an overview of the system check out the README:
 
 Or, if you'd prefer a specific topic you can access them directly here:
 
-- ⚡ [Ability System](./docs/system/entity/ability_system.md)
-- 🐾 [Behaviors](./docs/system/entity/behaviors.md)
-- 🎮 [Actor Controllers](./docs/system/entity/character_controllers.md)
-- 🧬 [Class System](./docs/system/entity/class_system.md)
-- ⚔️ [Combat System](./docs/system/entity/combat_system.md)
-- 🎚️ [Difficulty System](./docs/system/entity/difficulty_system.md)
-- ✨ [Effect System](./docs/system/entity/effect_system.md)
-- 👤 [NPC System](./docs/system/entity/npc_system.md)
-- 🧍 [Player Manager](./docs/system/entity/player_manager.md)
-- 📊 [Stats System](./docs/system/entity/stats_system.md)
-- 📈 [XP System](./docs/system/entity/xp_system.md)
+- ⚡ [Ability System](./docs/system/entity/ability/)
+- 🐾 [Behaviors](./docs/system/entity/character/behaviors.md)
+- 🎮 [Actor Controllers](./docs/system/entity/character/character_controllers.md)
+- 🧬 [Class System](./docs/system/entity/class/)
+- ⚔️ [Combat System](./docs/system/entity/combat/)
+- 🎚️ [Difficulty System](./docs/system/entity/difficulty/)
+- ✨ [Effect System](./docs/system/entity/effect/)
+- 👤 [NPC System](./docs/system/entity/npc/)
+- 🧍 [Player Manager](./docs/system/entity/character/player_manager.md)
+- 📊 [Stats System](./docs/system/entity/stats/)
+- 📈 [XP System](./docs/system/entity/xp/)
 
 ---
 
