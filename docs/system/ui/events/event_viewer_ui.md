@@ -4,7 +4,7 @@
 
 The Event Viewer provides the player-facing interface for viewing, filtering, and organizing runtime events.
 
-![Event Viewer Panel](../../../media/screenshots/event_view_panel.png)
+![Event Viewer Panel](../../../../media/screenshots/event_view_panel.png)
 
 The menu presents:
 
