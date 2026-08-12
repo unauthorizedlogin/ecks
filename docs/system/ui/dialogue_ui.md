@@ -1,4 +1,4 @@
-# 💬 Dialogue UI System
+# 💬 Dialogue UI
 
 ## Menu Overview
 
