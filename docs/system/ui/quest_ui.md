@@ -6,7 +6,7 @@
 
 The Quest Menu provides the full presentation interface for the player's quest log.
 
-![Quest Menu](../../../media/screenshots/quest_dialogue_menu.png)
+![Quest Menu](../../../media/screenshots/quest_journal.png)
 
 It is responsible for:
 
@@ -35,7 +35,7 @@ See:
 
 The HUD Tracker provides persistent quest progress without requiring the player to open the Quest Menu.
 
-![Quest HUD](../../../media/screenshots/player_hud.png)
+![Quest HUD](../../../media/screenshots/quest_hud.png)
 
 It is responsible for:
 
