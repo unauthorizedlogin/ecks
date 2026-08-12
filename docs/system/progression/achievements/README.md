@@ -1,219 +1,84 @@
 # 🏆 Achievement System
 
-## Overview
-
-The Achievement Menu is a dedicated UI system for displaying and interacting with achievements.
+The Achievement System provides the player-facing interface for browsing and viewing achievements.
 
 Achievements are implemented through the Quest System using:
 
-```
+```text
 QuestDefinition.QuestCategory.ACHIEVEMENT
 ```
 
-The Achievement Menu provides a specialized interface for achievement browsing.
+The system provides:
 
-It manages:
-
+* Achievement browsing
 * Achievement filtering
-* Achievement visibility rules
 * Achievement sorting
 * Achievement card generation
 * Achievement progress display
-* Achievement details rendering
+* Achievement details
 * Achievement reward display
 
-For achievement creation, definitions, objectives, and generation:
-
-See:
-
-[Quest System Documentation](./quest_system.md)
+Achievement progression and runtime state remain owned by the Quest System.
 
 ---
 
-# 🖥 Menu Overview
+# 🧠 Achievement Architecture
 
-The Achievement Menu provides the player-facing interface for browsing achievement progress.
+```text
+                    Quest System
 
-![Achievement Menu](../../../media/screenshots/achievement_menu.png)
+                         |
+                  Achievement Data
+                         |
+                         ↓
+                Achievement Menu
+                         |
+                  ┌──────┴──────┐
+                  ↓             ↓
+          Achievement Card   Details
+```
 
-The menu presents:
+The Achievement Menu presents achievement data provided by the Quest System.
 
-* Achievement categories
-* Completion states
-* Progress tracking
-* Achievement details
-* Reward information
-
-The interface is responsible for presentation only. Achievement progression and state management remain owned by the Quest System.
+The Achievement Card provides the individual achievement representation within the menu.
 
 ---
 
-# 🧩 Architecture Role
+# 🔗 Achievement System Documentation
 
-The Achievement Menu is a presentation and discovery layer.
-
-It does not create achievements or manage achievement state.
-
-Data flow:
-
-```
-QuestManager
-      |
-      |
-      v
-Achievement Menu
-      |
-      |
-      +--> AchievementCard
-      |
-      +--> Details Panel
-```
-
-The menu reads achievement definitions and runtime progress from the Quest System and converts them into UI elements.
+| SystemPurposeDocumentation |                                                       |                  |
+| -------------------------- | ----------------------------------------------------- | ---------------- |
+| 🖥️ Achievement Menu       | Achievement browsing, filtering, sorting, and display | Achievement Menu |
+| 🃏 Achievement Card        | Individual achievement display and progress           | Achievement Card |
 
 ---
 
-# 📋 Achievement List Population
+# 🔗 System Integration
 
-The menu builds the achievement list from registered quest definitions.
+The Achievement System integrates with:
 
-Filtering pipeline:
+* 📜 Quest System
+* 🧠 QuestManager
+* 📋 QuestInstance
+* 🎁 Item Database
+* 🖥️ UI Manager
 
-```
-Quest Definitions
-        |
-        v
-QuestCategory.ACHIEVEMENT
-        |
-        v
-Visibility Filtering
-        |
-        v
-Sorting
-        |
-        v
-Achievement Cards
-```
-
-Only quests with:
-
-```
-QuestCategory.ACHIEVEMENT
-```
-
-are considered.
+The Achievement System consumes Quest System data without owning achievement progression or completion logic.
 
 ---
 
-# 🔒 Achievement Visibility
+# 📌 Design Rule
 
-Achievements support hidden progression.
+**The Quest System defines and manages achievements.**
 
-Visibility rules determine which achievements appear in the menu.
+**The Achievement Menu displays them.**
 
-## Visible Achievements
+**The Achievement Card represents them.**
 
-Achievements are displayed when:
+Achievement functionality should remain data-driven through the existing Quest System rather than creating a separate achievement progression system.
 
-* Completed
-* First achievement in a chain
-* Previously unlocked through progression
 
----
 
-## Hidden Achievements
-
-Hidden achievements remain unavailable until their unlock condition is met.
-
-Example:
-
-```
-Hidden Achievement I
-
-        |
-        v
-
-Completed Achievement I
-
-        |
-        v
-
-Achievement II Revealed
-```
-
----
-
-## Secret Achievement Reveal
-
-Future filtering will allow completed hidden achievements to appear after completion.
-
-Behavior:
-
-Before completion:
-
-```
-[ Hidden Achievement ]
-```
-
-After completion:
-
-```
-✔ Secret Achievement
-```
-
-The achievement remains hidden during progression but becomes visible once completed.
-
----
-
-# 🔀 Achievement Sorting
-
-Achievements are sorted by:
-
-## Completion State
-
-Incomplete achievements appear before completed achievements.
-
-```
-Active / In Progress
-
-Completed
-```
-
----
-
-## Achievement Chain Order
-
-Achievements belonging to the same progression line use:
-
-```
-quest_line_id
-```
-
-and:
-
-```
-quest_index
-```
-
-Example:
-
-```
-Explorer I
-Explorer II
-Explorer III
-```
-
----
-
-## General Ordering
-
-Achievements outside of chains use:
-
-```
-sort_order
-```
-
----
 
 # 🃏 Achievement Card
 
