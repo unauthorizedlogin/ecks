@@ -22,7 +22,7 @@ The actual credit content comes from the configured Credits Data source.
 
 The Credits UI provides the player-facing presentation layer for contributor acknowledgements, music credits, legal attributions, special thanks, and dedications.
 
-![Credits Menu](../../../media/screenshots/end_credits.png)
+![Credits Menu](../../../../media/screenshots/end_credits.png)
 
 The menu presents:
 
