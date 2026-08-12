@@ -6,7 +6,7 @@
 
 The Quest Menu provides the full presentation interface for the player's quest log.
 
-![Quest Menu](../../../media/screenshots/quest_dialogue_menu.png)
+- [Quest Menu](../../../media/screenshots/quest_dialogue_menu.png)
 
 It is responsible for:
 
@@ -25,7 +25,7 @@ For quest state, progression, objectives, and quest runtime behavior:
 
 See:
 
-[Quest Menu System Documentation](../progression/quest/quest_menu.md)
+[Quest Menu System Documentation](../../progression/quests/quest_menu.md)
 
 ---
 
@@ -52,5 +52,5 @@ For HUD tracker behavior and implementation:
 
 See Documentation:
 
-[Quest Tracker](../progression/quest/quest_tracker.md)
-[Side Quest Tracker](../progression/quest/side_quest_tracker.md)
+- [Quest Tracker](./hud/quest_tracker.md)
+- [Side Quest Tracker](./hud/side_quest_tracker.md)
