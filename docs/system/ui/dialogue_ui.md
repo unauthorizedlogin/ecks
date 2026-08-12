@@ -1,27 +1,5 @@
 # 💬 Dialogue UI System
 
-## Overview
-
-The Dialogue UI provides the player-facing interface for NPC conversations and dialogue interactions.
-
-It displays:
-
-- NPC information
-- Dialogue text
-- Speaker portraits
-- Dialogue options
-- Quest interaction options
-- Special interaction options
-- Leave conversation options
-
-The Dialogue UI acts as the presentation layer for the Dialogue System.
-
-
-
----
-
-# 💬 Dialogue UI
-
 ## Menu Overview
 
 `DialogueUI` is the **visual dialogue interface** for NPC conversations.
