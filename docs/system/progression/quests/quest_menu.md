@@ -8,6 +8,27 @@ It manages quest visibility, selection, tracking, cancellation, automatic tracki
 
 ---
 
+# 🖥 Menu Overview
+
+The Quest Menu provides the player-facing interface for browsing active and completed quests, viewing quest details, tracking objectives, and managing available quest actions.
+
+![Quest Menu](../../../../media/screenshots/quest_dialogue_menu.png)
+
+The menu presents:
+
+* Active quests
+* Completed quests
+* Quest descriptions
+* Objective progress
+* Objective states
+* Quest rewards
+* Quest tracking controls
+* Quest cancellation controls
+
+The interface is responsible for presentation and player interaction only. Quest progression, validation, visibility, tracking state, completion, and cancellation remain owned by the Quest System.
+
+---
+
 ## Architecture
 
 ```text
