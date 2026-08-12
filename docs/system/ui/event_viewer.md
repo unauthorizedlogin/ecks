@@ -30,6 +30,12 @@ The menu presents:
 
 The interface is responsible for event presentation only. Event generation, routing, filtering rules, and persistence are managed by the Event Manager systems.
 
+For dialogue flow, NPC data, dialogue runtime, and quest integration:
+
+See:
+
+[Dialogue System Documentation](../ui/events/)
+
 ---
 
 # 🧠 Core Responsibility
