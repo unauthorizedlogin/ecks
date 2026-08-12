@@ -1,12 +1,24 @@
 # 🎛️ Event Viewer UI
 
-## Overview
+# 🖥 Menu Overview
 
-`EventViewerUI` is the **presentation and interaction layer for the Event Viewer**.
+The Event Viewer provides the player-facing interface for viewing, filtering, and organizing runtime events.
+
+![Event Viewer Panel](../../../media/screenshots/event_view_panel.png)
+
+The menu presents:
+
+* Event message history
+* Custom event views
+* Event category filtering
+* Filter color customization
+* View management
+* Runtime event organization
 
 It displays events from `EventManager` and provides the UI for managing event views, filters, filter colors, and view names.
 
-The UI does **not route or process incoming events**. `EventManager` owns the event data, buffers, views, filters, and configuration; `EventViewerUI` reads that state and renders it.
+
+The interface is responsible for event presentation only. Event generation, routing, filtering rules, and persistence are managed by the Event Manager systems.
 
 ---
 
