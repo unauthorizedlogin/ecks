@@ -21,6 +21,8 @@ A focused showcase of the framework's data-driven architecture, following the co
 
 The video demonstrates the ability system and effect pipeline, shows multiple damage types being driven through the same Effect System, and concludes with the standardized generator and database directory structures used throughout the framework.
 
+▶️ Click the image below to watch the video on YouTube.
+
 [![▶️ Watch the Data-Driven Systems Trailer](https://img.youtube.com/vi/-cOh3sm6gvo/maxresdefault.jpg)](https://youtu.be/-cOh3sm6gvo)
 
 **Runtime Pipeline:**
