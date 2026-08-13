@@ -195,9 +195,8 @@ For an overview of the system check out the README:
 
 Or, if you'd prefer a specific topic you can access them directly here:
 
-- 💰 [Currency System](./docs/system/economy/currency_system.md)
-- 🛒 [Shop System](./docs/system/economy/shop_system.md)
-- 🏪 [Shop Vendor](./docs/system/economy/shop_vendor.md)
+- 💰 [Currency System](./docs/system/economy/currency/)
+- 🛒 [Shop System](./docs/system/economy/shop/)
 
 ---
 
