@@ -1,4 +1,4 @@
-# 🧪 Potion HUD Panel — Architecture
+# 🧪 Potion HUD Panel
 
 ## System Role
 
