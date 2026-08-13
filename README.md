@@ -279,10 +279,10 @@ For an overview of the system check out the README:
 
 Or, if you'd prefer a specific topic you can access them directly here:
 
-- 🧰 [Chests System](./docs/system/loot/chests.md)
-- 🛡️ [Equipment Manager](./docs/system/loot/equipment_manager.md)
-- 🎒 [Inventory Manager](./docs/system/loot/inventory_manager.md)
-- 📦 [Item Resource](./docs/system/loot/item_resource.md)
+- 🧰 [Chests System](./docs/system/loot/chests/)
+- 🛡️ [Equipment Manager](./docs/system/loot/equipment/equipment_manager.md)
+- 🎒 [Inventory Manager](./docs/system/loot/inventory/)
+- 📦 [Items](./docs/system/loot/items/)
 
 ---
 
@@ -298,9 +298,9 @@ For an overview of the system check out the README:
 
 Or, if you'd prefer a specific topic you can access them directly here:
 
-- 🏆 [Achievements](./docs/system/progression/achievement_system.md)
-- 💬 [Dialogue System](./docs/system/progression/dialogue_system.md)
-- 📜 [Quest System](./docs/system/progression/quest_system.md)
+- 🏆 [Achievements](./docs/system/progression/achievements/)
+- 💬 [Dialogue System](./docs/system/progression/dialogue/)
+- 📜 [Quest System](./docs/system/progression/quests/)
 
 ---
 
@@ -316,8 +316,10 @@ For an overview of the system check out the README:
 
 Or, if you'd prefer a specific topic you can access them directly here:
 
-- 🎬 [Credits Scene](./docs/system/ui/credits_root.md)
-- 📋 [Event Viewer](./docs/system/ui/event_viewer.md)
+- 🎬 [Credits Scene](./docs/system/ui/credits/)
+- 📋 [Event Viewer](./docs/system/ui/events/)
+- 🖥️ [Player HUD](./docs/system/ui/hud/)
+- 💬 [Dialogue UI](./docs/system/ui/dialogue_ui.md)
 - 💀 [Game Over](./docs/system/ui/game_over.md)
 - ⏸️ [Pause Menu](./docs/system/ui/pause_menu.md)
 - ⚙️ [Settings Menu](./docs/system/ui/settings_menu.md)
