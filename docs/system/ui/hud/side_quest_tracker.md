@@ -1,4 +1,4 @@
-# 🎯 Side Quest Tracker — Architecture
+# 🎯 Side Quest Tracker
 
 ## Overview
 
