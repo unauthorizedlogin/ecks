@@ -2,6 +2,20 @@
 
 ---
 
+## [v0.52.220] - 2026-08-14
+
+### Stat Leech & Unified Combat Effects
+
+**System(s) Affected:** Effects, Combat, Abilities, Stats
+
+* Added `LEECH` as a supported StatEffect type with configurable HP, MP, Class Resource, and other valid StatBlock targets.
+* Added flat and percentage-based leech resolution using final resolved damage as the basis for percentage leech.
+* Added per-attack leech effect collection and propagation through AbilityRuntime, EffectManager, DamageRequest, CombatContext, and CombatResolver.
+* Unified HP cost handling through CombatManager as `HP_COST` damage requests.
+* Established a shared combat architecture for resource costs and leech effects, allowing both to resolve through the same damage pipeline.
+
+---
+
 ## [v0.52.219] - 2026-08-10
 
 ### Difficulty Effects, Effect Stacking & Reward Stats
