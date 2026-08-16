@@ -2,6 +2,23 @@
 
 ---
 
+## [v0.52.221] - 2026-08-15
+
+### Dynamic Camera, Chunk-Owned World Systems & Runtime Routing
+
+**System(s) Affected:** World, Chunks, Camera, Environment, Teleporters
+
+* Added chunk-owned EnvironmentArea and Teleporter registration with centralized manager tracking and automatic unregistering when chunks unload.
+* Removed direct Map dependencies on EnvironmentAreas and added runtime Teleporter ID/target resolution through TeleporterManager.
+* Introduced the CameraProfile CSV → `.tres` generation pipeline with CameraDatabase, resource indexing, and runtime camera profile loading.
+* Added map-driven camera selection through `MapResource.camera_id`, allowing maps to configure their active camera profile.
+* Refactored WorldManager, ChunkManager, CameraManager, and world initialization to consume generic camera profiles instead of embedded CameraGrid references.
+* Added runtime support for 2D grid, 2D standard, and 3D camera profiles, including orthographic isometric Camera3D configuration.
+* Completed CameraProfile runtime configuration for follow smoothing, follow speed, drag controls, drag margins, mouse look, pitch limits, zoom, and rotation.
+* Added configurable mouse-driven camera controls with generator support for all new camera fields.
+
+---
+
 ## [v0.52.220] - 2026-08-14
 
 ### Stat Leech & Unified Combat Effects
