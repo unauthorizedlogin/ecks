@@ -275,6 +275,7 @@ Implemented generators:
 | Generator | Purpose | Documentation |
 |---|---|---|
 | ⚡ Ability Generator | Generates ability definitions and gameplay ability resources | [Ability Generator](./ability_generator.md) |
+| 📷 Camera Generator | Generates camera profiles for world and minimap | [Camera Generator](./camera_generator.md) |
 | 🧬 Class Generator | Generates class definitions and statistical foundations | [Class Generator](./class_generator.md) |
 | 🏷️ Class Rules Generator | Generates class behavior rules and restrictions | [Class Rules Generator](./class_rules_generator.md) |
 | 🎬 Credits Generator | Generates runtime credit data from CSV definitions | [Credits Generator](./credits_generator.md) |
