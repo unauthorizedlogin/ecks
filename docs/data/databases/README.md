@@ -145,6 +145,7 @@ Implemented databases:
 | Database | Purpose | Documentation |
 |---|---|---|
 | ⚡ Ability Database | Ability definitions | [Ability Database](./ability_database.md) |
+| 📷 Camera Database | Camera profiles and camera configurations | [Camera Database](./camera_database.md) |
 | 🧬 Class Database | Entity classes and progression data | [Class Database](./class_database.md) |
 | 💬 Dialogue Database | Dialogue resources and conversations | [Dialogue Database](./dialogue_database.md) |
 | ⚖️ Difficulty Database | Gameplay difficulty configurations | [Difficulty Database](./difficulty_database.md) |
