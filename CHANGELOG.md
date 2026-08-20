@@ -2,6 +2,62 @@
 
 ---
 
+## [v0.52.225] - 2026-08-19
+
+### Minimap Quest Markers
+
+**System(s) Affected:** Minimap, HUD, NPCs, Quest System, Dialogue System
+
+* Expanded NPC minimap markers with context-aware states for normal NPCs, available quests, and active quest objectives.
+* Integrated quest availability with DialogueManager's existing quest-option validation, preserving dialogue keys, requirements, rules, and quest state.
+* Added NPC quest objective markers using existing quest and objective definitions.
+* Updated NPC registration and marker tracking to use `npc_id` and live `global_position`, removing reliance on the followers group for primary NPC lookup.
+
+---
+
+## [v0.52.224] - 2026-08-18
+
+### Minimap Architecture & Marker System
+
+**System(s) Affected:** Minimap, HUD, World, UI
+
+* Refactored MiniMapManager from 600+ lines into focused RefCounted controllers for loading, camera, player tracking, markers, fog, and geometry generation.
+* Added MiniMapLoader, MiniMapCameraController, MiniMapPlayerController, MiniMapMarkerController, MiniMapFogController, and MiniMapGeometryBuilder.
+* Added live NPC, Storage Chest, and Treasure Chest minimap markers with runtime registration and position tracking.
+* Added configurable Resource-based marker icons for NPCs, objectives, storage, and treasure.
+* Added Storage Chest and Treasure Chest marker registration using their runtime IDs.
+
+---
+
+## [v0.52.223] - 2026-08-17
+
+### Minimap Foundation & NPC Stat Integration
+
+**System(s) Affected:** Minimap, World, NPCs, Stats
+
+* Completed the Minimap foundation with static world geometry generation, runtime filtering, dedicated scene structure, player direction, NPC/objective markers, Fog of War support, and expandable map display.
+* Established the Minimap as an independent camera/viewport rendering layer that selectively displays world visuals rather than directly mirroring the loaded world.
+* Added filtering boundaries for entities, items, projectiles, and effects to support controlled minimap content.
+* Refactored NPC runtime movement to use the shared ClassData and StatBlock architecture used by enemy characters.
+* Added runtime NPC StatBlock snapshots and dynamic stat lookup, replacing the obsolete single `stat_block` movement dependency.
+* Updated NPC movement speed resolution to use runtime stat data through `get_stat("Movement")`.
+
+---
+
+## [v0.52.222] - 2026-08-16
+
+### Minimap Camera Integration
+
+**System(s) Affected:** World, Camera, Minimap, Player
+
+* Added dedicated minimap camera control through MiniMapManager using the existing CameraProfile system.
+* Added minimap-specific camera profiles with `minimap_enabled` gating.
+* Configured the minimap to render the shared game world through its own SubViewport with shared 2D/3D world assignment.
+* Integrated player attachment through PlayerManager with existing-player detection during minimap initialization.
+* Updated minimap camera positioning to center on the player's world position.
+
+---
+
 ## [v0.52.221] - 2026-08-15
 
 ### Dynamic Camera, Chunk-Owned World Systems & Runtime Routing
