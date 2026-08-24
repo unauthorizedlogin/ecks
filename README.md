@@ -35,8 +35,8 @@ Development updates, system breakdowns, and framework progress are shared throug
 
 - Status: ecks is currently in active development.
 - Stage: pre-alpha
-- Version: 0.52.220
-- Date: 8/14/2026
+- Version: 0.52.227
+- Date: 8/21/2026
 - [Changelog](./CHANGELOG.md)
 
 ## 📖 Documentation:
