@@ -2,6 +2,148 @@
 
 ---
 
+## [v0.52.232] - 2026-08-28
+
+### Credits Background
+
+**System(s) Affected:** Credits, UI, Menus
+
+* Refactored the Credits background system into the dedicated `BgControl` node.
+* `BgControl` now owns the complete background pipeline, including asset configuration, screenshot sourcing, runtime cycling, transitions, and editor preview.
+* Added configurable screenshot directory sourcing for dynamic Credits backgrounds.
+* Moved background state, cycling, timers, and fade transitions out of `credits_root.gd`.
+* Updated background initialization to function consistently in both the editor and runtime.
+
+### Fog of War Optimization
+
+**System(s) Affected:** World, Maps, Fog of War
+
+* Reworked Fog of War rendering from a single full-world texture into independent **64×64 fog chunks**.
+* Added region-to-chunk resolution so vision updates only rebuild the affected fog chunks.
+* Added protection against deferred chunk initialization continuing after a world or node transition.
+
+### Camera Smoothing
+
+**System(s) Affected:** World, Camera
+
+* Fixed choppy world-camera movement at lower configured follow speeds.
+* Removed Camera2D reparenting to the player during `attach_player()`.
+* Camera2D now remains attached to the world while tracking the player's world position.
+* Updated camera follow speed scaling to provide smooth movement across the configured follow-speed range.
+
+---
+
+## [v0.52.231] - 2026-08-27
+
+### Credits Animations
+
+**System(s) Affected:** Credits, UI, Menus
+
+* Added **Slide**, **Typewriter**, **Scale**, **Blur**, and **Dissolve** entrance animations for Credits UI elements.
+* Added configurable `entrance_scale` control for Scale entrance animations.
+* Added `credits_blur.gdshader` for Blur entrance effects.
+* Added `credits_dissolve.gdshader` for Dissolve entrance effects.
+* Added **Glow Pulse** as the first functional Credits Hold Animation.
+* Updated `CreditsTextAnimator` to hand completed entrance animations to `CreditsHoldAnimator`.
+* Hold animations now begin only after the selected entrance animation has fully completed.
+* Shader materials are cleared after shader-based entrance effects before Hold animations begin.
+* Added the complete Credits Hold Animation system for continuous visual effects.
+* Added **Shimmer**, **Wave**, **Flicker**, and **Glitch** Hold animations.
+* Added configurable `hold_duration` to control how long each credit entry remains in its Hold state.
+* Added the complete Credits Exit Animation system for transitioning entries out of Hold.
+* Added exit animation dispatch through `CreditsTextAnimator.animate_exit()`.
+* Added exit triggering after the configured `hold_duration`.
+* Added dedicated `exit_duration` configuration for exit animation timing.
+
+### Credits Attributions
+
+**System(s) Affected:** Credits, UI, Menus, Data Generator
+
+* Added a dedicated **Attributions** section to the Credits framework for crediting external entities.
+* Added Attribution Label Configuration to `credits_root.gd`.
+* Added `_render_attributions()` to `credits_renderer.gd` for rendering attribution entries.
+* Updated the Credits data generator to recognize the attribution CSV section.
+
+---
+
+## [v0.52.230] - 2026-08-26
+
+### Credits Animations
+
+**System(s) Affected:** Credits, UI, Menus
+
+* Added configurable credits entrance animation controls for delay, stagger, trigger offset, and duration.
+* Added support for six entrance animation modes: Fade, Slide, Scale, Typewriter, Blur, and Dissolve.
+* Added `CreditsTextAnimator` for runtime tracking and animation handling of credit labels.
+* Added configurable entrance animation properties to `credits_root.gd`.
+* Reworked entrance animation timing to trigger from the actual label position instead of relying on predicted scroll arrival times.
+* Established the runtime animation framework for additional entrance effects.
+* Currently implemented and active: **Fade**.
+
+---
+
+## [v0.52.229] - 2026-08-25
+
+### Credits UI Refactor
+
+**System(s) Affected:** UI, Menus, Credits
+
+* Refactored Credits UI rendering into dedicated helper functions, reducing repeated label and member construction logic.
+* Established `render_credits()` as the primary credits rendering orchestrator.
+* Added configurable delayed reveal for the **Return to Main Menu** button.
+
+---
+
+## [v0.52.228] - 2026-08-24
+
+### World Fog of War & Extended Map
+
+**System(s) Affected:** World, Maps, Minimap, UI, Camera
+
+* Relocated Fog of War ownership from the Minimap to the World system, centralizing exploration, active vision, rendering, and save/load state.
+* Updated the Minimap to consume the active world's Fog of War texture directly through MiniMapFogController.
+* Optimized Fog of War vision updates to process only the affected vision region instead of rebuilding the full 512 × 512 texture on every update, eliminating severe movement stutter.
+* Refined vision bounds and rendering to preserve circular reveals, soften edges, and eliminate the square reveal artifact.
+* Added configurable fog noise strength and scale for additional reveal edge variation.
+* Removed the redundant MiniMapFogOfWar implementation following the ownership migration.
+* Implemented the Extended Map as a standalone Diablo II-style map overlay with mouse panning, focused zooming, player positioning, and dedicated camera control.
+* Integrated Extended Map camera behavior with CameraProfile settings for zoom, rotation, limits, dragging, and processing.
+* Isolated Extended Map world geometry and Fog of War presentation from the standard Minimap viewport and marker system.
+
+---
+
+## [v0.52.227] - 2026-08-21
+
+### Minimap Persistence & Fog Optimization
+
+**System(s) Affected:** Minimap, HUD, Fog of War, Save System, World
+
+* Added persistent Fog of War exploration state to SaveData, allowing explored map areas to survive save/load cycles while active player vision remains transient.
+* Integrated Fog of War serialization through MiniMapFogController, MiniMapManager, and the existing SaveManager pipeline.
+* Reworked minimap marker registration and lifecycle handling to support both chunk-based and standard worlds without duplicate creation or premature registration.
+* Fixed NPC, storage, and treasure marker cleanup and recreation across map transitions and minimap readiness states.
+* Optimized Fog of War rendering by replacing full-map visibility and texture rebuilds with targeted dirty-region updates.
+* Reused the existing ImageTexture and added movement-based vision update throttling for substantially smoother Fog of War rendering during gameplay.
+
+---
+
+## [v0.52.226] - 2026-08-20
+
+### Minimap Refactor, Fog of War & Navigation
+
+**System(s) Affected:** Minimap, HUD, World, Maps, Quest System, Camera
+
+* Refactored quest marker ownership into a dedicated MiniMapQuestController, reducing MiniMapManager responsibilities.
+* Added Minimap readiness synchronization so WorldManager waits for minimap initialization before revealing newly loaded maps.
+* Updated map transitions and minimap rebuilding to support both chunk-based and standard worlds while reconnecting cameras from the active MapResource.
+* Fixed minimap geometry duplication and streamlined world transition initialization.
+* Implemented functional minimap Fog of War with circular player vision, configurable range/softness, persistent exploration, and cell-based resolution.
+* Added runtime minimap zoom controls using the existing CameraProfile zoom configuration and mouse-wheel input.
+* Expanded quest navigation with off-map homing indicators for active story and side-quest objectives using the existing marker system.
+* Added persistent world-space target positions to markers and player waypoint support for reusable navigation behavior.
+
+---
+
 ## [v0.52.225] - 2026-08-19
 
 ### Minimap Quest Markers
