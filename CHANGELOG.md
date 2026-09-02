@@ -2,6 +2,108 @@
 
 ---
 
+## [v0.52.235] - 2026-09-01
+
+### Attack Range, Vision, and Scaling
+
+**System(s) Affected:** Stats, Abilities, Combat, Fog of War, UI
+
+* Standardized spatial stat scaling to **1 stat point = 100 world units/pixels** for AttackRange and ability range values.
+* Wired player `AttackRange` into ability and auto-attack range validation.
+* Preserved ability-specific `max_range` values while allowing character AttackRange to operate independently alongside them.
+* Added **AttackRadius** as a derived combat stat that expands the base radius of AoE abilities.
+* Standardized ability and aura spatial values to the same 100-unit scale.
+* Wired player `Vision` to a **1 stat point = 10 world units/pixels** conversion for Fog of War.
+* Added Vision and AttackRange to the Stats Menu.
+* Ability base range/radius values and character-level stats now combine without replacing each other.
+
+### Attack Stats
+
+**System(s) Affected:** Stats, StatCalculator, Combat
+
+* Restored the Attack Rating calculation pipeline.
+* Attack Rating now derives from expected damage and AtkSpd.
+* Reconnected crit-adjusted expected damage to derived Attack calculations.
+* Fixed Attack remaining at 0 when calculated damage results were not retained.
+
+### Accuracy
+
+**System(s) Affected:** Stats, Combat
+
+* Added **Accuracy** as a combat stat used to determine attacker hit chance.
+* Added Accuracy to the StatBlock equipment/stat pipeline and derived stat framework.
+* Added Accuracy percentage conversion using the existing 0–100 rating scale.
+
+### Range Target Filtering
+
+**System(s) Affected:** Combat, Abilities
+
+* Updated target filtering so AttackRadius only expands abilities that provide an AoE radius.
+* Single-target abilities remain single-target regardless of the caster's AttackRadius.
+* Abilities with `radius > 0` use the caster's expanded AttackRadius.
+* Added DamageOrigin propagation through the combat context so DOT requests retain their origin.
+* DOT damage now bypasses Dodge checks while continuing through normal mitigation and leech processing.
+
+### Effect Stacking
+
+**System(s) Affected:** Effects, EffectManager
+
+* Updated grouped DoT/HOT stacking behavior to explicitly control reapplication.
+* `stack_group` + `NONE/NONE` now permits only one active instance until expiration.
+* Empty `stack_group` preserves independent stacking, allowing concurrent effect instances.
+* Prevented rapidly reapplied grouped DoTs from creating duplicate active instances.
+
+### DoT Damage
+
+**System(s) Affected:** Effects, Combat, Damage
+
+* DoT damage now defaults to dividing resolved total damage evenly across the effect's expected ticks.
+* Preserved originating damage and scaling before distributing damage across ticks.
+* DoTs can now use `full_amount_per_tick` to apply the full configured damage on every tick.
+* Added `full_amount_per_tick` to `StatEffect` and the CSV → `.tres` generation pipeline.
+* DoTs no longer critically strike; normal resistance, defense mitigation, and leech processing remain active.
+* Full Amount Per Tick currently applies to DOT effects only; HOT behavior is unchanged.
+
+---
+
+## [v0.52.234] - 2026-08-30
+
+### Vision
+
+**System(s) Affected:** Stats, Player, Fog of War, Minimap
+
+* Added **Vision** and **Attack Range** as new derived stat definitions.
+* Wired the player's calculated Vision stat into the Fog of War system so vision radius is dynamically driven by the player's stats.
+* Updated `StatCalculator` and stat formula infrastructure to support Vision as a derived stat.
+* Updated player Fog of War vision to retrieve the calculated Vision value from the player.
+* Updated `MiniMapFogController` to pass the player's calculated vision range into the Fog of War system.
+* Added persistent explored-area visual softening so previously revealed regions retain smooth fog boundaries.
+* Fixed explored-area boundaries appearing as hard, blocky cell edges.
+* Preserved persistent exploration state through Fog of War save/load.
+* Fixed Vision formulas and verified that **0 Vision produces no Fog of War reveal**.
+* Corrected altered stat enum definitions that were preventing Vision from resolving correctly.
+
+---
+
+## [v0.52.233] - 2026-08-29
+
+### Overlay Map
+
+**System(s) Affected:** World, Maps, UI, Overlay Map, Minimap
+
+* Updated the expanded map overlay to allow player mouse movement while the overlay is open.
+* Changed `OverlayMap` mouse filtering from `STOP` to `PASS` so gameplay mouse input can continue through the overlay.
+* Player click-to-move is no longer blocked while the expanded map is open.
+* Zoom and middle-mouse map panning continue to function alongside gameplay input.
+* Added overlay player tracking for the `PlayerArrow` when the player moves outside the visible map viewport.
+* PlayerArrow is hidden when the player leaves the overlay viewport and replaced with a homing marker.
+* Extended the player homing marker functionality to `MiniMapPlayerController`.
+* Added positioning compensation for the parent minimap dimensions.
+* Updated homing marker orientation so it remains inside the map while pointing outward toward the player's actual position.
+* Matched homing marker sizing to the existing PlayerArrow presentation.
+
+---
+
 ## [v0.52.232] - 2026-08-28
 
 ### Credits Background
