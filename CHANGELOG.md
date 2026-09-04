@@ -2,6 +2,72 @@
 
 ---
 
+## [v0.52.238] - 2026-09-04
+
+### Data Pipeline Refactor & Serialization
+
+**System(s) Affected:** Environment, Data Pipeline, Save
+
+* Migrated the Environment system to the CSV → `.tres` → index → database pipeline.
+* Added generated environment and gradient resources with database lookup support.
+* Converted existing Autumn, Swamp, Snow, and Ray Lights configurations to the new CSV pipeline.
+* Added persistent `environment_id` serialization so the active environment is restored independently of player position.
+* Fixed environment state restoration when loading a save outside an environment Shape.
+
+---
+
+## [v0.52.237] - 2026-09-03
+
+### Quest Manager Refactor
+
+**System(s) Affected:** Quests, QuestManager, QuestTracker
+
+* Removed redundant runtime initialization checks and moved initialization fully into `QuestManager.initialize()`.
+* Removed Quest System initialization calls from the bootloader.
+* Refactored quest save/load restoration so `QuestTracker` restores its own tracking state.
+* Added `QuestTracker.restore_tracking()` for tracked quests and story quest state.
+
+### Fog of War Load Timing
+
+**System(s) Affected:** Fog of War, Minimap, World
+
+* Synchronized Fog of War save restoration with Minimap readiness before gameplay becomes active.
+* Delayed world transition fade-in until saved exploration data is restored.
+* Preserved existing fade behavior for normal world and map transitions.
+
+### Serialization Improvements
+
+**System(s) Affected:** Save, Player, World
+
+* Fixed saved player position restoration during game loading.
+* Updated `rebuild_world()` to restore the saved position from `PlayerManager`.
+* Preserved existing spawn behavior for new games and map transitions.
+
+---
+
+## [v0.52.236] - 2026-09-02
+
+### Resolved Damage Scaling
+
+**System(s) Affected:** Effects, Combat
+
+* Added resolved-damage scaling for DOT/HOT effects based on damage actually dealt by the triggering attack.
+* Added **RESOLVED_DAMAGE**, **RESOLVED_PLUS_EFFECT**, and **RESOLVED_TIMES_EFFECT** scaling modes.
+* Resolved damage is captured after combat resolution so effects scale from damage that actually landed.
+* Updated `StatEffect.resolve_damage_amount()` to accept resolved damage.
+
+### Quest Manager Refactor
+
+**System(s) Affected:** Quests, QuestManager
+
+* Extracted quest tracking into the new `QuestTracker` helper.
+* Extracted quest event processing into the new `QuestEventProcessor`.
+* Preserved `QuestManager` as the public facade for existing quest and UI systems.
+* Moved quest definition ownership to `QuestDatabase` / `QuestResourceDatabase`, loading definitions through the generated `QuestIndex`.
+* Separated quest definition management from runtime quest state.
+
+---
+
 ## [v0.52.235] - 2026-09-01
 
 ### Attack Range, Vision, and Scaling
