@@ -2,6 +2,128 @@
 
 ---
 
+## [v0.52.242] - 2026-09-09
+
+### Time Upgrades and Stabilization
+
+**System(s) Affected:** Time, World, Player, Calendar
+
+* Fixed world-date initialization using `TimeData` starting dates as the calendar epoch.
+* Added season wraparound handling for year transitions.
+* Added centralized Celsius/Fahrenheit temperature unit selection through the Calendar UI.
+* Added persistent Player Age tracking based on elapsed world time and calendar days.
+* Player age now persists across save/load and updates through the Calendar UI.
+
+### Environment and Fog
+
+**System(s) Affected:** Environment, Fog, Calendar
+
+* Moved temperature unit selection out of individual environments and into the centralized Calendar UI.
+* Converted atmospheric Fog from a world-positioned effect to a screen-space effect through `ScreenFxLayer`.
+* Fog now maintains full viewport coverage independently of world position.
+
+### Scroll Wheel Input
+
+**System(s) Affected:** UI, Menus, Event Viewer, Calendar
+
+* Prevented UI scroll-wheel events from leaking into world and camera zoom controls.
+* Added explicit wheel-event consumption to the Event Viewer.
+* Configured Calendar input to stop mouse events without forcing runtime overrides.
+
+### Calendar Toggle
+
+**System(s) Affected:** UI, Menus, Calendar
+
+* Added centralized Calendar open/close/toggle behavior through `UIManager`.
+* Added `toggle_calendar` input action handling.
+* Calendar now initializes hidden to guarantee a closed default state.
+
+---
+
+## [v0.52.241] - 2026-09-08
+
+### Calendar UI
+
+**System(s) Affected:** UI, Menus, Time, Environment
+
+* Added the initial Calendar HUD connected to `TimeManager`.
+* Added season, day phase, moon phase, and weather condition presentation.
+* Added dynamic day/night environment icons based on the current day phase.
+* Expanded weather presentation with 44 new environment/weather icons and localized Conditions display.
+
+### World Temperatures
+
+**System(s) Affected:** Environment, Time, Calendar
+
+* Added reactive world temperature calculation based on season, time of day, and active weather.
+* Added `TemperatureCalculator`, `TemperatureRange`, and `MeteoTemperatureEffect` resources.
+* Exposed live temperature and `temperature_changed` updates through `EnvironmentManager`.
+* Added configurable weather intensity effects for temperature calculations.
+
+### Weather Conditions
+
+**System(s) Affected:** Environment, Weather, Temperature
+
+* Added human-readable weather conditions with Light, Heavy, and Partly intensity variants.
+* Added distinct Rain, Snow, Lightning, and Cloud conditions with corresponding temperature effects.
+
+---
+
+## [v0.52.240] - 2026-09-07
+
+### Season Filtering
+
+**System(s) Affected:** Environment, Time, World
+
+* Added automatic seasonal environment pools through `EnvironmentShape`.
+* Separated static environment selection from dynamic seasonal eligibility.
+* Added season-based filtering through `TimeManager` and `ResourceEnvironment.seasons`.
+* Preserved weighted random selection and day-phase filtering.
+* Added `TimeCalendarHelper` and `TimeDayPhaseHelper` to centralize calendar, season, and day-phase calculations.
+
+### Lunar Phases
+
+**System(s) Affected:** Environment, Time, World
+
+* Added configurable 8-phase lunar cycle support through `TimeMoonPhaseHandler`.
+* Added moon phase tracking, signals, and `MOON_PHASE` environment refresh mode.
+* Added moon-phase eligibility filtering and CSV → resource generation support.
+* Environment resolution now supports **season + day phase + moon phase** filtering.
+
+### Save Encryption
+
+**System(s) Affected:** Save, Security, UI
+
+* Added encrypted and authenticated `SAVESEC` save containers using 256-bit encryption and HMAC-SHA256 authentication.
+* Added tamper validation before save decryption and deserialization.
+* Changed physical save files from `.res` to `.sav`.
+* Added centralized `SaveSettings` configuration with dynamic save slot counts.
+* Refactored Save/Load and Pause slot generation through dedicated slot controllers, supporting arbitrary configured slot counts.
+
+---
+
+## [v0.52.239] - 2026-09-06
+
+### World Calendar
+
+**System(s) Affected:** Time, World, Data Pipeline
+
+* Added CSV → `.tres` TimeData generation with configurable calendars, clocks, seasons, and day phases.
+* Added `TimeResourceDatabase` and `al_time_database` for centralized TimeData discovery and lookup.
+* Added runtime TimeManager support for selecting calendar configurations by `time_id`.
+
+### Dynamic Weather
+
+**System(s) Affected:** Environment, Time, World
+
+* Added time-driven dynamic environment selection within EnvironmentShape zones.
+* Added support for multiple environment candidates resolved against current world time.
+* Added centralized environment change signaling and active EnvironmentShape tracking.
+* Added configurable per-zone environment refresh timing through `refresh_mode`.
+* Preserved dynamic environment selection across map and world transitions.
+
+---
+
 ## [v0.52.238] - 2026-09-04
 
 ### Data Pipeline Refactor & Serialization
