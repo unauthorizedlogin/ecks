@@ -13,6 +13,8 @@ The system provides:
 * Special thanks
 * Dedications
 * Scrollable credits presentation
+* Text entrance, hold, and exit animations
+* Background selection and switching
 * Localization support
 * Editor preview support
 * Inspector-driven visual configuration
@@ -30,33 +32,50 @@ The system provides:
                           ↓
                    Credits Root
                           |
-              ┌───────────┴───────────┐
-              ↓                       ↓
-      Dynamic Departments        Credits Audio
-              |                       |
-              ↓                       ↓
-       Credits Scroll            Music Playlist
+                          ↓
+                  Credits Renderer
+                          |
+              ┌───────────┼───────────┐
+              ↓           ↓           ↓
+       Credits Department  Scroll   Text Animators
+                                      |
+                              ┌───────┼───────┐
+                              ↓       ↓       ↓
+                           Entrance  Hold    Exit
+
+                 Credits Background
+                         |
+                 Background Control
+
+                    Credits Audio
+                         |
+                   Music Playlist
 ```
 
 `CreditsData` defines the credits content.
 
-`CreditsRoot` controls the credits scene and generates the presentation.
+`CreditsRoot` provides presentation configuration and passes control to the dedicated credits components.
 
-`CreditsDepartment` and `CreditsScroll` provide the visual structure for the generated credits.
+`CreditsRenderer` builds the dynamic credits presentation.
 
-`CreditsAudio` provides dedicated credits music playback.
+`CreditsBackground`, `CreditsAudio`, and the text animators provide dedicated presentation behavior.
 
 ---
 
 # 🔗 Credits System Documentation
 
-| SystemPurposeDocumentation |                                                        |                    |
-| -------------------------- | ------------------------------------------------------ | ------------------ |
-| 🎬 Credits Menu            | Main credits scene and dynamic presentation controller | [Credits Root](credits_root.md)       |
-| 📄 Credits Data            | Defines contributor, attribution, and credits content  | [Credits Data](credits_data.md)        |
-| 👥 Credits Department      | Displays contributor departments and entries           | [Credits Department](credits_dept.md)  |
-| 🎵 Credits Audio           | Manages automatic credits music playback               | [Credits Audio](credits_audio.md)       |
-| 📜 Credits Scroll          | Provides the scrollable credits presentation           | [Credits Scroll](credits_scroll.md)      |
+| System                   | Purpose                                               | Documentation                                     |
+| ------------------------ | ----------------------------------------------------- | ------------------------------------------------- |
+| 🎬 Credits Root          | Main credits scene and presentation configuration     | [Credits Root](credits_root.md)                   |
+| 🖥️ Credits Renderer     | Builds and manages the dynamic credits presentation   | [Credits Renderer](credits_renderer.md)           |
+| 📄 Credits Data          | Defines contributor, attribution, and credits content | [Credits Data](credits_data.md)                   |
+| 👥 Credits Department    | Displays contributor departments and entries          | [Credits Department](credits_dept.md)             |
+| 📜 Credits Scroll        | Provides the scrollable credits presentation          | [Credits Scroll](credits_scroll.md)               |
+| ✨ Credits Text Animator  | Controls text entrance animations                     | [Credits Text Animator](credits_text_animator.md) |
+| ⏸️ Credits Hold Animator | Controls text hold animations                         | [Credits Hold Animator](credits_hold_animator.md) |
+| 🚪 Credits Exit Animator | Controls text exit animations                         | [Credits Exit Animator](credits_exit_animator.md) |
+| 🖼️ Credits Background   | Selects and switches credits backgrounds              | [Credits Background](credits_background.md)       |
+| 🎵 Credits Audio         | Manages automatic credits music playback              | [Credits Audio](credits_audio.md)                 |
 
 ---
 
@@ -77,10 +96,10 @@ The Credits System owns credits presentation while credits content remains data-
 
 **`CreditsData` defines the credits.**
 
-**`CreditsRoot` builds the presentation.**
+**`CreditsRoot` provides configuration and delegates presentation.**
 
-**`CreditsDepartment` and `CreditsScroll` structure the UI.**
+**`CreditsRenderer` builds the credits presentation.**
 
-**`CreditsAudio` controls the credits soundtrack.**
+**Dedicated animators, background, scroll, and audio components handle their respective presentation responsibilities.**
 
-The Credits System should keep credits content, presentation, layout, and audio responsibilities separated so the credits sequence can be updated without embedding contributor information directly into the scene.
+The Credits System should keep credits content, rendering, animation, layout, background, and audio responsibilities separated so the credits sequence can be updated without embedding contributor information directly into the scene.
