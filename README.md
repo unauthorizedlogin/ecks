@@ -345,9 +345,9 @@ Or, if you'd prefer a specific topic you can access them directly here:
 - 🧩 [Chunk Loader](./docs/system/world/chunk_loader.md)
 - 🗺️ [Chunk Manager](./docs/system/world/chunk_manager.md)
 - 💥 [Destroyables](./docs/system/world/destroyables.md)
-- 🌦️ [Environment Manager](./docs/system/world/environment_manager.md)
-- 🌦️ [Environment System](./docs/system/world/environment_system.md)
+- 🌦️ [Environment System](./docs/system/world/environment/)
 - 🗺️ [Maps](./docs/system/world/maps.md)
+- ⏰ [Time System](./docs/system/world/time/)
 - 🌍 [World Manager](./docs/system/world/world_manager.md)
 
 ---
