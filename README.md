@@ -217,7 +217,7 @@ Or, if you'd prefer a specific topic you can access them directly here:
 - 🧠 [Game Manager](./docs/system/engine/gamestate/game_manager.md)
 - 🌐 [Localization](./docs/system/engine/localization/localization.md)
 - 🔑 [Requirements Manager](./docs/system/engine/requirements/requirements_manager.md)
-- 💾 [Save System](./docs/system/engine/save/save_system.md)
+- 💾 [Save System](./docs/system/engine/save/)
 - 🔄 [Transition Manager](./docs/system/engine/transition/transition_manager.md)
 
 ---
