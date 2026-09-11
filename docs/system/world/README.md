@@ -57,6 +57,7 @@ The following systems make up the World layer.
 | 🌦️ Environment System | Data-driven weather, atmosphere, lighting, and world environments | [Environment System](./environment) |
 | 🗺️ Map System | Defines playable world areas, metadata, and map configuration | [Maps](./maps.md) |
 | 🗺️ MiniMap Manager | Manages minimap, camera control, player tracking, markers, fog, & runtime state | [MiniMap Manager](./minimap_manager.md) |
+| ⏰ Time System | Provides the centralized framework for managing simulated world time and calendar state | [Time System](./time) |
 | 🌍 World Manager | World state, map loading, scene transitions, and world lifecycle | [World Manager](./world_manager.md) |
 
 ---
