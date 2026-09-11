@@ -10,6 +10,9 @@ The system provides:
 * Quest objectives and progression
 * Quest runtime state
 * Quest availability and requirements
+* Quest lifecycle management
+* External gameplay event processing
+* Quest tracking and eligibility
 * Quest rewards
 * Quest dialogue integration
 * NPC quest interactions
@@ -26,26 +29,30 @@ The system provides:
                             |
                      QuestDefinition
                             |
+                            ↓
+                     Quest Manager
+                      (Public API)
+                            |
+          ┌─────────────────┼─────────────────┐
+          ↓                 ↓                 ↓
+ Quest Event Processor  Quest Lifecycle   Quest Tracker
+          |                 |                 |
+          ↓                 ↓                 ↓
+   Gameplay Events     Quest State       Tracking State
+                            |
           ┌─────────────────┼─────────────────┐
           ↓                 ↓                 ↓
       Objectives         Dialogue          Rewards
           |                 |                 |
           ↓                 ↓                 ↓
-    QuestInstance    Dialogue System    Item Database
-          |
-          ↓
-     QuestManager
-          |
-     ┌────┴─────┐
-     ↓          ↓
-  Quest UI   Achievement
+    QuestInstance    Dialogue System    Reward Manager
 ```
 
 `QuestDefinition` defines quest content.
-
-`QuestManager` owns quest runtime state and progression.
-
-Supporting systems consume quest data for dialogue, UI, rewards, and achievements.
+`QuestManager` provides the public API for the Quest System.
+`QuestEventProcessor` processes external gameplay events that advance objectives.
+`QuestLifecycle` manages quests from start through completion, failure, or cancellation.
+`QuestTracker` manages quest tracking state and eligibility.
 
 ---
 
@@ -53,17 +60,20 @@ Supporting systems consume quest data for dialogue, UI, rewards, and achievement
 
 The following documents cover the Quest System components.
 
-| SystemPurposeDocumentation |                                                                                 |                         |
-| -------------------------- | ------------------------------------------------------------------------------- | ----------------------- |
-| 🧠 Quest Manager           | Manages quest runtime state, progression, acceptance, and completion            | [Quest Manager](quest_manager.md)   |
-| ⭐ Reward Manager           | Processes quest rewards and routes XP, currency, items, and other reward types | [Reward Manager](reward_manager.md)   |
-| 🎯 Quest Resource          | Defines quest identity, objectives, requirements, rewards, and progression data | [Quest Resource](resource_quest.md) |
-| 🎯 Objective Resource      | Defines objective types, targets, progress requirements, & completion data      | [Objective Resource](resource_quest_obj_def.md) |
-| 🔑 Quest Requirement      | Defines prerequisites that must be satisfied before a quest can be started       | [Quest Requirement](resource_quest_requirements.md) |
-| 🎁 Quest Reward            | Defines reward type, reward identity, display information, and reward amount    | [Quest Reward](resource_quest_reward.md) |
-| 📋 Quest Instance          | Tracks runtime objective and quest progression state                            | [Quest Instance](quest_instance.md) |
-| 🧩 Quest Behavior Matrix   | Defines default runtime behavior rules for each quest category                  | [Quest Behavior Matrix](quest_behavior_matrix.md) |
-| 📜 Quest Menu              | Journal for quest visibility, selection, tracking, cancellation, & display      | [Quest Menu](quest_menu.md) |
+| System                   | Purpose                                                                         | Documentation                                       |
+| ------------------------ | ------------------------------------------------------------------------------- | --------------------------------------------------- |
+| 🧠 Quest Manager         | Public API for accessing and controlling quest system functionality             | [Quest Manager](quest_manager.md)                   |
+| ⚙️ Quest Event Processor | Processes external gameplay events such as pickups, kills, and collections      | [Quest Event Processor](quest_event_processor.md)   |
+| 🔄 Quest Lifecycle       | Manages quests from start through completion, failure, or cancellation          | [Quest Lifecycle](quest_lifecycle.md)               |
+| 🎯 Quest Tracker         | Manages quest tracking state and tracking eligibility                           | [Quest Tracker](quest_tracker.md)                   |
+| ⭐ Reward Manager         | Processes quest rewards and routes XP, currency, items, and other reward types  | [Reward Manager](reward_manager.md)                 |
+| 🎯 Quest Resource        | Defines quest identity, objectives, requirements, rewards, and progression data | [Quest Resource](resource_quest.md)                 |
+| 🎯 Objective Resource    | Defines objective types, targets, progress requirements, & completion data      | [Objective Resource](resource_quest_obj_def.md)     |
+| 🔑 Quest Requirement     | Defines prerequisites that must be satisfied before a quest can be started      | [Quest Requirement](resource_quest_requirements.md) |
+| 🎁 Quest Reward          | Defines reward type, reward identity, display information, and reward amount    | [Quest Reward](resource_quest_reward.md)            |
+| 📋 Quest Instance        | Tracks runtime objective and quest progression state                            | [Quest Instance](quest_instance.md)                 |
+| 🧩 Quest Behavior Matrix | Defines default runtime behavior rules for each quest category                  | [Quest Behavior Matrix](quest_behavior_matrix.md)   |
+| 📜 Quest Menu            | Journal for quest visibility, selection, tracking, cancellation, & display      | [Quest Menu](quest_menu.md)                         |
 
 ---
 
@@ -79,16 +89,16 @@ The Quest System integrates with:
 * 💾 Save System
 * 🌍 World System
 
-The Quest System owns quest definitions and runtime progression while integrated systems handle their respective presentation and gameplay responsibilities.
+The Quest System owns quest definitions and runtime progression while integrated systems provide gameplay events, presentation, rewards, and persistence.
 
 ---
 
 # 📌 Design Rule
 
 **`QuestDefinition` defines the quest.**
+**`QuestManager` provides the public API.**
+**`QuestEventProcessor` processes external gameplay events.**
+**`QuestLifecycle` manages quest state transitions.**
+**`QuestTracker` manages tracking state and eligibility.**
 
-**`QuestManager` owns quest runtime state.**
-
-**`QuestInstance` tracks active quest progression.**
-
-The Quest System acts as the authority for quest availability, progression, objectives, and completion while exposing quest state to dialogue, UI, rewards, achievements, and other gameplay systems.
+The Quest System keeps the public interface centralized while delegating event processing, lifecycle management, and tracking responsibilities to dedicated handlers.
