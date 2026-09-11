@@ -282,6 +282,7 @@ Implemented generators:
 | 💬 Dialogue Generators | Generates dialogue resources and conversation data | [Dialogue Generators](./dialogue_generators.md) |
 | ⚖️ Difficulty Generators | Generates gameplay difficulty configurations | [Difficulty Generators](./difficulty_generators.md) |
 | ✨ Effect Generator | Generates gameplay effect definitions and effect resources | [Effect Generator](./effect_generator.md) |
+| 🌦️ Environment Generator | Generates gameplay environment resources | [Environment Generator](./environment_generator.md) |
 | 📦 Item Generator | Generates item resources and equipment definitions | [Item Generator](./item_generator.md) |
 | 🗺️ Map Generator | Generates world map resources and level definitions | [Map Generator](./map_generator.md) |
 | 👤 NPC Generator | Generates NPC definitions and references | [NPC Generator](./npc_generator.md) |
