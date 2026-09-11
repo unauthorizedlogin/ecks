@@ -2,6 +2,27 @@
 
 ---
 
+## [v0.52.243] - 2026-09-10
+
+### Fog Optimization
+
+**System(s) Affected:** Fog of War, Minimap
+
+* Added manual `fog_enabled` control for disabling Fog of War rendering and processing.
+* Added automatic full-world reveal when player Vision covers the entire world.
+* Synchronized Minimap fog rendering and processing with the world's Fog of War enabled state.
+
+### Temperature Phase Upgrade
+
+**System(s) Affected:** Environment, Time
+
+* Updated thermal progression to use the configured `TimeData.day_phase_start_hours` schedule.
+* Added continuous day-phase thermal interpolation across the configured daily cycle.
+* Added overnight phase support with explicit midnight wrapping, allowing phases such as **21:00 → 04:00**.
+* Night phases now remain active across midnight instead of resetting at 00:00.
+
+---
+
 ## [v0.52.242] - 2026-09-09
 
 ### Time Upgrades and Stabilization
