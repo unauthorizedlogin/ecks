@@ -150,6 +150,7 @@ Implemented databases:
 | 💬 Dialogue Database | Dialogue resources and conversations | [Dialogue Database](./dialogue_database.md) |
 | ⚖️ Difficulty Database | Gameplay difficulty configurations | [Difficulty Database](./difficulty_database.md) |
 | ✨ Effect Database | Gameplay effects and effect definitions | [Effect Database](./effect_database.md) |
+| 🌦️ Environment Database | Gameplay environment configurations | [Environment Database](./environment_database.md) |
 | 📦 Item Database | Items, equipment, and gameplay objects | [Item Database](./item_database.md) |
 | 🗺️ Map Database | World maps and level resources | [Map Database](./map_database.md) |
 | 👤 NPC Database | NPC identity and references | [NPC Database](./npc_database.md) |
