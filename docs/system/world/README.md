@@ -54,7 +54,7 @@ The following systems make up the World layer.
 | 🧩 Chunk Loader | Connects maps to runtime chunk streaming configuration | [Chunk Loader](./chunk_loader.md) |
 | 🗺️ Chunk Manager | Handles runtime world streaming and chunk lifecycle management | [Chunk Manager](./chunk_manager.md) |
 | 💥 Destroyables | Interactive world objects with damage, destruction, and persistence support | [Destroyables](./world/destroyables.md) |
-| 🌦️ Environment System | Data-driven weather, atmosphere, lighting, and world environments | [Environment System](./environment_system.md) |
+| 🌦️ Environment System | Data-driven weather, atmosphere, lighting, and world environments | [Environment System](./environment/environment_system.md) |
 | 🗺️ Map System | Defines playable world areas, metadata, and map configuration | [Maps](./maps.md) |
 | 🗺️ MiniMap Manager | Manages minimap, camera control, player tracking, markers, fog, & runtime state | [MiniMap Manager](./minimap_manager.md) |
 | 🌍 World Manager | World state, map loading, scene transitions, and world lifecycle | [World Manager](./world_manager.md) |
