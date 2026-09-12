@@ -2,6 +2,19 @@
 
 ---
 
+## [v0.52.244] - 2026-09-11
+
+### Afternoon Thermal Phase
+
+**System(s) Affected:** Environment, Time
+
+* Refined the thermal curve to peak and hold daytime temperatures through Afternoon.
+* Added distinct warming, peak/hold, and cooling thermal regions.
+* Added minimum-temperature hold through the overnight period.
+* Seasonal min/max values remain the thermal baseline, with Meteo conditions able to modify the final temperature.
+
+---
+
 ## [v0.52.243] - 2026-09-10
 
 ### Fog Optimization
